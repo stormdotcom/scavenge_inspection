@@ -62,7 +62,7 @@ function SignUp(props) {
                                             <FormController control="input" name="imoNumber" label="IMO Number" />
                                         </Grid>
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
-                                            <FormController control="select" name="organisationAdmin" label="Choose one Organisation Admin for your Vessel?" options={orgAdmin} />
+                                            <FormController control="select" name="organizationAdmin" label="Choose one Organization Admin for your Vessel?" options={orgAdmin} />
                                         </Grid>
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                                             <FormController control="input" name="password" label="Password" />
@@ -104,7 +104,7 @@ const mapDispatchToProps = (dispatch) => ({
 const UserRegistrationForm = withFormik({
     enableReinitialize: false,
     validationSchema: validator,
-    mapPropsToValues: () => ({ email: "", password: "", confirmPassword: "", imoNumber: "", organisationAdmin: "" }),
+    mapPropsToValues: () => ({ email: "", password: "", confirmPassword: "", imoNumber: "", organizationAdmin: "" }),
     handleSubmit: (values, { props: { submit } }) => {
         submit(values);
     },
