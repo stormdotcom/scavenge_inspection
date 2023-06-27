@@ -1,0 +1,9 @@
+{
+    "MuiListItemButton": {
+        "styleOverrides": {
+            "root": {
+                "borderRadius": "10px"
+            }
+        }
+    }
+}

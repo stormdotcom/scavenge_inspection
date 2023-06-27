@@ -1,0 +1,10 @@
+{
+    "MuiPaper": {
+        "styleOverrides": {
+            "root": {
+                "backgroundColor": "#212529",
+                "color": "#ffff"
+            }
+        }
+    }
+}

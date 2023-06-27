@@ -1,0 +1,38 @@
+  {
+    "palette": {
+      "primary": {
+        "light": "#303134",
+        "main": "#212529",
+        "600": "#181b1e"
+      },
+      "secondary": {
+        "light": "#f0c246",
+        "main": "#e8af13",
+        "dark": "#d6a112"
+      },
+      "background": {
+        "paper": "#E0F8E2"
+      },
+      "cardBackground": {
+        "main": "#E9F4EA"
+      },
+      "purple": {
+        "main": "#7066e0"
+      },
+      "error": {
+        "main": "#FC3B3B "
+      },
+      "white": {
+        "main": "#ffffff"
+      },
+      "shaded": {
+        "main": "#86938E"
+      },
+      "dark": {
+        "main": "#000"
+      },
+      "boneWhite": {
+        "main": "#F9F6EE"
+      }
+    }
+  }

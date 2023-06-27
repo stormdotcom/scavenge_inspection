@@ -1,0 +1,11 @@
+{
+    "MuiCard": {
+        "styleOverrides": {
+            "root": {
+                "backgroundColor": "#212529",
+                "borderRadius": "20px",
+                "boxShadow": "0px 8px 40px #303134"
+            }
+        }
+    }
+}

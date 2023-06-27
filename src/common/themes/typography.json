@@ -1,0 +1,16 @@
+  {
+    "typography": {
+      "fontFamily": "Franklin Gothic Book",
+      "fontWeightLight": 300,
+      "fontWeightNormal": 700,
+      "fontWeightMedium": 500,
+      "fontWeightBold": 600,
+      "body2": {
+        "fontFamily": "",
+        "fontSize": "1"
+      },
+      "body1": {
+        "fontSize": "14px"
+      }
+    }
+  }

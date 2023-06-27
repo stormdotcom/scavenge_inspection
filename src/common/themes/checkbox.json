@@ -1,0 +1,14 @@
+{
+    "MuiCheckbox": {
+        "styleOverrides": {
+            "root": {
+                "borderRadius": "5px",
+                "color": "#",
+                "borderWidth": "1px",
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "margin": 0
+            }
+        }
+    }
+}

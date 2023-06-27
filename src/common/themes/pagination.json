@@ -1,0 +1,18 @@
+{
+    "MuiPagination": {
+        "styleOverrides": {
+            "root": {
+                "button": {
+                    "color": "#000",
+                    " &:hover": {
+                        "backgroundColor": "#d6a112",
+                        "boxShadow": "none"
+                    }
+                },
+                "buttonBase": {
+                    "color": "#fff"
+                }
+            }
+        }
+    }
+}

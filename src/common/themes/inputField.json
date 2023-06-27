@@ -1,0 +1,23 @@
+{
+    "MuiInput": {
+        "styleOverrides": {
+            "root": {
+                "fontSize": "14px",
+                "border": "1px solid #d6a112",
+                "borderRadius": "8px",
+                "paddingRight": "10px",
+                "height": "20px",
+                "width": "100%",
+                "outline": "none",
+                "position": "static",
+                "paddingLeft": "15px",
+                "fontWeight": 500,
+                "color": "#212529",
+                "backgroundColor": "#fff",
+                "&:hover fieldset": {
+                    "borderColor": "grey"
+                }
+            }
+        }
+    }
+}

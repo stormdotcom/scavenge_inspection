@@ -1,0 +1,15 @@
+{
+    "MuiButton": {
+        "styleOverrides": {
+            "root": {
+                "fontWeight": "100",
+                "margin": "5px",
+                "fontSize": "18px",
+                "borderRadius": "11px",
+                "minWidth": "172px",
+                "height": "50px",
+                "textTransform": "none"
+            }
+        }
+    }
+}

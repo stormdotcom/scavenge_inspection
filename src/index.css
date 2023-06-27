@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Franklin Gothic Book";
+  src: url("./assets/fonts/FranklinGothicBookRegular/FranklinGothicBookRegular.ttf");
+}
+
+@font-face {
+  font-family: "Clash Display";
+  src: url("./assets/fonts/ClashDisplay_Complete/ClashDisplay-Variable.ttf");
+}
+
+body {
+  font-family: "Franklin Gothic Book";
+  margin: 0;
+  padding: 0
+}

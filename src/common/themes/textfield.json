@@ -1,0 +1,20 @@
+{
+    "MuiTextField": {
+        "styleOverrides": {
+            "root": {
+                "multiline": "true",
+                "fontSize": "18px",
+                "borderRadius": "10px",
+                "height": "30px",
+                "width": "100%",
+                "fontWeight": 500,
+                "color": "#5E5E5E",
+                "backgroundColor": "#fff",
+                " &:Mui-focused": {
+                    "backgroundColor": "#303134",
+                    "boxShadow": "none"
+                }
+            }
+        }
+    }
+}

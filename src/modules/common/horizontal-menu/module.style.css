@@ -1,0 +1,40 @@
+.dropdown.show {
+  display: block;
+}
+.dropdown .dropdown-submenu {
+  position: absolute;
+  left: 100%;
+  top: 20px;
+  min-width: 180px;
+}
+.submenu {
+  min-width: 180px;
+}
+.underline {
+  border: 2px solid black;
+}
+.active {
+  border-bottom:  4px solid #009992 !important;
+  color: #009992;
+  font-weight: bold;
+}
+.dropdown {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  font-weight: 400;
+  
+}
+.menuitems:hover {
+transform: scale(1.1);
+  color: #fff;
+}
+.MuiTextField-root .MuiInputBase-root:hover:not(.Mui-disabled):before {
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42) !important;
+
+}
+.rotate {
+  transform: rotate(90deg);
+}
+
+
