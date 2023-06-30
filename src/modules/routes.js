@@ -5,6 +5,9 @@ import { PrivateRoute } from "./common/protected-route/protectedRoute";
 
 import { routes as adminRoutes } from "../modules/admin/routes";
 import { routes as userManagement } from "../modules/user-management/routes";
+import { lazy } from "react";
+
+const VesselHome = lazy(() => import("./home/components/HomeWrapper"));
 const { Home } = Icons;
 const routes =
     [
@@ -38,9 +41,15 @@ const routes =
                     errorElement: <RootBoundary />
                 },
                 {
-                    title: "report",
+                    title: "Report",
                     path: "report",
                     // element: <Report />,
+                    errorElement: <RootBoundary />
+                },
+                {
+                    title: "Home",
+                    path: "home",
+                    element: <VesselHome />,
                     errorElement: <RootBoundary />
                 }
 

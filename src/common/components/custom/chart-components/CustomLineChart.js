@@ -4,7 +4,8 @@ import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, BarElement, Title, Tooltip } from "chart.js/auto";
 import { DefaultComponents } from "common/components/material/Components";
 import { getGradient, lineConfig } from "./config";
-import MUISelect from "common/components/custom/CustomMUISelect";
+import { CustomSelect } from "../form-controller-components";
+
 
 const { Paper, Grid, Typography } = DefaultComponents;
 
@@ -82,7 +83,7 @@ const CustomLineChart = (props) => {
                     <Typography variant="h5">{title}</Typography>
                 </Grid>
                 <Grid item xs={4}>
-                    <MUISelect value={select} dataList={selectList} onItemSelect={selectedItem} />
+                    <CustomSelect value={select} dataList={selectList} onItemSelect={selectedItem} />
                 </Grid>
             </Grid>}
             <div style={chartStyle}>

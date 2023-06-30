@@ -5,8 +5,8 @@ const { Grid, Typography } = Components;
 
 const Footer = () => {
     return (
-        <Grid sx={{ display: "flex", justifyContent: "end", width: "100%", pr: { md: "80px", sm: "40px", xs: "20px" }, py: 2 }}>
-            <Typography sx={{ pl: 2, fontSize: "12px" }}>{"Copyright"}</Typography>
+        <Grid sx={{ bgcolor: "primary.light", display: "flex", justifyContent: "end", width: "100%", pr: { md: "80px", sm: "40px", xs: "20px" }, py: 2 }}>
+            <Typography sx={{ pl: 2, fontSize: "12px", color: "white.main" }}>{"Copyright"}</Typography>
         </Grid >
     );
 };

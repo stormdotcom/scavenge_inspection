@@ -98,10 +98,6 @@ export default function ImageUploaderPopUp({ id, name = "Name", description = "S
         dispatch(action({ userId: id, multimediaList }));
         setImage({ imgSrc: null, imgSrcExt: null });
     };
-    const customUploadStyle = {
-        padding: "2px 4px",
-        cursor: "pointer"
-    };
 
     return (
         <Grid>

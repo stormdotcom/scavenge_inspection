@@ -9,4 +9,7 @@ import TextError from "./TextError";
 import Files from "./File";
 import FileUploader from "./fileUpload";
 import ToggleButton from "./CustomToggleButton";
-export { Files, Checkbox, CustomInput, CustomSelect, Input, RadioButtons, Textarea, TextError, DatePicker, FileUploader, ToggleButton };
+import Input2 from "./input2";
+import Input3 from "./input3";
+
+export { Input3, Input2, Files, Checkbox, CustomInput, CustomSelect, Input, RadioButtons, Textarea, TextError, DatePicker, FileUploader, ToggleButton };

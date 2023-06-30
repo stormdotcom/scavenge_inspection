@@ -3,7 +3,7 @@
         "styleOverrides": {
             "root": {
                 "fontSize": "14px",
-                "border": "1px solid #d6a112",
+                "border": "1px solid #303134",
                 "borderRadius": "8px",
                 "paddingRight": "10px",
                 "height": "20px",

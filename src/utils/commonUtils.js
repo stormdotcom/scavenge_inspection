@@ -58,3 +58,18 @@ export const inrFormatter = (value, points) => {
         return converted;
     }
 };
+
+
+export const ImageBase64 = async (image) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(image);
+
+    // eslint-disable-next-line no-undef
+    const data = await new Promise((resolve, reject) => {
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+    });
+
+    return data;
+};
+
