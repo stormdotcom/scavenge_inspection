@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { STATE_REDUCER_KEY } from "./constants";
 const initialState = {
-
+    isLoggedIn: false,
     signIn: {
         requestInProgress: false,
         data: {

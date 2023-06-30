@@ -4,7 +4,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { STATE_REDUCER_KEY } from "./constants";
 const initialState = {
-
     vesselDetails: {
         requestInProgress: false,
         data: {

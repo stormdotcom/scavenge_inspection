@@ -1,6 +1,6 @@
-import { Typography } from "@mui/material";
 import { Components } from "../../../common/components";
 import logoImg from "../../../assets/images/logoDark.png";
+import Menu from "./Menu";
 const { Box, Grid } = Components;
 
 const Header = () => {
@@ -41,10 +41,7 @@ const Header = () => {
                     <ChevronLeftOutlinedIcon sx={{ color: "white.main", transform: rotate }} />
                 </ButtonBase> */}
             </Box>
-            <Box sx={{ display: "flex", justifyContent: "space-evenly", pr: 2 }}>
-                <Typography sx={{ color: "white.main", display: "inline", px: 2 }}> Report </Typography>
-                <Typography sx={{ color: "white.main", display: "inline", px: 2 }}> Logout </Typography>
-            </Box>
+            <Menu />
             {/* <ProfileMenu open={open} handleClose={handleClose} anchorEl={anchorEl} /> */}
         </Grid >
     );

@@ -14,3 +14,17 @@ export const EMAIL = (string) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.tes
 
 export const SMS = (number) => !/\D/.test(number);
 
+
+export const USER_TYPE = ["Vessel", "Organization", "Admin"];
+
+export const SUBSCRIPTION_MODEL = {
+    BASIC: "BASIC",
+    STANDARD: "STANDARD",
+    PREMIUM: "PREMIUM"
+};
+
+export const DESIGNATION = [
+    "CHIEF_OFFICER",
+    "OFFICER",
+    "CREW"
+];
