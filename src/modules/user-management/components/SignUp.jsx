@@ -7,12 +7,14 @@ import { Components, FormController } from "../../../common/components";
 
 import { actions as sliceActions } from "../slice";
 import { signUpSchema as validator } from "../validate";
-import { signUp } from "../actions";
+import { fetchOrgAdmins, signUp } from "../actions";
 import { USER_TYPE } from "../constants";
 import { Box, Paper } from "@mui/material";
 import { getSignUp } from "../selectors";
 import { createStructuredSelector } from "reselect";
+import { AiOutlineFileSearch } from "react-icons/ai";
 import Header from "../../common/header/Header";
+import { useState } from "react";
 
 const { Divider, Grid, Typography } = Components;
 
@@ -20,6 +22,7 @@ const { Divider, Grid, Typography } = Components;
 const { Button } = Components;
 const orgAdmin = [{ id: 1, name: "Test Admin" }, { id: 2, name: "Test Admin 2" }, { id: 3, name: "Test Admin 3" }];
 function SignUp(props) {
+    const [orgEmail, setOrgEmail] = useState();
     const { pathname } = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -39,6 +42,20 @@ function SignUp(props) {
     //     });
     // }
 
+    const handleOnChange = (value) => {
+        let string = value.trim();
+        if (string) {
+            setOrgEmail(string);
+        }
+    };
+
+    const handleOrgAdmin = () => {
+        if (orgEmail && orgEmail !== "") {
+            dispatch(fetchOrgAdmins(orgEmail));
+            setOrgEmail("");
+        }
+    };
+
     useEffect(() => {
         setFieldValue("userType", USER_TYPE.VESSEL);
         return () => dispatch(sliceActions.clear());
@@ -56,13 +73,21 @@ function SignUp(props) {
                                 <Box >
                                     <Form>
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
-                                            <FormController control="input" name="email" label="Email" />
+                                            <FormController control="input" name="fullName" label="Full Name" />
+                                        </Grid>
+                                        <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                                            <FormController
+                                                onClick={handleOrgAdmin}
+                                                onChangeFromController={handleOnChange}
+                                                icon={<AiOutlineFileSearch style={{ color: "#fff" }} />}
+                                                control="input" name="email" label="Organization Email" />
                                         </Grid>
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                                             <FormController control="input" name="imoNumber" label="IMO Number" />
                                         </Grid>
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
-                                            <FormController control="select" name="organizationAdmin" label="Choose one Organization Admin for your Vessel?" options={orgAdmin} />
+                                            <FormController control="select" name="organizationAdmin" label="Please choose the organization administrator for your vessel" options={orgAdmin}
+                                                info="If you are the administrator, please ignore this field. If an administrator already exists, please choose one using the Organization Email field to search for an administrator within your organization" />
                                         </Grid>
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                                             <FormController control="input" name="password" label="Password" />
@@ -104,7 +129,7 @@ const mapDispatchToProps = (dispatch) => ({
 const UserRegistrationForm = withFormik({
     enableReinitialize: false,
     validationSchema: validator,
-    mapPropsToValues: () => ({ email: "", password: "", confirmPassword: "", imoNumber: "", organizationAdmin: "" }),
+    mapPropsToValues: () => ({ fullName: "", email: "", password: "", confirmPassword: "", imoNumber: "", organizationAdmin: "" }),
     handleSubmit: (values, { props: { submit } }) => {
         submit(values);
     },

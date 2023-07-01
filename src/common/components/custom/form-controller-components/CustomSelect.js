@@ -3,10 +3,11 @@ import { ErrorMessage, Field } from "formik";
 import Select from "react-select";
 import { FORM_CONTROL_STYLE } from "./style";
 import TextError from "./TextError";
+import CustomToolTip from "../CustomToolTip";
 
 
 function CustomSelect(props) {
-  const { name = "", options = [], multiple = false, label = "", errorName = "", statusError = false, onChangeFromController, disabled = false, isMandatory = false, ...rest } = props;
+  const { name = "", options = [], multiple = false, label = "", errorName = "", statusError = false, onChangeFromController, disabled = false, isMandatory = false, info = "", ...rest } = props;
   return (
     <Grid sx={FORM_CONTROL_STYLE}>
       <InputLabel htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", fontSize: "14px" }}> *</span>}</InputLabel>
@@ -69,6 +70,7 @@ function CustomSelect(props) {
           }
         }
       </Field>
+      {info && <CustomToolTip info={info} />}
     </Grid>
   );
 }

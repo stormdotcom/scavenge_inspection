@@ -7,6 +7,7 @@ import { call, delay, put } from "redux-saga/effects";
 import { errorNotify, warningNotify } from "./notificationUtils";
 import { HTTP_CONSTANTS, REQUEST_METHOD, STORAGE_KEYS } from "../common/constants";
 import { logout } from "../modules/common/actions";
+import { API_URL } from "../modules/user-management/apiUrls";
 
 const HTTP_RESPONSE_STATUS = {
     BAD_REQUEST: 400,
@@ -39,7 +40,7 @@ const getRequestParams = ({ url, data, method }) => {
     //     return;
     // }
 
-    if ((method === REQUEST_METHOD.PUT || method === REQUEST_METHOD.PATCH || method === REQUEST_METHOD.POST) && url !== API_URL.USER_MANAGEMENT.AUTH_TOKEN) {
+    if ((method === REQUEST_METHOD.PUT || method === REQUEST_METHOD.PATCH || method === REQUEST_METHOD.POST) && url !== API_URL.AUTH.SIGN_IN) {
         data = requestWrapper(data);
     }
 
@@ -65,11 +66,11 @@ function* invokeApi(method, url, payload) {
     const { data: response, error } = apiResponse;
     if (error) {
         yield put(failureAction({ error }));
-        const { code: id, message, response: { status, statusText, data: { resultString, errors = [], errorCode, error_description: errorDescription, error: dataError } = {} } = {} } = error;
+        const { code: id, message: netWorkMessage, response: { status, statusText, data: { errorCode, errorTitle, message, resultString } = {} } = {} } = error;
         let errorMessage = {};
         switch (status) {
             case HTTP_RESPONSE_STATUS.BAD_REQUEST:
-                errorMessage = { title: `${resultString || "ERROR"}`, message: errors };
+                errorMessage = { title: `${resultString || "ERROR"}`, message: message };
                 break;
             case HTTP_RESPONSE_STATUS.UN_AUTHORIZED:
                 {
@@ -82,13 +83,13 @@ function* invokeApi(method, url, payload) {
                         yield delay(500);
                         yield put(logout());
                     } else {
-                        errorMessage = { title: `${dataError || statusText || "ERROR"}`, message: resultString || errorDescription };
+                        errorMessage = { title: `${errorTitle || statusText || netWorkMessage || "ERROR"}`, message: message || errorDescription };
                     }
                 }
                 break;
             case HTTP_RESPONSE_STATUS.NOT_FOUND:
             case HTTP_RESPONSE_STATUS.INTERNAL_SERVER_ERROR:
-                errorMessage = { title: "Error", message: resultString };
+                errorMessage = { title: "Error", message: resultString || message || netWorkMessage };
                 break;
             default:
                 errorMessage = { title: `${status || ""} ${id || "ERROR"}`, message: resultString || message };

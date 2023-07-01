@@ -14,9 +14,13 @@ export const signInSchema = Yup.object({
 
 
 export const signUpSchema = Yup.object({
-    email: Yup.string()
+    fullName: Yup.string()
         .min(3)
         .max(100)
+        .required("Full Name Required"),
+    email: Yup.string()
+        .min(3)
+        .max(200)
         .required("Email Required"),
     password: Yup.string()
         .max(150)
