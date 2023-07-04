@@ -26,3 +26,15 @@ export const updateInspectionDetailsApi = (data) => {
     };
 };
 
+export const getInspectionDetailsApi = () => {
+    return {
+        url: API_URL.VESSEL.GET_INSPECTION_DETAILS,
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.GET_VESSEL_INSPECTION_REQUEST, ACTION_TYPES.GET_VESSEL_INSPECTION_SUCCESS, ACTION_TYPES.GET_VESSEL_INSPECTION_FAILURE]
+        }
+
+    };
+};
+
+

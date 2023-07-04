@@ -8,7 +8,7 @@ import { reducer as notificationsReducer } from "reapop";
 import { persistStore, persistReducer } from "reduxjs-toolkit-persist";
 import storage from "reduxjs-toolkit-persist/lib/storage";
 import autoMergeLevel1 from "reduxjs-toolkit-persist/lib/stateReconciler/autoMergeLevel1";
-
+import { STATE_REDUCER_KEY } from "../modules/common";
 const middleWares = [];
 const sagaMiddleware = createSagaMiddleware();
 middleWares.push(sagaMiddleware);
@@ -21,7 +21,8 @@ const persistConfig = {
   key: "root",
   storage: storage,
   stateReconciler: autoMergeLevel1,
-  whitelist: ["commmon"]
+  whitelist: [STATE_REDUCER_KEY],
+  timeout: 10000
 };
 
 const reducers = combineReducers({

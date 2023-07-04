@@ -1,4 +1,4 @@
-import { Grid, IconButton, InputAdornment, InputLabel, TextField, Typography } from "@mui/material";
+import { Grid, IconButton, InputAdornment, InputLabel, TextField, Tooltip, Typography } from "@mui/material";
 import { ErrorMessage, Field } from "formik";
 
 
@@ -6,7 +6,7 @@ import { FORM_CONTROL_STYLE } from "./style";
 import TextError from "./TextError";
 
 function Input(props) {
-  const { label, name, icon, onClick, sx = {}, errorName = "", statusError = false, onChangeText, onChangeFromController, digitsOnly = false, isMandatory = false, upperCase = false, ...rest } = props;
+  const { toolTipTitle = "", label, name, icon, onClick, sx = {}, errorName = "", statusError = false, onChangeText, onChangeFromController, digitsOnly = false, isMandatory = false, upperCase = false, ...rest } = props;
 
   return (
     <Grid sx={{ ...FORM_CONTROL_STYLE, ...sx }}>
@@ -45,8 +45,12 @@ function Input(props) {
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
-                      {icon && <IconButton onClick={onClick} edge="end"> {icon}</IconButton>}
-                    </InputAdornment>
+                      {icon && <Tooltip title={toolTipTitle}>
+                        <IconButton onClick={onClick} edge="end">
+                          {icon}
+                        </IconButton>
+                      </Tooltip>}
+                    </InputAdornment >
                   )
                 }}
               />
@@ -56,7 +60,7 @@ function Input(props) {
           );
         }}
       </Field>
-    </Grid>
+    </Grid >
   );
 }
 

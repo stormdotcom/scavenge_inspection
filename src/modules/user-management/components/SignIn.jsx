@@ -1,54 +1,36 @@
-// import { CircularProgress, Paper } from "@mui/material";
 import { withFormik } from "formik";
 import { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
-import { Form, useLocation, useNavigate } from "react-router-dom";
-// import { createStructuredSelector } from "reselect";
-// import { confirmDialog, infoNotify }
-import { Components, FormController } from "../../../common/components";
+import { Form, useNavigate } from "react-router-dom";
 
+import { Components, FormController } from "../../../common/components";
+import { actions as commonSliceActions } from "../../common/slice";
 import { actions as sliceActions } from "../slice";
 import { signInSchema as validator } from "../validate";
-// import { getSignIn } from "../selectors";
 import { signIn } from "../actions";
-import { Box, Paper } from "@mui/material";
+import { Box, CircularProgress, Paper } from "@mui/material";
 import { createStructuredSelector } from "reselect";
 import { getSignIn } from "../selectors";
 import Header from "../../common/header/Header";
 
-// const { Card, CardActions, CardContent, CardHeader, Divider, Grid, Typography } = Components;
 const { Divider, Grid, Typography } = Components;
 
 const { Button } = Components;
 
 function SignIn(props) {
-    const { pathname } = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const { handleSubmit } = props;
-    // const confirmed = useSelector(state => state[REDUCER_KEY].signUpForm.confirm);
-
-    // if (confirmed) {
-    //     confirmDialog({
-    //         title: I18n("account_created"), showDenyButton: false
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             navigate("/login");
-    //             window.sessionStorage.setItem("stepper", 0);
-    //         }
-    //     });
-    // }
-
+    const { handleSubmit, signIn: { requestInProgress = true } = {} } = props;
     useEffect(() => {
+        dispatch(commonSliceActions.setNavigator(navigate));
         return () => dispatch(sliceActions.clear());
-    }, [pathname]);
+    }, []);
 
     return (
         <Grid height="100vh" container sx={{ overflowY: "hidden", width: 1, bgcolor: "primary.main", p: 0, display: "flex", alignItems: "center" }}>
             <Header />
             <Box sx={{ mt: 1, width: "100%", display: "flex", alignItems: "center", mb: { lg: "130px", xl: "140px", justifyContent: "center" } }}>
-                <Paper sx={{ overflowY: "scroll", minHeight: "80vh", bgcolor: "primary.light", boxShadow: 0, mr: { xs: "40px", lg: "95px" }, width: { xs: "100%", md: "420px", lg: "480px", xl: "560px" } }}>
+                <Paper sx={{ overflowY: "scroll", minHeight: "80vh", bgcolor: "primary.light", boxShadow: 0, mr: { xs: "40px", lg: "95px" }, width: { xs: "250px", sm: "370px", md: "420px", lg: "480px", xl: "560px" } }} >
                     <Grid sx={{ display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
                         <Box sx={{ px: { xs: 3, xl: 6 }, py: 4 }}>
                             <Typography sx={{ fontSize: { xs: "20px", md: "26px", lg: "30px", xl: "35px", textAlign: "center" }, color: "secondary.main", pb: 2, fontWeight: 600 }} >ScavAI Vision</Typography>
@@ -64,6 +46,13 @@ function SignIn(props) {
                                     <Grid sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                         <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Sign In"}</Button>
                                     </Grid>
+                                    <Box sx={{ display: "flex", position: "relative" }}>
+                                        <Box sx={{ position: "absolute", top: "-35px", right: "20px" }}>
+                                            {requestInProgress && <CircularProgress size={25} sx={{
+                                                color: "secondary.main"
+                                            }} />}
+                                        </Box>
+                                    </Box>
                                     <Grid sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                         <Typography
                                             variant="text"

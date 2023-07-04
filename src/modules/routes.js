@@ -5,7 +5,9 @@ import { PrivateRoute } from "./common/protected-route/protectedRoute";
 
 import { routes as adminRoutes } from "../modules/admin/routes";
 import { routes as userManagement } from "../modules/user-management/routes";
+import { routes as orgRoutes } from "../modules/organization/routes";
 import { lazy } from "react";
+import OrgHome from "./organization/OrgHome";
 
 const VesselHome = lazy(() => import("./home/components/HomeWrapper"));
 const { Home } = Icons;
@@ -22,12 +24,12 @@ const routes =
             children: [
                 {
                     title: "OrgAdmin",
-                    path: "organisation",
+                    path: "org",
                     element:
                         <PrivateRoute>
-                            <AdminHome />
+                            <OrgHome />
                         </PrivateRoute>,
-                    children: adminRoutes || [],
+                    children: orgRoutes || [],
                     errorElement: <RootBoundary />
                 },
                 {

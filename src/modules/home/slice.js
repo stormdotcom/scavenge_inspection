@@ -1,8 +1,9 @@
 /* eslint-disable camelcase */
 import { createSlice } from "@reduxjs/toolkit";
-// import _ from "lodash";
-
+import _ from "lodash";
 import { STATE_REDUCER_KEY } from "./constants";
+import { ACTION_TYPES } from "./actions";
+
 const initialState = {
     currentCylinder: 0,
     image: [],
@@ -11,14 +12,14 @@ const initialState = {
     vesselDetails: {
         requestInProgress: false,
         data: {
-            inspectionDate: 12222,
-            serviceLoadMCR: "A",
-            totalRunningHours: "B",
-            lastRunningHours: "C",
-            cylinderOilType: "D",
-            cylinderOilConsump: "E",
-            serviceLoad: "2",
-            cylinderNumber: 2
+            inspectionDate: "",
+            serviceLoadMCR: "",
+            totalRunningHours: "",
+            lastRunningHours: "",
+            cylinderOilType: "",
+            cylinderOilConsump: "",
+            serviceLoad: "",
+            cylinderNumber: ""
         }
     }
 
@@ -32,6 +33,9 @@ const slice = createSlice({
         clearAll: () => initialState,
         clear: (state) => {
             state.table = initialState.table;
+        },
+        clearForm: (state) => {
+            state.vesselDetails.data = initialState.vesselDetails.data;
         },
         setImageUploader: (state, { payload }) => {
             state.openImageUploader = payload;
@@ -47,18 +51,18 @@ const slice = createSlice({
         }
 
     },
-    extraReducers: () => {
-        // builder
-        //     .addCase(ACTION_TYPES.FETCH_USER_BY_ID_REQUEST, (state) => {
-        //         _.set(state, "userDetails.requestInProgress", true);
-        //     })
-        //     .addCase(ACTION_TYPES.FETCH_USER_BY_ID_SUCCESS, (state, action) => {
-        //         _.set(state, "userDetails.requestInProgress", false);
-        //         _.set(state, "userDetails.data", action.payload);
-        //     })
-        //     .addCase(ACTION_TYPES.FETCH_USER_BY_ID_FAILURE, (state) => {
-        //         _.set(state, "userDetails.requestInProgress", false);
-        //     });
+    extraReducers: (builder) => {
+        builder
+            .addCase(ACTION_TYPES.GET_VESSEL_INSPECTION_REQUEST, (state) => {
+                _.set(state, "vesselDetails.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.GET_VESSEL_INSPECTION_SUCCESS, (state, { payload = {} }) => {
+                _.set(state, "vesselDetails.requestInProgress", false);
+                _.set(state, "vesselDetails.data", payload.data);
+            })
+            .addCase(ACTION_TYPES.GET_VESSEL_INSPECTION_FAILURE, (state) => {
+                _.set(state, "vesselDetails.requestInProgress", false);
+            });
 
     }
 });

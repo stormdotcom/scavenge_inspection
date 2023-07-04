@@ -18,6 +18,10 @@ export const signUpSchema = Yup.object({
         .min(3)
         .max(100)
         .required("Full Name Required"),
+    vesselName: Yup.string()
+        .min(3)
+        .max(100)
+        .required("Vessel Name Required"),
     email: Yup.string()
         .min(3)
         .max(200)

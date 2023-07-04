@@ -15,7 +15,7 @@ export const signInApi = (data) => {
 };
 export const signUpApi = (data) => {
     return {
-        url: API_URL.AUTH.SIGN_IN,
+        url: API_URL.AUTH.SIGN_UP,
         method: REQUEST_METHOD.POST,
         payload: {
             types: [ACTION_TYPES.SIGN_UP_REQUEST, ACTION_TYPES.SIGN_UP_SUCCESS, ACTION_TYPES.SIGN_UP_FAILURE],
@@ -24,9 +24,10 @@ export const signUpApi = (data) => {
     };
 };
 
-export const fetchOrgAdminsSagaApi = (data) => {
+export const fetchOrgAdminsSagaApi = (email = "") => {
+    let data = { email };
     return {
-        url: API_URL.AUTH.ORG_ADMINS,
+        url: API_URL.USER_MANAGEMENT.ORG_ADMINS,
         method: REQUEST_METHOD.POST,
         payload: {
             types: [ACTION_TYPES.FETCH_ORG_ADMINS_REQUEST, ACTION_TYPES.FETCH_ORG_ADMINS_SUCCESS, ACTION_TYPES.FETCH_ORG_ADMINS_FAILURE],
@@ -34,3 +35,15 @@ export const fetchOrgAdminsSagaApi = (data) => {
         }
     };
 };
+export const fetchCurrentUserAPI = () => {
+
+    return {
+        url: API_URL.USER_MANAGEMENT.GET_CURRENT_PROFILE,
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.USER_PROFILE_REQUEST, ACTION_TYPES.USER_PROFILE_SUCCESS, ACTION_TYPES.USER_PROFILE_FAILURE]
+        }
+    };
+};
+
+//fetchCurrentUserAPI

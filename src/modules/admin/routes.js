@@ -1,13 +1,24 @@
 import CreateUser from "./components/CreateUser";
+import ListOrg from "./components/ListOrg";
+import ListVessel from "./components/ListVessel";
 
 const routes = [
     {
-        title: "user_management",
         children: [
             {
-                title: "create User",
-                path: "create-user",
+
+                path: "dashboard",
                 element: <CreateUser />
+            },
+            {
+
+                path: "listVessels",
+                element: <ListVessel />
+            },
+            {
+
+                path: "orgs",
+                element: <ListOrg />
             }
         ]
     }

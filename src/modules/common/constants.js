@@ -1,4 +1,4 @@
-export const STATE_REDUCER_KEY = "common";
+export const STATE_REDUCER_KEY = "COMMON";
 
 export const COMMON_TABLE_PAGINATION = { pageNo: 0, totalRecords: 0, pageSize: 5, totalPages: 1 };
 

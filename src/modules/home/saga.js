@@ -1,6 +1,6 @@
 import { all, call, put, select, takeLatest } from "redux-saga/effects";
 import { ACTION_TYPES } from "./actions";
-import { showPredictionApi, updateInspectionDetailsApi } from "./api";
+import { getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
 import { getCurrentCylinder, getImageArray } from "./selectors";
 import { errorNotify } from "../../utils/notificationUtils";
@@ -24,10 +24,15 @@ export function* showPredictionSaga() {
 
 }
 
+export function* getInspectionDetailsSaga() {
+    yield call(handleAPIRequest, getInspectionDetailsApi);
+}
+
 
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.SHOW_PREDICTIONS, showPredictionSaga),
-        takeLatest(ACTION_TYPES.UPDATE_VESSEL_INSPECTION, updateInspectionDetails)
+        takeLatest(ACTION_TYPES.UPDATE_VESSEL_INSPECTION, updateInspectionDetails),
+        takeLatest(ACTION_TYPES.GET_VESSEL_INSPECTION, getInspectionDetailsSaga)
     ]);
 }

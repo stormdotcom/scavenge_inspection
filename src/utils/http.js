@@ -16,9 +16,10 @@ const HTTP_RESPONSE_STATUS = {
     INTERNAL_SERVER_ERROR: 500
 };
 
-const ERROR_CODES = {
-    JWT_TOKEN_EXPIRED: 4401,
-    INVALID_TOKEN: 4403
+export const ERROR_CODE = {
+    INVALID_TOKEN: 9401,
+    TOKEN_REQUIRED: 9402,
+    JWT_TOKEN_EXPIRED: 9000
 };
 
 const requestWrapper = (body = {}) => body;
@@ -51,9 +52,9 @@ const getRequestParams = ({ url, data, method }) => {
     return { config: { headers: { ...headers, ...authHeaders }, ...extraParams }, baseURL, data, api };
 };
 
-const API_RESULT_CODE = {
-    SUCCESS: "COMM_OPERATION_SUCCESS",
-    FAILURE: "COMM_OPERATION_FAILURE"
+export const API_RESULT_CODE = {
+    SUCCESS: 1,
+    FAILURE: 0
 };
 
 function* invokeApi(method, url, payload) {
@@ -74,11 +75,11 @@ function* invokeApi(method, url, payload) {
                 break;
             case HTTP_RESPONSE_STATUS.UN_AUTHORIZED:
                 {
-                    if (errorCode === ERROR_CODES.JWT_TOKEN_EXPIRED) {
+                    if (errorCode === ERROR_CODE.JWT_TOKEN_EXPIRED) {
                         errorMessage = { title: "Token Expired", message: "Please login again." };
                         yield delay(500);
                         yield put(logout());
-                    } else if (errorCode === ERROR_CODES.INVALID_TOKEN) {
+                    } else if (errorCode === ERROR_CODE.INVALID_TOKEN) {
                         errorMessage = { title: "Invalid Token", message: "Please login again." };
                         yield delay(500);
                         yield put(logout());
@@ -97,16 +98,13 @@ function* invokeApi(method, url, payload) {
         }
         yield put(errorNotify({ id, ...errorMessage }));
     } else {
-        if (_.get(response, "resultCode", "") === API_RESULT_CODE.FAILURE) {
-            yield put(warningNotify({ id: "ERROR_PRIMARY", title: "Operation Failure", message: _.get(response, "resultString", "Operation Failure") }));
-        } else if (_.has(response, "error")) {
-            let customError = response.error || {};
-            yield put(failureAction({ error: customError }));
-            const { code, message, response: { status, data: { resultString } = {} } = {} } = customError;
-            yield put(errorNotify({ id: "ERROR_PRIMARY", title: `${status || ""} ${code || "ERROR"}`, message: resultString || message }));
-        } else {
-            yield put(successAction(KEY_CLOAK_APIS.includes(url) || method === REQUEST_METHOD.FILE ? response : _.get(response, "payLoad", {})));
+        if (_.get(response, "result", "") === API_RESULT_CODE.FAILURE) {
+            yield put(warningNotify({ id: "ERROR_PRIMARY", title: "Operation Failure", message: _.get(response, "errorDescription", "Operation Failure") }));
         }
+        if (_.get(response, "result", "") !== API_RESULT_CODE.FAILURE) {
+            yield put(successAction(response || {}));
+        }
+
     }
 
     return { response, error };

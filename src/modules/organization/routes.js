@@ -1,16 +1,21 @@
-import Signin from "./components/SignIn";
-import SignUp from "./components/SignUp";
+import ListVessel from "./components/ListVessel";
+import ViewEditVessel from "./components/ViewEditVessel";
+import OrgHome from "./components/OrgHome";
 
 const routes = [
     {
         children: [
             {
-                path: "signin",
-                element: <Signin />
+                path: "dashboard",
+                element: <OrgHome />
             },
             {
-                path: "signup",
-                element: <SignUp />
+                path: "vessels",
+                element: <ListVessel />
+            },
+            {
+                path: "vessel/:id/edit",
+                element: <ViewEditVessel />
             }
         ]
     }

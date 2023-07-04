@@ -1,6 +1,8 @@
 import { HomeOutlined } from "@mui/icons-material";
 import { Grid, IconButton, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { STATE_REDUCER_KEY as COMMON } from "../../../modules/common";
 
 
 const DATA = {
@@ -11,6 +13,7 @@ const DATA = {
 
 const ErrorPage = (props) => {
     const navigate = useNavigate();
+    const homePath = useSelector(state => state[COMMON].homePath);
 
     let { error: { status, message, statusText } = {}, image, title = DATA.TITLE } = props;
     return (
@@ -42,7 +45,7 @@ const ErrorPage = (props) => {
                     <Typography sx={{
                         fontSize: "1.6rem", letterSpacing: "0.4rem"
                     }}>Lets Go
-                        <IconButton aria-label="home" size="large" onClick={() => navigate("../")} color="primary">
+                        <IconButton aria-label="home" size="large" onClick={() => navigate(`../${homePath}`)} color="primary">
                             <HomeOutlined fontSize="inherit" />
                         </IconButton>
                         Try Again
