@@ -87,7 +87,7 @@ function SignUp(props) {
                                                 control="input" name="email" label="Organization Email" isMandatory={true} />
                                         </Grid>
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
-                                            <FormController control="input" name="imoNumber" label="IMO Number" isMandatory={true} />
+                                            <FormController control="input" name="imo_number" label="IMO Number" isMandatory={true} />
                                         </Grid>
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                                             <FormController control="select" name="organizationAdmin" label="Please choose the organization administrator for your vessel" options={orgAdmin}
@@ -141,7 +141,7 @@ const mapDispatchToProps = (dispatch) => ({
 const UserRegistrationForm = withFormik({
     enableReinitialize: false,
     validationSchema: validator,
-    mapPropsToValues: () => ({ fullName: "", email: "", password: "", confirmPassword: "", imoNumber: "", organizationAdmin: "" }),
+    mapPropsToValues: () => ({ fullName: "", email: "", password: "", confirmPassword: "", imo_number: "", organizationAdmin: "" }),
     handleSubmit: (values, { props: { submit } }) => {
         submit(values);
     },

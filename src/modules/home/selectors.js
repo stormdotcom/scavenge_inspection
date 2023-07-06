@@ -3,11 +3,11 @@ import { STATE_REDUCER_KEY } from "./constants";
 
 const getState = (state) => state[STATE_REDUCER_KEY];
 
-const vesselDetails = (state) => state.vesselDetails;
-export const getVesselDetails = flow(getState, vesselDetails);
+const inspectionDetails = (state) => state.inspectionDetails;
+export const selectInspectionDetails = flow(getState, inspectionDetails);
 
-const cylinderNumber = (state) => state.vesselDetails.data.cylinderNumber;
-export const getCylinderNumber = flow(getState, cylinderNumber);
+const cylinder_numbers = (state) => state.inspectionDetails.data.cylinder_numbers;
+export const getCylinderNumbers = flow(getState, cylinder_numbers);
 
 const openImageUploader = (state) => state.openImageUploader;
 export const getOpenImageUploader = flow(getState, openImageUploader);

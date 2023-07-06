@@ -8,6 +8,7 @@ import { routes as userManagement } from "../modules/user-management/routes";
 import { routes as orgRoutes } from "../modules/organization/routes";
 import { lazy } from "react";
 import OrgHome from "./organization/OrgHome";
+import VesselInfoDetails from "./profile/components/VesselDetails";
 
 const VesselHome = lazy(() => import("./home/components/HomeWrapper"));
 const { Home } = Icons;
@@ -52,6 +53,12 @@ const routes =
                     title: "Home",
                     path: "home",
                     element: <VesselHome />,
+                    errorElement: <RootBoundary />
+                },
+                {
+                    title: "Profile",
+                    path: "profile",
+                    element: <VesselInfoDetails />,
                     errorElement: <RootBoundary />
                 }
 

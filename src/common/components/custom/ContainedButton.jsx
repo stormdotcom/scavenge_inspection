@@ -7,7 +7,7 @@ const HoverButton = styled(Button)(({ theme }) => ({
     color: theme.palette.common.white,
     "&:hover": {
         backgroundColor: theme.palette.secondary.dark
-    },
+    }
 }));
 
 const ContainedButton = ({ onClick, children }) => {

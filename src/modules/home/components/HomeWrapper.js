@@ -1,11 +1,11 @@
 import React from "react";
-import VesselDetails from "./VesselDetails";
+import VesselInspectionDetails from "./VesselInspectionDetails";
 import ImageUploader from "./Report/ImageUploader";
 import ReportTable from "./ReportTable";
 
 const HomeWrapper = () => {
     return <>
-        <VesselDetails />
+        <VesselInspectionDetails />
         <ImageUploader />
         <ReportTable />
     </>;

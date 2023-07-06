@@ -1,6 +1,9 @@
 import { Components } from "../../../common/components";
 import logoImg from "../../../assets/images/logoDark.png";
 import Menu from "./Menu";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { STATE_REDUCER_KEY } from "../constants";
 const { Box, Grid } = Components;
 
 const Header = () => {
@@ -12,7 +15,8 @@ const Header = () => {
     // const handleClose = () => {
     //     setAnchorEl(null);
     // };
-
+    const navigate = useNavigate();
+    const homePath = useSelector(state => state[STATE_REDUCER_KEY].homePath);
 
     // const { userDetails: { data: { activeProfile: { imageId = "" } = {}, firstName = "", lastName = "" } } = {} } = useSelector(state => state[STATE_REDUCER_KEY]);
     return (
@@ -23,6 +27,8 @@ const Header = () => {
             <Box sx={{ width: "240px" }}>
                 <Box sx={{ display: "flex", pl: 6 }}>
                     <img
+                        onClick={() => navigate(`../${homePath}`)}
+                        style={{ cursor: "pointer" }}
                         alt="logo_scavenge"
                         src={logoImg}
                         width={60}

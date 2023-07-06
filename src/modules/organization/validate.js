@@ -24,7 +24,7 @@ export const signUpSchema = Yup.object({
     confirmPassword: Yup.string()
         .max(150)
         .required("Confirm Password Required"),
-    imoNumber: Yup.string()
+    imo_number: Yup.string()
         .max(30)
         .required("IMO Number Required")
 });

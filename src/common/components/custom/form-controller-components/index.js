@@ -11,5 +11,6 @@ import FileUploader from "./fileUpload";
 import ToggleButton from "./CustomToggleButton";
 import Input2 from "./input2";
 import Input3 from "./input3";
+import SimpleDate from "./SimpleDate";
 
-export { Input3, Input2, Files, Checkbox, CustomInput, CustomSelect, Input, RadioButtons, Textarea, TextError, DatePicker, FileUploader, ToggleButton };
+export { SimpleDate, Input3, Input2, Files, Checkbox, CustomInput, CustomSelect, Input, RadioButtons, Textarea, TextError, DatePicker, FileUploader, ToggleButton };

@@ -1,4 +1,4 @@
-import { Files, Input3, Input2, Checkbox, CustomInput, CustomSelect, DatePicker, Input, RadioButtons, Textarea, FileUploader, ToggleButton } from "./form-controller-components";
+import { Files, Input3, Input2, Checkbox, CustomInput, CustomSelect, DatePicker, Input, RadioButtons, Textarea, FileUploader, ToggleButton, SimpleDate } from "./form-controller-components";
 import FileUploadCommon from "./form-controller-components/FileUploadCommon";
 
 const FormController = (props) => {
@@ -31,6 +31,8 @@ const FormController = (props) => {
       return <FileUploadCommon {...rest} />;
     case "toggleButton":
       return <ToggleButton {...rest} />;
+    case "date2":
+      return <SimpleDate {...rest} />;
     default:
       return null;
   }

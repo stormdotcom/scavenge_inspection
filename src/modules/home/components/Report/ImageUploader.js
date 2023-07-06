@@ -1,7 +1,7 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Typography } from "@mui/material";
 import React from "react";
 import { createStructuredSelector } from "reselect";
-import { getCylinderNumber, getOpenImageUploader } from "../../selectors";
+import { getCylinderNumbers, getOpenImageUploader } from "../../selectors";
 import { connect, useDispatch, useSelector } from "react-redux";
 import ContainedButton from "../../../../common/components/custom/ContainedButton";
 import { actions as sliceActions } from "../../slice";
@@ -10,8 +10,8 @@ import SelectInput from "./SelectComponent";
 import ImageView from "./ImageView";
 import { STATE_REDUCER_KEY } from "../../constants";
 const ImageUploader = (props) => {
-    const { cylinderNumber = 0, openImageUploader = false } = props;
-    const cylinders = Array.from({ length: cylinderNumber }, (_, idx) => ({
+    const { cylinder_numbers = 0, openImageUploader = false } = props;
+    const cylinders = Array.from({ length: cylinder_numbers }, (_, idx) => ({
         id: idx + 1,
         name: `Cylinder ${idx + 1}`
     }));
@@ -19,7 +19,7 @@ const ImageUploader = (props) => {
     const cylinder = useSelector(state => state[STATE_REDUCER_KEY].currentCylinder);
     const handleClose = () => dispatch(sliceActions.setImageUploader(false));
     const handleShowPredictions = () => dispatch(showPredictions());
-    const handleOnChange = (e) => dispatch(sliceActions.setCylinderNumber(e.target.value));
+    const handleOnChange = (e) => dispatch(sliceActions.setcylinder_numbers(e.target.value));
     return <Grid sx={{ bgcolor: "primary.main", px: 4 }}>
         <Dialog
             open={openImageUploader}
@@ -49,7 +49,7 @@ const ImageUploader = (props) => {
 
 
 const mapStateToProps = createStructuredSelector({
-    cylinderNumber: getCylinderNumber,
+    cylinder_numbers: getCylinderNumbers,
     openImageUploader: getOpenImageUploader
 });
 

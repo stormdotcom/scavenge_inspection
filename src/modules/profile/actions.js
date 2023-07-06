@@ -16,4 +16,5 @@ export const ACTION_TYPES = {
 
 export const updateVessel = createAction(ACTION_TYPES.UPDATE_VESSEL);
 
-export const getVesselDetails = createAction(ACTION_TYPES.FETCH_VESSEL_DETAILS);
+export const fetchVesselInfoDetails = createAction(ACTION_TYPES.FETCH_VESSEL_DETAILS);
+

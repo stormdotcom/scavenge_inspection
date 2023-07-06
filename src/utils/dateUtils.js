@@ -27,7 +27,7 @@ export const toEpoch = (date) => {
  */
 
 export const fromEpoch = (epoch) => {
-    return epoch && moment(epoch) || null;
+    return epoch ? moment(epoch).format("YYYY-MM-DD") : null;
 };
 
 export const formatDate = (date, format = DATE_TIME_FORMAT) => {

@@ -1,21 +1,21 @@
 import { all, call, takeLatest } from "redux-saga/effects";
 import { ACTION_TYPES } from "./actions";
-import { fetUserById } from "./api";
+import { updateVesselInfoApi, fetchVesselInfoApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
 
-export function* signIn({ payload: id }) {
-    yield call(handleAPIRequest, fetUserById, { id });
+export function* updateVesselInfo({ payload }) {
+    yield call(handleAPIRequest, updateVesselInfoApi, payload);
 }
 
-export function* signUp({ payload: id }) {
-    yield call(handleAPIRequest, fetUserById, { id });
+export function* fetchVesselInfo() {
+    yield call(handleAPIRequest, fetchVesselInfoApi);
 }
 
 
 export default function* moduleSaga() {
     yield all([
-        takeLatest(ACTION_TYPES.SIGN_IN, signIn),
-        takeLatest(ACTION_TYPES.SIGN_UP, signUp)
+        takeLatest(ACTION_TYPES.UPDATE_VESSEL, updateVesselInfo),
+        takeLatest(ACTION_TYPES.FETCH_VESSEL_DETAILS, fetchVesselInfo)
 
     ]);
 }

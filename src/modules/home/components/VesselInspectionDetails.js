@@ -4,7 +4,7 @@ import { FormController } from "../../../common/components";
 import { createStructuredSelector } from "reselect";
 import { Form, withFormik } from "formik";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { getOpenImageUploader, getVesselDetails } from "../selectors";
+import { getOpenImageUploader, selectInspectionDetails } from "../selectors";
 import { getInspectionDetails, updateVessel } from "../actions";
 import { vesselDetailsSchema as validate } from "../validate";
 import { actions as sliceActions } from "../slice";
@@ -13,7 +13,7 @@ import { STATE_REDUCER_KEY } from "../constants";
 
 const VesselDetails = (props) => {
     const { handleSubmit, fetchFormData } = props;
-    const loading = useSelector(state => state[STATE_REDUCER_KEY].vesselDetails.requestInProgress)
+    const loading = useSelector(state => state[STATE_REDUCER_KEY].inspectionDetails.requestInProgress);
     const dispatch = useDispatch();
     const handleUpload = () => {
         dispatch(sliceActions.setImageUploader(true));
@@ -32,22 +32,22 @@ const VesselDetails = (props) => {
                     <Form>
                         <Grid container rowSpacing={2} columnSpacing={4}>
                             <Grid item sm={12} md={6} lg={6} xl={4}>
-                                <FormController control="input2" name="inspectionDate" label="Inspection Date" />
+                                <FormController control="date2" name="inspection_date" label="Inspection Date" />
                             </Grid>
                             <Grid item sm={12} md={6} lg={6} xl={4}>
-                                <FormController control="input2" name="serviceLoad" label="Normal service load in % MCR" />
+                                <FormController control="input2" name="normal_service_load_in_percent_MCR" label="Normal service load in % MCR" />
                             </Grid>
                             <Grid item sm={12} md={6} lg={6} xl={4}>
-                                <FormController control="input2" name="totalRunningHours" label="Total Running Hours" />
+                                <FormController control="input2" name="total_running_hours" label="Total Running Hours" />
                             </Grid>
                             <Grid item sm={12} md={6} lg={6} xl={4}>
-                                <FormController control="input2" name="lastRunningHours" label="Running Hours since last" />
+                                <FormController control="input2" name="running_hrs_since_last" label="Running Hours since last" />
                             </Grid>
                             <Grid item sm={12} md={6} lg={6} xl={4}>
-                                <FormController control="input2" name="cylinderOilType" label="Cyl. Oil Type" />
+                                <FormController control="input2" name="cyl_oil_Type" label="Cyl. Oil Type" />
                             </Grid>
                             <Grid item sm={12} md={6} lg={6} xl={4}>
-                                <FormController control="input2" name="cylinderOilConsump" label="Cyl. Oil Consump(Ltr/24hr)" />
+                                <FormController control="input2" name="cyl_oil_consump_Ltr_24hr" label="Cyl. Oil Consump(Ltr/24hr)" />
                             </Grid>
                             {/* 2 */}
                         </Grid>
@@ -63,7 +63,7 @@ const VesselDetails = (props) => {
 
 
 const mapStateToProps = createStructuredSelector({
-    vesselDetails: getVesselDetails,
+    vesselInspectionDetails: selectInspectionDetails,
     openImageUploader: getOpenImageUploader
 });
 
@@ -73,15 +73,15 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const VesselDetailsForm = withFormik({
-    enableReinitialize: false,
+    enableReinitialize: true,
     validationSchema: validate,
     mapPropsToValues: (props) => {
-        return props.vesselDetails.data;
+        return props.vesselInspectionDetails.data;
     },
     handleSubmit: (values, { props: { submit } }) => {
         submit(values);
     },
-    displayName: "VesselDetailsForm"
+    displayName: "VesselInspectionDetailsForm"
 })(VesselDetails);
 
 export default connect(mapStateToProps, mapDispatchToProps)(VesselDetailsForm);

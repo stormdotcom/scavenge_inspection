@@ -3,23 +3,24 @@ import { createSlice } from "@reduxjs/toolkit";
 import _ from "lodash";
 import { STATE_REDUCER_KEY } from "./constants";
 import { ACTION_TYPES } from "./actions";
+import { fromEpoch } from "../../utils/dateUtils";
 
 const initialState = {
     currentCylinder: 0,
     image: [],
     openImageUploader: false,
     viewToggle: false,
-    vesselDetails: {
+    inspectionDetails: {
         requestInProgress: false,
         data: {
-            inspectionDate: "",
-            serviceLoadMCR: "",
-            totalRunningHours: "",
-            lastRunningHours: "",
-            cylinderOilType: "",
-            cylinderOilConsump: "",
-            serviceLoad: "",
-            cylinderNumber: ""
+            inspection_date: "sdds",
+            normal_service_load_in_percent_MCRMCR: "",
+            total_running_hours: "",
+            running_hrs_since_last: "",
+            cyl_oil_Type: "",
+            cyl_oil_consump_Ltr_24hr: "22",
+            normal_service_load_in_percent_MCR: "",
+            cylinder_numbers: ""
         }
     }
 
@@ -35,7 +36,7 @@ const slice = createSlice({
             state.table = initialState.table;
         },
         clearForm: (state) => {
-            state.vesselDetails.data = initialState.vesselDetails.data;
+            state.inspectionDetails.data = initialState.inspectionDetails.data;
         },
         setImageUploader: (state, { payload }) => {
             state.openImageUploader = payload;
@@ -45,7 +46,7 @@ const slice = createSlice({
             state.image[cylinder] = image;
             state.viewToggle = true;
         },
-        setCylinderNumber: (state, { payload }) => {
+        setcylinder_numbers: (state, { payload }) => {
             state.currentCylinder = payload;
             state.viewToggle = false;
         }
@@ -54,14 +55,15 @@ const slice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(ACTION_TYPES.GET_VESSEL_INSPECTION_REQUEST, (state) => {
-                _.set(state, "vesselDetails.requestInProgress", true);
+                _.set(state, "inspectionDetails.requestInProgress", true);
             })
             .addCase(ACTION_TYPES.GET_VESSEL_INSPECTION_SUCCESS, (state, { payload = {} }) => {
-                _.set(state, "vesselDetails.requestInProgress", false);
-                _.set(state, "vesselDetails.data", payload.data);
+                _.set(state, "inspectionDetails.requestInProgress", false);
+                _.set(state, "inspectionDetails.data", payload.data);
+                _.set(state, "inspectionDetails.data.inspection_date", fromEpoch(payload.data.inspection_date));
             })
             .addCase(ACTION_TYPES.GET_VESSEL_INSPECTION_FAILURE, (state) => {
-                _.set(state, "vesselDetails.requestInProgress", false);
+                _.set(state, "inspectionDetails.requestInProgress", false);
             });
 
     }
