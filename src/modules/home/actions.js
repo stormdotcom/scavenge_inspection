@@ -31,7 +31,7 @@ export const ACTION_TYPES = {
 
 };
 
-export const updateVessel = createAction(ACTION_TYPES.UPDATE_VESSEL);
+export const updateVessel = createAction(ACTION_TYPES.UPDATE_VESSEL_INSPECTION);
 export const getVesselDetails = createAction(ACTION_TYPES.FETCH_VESSEL_DETAILS);
 export const showPredictions = createAction(ACTION_TYPES.SHOW_PREDICTIONS);
 export const getInspectionDetails = createAction(ACTION_TYPES.GET_VESSEL_INSPECTION);

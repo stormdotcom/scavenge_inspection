@@ -6,6 +6,7 @@ import _ from "lodash";
 const initialState = {
     isLoggedIn: false,
     orgAdmin: [],
+    orgList: [],
     signIn: {
         requestInProgress: false,
         data: {
@@ -17,16 +18,14 @@ const initialState = {
         confirm: false,
         requestInProgress: false,
         data: {
+            fullName: "",
+            newOrg: false,
             email: "",
             password: "",
             confirmPassword: "",
-            info: {
-                company_name: "",
-                vessel_name: "",
-                imo_number: "",
-                mobile: "",
-                userType: ""
-            }
+            userType: "",
+            company_name: "",
+            vessel_name: ""
         }
     }
 
@@ -67,7 +66,9 @@ const slice = createSlice({
             .addCase(ACTION_TYPES.SIGN_UP_FAILURE, (state) => {
                 _.set(state, "signUp.requestInProgress", false);
             })
-            ;
+            .addCase(ACTION_TYPES.FETCH_ORG_LIST_SUCCESS, (state, { payload = {} }) => {
+                _.set(state, "orgList", payload.data);
+            });
 
     }
 });

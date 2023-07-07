@@ -4,9 +4,13 @@ import { getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi 
 import { handleAPIRequest } from "../../utils/http";
 import { getCurrentCylinder, getImageArray } from "./selectors";
 import { errorNotify } from "../../utils/notificationUtils";
+import { fromMuiDateEpoch } from "../../utils/dateUtils";
+import _ from "lodash";
 
 export function* updateInspectionDetails({ payload }) {
-    yield call(handleAPIRequest, updateInspectionDetailsApi, payload);
+    const newPayload = _.cloneDeep(payload);
+    _.set(newPayload, "inspection_date", fromMuiDateEpoch(payload.inspection_date));
+    yield call(handleAPIRequest, updateInspectionDetailsApi, newPayload);
 }
 
 export function* showPredictionSaga() {

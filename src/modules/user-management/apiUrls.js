@@ -5,6 +5,7 @@ export const API_URL = {
     },
     USER_MANAGEMENT: {
         GET_CURRENT_PROFILE: "auth/common/profile",
-        ORG_ADMINS: "no-auth/org-admins"
+        ORG_ADMINS: "no-auth/org-admins",
+        ORG_LIST: "no-auth/org"
     }
 };

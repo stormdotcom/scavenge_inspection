@@ -7,10 +7,10 @@ import { Components, FormController } from "../../../common/components";
 import { actions as commonSliceActions } from "../../common/slice";
 import { actions as sliceActions } from "../slice";
 import { signUpSchema as validator } from "../validate";
-import { fetchOrgAdmins, signUp } from "../actions";
+import { fetchOrgAdmins, fetchOrgList, signUp } from "../actions";
 import { STATE_REDUCER_KEY, USER_TYPE } from "../constants";
 import { Box, CircularProgress, Paper } from "@mui/material";
-import { getOrgAdmin, getSignUp } from "../selectors";
+import { getOrgAdmin, getOrgList, getSignUp } from "../selectors";
 import { createStructuredSelector } from "reselect";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import Header from "../../common/header/Header";
@@ -24,8 +24,8 @@ function SignUp(props) {
     const { pathname } = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { handleSubmit, setFieldValue, orgAdmin = [], signUp: { requestInProgress = false } = {}
-    } = props;
+    const { handleSubmit, setFieldValue, orgAdmin = [], orgList = [], signUp: { requestInProgress = false } = {},
+        values: { newOrg = true } = {} } = props;
     const confirmed = useSelector(state => state[STATE_REDUCER_KEY].signUp.confirm);
 
     if (confirmed) {
@@ -58,14 +58,15 @@ function SignUp(props) {
     }, [pathname]);
 
     useEffect(() => {
+        dispatch(fetchOrgList());
         dispatch(commonSliceActions.setNavigator(navigate));
     }, []);
     return (
         <>
+            <Header />
             <Grid height="100vh" container sx={{ overflowY: "hidden", width: 1, bgcolor: "primary.main", p: 0, display: "flex", alignItems: "center" }}>
-                <Header />
                 <Box sx={{ mt: 1, width: "100%", display: "flex", alignItems: "center", mb: { lg: "130px", xl: "140px", justifyContent: "center" } }}>
-                    <Paper sx={{ overflowY: "scroll", height: "500px", bgcolor: "primary.light", boxShadow: 0, mr: { xs: "40px", lg: "95px" }, width: { xs: "250px", sm: "370px", md: "420px", lg: "480px", xl: "560px" } }}>
+                    <Paper sx={{ overflowY: "scroll", height: "500px", bgcolor: "primary.light", boxShadow: 0, mr: { xs: "40px", lg: "95px" }, width: { xs: "90%", sm: "90%", md: "520px", lg: "680px", xl: "680px" } }}>
                         <Grid sx={{ display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
                             <Box sx={{ px: { xs: 3, xl: 6 }, py: 4 }}>
                                 <Typography sx={{ fontSize: { xs: "20px", md: "26px", lg: "30px", xl: "35px", textAlign: "center" }, color: "secondary.main", pb: 2, fontWeight: 600 }} >ScavAI Vision</Typography>
@@ -73,10 +74,21 @@ function SignUp(props) {
                                 <Box >
                                     <Form>
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                                            <FormController control="toggleButton" name="newOrg" label="New Organization" />
+                                        </Grid>
+                                        {newOrg ?
+                                            <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                                                <FormController control="input" name="company_name" label="Company Name" isMandatory={true} />
+                                            </Grid> :
+                                            <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                                                <FormController control="select" name="company_name" label="Company Name" isMandatory={true} options={orgList} />
+                                            </Grid>}
+
+                                        <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                             <FormController control="input" name="fullName" label="Full Name" isMandatory={true} />
                                         </Grid>
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
-                                            <FormController control="input" name="vesselName" label="Vessel Name" isMandatory={true} />
+                                            <FormController control="input" name="vessel_name" label="Vessel Name" isMandatory={true} />
                                         </Grid>
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                             <FormController
@@ -131,7 +143,8 @@ function SignUp(props) {
 
 const mapStateToProps = createStructuredSelector({
     signUp: getSignUp,
-    orgAdmin: getOrgAdmin
+    orgAdmin: getOrgAdmin,
+    orgList: getOrgList
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -141,7 +154,7 @@ const mapDispatchToProps = (dispatch) => ({
 const UserRegistrationForm = withFormik({
     enableReinitialize: false,
     validationSchema: validator,
-    mapPropsToValues: () => ({ fullName: "", email: "", password: "", confirmPassword: "", imo_number: "", organizationAdmin: "" }),
+    mapPropsToValues: (props) => props.signUp.data,
     handleSubmit: (values, { props: { submit } }) => {
         submit(values);
     },

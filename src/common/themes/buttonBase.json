@@ -1,7 +1,9 @@
 {
     "MuiButtonBase": {
         "styleOverrides": {
-            "root": {}
+            "root": {
+                "color": "#ffff"
+            }
         }
     }
 }

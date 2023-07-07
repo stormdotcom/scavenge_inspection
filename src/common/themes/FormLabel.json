@@ -5,7 +5,11 @@
                 "fontSize": "14px",
                 "color": "#fff",
                 "fontWeight": 600,
-                "letterSpacing": "0.8px"
+                "letterSpacing": "0.8px",
+                "whiteSpace": "nowrap",
+                "overflow": "hidden",
+                "textOverflow": "ellipsis",
+                "maxWidth": "10px"
             }
         }
     }

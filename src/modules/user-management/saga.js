@@ -1,6 +1,6 @@
 import { all, call, fork, put, take, takeLatest } from "redux-saga/effects";
 import { ACTION_TYPES } from "./actions";
-import { signInApi, signUpApi, fetchOrgAdminsSagaApi, fetchCurrentUserAPI } from "./api";
+import { signInApi, signUpApi, fetchOrgAdminsSagaApi, fetchCurrentUserAPI, fetchOrgListApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
 import { STORAGE_KEYS } from "../../common/constants";
 import { navigateTo } from "../common/actions";
@@ -48,11 +48,16 @@ export function* signUp({ payload }) {
 export function* fetchOrgAdminsSaga({ payload }) {
     yield call(handleAPIRequest, fetchOrgAdminsSagaApi, payload);
 }
+
+export function* fetchOrgListSaga({ payload }) {
+    yield call(handleAPIRequest, fetchOrgListApi, payload);
+}
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.SIGN_IN, signIn),
         takeLatest(ACTION_TYPES.SIGN_UP, signUp),
-        takeLatest(ACTION_TYPES.FETCH_ORG_ADMINS, fetchOrgAdminsSaga)
+        takeLatest(ACTION_TYPES.FETCH_ORG_ADMINS, fetchOrgAdminsSaga),
+        takeLatest(ACTION_TYPES.FETCH_ORG_LIST, fetchOrgListSaga)
 
     ]);
 }

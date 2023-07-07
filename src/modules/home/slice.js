@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import _ from "lodash";
 import { STATE_REDUCER_KEY } from "./constants";
 import { ACTION_TYPES } from "./actions";
-import { fromEpoch } from "../../utils/dateUtils";
+import { fromDateObjectToMuiDate, fromEpochToMuiDate } from "../../utils/dateUtils";
 
 const initialState = {
     currentCylinder: 0,
@@ -13,12 +13,12 @@ const initialState = {
     inspectionDetails: {
         requestInProgress: false,
         data: {
-            inspection_date: "sdds",
+            inspection_date: fromDateObjectToMuiDate(new Date()),
             normal_service_load_in_percent_MCRMCR: "",
             total_running_hours: "",
             running_hrs_since_last: "",
             cyl_oil_Type: "",
-            cyl_oil_consump_Ltr_24hr: "22",
+            cyl_oil_consump_Ltr_24hr: "",
             normal_service_load_in_percent_MCR: "",
             cylinder_numbers: ""
         }
@@ -59,8 +59,8 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.GET_VESSEL_INSPECTION_SUCCESS, (state, { payload = {} }) => {
                 _.set(state, "inspectionDetails.requestInProgress", false);
-                _.set(state, "inspectionDetails.data", payload.data);
-                _.set(state, "inspectionDetails.data.inspection_date", fromEpoch(payload.data.inspection_date));
+                let newPayload = { ...payload.data, inspection_date: fromEpochToMuiDate(payload.data.inspection_date) };
+                _.set(state, "inspectionDetails.data", newPayload);
             })
             .addCase(ACTION_TYPES.GET_VESSEL_INSPECTION_FAILURE, (state) => {
                 _.set(state, "inspectionDetails.requestInProgress", false);

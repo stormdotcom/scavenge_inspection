@@ -3,7 +3,7 @@ import * as Yup from "yup";
 
 
 export const vesselDetailsSchema = Yup.object({
-    inspection_date: Yup.number()
+    inspection_date: Yup.mixed()
         .required("Inspection Date Required"),
     total_running_hours: Yup.string()
         .max(100)

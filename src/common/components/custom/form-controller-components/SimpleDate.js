@@ -14,20 +14,25 @@ const SimpleDate = ({ label, name, isMandatory, ...rest }) => {
                     {({ field, form }) => {
                         const { value } = field;
                         const { touched, errors, setFieldValue } = form;
-                        // const isError = touched[name] && errors[name];
+                        const isError = touched[name] && errors[name];
 
                         return (
-                            <Input
-                                sx={{ color: "white.main", bgcolor: "primary.dark", py: 2 }}
-                                type="date"
-                                id={name}
-                                value={value}
-                                onChange={(e) => setFieldValue(name, e.target.value)}
-                                {...rest}
-                            />
+                            <>
+                                <Input
+                                    sx={{ color: "white.main", bgcolor: "primary.dark", py: 2 }}
+                                    type="date"
+                                    id={name}
+                                    value={value}
+                                    onChange={(e) => setFieldValue(name, e.target.value)}
+                                    {...rest}
+                                />
+                                {isError && <div>{errors[name]}</div>}
+                            </>
+
+
                         );
                     }}
-                    {/* {isError && <div>{errors[name]}</div>} */}
+
                 </Field>
             </Grid>
 

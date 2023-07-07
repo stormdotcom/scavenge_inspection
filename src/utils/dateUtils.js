@@ -6,6 +6,8 @@ export const DATE_TIME_FORMAT = "DD/MM/YYYY hh:mm A";
 
 export const TIME_FORMAT = "hh:mm A";
 
+export const MUI_DATE_FORMAT = "YYYY-MM-DD";
+
 /**
  * Converts date to epoch
  * @example
@@ -15,8 +17,8 @@ export const TIME_FORMAT = "hh:mm A";
  */
 
 export const toEpoch = (date) => {
-    return date && moment(date).valueOf() || null;
-};
+    return date && moment(date, MUI_DATE_FORMAT).unix();
+}
 
 /**
  * Converts epoch to moment
@@ -27,9 +29,21 @@ export const toEpoch = (date) => {
  */
 
 export const fromEpoch = (epoch) => {
-    return epoch ? moment(epoch).format("YYYY-MM-DD") : null;
+    return epoch ? moment(epoch).format() : null;
 };
 
 export const formatDate = (date, format = DATE_TIME_FORMAT) => {
     return date && moment(date).format(format) || null;
+};
+
+export const fromEpochToMuiDate = (epoch = 1628208000000) => {
+    return moment.unix(epoch).format(MUI_DATE_FORMAT);
+};
+
+export const fromDateObjectToMuiDate = (date) => {
+    return date && moment().format(MUI_DATE_FORMAT);
+};
+
+export const fromMuiDateEpoch = (date = "") => {
+    return moment(date, MUI_DATE_FORMAT).unix();
 };

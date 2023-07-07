@@ -1,0 +1,15 @@
+{
+    "MuiToggleButton": {
+        "styleOverrides": {
+            "root": {
+                "padding": "8px 14px",
+                "backgroundColor": "#212529",
+                "color": "#fff",
+                "&.Mui-selected": {
+                    "backgroundColor": "#e8af13",
+                    "color": "#fff"
+                }
+            }
+        }
+    }
+}

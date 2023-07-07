@@ -17,6 +17,7 @@ import listItemButton from "./listItemButton.json";
 import paper from "./paper.json";
 import cardHeader from "./cardHeader.json";
 import formLabel from "./FormLabel.json";
+import toggleButton from "./ToggleButton.json";
 const overrides = {
   components: {
     ...inputField,
@@ -31,7 +32,8 @@ const overrides = {
     ...listItemButton,
     ...paper,
     ...cardHeader,
-    ...formLabel
+    ...formLabel,
+    ...toggleButton
   }
 };
 const customThemes = {
