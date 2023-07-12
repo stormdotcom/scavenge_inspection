@@ -80,7 +80,7 @@ const ImageView = () => {
             style={{ display: "none" }}
         />
         <Box>
-            {err && <Typography variant="p" sx={{ color: "#fff" }}> {err}</Typography>}
+            {err && <Typography variant="p" sx={{ color: "red.main" }}> {err}</Typography>}
         </Box>
     </>;
 };

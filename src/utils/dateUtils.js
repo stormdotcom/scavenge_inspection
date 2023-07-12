@@ -18,7 +18,7 @@ export const MUI_DATE_FORMAT = "YYYY-MM-DD";
 
 export const toEpoch = (date) => {
     return date && moment(date, MUI_DATE_FORMAT).unix();
-}
+};
 
 /**
  * Converts epoch to moment
@@ -36,14 +36,26 @@ export const formatDate = (date, format = DATE_TIME_FORMAT) => {
     return date && moment(date).format(format) || null;
 };
 
-export const fromEpochToMuiDate = (epoch = 1628208000000) => {
+export const fromEpochToMuiDate = (epoch) => {
+    if (!epoch) {
+        return null;
+    }
     return moment.unix(epoch).format(MUI_DATE_FORMAT);
 };
 
 export const fromDateObjectToMuiDate = (date) => {
-    return date && moment().format(MUI_DATE_FORMAT);
+    if (!date) {
+        return null;
+    }
+
+    const momentDate = moment(date);
+    const formattedDate = momentDate.format("YYYY-MM-DD");
+
+    return formattedDate;
 };
 
+
 export const fromMuiDateEpoch = (date = "") => {
-    return moment(date, MUI_DATE_FORMAT).unix();
+    const momentDate = moment(date, MUI_DATE_FORMAT).unix();
+    return momentDate;
 };

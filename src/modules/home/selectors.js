@@ -17,3 +17,6 @@ export const getImageArray = flow(getState, image);
 
 const currentCylinder = (state) => state.currentCylinder;
 export const getCurrentCylinder = flow(getState, currentCylinder);
+
+const tempVesselData = (state) => state.tempVesselData;
+export const selectInspecDetailData = flow(getState, tempVesselData);

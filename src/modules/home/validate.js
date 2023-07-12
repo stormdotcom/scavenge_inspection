@@ -8,8 +8,8 @@ export const vesselDetailsSchema = Yup.object({
     total_running_hours: Yup.string()
         .max(100)
         .required("Total RunningHours Required"),
-    cylinder_numbers: Yup.string()
-        .max(150)
+    cylinder_numbers: Yup.number()
+        .max(100, "Cylinder Number should be less than 100")
         .required("Cylinder Number Required"),
 
     cyl_oil_Type: Yup.string()
@@ -22,17 +22,4 @@ export const vesselDetailsSchema = Yup.object({
         .required("Service Load Required")
 });
 
-// data: {
-//     vesselName: "",
-//     imo_number: "",
-//     manufacturer: "",
-//     type_of_engine: "",
-//     vessel_type: "",
-//     inspection_date: "",
-//     cylinder_numbers: "",
-//     total_running_hours: "",
-//     cyl_oil_Type: "",
-//     cyl_oil_consump_Ltr_24hr: "",
-//     normal_service_load_in_percent_MCR: ""
-// }
 

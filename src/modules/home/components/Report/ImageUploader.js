@@ -19,7 +19,7 @@ const ImageUploader = (props) => {
     const cylinder = useSelector(state => state[STATE_REDUCER_KEY].currentCylinder);
     const handleClose = () => dispatch(sliceActions.setImageUploader(false));
     const handleShowPredictions = () => dispatch(showPredictions());
-    const handleOnChange = (e) => dispatch(sliceActions.setcylinder_numbers(e.target.value));
+    const handleOnChange = (e) => dispatch(sliceActions.setCylinderNumbers(e.target.value));
     return <Grid sx={{ bgcolor: "primary.main", px: 4 }}>
         <Dialog
             open={openImageUploader}

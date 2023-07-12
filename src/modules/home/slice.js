@@ -3,17 +3,36 @@ import { createSlice } from "@reduxjs/toolkit";
 import _ from "lodash";
 import { STATE_REDUCER_KEY } from "./constants";
 import { ACTION_TYPES } from "./actions";
-import { fromDateObjectToMuiDate, fromEpochToMuiDate } from "../../utils/dateUtils";
+import { fromDateObjectToMuiDate, fromEpochToMuiDate, fromMuiDateEpoch } from "../../utils/dateUtils";
 
+let now = new Date();
 const initialState = {
-    currentCylinder: 0,
+    currentCylinder: 1,
     image: [],
+    tempVesselData: {},
     openImageUploader: false,
+    predictedData: {
+        requestInProgress: false,
+        data: {
+            brk: {},
+            dep: {
+                Ring2: ""
+            },
+            image: "",
+            lub: {
+                Ring3: ""
+            },
+            surf: {
+                Ring3: ""
+            },
+            cylinder: 1
+        }
+    },
     viewToggle: false,
     inspectionDetails: {
         requestInProgress: false,
         data: {
-            inspection_date: fromDateObjectToMuiDate(new Date()),
+            inspection_date: fromDateObjectToMuiDate(now), // new Date(), //
             normal_service_load_in_percent_MCRMCR: "",
             total_running_hours: "",
             running_hrs_since_last: "",
@@ -26,7 +45,6 @@ const initialState = {
 
 };
 
-
 const slice = createSlice({
     initialState,
     name: STATE_REDUCER_KEY,
@@ -34,6 +52,12 @@ const slice = createSlice({
         clearAll: () => initialState,
         clear: (state) => {
             state.table = initialState.table;
+        },
+        setInspectionDetails: (state, { payload = {} }) => {
+            let inspection_date = fromMuiDateEpoch(payload.inspection_date);
+            state.tempVesselData = payload;
+            _.set(state, "tempVesselData", payload);
+            _.set(state, "tempVesselData.inspection_date", inspection_date);
         },
         clearForm: (state) => {
             state.inspectionDetails.data = initialState.inspectionDetails.data;
@@ -46,7 +70,7 @@ const slice = createSlice({
             state.image[cylinder] = image;
             state.viewToggle = true;
         },
-        setcylinder_numbers: (state, { payload }) => {
+        setCylinderNumbers: (state, { payload }) => {
             state.currentCylinder = payload;
             state.viewToggle = false;
         }
@@ -59,10 +83,32 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.GET_VESSEL_INSPECTION_SUCCESS, (state, { payload = {} }) => {
                 _.set(state, "inspectionDetails.requestInProgress", false);
-                let newPayload = { ...payload.data, inspection_date: fromEpochToMuiDate(payload.data.inspection_date) };
+                let resultDate = fromEpochToMuiDate(payload.data.inspection_date);
+                let initialInspectionDate = initialState.inspectionDetails.data.inspection_date;
+                let newPayload = { ...payload.data, inspection_date: resultDate ? resultDate : initialInspectionDate };
                 _.set(state, "inspectionDetails.data", newPayload);
             })
             .addCase(ACTION_TYPES.GET_VESSEL_INSPECTION_FAILURE, (state) => {
+                _.set(state, "inspectionDetails.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.SHOW_PREDICTIONS_REQUEST, (state) => {
+                _.set(state, "openImageUploader", false);
+                _.set(state, "inspectionDetails.requestInProgress", true);
+                _.set(state, "predictedData.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.SHOW_PREDICTIONS_SUCCESS, (state, { payload = {} }) => {
+                _.set(state, "inspectionDetails.requestInProgress", false);
+                _.set(state, "predictedData.requestInProgress", false);
+                _.set(state, "inspectionDetails.data", payload.data.updatedResult);
+                let resultDate = fromEpochToMuiDate(payload.data.updatedResult.inspection_date);
+                let initialInspectionDate = initialState.inspectionDetails.data.inspection_date;
+                let newPayload = { ...payload.data.updatedResult, inspection_date: resultDate ? resultDate : initialInspectionDate };
+                _.set(state, "inspectionDetails.data", newPayload);
+                _.set(state, "predictedData.data", payload.data.predictionDetails);
+            })
+            .addCase(ACTION_TYPES.SHOW_PREDICTIONS_FAILURE, (state) => {
+                _.set(state, "predictedData.requestInProgress", false);
                 _.set(state, "inspectionDetails.requestInProgress", false);
             });
 
@@ -70,3 +116,4 @@ const slice = createSlice({
 });
 
 export const { actions, reducer } = slice;
+//updatedResult

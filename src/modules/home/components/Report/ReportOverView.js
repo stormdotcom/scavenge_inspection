@@ -3,6 +3,9 @@ import React from "react";
 import SimpleTable from "../../../common/components/SimpleTale";
 import ConditionsList from "./ConditionsList";
 import PredictionImage from "./PredictionImage";
+import { useSelector } from "react-redux";
+import { STATE_REDUCER_KEY } from "../../constants";
+import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
 
 const columns = [
     { id: "ringNumber", name: "Ring Number" },
@@ -11,18 +14,24 @@ const columns = [
     { id: "depositsCondition", name: "Deposits Condition" }
 ];
 const data = [
-    { ringNumber: 1, lubricationCondition: "true", surfaceCondition: "adsssf", depositsCondition: "sdfsd" },
-    { ringNumber: 2, lubricationCondition: "true", surfaceCondition: "adsssf", depositsCondition: "sdfsd" },
-    { ringNumber: 3, lubricationCondition: "true", surfaceCondition: "adsssf", depositsCondition: "sdfsd" }
+    { ringNumber: 1, lubricationCondition: "true", surfaceCondition: "S", depositsCondition: "LC" },
+    { ringNumber: 2, lubricationCondition: "true", surfaceCondition: "S", depositsCondition: "" },
+    { ringNumber: 3, lubricationCondition: "true", surfaceCondition: "S", depositsCondition: "" }
 ];
 const ReportOverView = () => {
-    return <Grid container spacing={2} sx={{ bgcolor: "primary.200", display: "flex", p: 1, borderRadius: "5px" }}>
-        <PredictionImage />
-        <Grid item sm={6} md={9} lg={9} xl={9}>
-            <SimpleTable columns={columns} data={data} />
-            <ConditionsList />
+    const { data: { image = "" } = {}, requestInProgress = false
+    } = useSelector(state => state[STATE_REDUCER_KEY].predictedData);
+
+    return <LoadingCustomOverlay active={requestInProgress}>
+        <Grid container spacing={2} sx={{ bgcolor: "primary.200", display: "flex", p: 1, borderRadius: "5px" }}>
+            <PredictionImage image={image} />
+            <Grid item sm={6} md={9} lg={9} xl={9}>
+                <SimpleTable columns={columns} data={data} />
+                <ConditionsList />
+            </Grid>
         </Grid>
-    </Grid>;
+    </LoadingCustomOverlay>
+        ;
 };
 
 export default ReportOverView;
