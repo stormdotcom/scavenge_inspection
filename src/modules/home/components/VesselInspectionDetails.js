@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Alert, Box, Button, Grid, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { FormController } from "../../../common/components";
 import { createStructuredSelector } from "reselect";
@@ -50,10 +50,10 @@ const VesselDetails = (props) => {
                                 <FormController control="input2" name="cyl_oil_consump_Ltr_24hr" label="Cyl. Oil Consump(Ltr/24hr)" />
                             </Grid>
                             <Grid item sm={12} md={6} lg={6} xl={4}>
-                                <FormController control="input2" name="normal_service_load_in_percent_MCRMCR" label="Normal Service Load In Percent MCRMCR" />
+                                <FormController control="input2" name="normal_service_load_in_percent_MCRMCR" label="Normal Service Load In %" />
                             </Grid>
                             <Grid item sm={12} md={6} lg={6} xl={4}>
-                                <FormController control="input2" name="cylinder_numbers" label="Cylinder Numbers" />
+                                <FormController disabled={true} control="input2" name="cylinder_numbers" label="Cylinder Numbers" />
                             </Grid>
                             {/* 2 */}
                         </Grid>
@@ -61,6 +61,11 @@ const VesselDetails = (props) => {
                             <Button onClick={handleUpload} sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" >{"Upload Cylinder Image"}</Button>
                         </Grid>
                     </Form>
+                </Box>
+            </Box>
+            <Box sx={{}}>
+                <Box sx={{ display: "flex", justifyContent: "center" }}>
+                    <Alert severity="info"> Images once uploaded cannot be retrieved. You can only save or download generated reports </Alert>
                 </Box>
             </Box>
         </Grid >

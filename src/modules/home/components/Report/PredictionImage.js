@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const imageBoxStyle = {
     minWidth: "190px",
@@ -19,13 +19,16 @@ const imageBoxStyle = {
     alignItems: "center"
 };
 
-const PredictionImage = ({ image = "" }) => {
+const PredictionImage = ({ image = "", cylinder }) => {
 
 
     return (
-        <Box sm={6} md={3} lg={3} xl={3}
-            sx={{ ...imageBoxStyle, backgroundImage: `url(${image})`, backgroundColor: "primary.light" }}
-        >
+        <Box sm={6} md={3} lg={3} xl={3} sx={{ px: 2 }}>
+            <Typography sx={{ color: "white.main", fontSize: "18px", fontWeight: 700 }}> Cylinder No: {cylinder}</Typography>
+            <Box
+                sx={{ ...imageBoxStyle, backgroundImage: `url(${image})`, backgroundColor: "primary.light" }}
+            >
+            </Box>
         </Box>
     );
 };

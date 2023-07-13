@@ -15,17 +15,11 @@ const initialState = {
         requestInProgress: false,
         data: {
             brk: {},
-            dep: {
-                Ring2: ""
-            },
+            dep: {},
             image: "",
-            lub: {
-                Ring3: ""
-            },
-            surf: {
-                Ring3: ""
-            },
-            cylinder: 1
+            lub: {},
+            surf: {},
+            cylinder: "--"
         }
     },
     viewToggle: false,
@@ -53,7 +47,8 @@ const slice = createSlice({
         clear: (state) => {
             state.table = initialState.table;
         },
-        setInspectionDetails: (state, { payload = {} }) => {
+        setInspectionDetails: (state, { payload: formData = {} }) => {
+            const payload = _.cloneDeep(formData);
             let inspection_date = fromMuiDateEpoch(payload.inspection_date);
             state.tempVesselData = payload;
             _.set(state, "tempVesselData", payload);
@@ -116,4 +111,3 @@ const slice = createSlice({
 });
 
 export const { actions, reducer } = slice;
-//updatedResult
