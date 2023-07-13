@@ -1,5 +1,5 @@
 
-import { all, put, select, takeEvery, takeLatest, delay } from "redux-saga/effects";
+import { all, put, select, takeEvery, takeLatest, delay, call } from "redux-saga/effects";
 
 import { ACTION_TYPES } from "./actions";
 
@@ -29,9 +29,11 @@ function* logoutUser({ payload: data = {} }) {
     if (data.isManual) {
         yield delay(500);
         yield put(successNotify({ title: "Success", message: "You have been successfully logged out!" }));
+        yield delay(500);
+        yield call(refreshFn);
     }
     localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
-    yield navigateToFn({ payload: "/" });
+    // yield navigateToFn({ payload: "/login" });
     // yield put(navigateTo("/"));
 }
 

@@ -15,7 +15,7 @@ import { STATE_REDUCER_KEY as COMMON_KEY } from "../../common";
 const VesselDetails = (props) => {
     const { handleSubmit, fetchFormData } = props;
     const loading = useSelector(state => state[STATE_REDUCER_KEY].inspectionDetails.requestInProgress);
-    const companyName = useSelector(state => state[COMMON_KEY].user.organizationBelongsTo.company_name) || "";
+    const { organizationBelongsTo: { company_name = "" } = {} } = useSelector(state => state[COMMON_KEY].user);
     const dispatch = useDispatch();
     const handleUpload = () => {
         dispatch(sliceActions.setImageUploader(true));
@@ -29,7 +29,7 @@ const VesselDetails = (props) => {
     return <LoadingCustomOverlay active={loading} spinnerProps="Prediction">
         <Grid sx={{ width: "100%", minHeight: "30vh", bgcolor: "primary.main", p: 4 }}>
             <Box sx={{ display: "flex", flexDirection: "column", px: 5, mb: 2 }}>
-                <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> {companyName} </Typography>
+                <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> {company_name} </Typography>
                 <Box sx={{ px: 2, pt: 4, width: "100%" }}>
                     <Form>
                         <Grid container rowSpacing={4} columnSpacing={4}>

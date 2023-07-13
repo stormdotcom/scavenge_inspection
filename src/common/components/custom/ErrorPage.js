@@ -1,9 +1,11 @@
-import { HomeOutlined } from "@mui/icons-material";
+import { HomeOutlined, Refresh } from "@mui/icons-material";
 import { Grid, IconButton, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { STATE_REDUCER_KEY as COMMON } from "../../../modules/common";
-
+import { refresh } from "../../../modules/common/actions";
+import { actions as commonActions } from "../../../modules/common/slice";
+import { useEffect } from "react";
 
 const DATA = {
     STATUS: "something_went_wrong",
@@ -14,7 +16,10 @@ const DATA = {
 const ErrorPage = (props) => {
     const navigate = useNavigate();
     const homePath = useSelector(state => state[COMMON].homePath);
-
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(commonActions.setNavigator(navigate));
+    }, []);
     let { error: { status, message, statusText } = {}, image, title = DATA.TITLE } = props;
     return (
         <Grid sx={{ display: "flex", minHeight: "600px", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
@@ -23,6 +28,15 @@ const ErrorPage = (props) => {
                 textAlign: "center", fontSize: "8rem", letterSpacing: "0.5rem"
             }}>
                 {title}
+            </Grid>
+            <Grid sx={{ textAlign: "center" }}>
+                <Typography sx={{
+                    fontSize: "1.6rem", letterSpacing: "0.4rem"
+                }}>Refresh
+                    <IconButton aria-label="home" size="large" onClick={() => dispatch(refresh())} color="primary">
+                        <Refresh fontSize="inherit" />
+                    </IconButton>
+                </Typography>
             </Grid>
             <Typography sx={{
                 letterSpacing: "0.4rem", fontSize: "1.8rem", color: "grey", textAlign: "center"
