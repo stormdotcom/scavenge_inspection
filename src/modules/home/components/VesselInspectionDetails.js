@@ -4,24 +4,28 @@ import { FormController } from "../../../common/components";
 import { createStructuredSelector } from "reselect";
 import { Form, withFormik } from "formik";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { getOpenImageUploader, selectInspectionDetails } from "../selectors";
-import { getInspectionDetails } from "../actions";
+import { selectInspectionDetails } from "../selectors";
+import { getInspectionDetails, showPredictions } from "../actions";
 import { vesselDetailsSchema as validate } from "../validate";
 import { actions as sliceActions } from "../slice";
 import LoadingCustomOverlay from "../../common/components/LoadingOverlay";
 import { STATE_REDUCER_KEY } from "../constants";
 
+
 const VesselDetails = (props) => {
     const { handleSubmit, fetchFormData } = props;
     const loading = useSelector(state => state[STATE_REDUCER_KEY].inspectionDetails.requestInProgress);
+    const imageUploaded = useSelector(state => state[STATE_REDUCER_KEY].imageUploaded);
     const dispatch = useDispatch();
     const handleUpload = () => {
         dispatch(sliceActions.setImageUploader(true));
         handleSubmit();
     };
+    const handleShowPredictions = () => {
+        dispatch(showPredictions());
+    };
     useEffect(() => {
         fetchFormData();
-        return () => dispatch(sliceActions.clearForm());
     }, []);
 
     return <LoadingCustomOverlay active={loading} spinnerProps="Prediction">
@@ -50,15 +54,16 @@ const VesselDetails = (props) => {
                                 <FormController control="input2" name="cyl_oil_consump_Ltr_24hr" label="Cyl. Oil Consump(Ltr/24hr)" />
                             </Grid>
                             <Grid item sm={12} md={6} lg={6} xl={4}>
-                                <FormController control="input2" name="normal_service_load_in_percent_MCRMCR" label="Normal Service Load In Percent MCRMCR" />
+                                <FormController control="input2" name="normal_service_load_in_percent_MCRMCR" label="Normal Service Load in %" />
                             </Grid>
                             <Grid item sm={12} md={6} lg={6} xl={4}>
-                                <FormController control="input2" name="cylinder_numbers" label="Cylinder Numbers" />
+                                <FormController control="input2" name="cylinder_numbers" label="Cylinder Numbers" disabled={true} />
                             </Grid>
                             {/* 2 */}
                         </Grid>
                         <Grid sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <Button onClick={handleUpload} sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" >{"Upload Cylinder Image"}</Button>
+                            <Button variant="contained" onClick={handleShowPredictions} sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} disabled={!imageUploaded}>Start Prediction </Button>
                         </Grid>
                     </Form>
                 </Box>
@@ -69,8 +74,7 @@ const VesselDetails = (props) => {
 
 
 const mapStateToProps = createStructuredSelector({
-    vesselInspectionDetails: selectInspectionDetails,
-    openImageUploader: getOpenImageUploader
+    vesselInspectionDetails: selectInspectionDetails
 });
 
 const mapDispatchToProps = (dispatch) => ({

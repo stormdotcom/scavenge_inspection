@@ -5,10 +5,11 @@ import { getCylinderNumbers, getOpenImageUploader } from "../../selectors";
 import { connect, useDispatch, useSelector } from "react-redux";
 import ContainedButton from "../../../../common/components/custom/ContainedButton";
 import { actions as sliceActions } from "../../slice";
-import { showPredictions } from "../../actions";
+
 import SelectInput from "./SelectComponent";
 import ImageView from "./ImageView";
 import { STATE_REDUCER_KEY } from "../../constants";
+
 const ImageUploader = (props) => {
     const { cylinder_numbers = 0, openImageUploader = false } = props;
     const cylinders = Array.from({ length: cylinder_numbers }, (_, idx) => ({
@@ -18,8 +19,8 @@ const ImageUploader = (props) => {
     const dispatch = useDispatch();
     const cylinder = useSelector(state => state[STATE_REDUCER_KEY].currentCylinder);
     const handleClose = () => dispatch(sliceActions.setImageUploader(false));
-    const handleShowPredictions = () => dispatch(showPredictions());
     const handleOnChange = (e) => dispatch(sliceActions.setCylinderNumbers(e.target.value));
+    const handleImageDone = () => dispatch(sliceActions.setImageUploadDone(true));
     return <Grid sx={{ bgcolor: "primary.main", px: 4 }}>
         <Dialog
             open={openImageUploader}
@@ -41,7 +42,7 @@ const ImageUploader = (props) => {
             </DialogContent>
             <DialogActions>
                 <Button sx={{ color: "white.main" }} onClick={handleClose}>Cancel</Button>
-                <ContainedButton onClick={handleShowPredictions} disabled={cylinder}>Show Predictions </ContainedButton>
+                <ContainedButton onClick={handleImageDone} disabled={cylinder}>Done </ContainedButton>
             </DialogActions>
         </Dialog>
     </Grid>;
@@ -56,6 +57,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = () => ({
 
 });
+const Popup = connect(mapStateToProps, mapDispatchToProps)(ImageUploader);
+export default React.memo(Popup);
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImageUploader);
 

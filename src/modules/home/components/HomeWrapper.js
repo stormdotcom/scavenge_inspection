@@ -11,4 +11,4 @@ const HomeWrapper = () => {
     </>;
 };
 
-export default HomeWrapper;
+export default React.memo(HomeWrapper);

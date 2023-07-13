@@ -9,9 +9,9 @@ const initialState = {
     vesselDetails: {
         requestInProgress: false,
         data: {
-            vesselName: "sdfsdf",
-            imo_number: "1212",
-            manufacturer: "fsfd",
+            vesselName: "",
+            imo_number: "",
+            manufacturer: "",
             type_of_engine: "",
             vessel_type: ""
         }

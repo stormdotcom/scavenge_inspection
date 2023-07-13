@@ -41,7 +41,8 @@ const initialState = {
             normal_service_load_in_percent_MCR: "",
             cylinder_numbers: ""
         }
-    }
+    },
+    imageUploaded: false
 
 };
 
@@ -53,11 +54,11 @@ const slice = createSlice({
         clear: (state) => {
             state.table = initialState.table;
         },
-        setInspectionDetails: (state, { payload = {} }) => {
-            let inspection_date = fromMuiDateEpoch(payload.inspection_date);
-            state.tempVesselData = payload;
+        setInspectionDetails: (state, { payload: formData = {} }) => {
+            let payload = _.cloneDeep(formData);
+            let epochDate = fromMuiDateEpoch(payload.inspection_date);
             _.set(state, "tempVesselData", payload);
-            _.set(state, "tempVesselData.inspection_date", inspection_date);
+            _.set(state, "tempVesselData.inspection_date", epochDate);
         },
         clearForm: (state) => {
             state.inspectionDetails.data = initialState.inspectionDetails.data;
@@ -73,6 +74,10 @@ const slice = createSlice({
         setCylinderNumbers: (state, { payload }) => {
             state.currentCylinder = payload;
             state.viewToggle = false;
+        },
+        setImageUploadDone: (state, { payload }) => {
+            state.imageUploaded = payload;
+            state.openImageUploader = false;
         }
 
     },
@@ -116,4 +121,3 @@ const slice = createSlice({
 });
 
 export const { actions, reducer } = slice;
-//updatedResult

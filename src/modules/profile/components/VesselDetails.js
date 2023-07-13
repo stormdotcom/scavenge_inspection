@@ -13,6 +13,7 @@ const VesselDetails = (props) => {
     const { handleSubmit, getVesselInfoDetails } = props;
     const dispatch = useDispatch();
     useEffect(() => {
+
         dispatch(getVesselInfoDetails());
     }, []);
 

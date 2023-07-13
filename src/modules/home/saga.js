@@ -25,11 +25,10 @@ export function* showPredictionSaga() {
         yield put(errorNotify({ title: "INPUT_ERROR", message: `For cylinder number ${cylinder} no image selected` }));
     } if (cylinder && image[cylinder]) {
         let payload = { cylinder, image: image[cylinder], ...inspectionDetails };
+        yield put(loaderNotify({ id: "prediction_image_upload", title: "Uploading File", message: "Image Uploading" }));
         yield fork(handleAPIRequest, showPredictionApi, payload);
-        const response = yield take([ACTION_TYPES.SHOW_PREDICTIONS_REQUEST, ACTION_TYPES.SHOW_PREDICTIONS_SUCCESS, ACTION_TYPES.SHOW_PREDICTIONS_FAILURE]);
-        if (response.type === ACTION_TYPES.SHOW_PREDICTIONS_REQUEST) {
-            yield put(loaderNotify({ id: "prediction_image_upload", title: "Uploading File", message: "Image Uploading" }));
-        }
+        const response = yield take([ACTION_TYPES.SHOW_PREDICTIONS_SUCCESS, ACTION_TYPES.SHOW_PREDICTIONS_FAILURE]);
+
         if (response.type === ACTION_TYPES.SHOW_PREDICTIONS_SUCCESS) {
             yield put(dismissNotification("prediction_image_upload"));
         }
