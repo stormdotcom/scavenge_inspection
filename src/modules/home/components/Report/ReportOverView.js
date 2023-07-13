@@ -18,7 +18,7 @@ const ReportOverView = () => {
                 <Box display={"flex"} justifyContent={"space-around"}>
                     <Box sx={{ py: 2 }}>
                         <Typography sx={{ color: "white.main", fontSize: "14px", fontWeight: 600 }}>
-                            Breakage Condition
+                            Breakage
                         </Typography>
                         {!_.isEmpty(brk) ? (
                             <Box sx={{ display: "flex", justifyContent: "flex-start", flexDirection: "column" }}>
@@ -35,7 +35,7 @@ const ReportOverView = () => {
                     </Box>
                     <Box sx={{ py: 2 }}>
                         <Typography sx={{ color: "white.main", fontSize: "14px", fontWeight: 600 }}>
-                            Deposits Condition
+                            Deposits
                         </Typography>
                         {!_.isEmpty(dep) ? (
                             <Box sx={{ display: "flex", justifyContent: "flex-start", flexDirection: "column" }}>
