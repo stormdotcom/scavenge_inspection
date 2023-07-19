@@ -15,13 +15,13 @@ const ReportOverView = () => {
 
             <PredictionImage image={image} cylinder={cylinder} />
             <Grid item sm={6} md={9} lg={9} xl={9} >
-                <Box display={"flex"} justifyContent={"space-around"}>
+                <Box display={"flex"} justifyContent={"space-evenly"}>
                     <Box sx={{ py: 2 }}>
-                        <Typography sx={{ color: "white.main", fontSize: "14px", fontWeight: 600 }}>
+                        <Typography display={"inline"} sx={{ textAlign: "start", color: "white.main", fontSize: "14px", fontWeight: 600 }}>
                             Breakage
                         </Typography>
                         {!_.isEmpty(brk) ? (
-                            <Box sx={{ display: "flex", justifyContent: "flex-start", flexDirection: "column" }}>
+                            <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column" }}>
                                 {_.entries(brk).map(([key, value]) => (
                                     <Typography sx={{ color: "white.main" }} key={key}>
                                         {key}: {value}
@@ -38,7 +38,7 @@ const ReportOverView = () => {
                             Deposits
                         </Typography>
                         {!_.isEmpty(dep) ? (
-                            <Box sx={{ display: "flex", justifyContent: "flex-start", flexDirection: "column" }}>
+                            <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column" }}>
                                 {_.entries(dep).map(([key, value]) => (
                                     <Typography sx={{ color: "white.main" }} key={key}>
                                         {key}: {value}
@@ -51,13 +51,13 @@ const ReportOverView = () => {
 
                     </Box>
                 </Box>
-                <Box display={"flex"} justifyContent={"space-around"}>
+                <Box display={"flex"} justifyContent={"space-evenly"}>
                     <Box sx={{ py: 2 }}>
                         <Typography sx={{ color: "white.main", fontSize: "14px", fontWeight: 600 }}>
                             Lubrication  Condition
                         </Typography>
                         {!_.isEmpty(lub) ? (
-                            <Box sx={{ display: "flex", justifyContent: "flex-start", flexDirection: "column" }}>
+                            <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column" }}>
                                 {_.entries(lub).map(([key, value]) => (
                                     <Typography sx={{ color: "white.main" }} key={key}>
                                         {key}: {value}
@@ -74,7 +74,7 @@ const ReportOverView = () => {
                             Surface Condition
                         </Typography>
                         {!_.isEmpty(surf) ? (
-                            <Box sx={{ display: "flex", justifyContent: "flex-start", flexDirection: "column" }}>
+                            <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column" }}>
                                 {_.entries(surf).map(([key, value]) => (
                                     <Typography sx={{ color: "white.main" }} key={key}>
                                         {key}: {value}
@@ -89,7 +89,7 @@ const ReportOverView = () => {
                 </Box>
             </Grid>
         </Grid>
-    </LoadingCustomOverlay>
+    </LoadingCustomOverlay >
         ;
 };
 

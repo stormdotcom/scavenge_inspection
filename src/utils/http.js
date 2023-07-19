@@ -100,6 +100,7 @@ function* invokeApi(method, url, payload) {
     } else {
         if (_.get(response, "result", "") === API_RESULT_CODE.FAILURE) {
             yield put(warningNotify({ id: "ERROR_PRIMARY", title: "Operation Failure", message: _.get(response, "errorDescription", "Operation Failure") }));
+            yield put(failureAction({}));
         }
         if (_.get(response, "result", "") !== API_RESULT_CODE.FAILURE) {
             yield put(successAction(response || {}));

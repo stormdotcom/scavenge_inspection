@@ -8,7 +8,7 @@ import { actions as commonActions } from "../../../modules/common/slice";
 import { useEffect } from "react";
 
 const DATA = {
-    STATUS: "something_went_wrong",
+    STATUS: "Something went wrong",
     TITLE: "Oops!"
 };
 

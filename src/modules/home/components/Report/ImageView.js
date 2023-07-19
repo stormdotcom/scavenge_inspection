@@ -12,7 +12,7 @@ const ImageView = () => {
     const viewToggle = useSelector(state => state[STATE_REDUCER_KEY].viewToggle);
     const image = useSelector(state => state[STATE_REDUCER_KEY].image);
     const cylinder = useSelector(state => state[STATE_REDUCER_KEY].currentCylinder);
-    const imageMaxSize = 10000000; // bytes
+    const imageMaxSize = 5000000; // bytes
     const dispatch = useDispatch();
     const verifyFile = (files) => {
         if (files && files.length > 0) {
@@ -21,7 +21,7 @@ const ImageView = () => {
             const currentFileSize = currentFile.size;
             const sizeInMb = Math.round((currentFileSize / 1000000) * 100) / 100;
             if (currentFileSize > imageMaxSize) {
-                setError("File size not allowed" + sizeInMb);
+                setError(+ sizeInMb + " KB File size not allowed (Maximum Size: 5 MB)");
                 return false;
             }
             if (!acceptedFileTypesArray.includes(currentFileType)) {
@@ -80,7 +80,7 @@ const ImageView = () => {
             style={{ display: "none" }}
         />
         <Box>
-            {err && <Typography variant="p" sx={{ color: "red.main" }}> {err}</Typography>}
+            {err && <Typography variant="p" sx={{ color: "#FC3B3B" }}> {err}</Typography>}
         </Box>
     </>;
 };

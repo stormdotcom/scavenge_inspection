@@ -7,7 +7,19 @@ const initialState = {
     table: {},
     homePath: "home",
     user: {
-        designation: "sss"
+        subscription: {
+            plan: ""
+        },
+        fullName: "",
+        email: "",
+        password: "",
+        userType: "",
+        organizationBelongsTo: {
+            _id: "",
+            company_name: ""
+        },
+        designation: "",
+        __v: 0
     },
     isLoggedIn: false
 };

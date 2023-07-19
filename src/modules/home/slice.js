@@ -55,7 +55,7 @@ const slice = createSlice({
             _.set(state, "tempVesselData.inspection_date", inspection_date);
         },
         clearForm: (state) => {
-            state.inspectionDetails.data = initialState.inspectionDetails.data;
+            state.inspectionDetails = initialState.inspectionDetails;
         },
         setImageUploader: (state, { payload }) => {
             state.openImageUploader = payload;
@@ -95,7 +95,7 @@ const slice = createSlice({
             .addCase(ACTION_TYPES.SHOW_PREDICTIONS_SUCCESS, (state, { payload = {} }) => {
                 _.set(state, "inspectionDetails.requestInProgress", false);
                 _.set(state, "predictedData.requestInProgress", false);
-                _.set(state, "inspectionDetails.data", payload.data.updatedResult);
+                _.set(state, "inspectionDetails.data", payload.data.updatedResult); // payload.data.updatedResult
                 let resultDate = fromEpochToMuiDate(payload.data.updatedResult.inspection_date);
                 let initialInspectionDate = initialState.inspectionDetails.data.inspection_date;
                 let newPayload = { ...payload.data.updatedResult, inspection_date: resultDate ? resultDate : initialInspectionDate };

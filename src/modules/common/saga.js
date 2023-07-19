@@ -33,7 +33,7 @@ function* logoutUser({ payload: data = {} }) {
         yield call(refreshFn);
     }
     localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
-    // yield navigateToFn({ payload: "/login" });
+    yield navigateToFn({ payload: "/signin" });
     // yield put(navigateTo("/"));
 }
 
