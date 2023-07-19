@@ -66,7 +66,7 @@ function SignUp(props) {
             <Header />
             <Grid height="100vh" container sx={{ overflowY: "hidden", width: 1, bgcolor: "primary.main", p: 0, display: "flex", alignItems: "center" }}>
                 <Box sx={{ mt: 1, width: "100%", display: "flex", alignItems: "center", mb: { lg: "130px", xl: "140px", justifyContent: "center" } }}>
-                    <Paper sx={{ overflowY: "scroll", height: "500px", bgcolor: "primary.light", boxShadow: 0, mr: { xs: "40px", lg: "95px" }, width: { xs: "90%", sm: "90%", md: "520px", lg: "680px", xl: "680px" } }}>
+                    <Paper sx={{ overflowY: "scroll", height: "500px", bgcolor: "primary.light", boxShadow: 0, width: { xs: "90%", sm: "90%", md: "520px", lg: "680px", xl: "680px" } }}>
                         <Grid sx={{ display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
                             <Box sx={{ px: { xs: 3, xl: 6 }, py: 4 }}>
                                 <Typography sx={{ fontSize: { xs: "20px", md: "26px", lg: "30px", xl: "35px", textAlign: "center" }, color: "secondary.main", pb: 2, fontWeight: 600 }} >ScavAI Vision</Typography>
@@ -122,7 +122,7 @@ function SignUp(props) {
                                             </Box>
                                         </Box>
                                         <Box sx={{ display: "flex", py: { xs: 3, xl: 4.5 }, justifyContent: "center", alignItems: "space-around", boxShadow: 0 }} elevation={0}>
-                                            <Typography display="inline" sx={{ fontSize: { lg: "16px", xl: "18px" }, pb: 1.2, color: "white.main" }}>{"Already have account?"}</Typography>
+                                            <Typography display="inline" sx={{ fontSize: { lg: "16px", xl: "18px" }, pt: 0.6, color: "white.main" }}>{"Already have account?"}</Typography>
                                             <Typography display="inline" variant="text" sx={{ fontWeight: 600, fontSize: { lg: "16px", xl: "18px" }, p: 0.5, m: 0, ml: 1, cursor: "pointer", "&:hover": { color: "#e8af13" } }} color="#e8af13"
                                                 onClick={() => {
                                                     navigate("../signin");
