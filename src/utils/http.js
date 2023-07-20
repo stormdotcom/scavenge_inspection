@@ -84,7 +84,7 @@ function* invokeApi(method, url, payload) {
                         yield delay(500);
                         yield put(logout());
                     } else {
-                        errorMessage = { title: `${errorTitle || statusText || netWorkMessage || "ERROR"}`, message: message || errorDescription };
+                        errorMessage = { title: `${errorTitle || statusText || netWorkMessage || "ERROR"}`, message: message };
                     }
                 }
                 break;
