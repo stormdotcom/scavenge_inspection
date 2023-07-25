@@ -35,9 +35,12 @@ export function* signIn({ payload }) {
 
 export function* signUp({ payload }) {
     let formData = _.cloneDeep(payload);
+
     if (formData.organizationAdmin) {
         _.set(formData, "userType", USER_TYPE.VESSEL);
         _.set(formData, "organizationAdmin", _.get(formData, "organizationAdmin.id"));
+        _.unset(formData, "newOrgName");
+        _.set(formData, "company_name", _.get(formData, "company_name.name"));
     } else {
         _.set(formData, "organizationAdmin", "");
         _.set(formData, "userType", USER_TYPE.ORGANIZATION);

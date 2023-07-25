@@ -25,6 +25,7 @@ const initialState = {
             confirmPassword: "",
             userType: "",
             company_name: "",
+            newOrgName: "",
             vessel_name: ""
         }
     }
