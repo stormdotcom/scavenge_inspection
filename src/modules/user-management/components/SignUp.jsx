@@ -78,7 +78,7 @@ function SignUp(props) {
                                         </Grid>
                                         {newOrg ?
                                             <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
-                                                <FormController control="input" name="newOrgName" label="Company Name" isMandatory={true} />
+                                                <FormController control="input" name="company_name" label="Company Name" isMandatory={true} />
                                             </Grid> :
                                             <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                                 <FormController control="select" name="company_name" label="Company Name" isMandatory={true} options={orgList} />
