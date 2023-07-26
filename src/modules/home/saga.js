@@ -1,9 +1,9 @@
 import { all, call, fork, put, select, takeLatest, take } from "redux-saga/effects";
 import { ACTION_TYPES } from "./actions";
-import { getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi } from "./api";
+import { getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi, savePredictedSagaApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
-import { getCurrentCylinder, getImageArray, selectInspecDetailData } from "./selectors";
-import { errorNotify, loaderNotify } from "../../utils/notificationUtils";
+import { getCurrentCylinder, getImageArray, selectInspecDetailData, selectPredictedData } from "./selectors";
+import { errorNotify, loaderNotify, successNotify } from "../../utils/notificationUtils";
 import { fromMuiDateEpoch } from "../../utils/dateUtils";
 import { dismissNotification } from "reapop";
 import _ from "lodash";
@@ -40,12 +40,25 @@ export function* showPredictionSaga() {
 export function* getInspectionDetailsSaga() {
     yield call(handleAPIRequest, getInspectionDetailsApi);
 }
+export function* savePredictedSaga() {
+    const data = yield select(selectPredictedData);
+    yield fork(handleAPIRequest, savePredictedSagaApi, data);
+    const response = yield take([ACTION_TYPES.GET_VESSEL_INSPECTION_REQUEST, ACTION_TYPES.GET_VESSEL_INSPECTION_SUCCESS, ACTION_TYPES.GET_VESSEL_INSPECTION_FAILURE]);
+    if (response.type === ACTION_TYPES.GET_VESSEL_INSPECTION_REQUEST) {
+        yield put(loaderNotify({ id: "prediction_data", title: "Saving", message: "Predicted Data" }));
+    }
+    if (response.type === ACTION_TYPES.GET_VESSEL_INSPECTION_SUCCESS) {
+        yield put(dismissNotification("prediction_data"));
+        yield put(successNotify({ title: "Success", message: "Predicted Data Saved" }));
+    }
+}
 
 
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.SHOW_PREDICTIONS, showPredictionSaga),
         takeLatest(ACTION_TYPES.UPDATE_VESSEL_INSPECTION, updateInspectionDetails),
-        takeLatest(ACTION_TYPES.GET_VESSEL_INSPECTION, getInspectionDetailsSaga)
+        takeLatest(ACTION_TYPES.GET_VESSEL_INSPECTION, getInspectionDetailsSaga),
+        takeLatest(ACTION_TYPES.SAVE_PREDICTED, savePredictedSaga)
     ]);
 }

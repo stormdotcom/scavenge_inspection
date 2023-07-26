@@ -11,6 +11,7 @@ const initialState = {
     image: [],
     tempVesselData: {},
     openImageUploader: false,
+    isPredicted: false,
     predictedData: {
         requestInProgress: false,
         data: {
@@ -93,6 +94,7 @@ const slice = createSlice({
                 _.set(state, "predictedData.requestInProgress", true);
             })
             .addCase(ACTION_TYPES.SHOW_PREDICTIONS_SUCCESS, (state, { payload = {} }) => {
+                _.set(state, "isPredicted", true);
                 _.set(state, "inspectionDetails.requestInProgress", false);
                 _.set(state, "predictedData.requestInProgress", false);
                 _.set(state, "inspectionDetails.data", payload.data.updatedResult); // payload.data.updatedResult

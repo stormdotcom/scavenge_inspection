@@ -38,3 +38,14 @@ export const getInspectionDetailsApi = () => {
 };
 
 
+export const savePredictedSagaApi = (data) => {
+    return {
+        url: API_URL.VESSEL.SAVE_PREDICTED,
+        method: REQUEST_METHOD.POST,
+        payload: {
+            types: [ACTION_TYPES.SAVE_PREDICTED_REQUEST, ACTION_TYPES.SAVE_PREDICTED_SUCCESS, ACTION_TYPES.SAVE_PREDICTED_FAILURE],
+            data
+        }
+
+    };
+};

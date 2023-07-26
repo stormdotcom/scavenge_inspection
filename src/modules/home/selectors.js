@@ -20,3 +20,7 @@ export const getCurrentCylinder = flow(getState, currentCylinder);
 
 const tempVesselData = (state) => state.tempVesselData;
 export const selectInspecDetailData = flow(getState, tempVesselData);
+
+const predictedData = (state) => state.predictedData.data;
+export const selectPredictedData = flow(getState, predictedData);
+
