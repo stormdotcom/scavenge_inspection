@@ -24,7 +24,7 @@ const ErrorPage = (props) => {
     }, []);
     let { error: { status, message, statusText } = {}, image, title = DATA.TITLE } = props;
     return (
-        <Grid sx={{ display: "flex", minHeight: "600px", backgroundColor: "primary.main", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+        <Grid sx={{ display: "flex", minHeight: "600px", height: "100vh", backgroundColor: "primary.main", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
             <img src={notFoundImage || image} alt='notFoundImage' height={"270"} width={"60%"} />
             <Grid sx={{
                 textAlign: "center", fontSize: "2rem", fontWeight: 600, letterSpacing: "8px", color: "white.main", position: "absolute"
