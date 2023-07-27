@@ -8,6 +8,7 @@ import { routes as userManagement } from "../modules/user-management/routes";
 import { routes as orgRoutes } from "../modules/organization/routes";
 import React from "react";
 import OrgHome from "./organization/OrgHome";
+import ReportTable from "./home/components/Report/ReportList/ReportTable";
 
 const VesselInfoDetails = React.lazy(() => import("./profile/components/VesselDetails"));
 // const Prediction = React.lazy(() => import("./home/components/VesselInspectionDetails"));
@@ -47,8 +48,8 @@ const routes =
                 },
                 {
                     title: "Report",
-                    path: "report",
-                    // element: <Report />,
+                    path: "reports",
+                    element: <ReportTable />,
                     errorElement: <RootBoundary />
                 },
                 {
