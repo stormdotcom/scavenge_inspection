@@ -24,3 +24,6 @@ export const selectInspecDetailData = flow(getState, tempVesselData);
 const predictedData = (state) => state.predictedData.data;
 export const selectPredictedData = flow(getState, predictedData);
 
+
+const paginationInfo = (state) => state.reports.table.paginationInfo;
+export const getPagination = flow(getState, paginationInfo);

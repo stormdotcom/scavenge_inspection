@@ -2,11 +2,12 @@ import { all, call, fork, put, select, takeLatest, take } from "redux-saga/effec
 import { ACTION_TYPES } from "./actions";
 import { getReportListApi, getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi, savePredictedSagaApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
-import { getCurrentCylinder, getImageArray, selectInspecDetailData, selectPredictedData } from "./selectors";
+import { getCurrentCylinder, getImageArray, getPagination, selectInspecDetailData, selectInspectionDetails, selectPredictedData } from "./selectors";
 import { errorNotify, loaderNotify, successNotify } from "../../utils/notificationUtils";
-import { fromMuiDateEpoch } from "../../utils/dateUtils";
+import { fromEpochToMuiDate, fromMuiDateEpoch } from "../../utils/dateUtils";
 import { dismissNotification } from "reapop";
 import _ from "lodash";
+import { getUserData } from "../common/selectors";
 
 export function* updateInspectionDetails({ payload }) {
     const newPayload = _.cloneDeep(payload);
@@ -41,8 +42,15 @@ export function* getInspectionDetailsSaga() {
     yield call(handleAPIRequest, getInspectionDetailsApi);
 }
 export function* savePredictedSaga() {
-    const data = yield select(selectPredictedData);
-    yield fork(handleAPIRequest, savePredictedSagaApi, data);
+    const predictionInfo = yield select(selectPredictedData).data;
+    const inspectionFormData = yield select(selectInspectionDetails);
+    const inspectionDetails = _.cloneDeep(inspectionFormData.data);
+    const userData = yield select(getUserData)
+    const organization = _.get(userData, "organizationBelongsTo._id", "");
+    let resultDate = fromEpochToMuiDate(inspectionDetails.inspection_date);
+    const inspectionPayload = { ...inspectionDetails, inspection_date: resultDate };
+    let payload = { predictionInfo, ...inspectionPayload, organization };
+    yield fork(handleAPIRequest, savePredictedSagaApi, payload);
     const response = yield take([ACTION_TYPES.GET_VESSEL_INSPECTION_REQUEST, ACTION_TYPES.GET_VESSEL_INSPECTION_SUCCESS, ACTION_TYPES.GET_VESSEL_INSPECTION_FAILURE]);
     if (response.type === ACTION_TYPES.GET_VESSEL_INSPECTION_REQUEST) {
         yield put(loaderNotify({ id: "prediction_data", title: "Saving", message: "Predicted Data" }));
@@ -54,7 +62,8 @@ export function* savePredictedSaga() {
 }
 
 export function* getReportListSaga() {
-    yield call(handleAPIRequest, getReportListApi);
+    const payload = yield select(getPagination);
+    yield call(handleAPIRequest, getReportListApi, payload);
 }
 export default function* moduleSaga() {
     yield all([

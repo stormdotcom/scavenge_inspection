@@ -50,12 +50,13 @@ export const savePredictedSagaApi = (data) => {
     };
 };
 
-export const getReportListApi = () => {
+export const getReportListApi = (data) => {
     return {
         url: API_URL.REPORT.LIST_REPORTS,
         method: REQUEST_METHOD.GET,
         payload: {
-            types: [ACTION_TYPES.REPORT_LIST_REQUEST, ACTION_TYPES.REPORT_LIST_SUCCESS, ACTION_TYPES.REPORT_LIST_FAILURE]
+            types: [ACTION_TYPES.REPORT_LIST_REQUEST, ACTION_TYPES.REPORT_LIST_SUCCESS, ACTION_TYPES.REPORT_LIST_FAILURE],
+            data
         }
 
     };
