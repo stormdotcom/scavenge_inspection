@@ -2,12 +2,14 @@ import { all, call, fork, put, select, takeLatest, take } from "redux-saga/effec
 import { ACTION_TYPES } from "./actions";
 import { getReportListApi, getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi, savePredictedSagaApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
-import { getCurrentCylinder, getImageArray, getPagination, selectInspecDetailData, selectInspectionDetails, selectPredictedData } from "./selectors";
+import { getCurrentCylinder, getExtraProps, getImageArray, getPagination, selectInspecDetailData, selectInspectionDetails, selectPredictedData } from "./selectors";
 import { errorNotify, loaderNotify, successNotify } from "../../utils/notificationUtils";
 import { fromEpochToMuiDate, fromMuiDateEpoch } from "../../utils/dateUtils";
 import { dismissNotification } from "reapop";
 import _ from "lodash";
 import { getUserData } from "../common/selectors";
+import { formatProps } from "../../utils/sagaUtils";
+import { actions as sliceActions } from "./slice";
 
 export function* updateInspectionDetails({ payload }) {
     const newPayload = _.cloneDeep(payload);
@@ -62,8 +64,16 @@ export function* savePredictedSaga() {
 }
 
 export function* getReportListSaga() {
-    const payload = yield select(getPagination);
+    const tablePagination = yield select(getPagination);
+    const extraProps = yield select(getExtraProps);
+    const props = formatProps(extraProps);
+    const payload = { ...tablePagination, ...props };
     yield call(handleAPIRequest, getReportListApi, payload);
+}
+
+export function* searchReportSaga({ payload }) {
+    yield put(sliceActions.setExtraProps(payload));
+    yield call(getReportListSaga);
 }
 export default function* moduleSaga() {
     yield all([
@@ -71,6 +81,7 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.UPDATE_VESSEL_INSPECTION, updateInspectionDetails),
         takeLatest(ACTION_TYPES.GET_VESSEL_INSPECTION, getInspectionDetailsSaga),
         takeLatest(ACTION_TYPES.SAVE_PREDICTED, savePredictedSaga),
-        takeLatest(ACTION_TYPES.REPORT_LIST, getReportListSaga)
+        takeLatest(ACTION_TYPES.REPORT_LIST, getReportListSaga),
+        takeLatest(ACTION_TYPES.SEARCH_REPORT, searchReportSaga)
     ]);
 }

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import _ from "lodash";
 import { STATE_REDUCER_KEY } from "./constants";
 import { ACTION_TYPES } from "./actions";
-import { fromDateObjectToMuiDate, fromEpochToMuiDate, fromMuiDateEpoch } from "../../utils/dateUtils";
+import { fromDateObjectToEpoch, fromDateObjectToMuiDate, fromEpochToMuiDate, fromMuiDateEpoch } from "../../utils/dateUtils";
 import { COMMON_TABLE_PAGINATION } from "../common/constants";
 
 let now = new Date();
@@ -46,7 +46,11 @@ const initialState = {
                 ...COMMON_TABLE_PAGINATION
             },
             rowSelection: {},
-            rowSelectionState: {}
+            rowSelectionState: {},
+            extraProps: {
+                startDate: 1680000000, //1680887898 1690887698
+                endDate: fromDateObjectToEpoch(now)
+            }
         }
     }
 
@@ -84,7 +88,11 @@ const slice = createSlice({
         },
         setPagination: (state, { payload }) => {
             state.reports.table.pagingInfo = payload;
+        },
+        setExtraProps: (state, { payload }) => {
+            state.reports.table.extraProps = payload;
         }
+
 
     },
     extraReducers: (builder) => {
@@ -128,7 +136,8 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.REPORT_LIST_SUCCESS, (state, { payload = {} }) => {
                 _.set(state, "reports.requestInProgress", false);
-                _.set(state, "reports.table", payload);
+                _.set(state, "reports.table.data", payload.data);
+                _.set(state, "reports.table.pagingInfo", payload.pagingInfo);
             })
             .addCase(ACTION_TYPES.REPORT_LIST_FAILURE, (state) => {
                 _.set(state, "reports.requestInProgress", false);

@@ -9,6 +9,7 @@ import { STATE_REDUCER_KEY, columnsReport, reportsColOrder } from "../../../cons
 import { Icons } from "../../../../../common/components";
 import CustomListMenu from "../../../../../common/components/custom/CustomListMenu";
 import { COMMON_TABLE_PAGINATION } from "../../../../common/constants";
+import ReportFilter from "./ReportFilter";
 
 const { VisibilityIcon } = Icons;
 const ReportTable = () => {
@@ -79,6 +80,7 @@ const ReportTable = () => {
     }, []);
     return (
         <>
+            <ReportFilter />
             <CustomReactTable
                 data={data}
                 columns={columns}
