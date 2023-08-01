@@ -25,5 +25,5 @@ const predictedData = (state) => state.predictedData.data;
 export const selectPredictedData = flow(getState, predictedData);
 
 
-const paginationInfo = (state) => state.reports.table.paginationInfo;
+const paginationInfo = (state) => state.reports.table.pagingInfo;
 export const getPagination = flow(getState, paginationInfo);

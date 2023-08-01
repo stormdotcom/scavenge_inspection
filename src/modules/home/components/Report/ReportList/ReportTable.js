@@ -15,7 +15,7 @@ const ReportTable = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { table = {}, requestInProgress = false } = useSelector(state => state[STATE_REDUCER_KEY]).reports;
-    const { data = [], paginationInfo: { pageSize, pageIndex, totalCount } = {} } = table;
+    const { data = [], pagingInfo: { pageSize, pageIndex, totalCount } = {} } = table;
     const columns = useMemo(
         () => columnsReport,
         []
@@ -24,7 +24,7 @@ const ReportTable = () => {
         let item = [1, 2];
         let customActions = [];
         if (item[0]) {
-            customActions.push({ title: "View", icon: <VisibilityIcon fontSize="small" />, handleClick: () => navigate(`${row.original._id}/edit`) });
+            customActions.push({ title: "View", icon: <VisibilityIcon fontSize="small" sx={{ color: "#fff" }} />, handleClick: () => navigate(`${row.original._id}/edit`) });
         }
         return customActions;
     };
@@ -32,7 +32,7 @@ const ReportTable = () => {
     const toolbarPermissions = [0, 1];
     if (toolbarPermissions[1]) {
         toolBarActions.push({
-            title: "Create", icon: <VisibilityIcon fontSize="medium" />, handleClick: () => navigate("create")
+            title: "Create", icon: <VisibilityIcon sx={{ color: "#fff" }} fontSize="medium" />, handleClick: () => navigate("create")
         });
     }
 

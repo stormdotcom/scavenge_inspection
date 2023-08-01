@@ -5,8 +5,8 @@ export const API_URL = {
         GET_INSPECTION_DETAILS: "auth/vessel/inspection-details",
         UPDATE_INSPECTION_DETAILS: "auth/vessel/inspection-details",
         SAVE_PREDICTED: "auth/vessel/predicted/save",
-        SAVE_PDF: "auth/vessel/predicted/pdf",
-        SAVE_EXCEL: "auth/vessel/predicted/xls"
+        SAVE_PDF: "auth/vessel/predicted/export",
+        SAVE_EXCEL: "auth/vessel/predicted/export"
     },
     REPORT: {
         LIST_REPORTS: "auth/vessel/reports"

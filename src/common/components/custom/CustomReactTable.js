@@ -29,13 +29,13 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
     return (
         <LoadingCustomOverlay active={requestInProgress}>
             <Grid sx={{
-                m: 2, borderRadius: "25px",
+                m: 2, borderRadius: "25px", bgcolor: "#181b1e",
                 border: "1px solid #181b1e",
-                padding: "7px", color: "#e8af13"
+                padding: "7px", color: "#ffffff"
             }}>
                 <Grid sx={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px" }}>
                     <Grid>
-                        <Typography sx={{ float: "left", color: "#e8af13", padding: "5px", fontWeight: 600, fontSize: "24px", fontFamily: "Clash Display" }} variant="h4" component='p'> {title}</Typography>
+                        <Typography sx={{ float: "left", color: "#ffffff", padding: "5px", fontWeight: 600, fontSize: "24px", fontFamily: "Clash Display" }} variant="h4" component='p'> {title}</Typography>
                     </Grid>
                     {
                         toolBarActions.length > 0 && <Box sx={{ marginLeft: 2 }}>
@@ -75,7 +75,7 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
                     enableRowVirtualization={enableRowVirtualization}
                     virtualizerInstanceRef={enableRowVirtualization && virtualizerInstanceRef}
                     virtualizerProps={{ overscan: 25 }}
-                    muiTableContainerProps={{ sx: { maxHeight: "600px", color: "#e8af13" } }}
+                    muiTableContainerProps={{ sx: { maxHeight: "600px", color: "#ffffff" } }}
                     onSortingChange={setSorting}
                     displayColumnDefOptions={displayColumnDefOptions}
                     getCanMultiSelect={getCanMultiSelect}
@@ -83,6 +83,14 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
                     onRowSelectionChange={handleRowSelection}
                     enableBottomToolbar={false}
                     enableStickyFooter={false}
+                    muiTableBodyRowProps={{
+                        sx: {
+                            backgroundColor: "#212529",
+                            "&:hover": {
+                                backgroundColor: "#181b1e"
+                            }
+                        }
+                    }}
                     muiTableHeadRowProps={{
                         sx: {
                             backgroundColor: "#212529"
@@ -91,20 +99,15 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
                     muiTablePaperProps={{
                         elevation: 1,
                         sx: {
-
+                            backgroundColor: "#181b1e"
                         }
-                    }
-                    }
+                    }}
                     muiTableBodyCellProps={{
                         sx: {
-                            fontSize: "14px",
+                            fontSize: "11px",
+                            color: "#ffff",
                             borderTop: "1px solid #181b1e",
-                            fontFamily: "Franklin Gothic Book",
-                            backgroundColor: "#181b1e",
-                            "&:hover": {
-                                backgroundColor: "#181b1e",
-                            }
-
+                            backgroundColor: "#181b1e"
                         }
                     }}
                     muiTopToolbarProps={{
@@ -117,9 +120,8 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
                     muiTableHeadCellProps={{
                         sx: {
                             fontSize: "14px",
-                            fontWeight: "medium",
-                            fontFamily: "Clash Display",
-                            color: "#e8af13",
+                            fontWeight: 700,
+                            color: "#ffffff",
                             py: 3
                         }
                     }}
@@ -128,7 +130,13 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
                 />
                 {enableCustomPagination && <Grid sx={{ padding: "20px", display: "flex", justifyContent: "center", alignItems: "center" }}>
                     <TablePagination
-                        sx={{ color: "#e8af13" }}
+                        sx={{
+                            color: "#ffffff",
+                            "& .MuiSelect-icon": {
+                                color: "#ffffff"
+                            }
+
+                        }}
                         component="div"
                         count={totalCount}
                         page={page}

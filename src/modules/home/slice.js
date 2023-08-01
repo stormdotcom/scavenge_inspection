@@ -42,7 +42,7 @@ const initialState = {
         requestInProgress: false,
         table: {
             data: [],
-            paginationInfo: {
+            pagingInfo: {
                 ...COMMON_TABLE_PAGINATION
             },
             rowSelection: {},
@@ -81,6 +81,9 @@ const slice = createSlice({
         setCylinderNumbers: (state, { payload }) => {
             state.currentCylinder = payload;
             state.viewToggle = false;
+        },
+        setPagination: (state, { payload }) => {
+            state.reports.table.pagingInfo = payload;
         }
 
     },
