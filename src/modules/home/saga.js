@@ -47,7 +47,7 @@ export function* savePredictedSaga() {
     const predictionInfo = yield select(selectPredictedData).data;
     const inspectionFormData = yield select(selectInspectionDetails);
     const inspectionDetails = _.cloneDeep(inspectionFormData.data);
-    const userData = yield select(getUserData)
+    const userData = yield select(getUserData);
     const organization = _.get(userData, "organizationBelongsTo._id", "");
     let resultDate = fromEpochToMuiDate(inspectionDetails.inspection_date);
     const inspectionPayload = { ...inspectionDetails, inspection_date: resultDate };
@@ -75,6 +75,7 @@ export function* searchReportSaga({ payload }) {
     yield put(sliceActions.setExtraProps(payload));
     yield call(getReportListSaga);
 }
+
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.SHOW_PREDICTIONS, showPredictionSaga),

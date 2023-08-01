@@ -8,6 +8,7 @@ import { createStructuredSelector } from "reselect";
 import { Components, FormController } from "../../../../../common/components";
 import { searchReport } from "../../../actions";
 import { getExtraProps } from "../../../selectors";
+import { reportValidationSchema } from "../../../validate";
 const { Grid, Button } = Components;
 
 function ReportFilter(props) {
@@ -48,6 +49,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const ReportFilterForm = withFormik({
     enableReinitialize: false,
+    validationSchema: reportValidationSchema,
     mapPropsToValues: (props) => props.extraProps,
     handleSubmit: (values, { props: { submit } }) => {
         submit(values);

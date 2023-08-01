@@ -12,6 +12,6 @@ import ToggleButton from "./CustomToggleButton";
 import Input2 from "./input2";
 import Input3 from "./input3";
 import SimpleDate from "./SimpleDate";
-import SimpleDateType2 from "./SimpleDateType2"
+import SimpleDateType2 from "./SimpleDateType2";
 
 export { SimpleDateType2, SimpleDate, Input3, Input2, Files, Checkbox, CustomInput, CustomSelect, Input, RadioButtons, Textarea, TextError, DatePicker, FileUploader, ToggleButton };

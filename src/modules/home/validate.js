@@ -22,4 +22,26 @@ export const vesselDetailsSchema = Yup.object({
         .required("Service Load Required")
 });
 
+export const reportValidationSchema = Yup.object({
+    startDate: Yup.number().optional("Start Date is required"),
+    endDate: Yup.number()
+        .when("startDate", (startDate, schema) => {
+            return schema.test({
+                name: "endDate",
+                exclusive: false, // Ensure that 'endDate' is validated even if 'startDate' is empty.
+                message: "End Date should be greater than Start Date",
+                test: function (endDate) {
+                    // 'this' refers to the current Yup context.
 
+                    if (typeof startDate !== "number" || typeof endDate !== "number") {
+                        // If either 'startDate' or 'endDate' is not a number, the validation will pass,
+                        // since either 'startDate' validation has failed or 'endDate' is empty.
+                        return true;
+                    }
+
+                    return endDate > startDate;
+                }
+            });
+        })
+        .optional("End Date is required")
+});
