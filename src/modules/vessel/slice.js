@@ -28,10 +28,10 @@ const initialState = {
     inspectionDetails: {
         requestInProgress: false,
         data: {
-            inspection_date: fromDateObjectToMuiDate(now), // new Date(), //
+            inspection_date: fromDateObjectToMuiDate(now),
             normal_service_load_in_percent_MCRMCR: "",
-            total_running_hours: "",
-            running_hrs_since_last: "",
+            total_running_hours: "asd",
+            running_hrs_since_last: "asd",
             cyl_oil_Type: "",
             cyl_oil_consump_Ltr_24hr: "",
             normal_service_load_in_percent_MCR: "",
@@ -52,8 +52,28 @@ const initialState = {
                 endDate: fromDateObjectToEpoch(now)
             }
         }
+    },
+    reportDetails: {
+        requestInProgress: false,
+        data: {
+            inspection_date: 0,
+            normal_service_load_in_percent_MCRMCR: "",
+            total_running_hours: "",
+            running_hrs_since_last: "",
+            cyl_oil_Type: "",
+            cyl_oil_consump_Ltr_24hr: "",
+            normal_service_load_in_percent_MCR: "",
+            cylinder_numbers: "",
+            predictionInfo: {
+                brk: {},
+                dep: {},
+                image: "",
+                lub: {},
+                surf: {},
+                cylinder: 0
+            }
+        }
     }
-
 };
 
 const slice = createSlice({
@@ -141,9 +161,18 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.REPORT_LIST_FAILURE, (state) => {
                 _.set(state, "reports.requestInProgress", false);
+            })
+            .addCase(ACTION_TYPES.REPORT_BY_ID_REQUEST, (state) => {
+                _.set(state, "reportDetails.requestInProgress", false);
+            })
+            .addCase(ACTION_TYPES.REPORT_BY_ID_SUCCESS, (state, { payload = {} }) => {
+                _.set(state, "reportDetails.requestInProgress", false);
+                _.set(state, "reportDetails.data", payload.data);
+            })
+            .addCase(ACTION_TYPES.REPORT_BY_ID_FAILURE, (state) => {
+                _.set(state, "reportDetails.requestInProgress", false);
             });
-
     }
 });
-//REPORT_LIST_DETAILS_REQUEST
+
 export const { actions, reducer } = slice;

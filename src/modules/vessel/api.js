@@ -61,3 +61,14 @@ export const getReportListApi = (data) => {
 
     };
 };
+
+export const getReportByIdApi = (id) => {
+    return {
+        url: API_URL.REPORT.BY_ID.replace(":id", id),
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.REPORT_BY_ID_REQUEST, ACTION_TYPES.REPORT_BY_ID_SUCCESS, ACTION_TYPES.REPORT_BY_ID_FAILURE]
+        }
+
+    };
+};

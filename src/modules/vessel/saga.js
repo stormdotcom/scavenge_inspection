@@ -1,6 +1,6 @@
 import { all, call, fork, put, select, takeLatest, take } from "redux-saga/effects";
 import { ACTION_TYPES } from "./actions";
-import { getReportListApi, getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi, savePredictedSagaApi } from "./api";
+import { getReportListApi, getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi, savePredictedSagaApi, getReportByIdApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
 import { getCurrentCylinder, getExtraProps, getImageArray, getPagination, selectInspecDetailData, selectInspectionDetails, selectPredictedData } from "./selectors";
 import { errorNotify, loaderNotify, successNotify } from "../../utils/notificationUtils";
@@ -76,6 +76,10 @@ export function* searchReportSaga({ payload }) {
     yield call(getReportListSaga);
 }
 
+export function* reportByIdSaga({ payload }) {
+    yield call(handleAPIRequest, getReportByIdApi, payload);
+}
+
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.SHOW_PREDICTIONS, showPredictionSaga),
@@ -83,6 +87,7 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.GET_VESSEL_INSPECTION, getInspectionDetailsSaga),
         takeLatest(ACTION_TYPES.SAVE_PREDICTED, savePredictedSaga),
         takeLatest(ACTION_TYPES.REPORT_LIST, getReportListSaga),
-        takeLatest(ACTION_TYPES.SEARCH_REPORT, searchReportSaga)
+        takeLatest(ACTION_TYPES.SEARCH_REPORT, searchReportSaga),
+        takeLatest(ACTION_TYPES.REPORT_BY_ID, reportByIdSaga)
     ]);
 }

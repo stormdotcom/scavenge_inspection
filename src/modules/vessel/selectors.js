@@ -29,3 +29,6 @@ export const getPagination = flow(getState, paginationInfo);
 
 const tableExtraProps = (state) => state.reports.table.extraProps;
 export const getExtraProps = flow(getState, tableExtraProps);
+
+const reportDetails = (state) => state.reportDetails;
+export const getReportDetails = flow(getState, reportDetails);

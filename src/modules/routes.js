@@ -11,6 +11,7 @@ import OrgHome from "./organization/OrgHome";
 
 
 const ReportTable = React.lazy(() => import("./vessel/components/Report/ReportList/ReportTable"));
+const ViewReport = React.lazy(() => import("./vessel/components/Report/ReportList/ViewReport"));
 const VesselInfoDetails = React.lazy(() => import("./profile/components/VesselDetails"));
 // const Prediction = React.lazy(() => import("./home/components/VesselInspectionDetails"));
 const VesselHome = React.lazy(() => import("./vessel/components/HomeWrapper"));
@@ -50,6 +51,12 @@ const routes =
                     title: "Report",
                     path: "reports",
                     element: <PrivateRoute><ReportTable /></PrivateRoute>,
+                    errorElement: <RootBoundary />
+                },
+                {
+                    title: "Report",
+                    path: "reports/:id/view",
+                    element: <PrivateRoute><ViewReport /></PrivateRoute>,
                     errorElement: <RootBoundary />
                 },
                 {

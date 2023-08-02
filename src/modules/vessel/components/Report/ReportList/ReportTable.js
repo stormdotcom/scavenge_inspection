@@ -25,7 +25,7 @@ const ReportTable = () => {
         let item = [1, 2];
         let customActions = [];
         if (item[0]) {
-            customActions.push({ title: "View", icon: <VisibilityIcon fontSize="small" sx={{ color: "#fff" }} />, handleClick: () => navigate(`${row.original._id}/edit`) });
+            customActions.push({ title: "View", icon: <VisibilityIcon fontSize="small" sx={{ color: "#fff" }} />, handleClick: () => navigate(`${row.original._id}/view`) });
         }
         return customActions;
     };

@@ -9,6 +9,7 @@ export const API_URL = {
         SAVE_EXCEL: "auth/vessel/predicted/export"
     },
     REPORT: {
-        LIST_REPORTS: "auth/vessel/reports"
+        LIST_REPORTS: "auth/vessel/reports",
+        BY_ID: "auth/vessel/reports/:id"
     }
 };
