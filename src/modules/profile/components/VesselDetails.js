@@ -13,12 +13,11 @@ import { actions as sliceAction } from "../slice";
 import { STATE_REDUCER_KEY } from "../constants";
 
 const VesselDetails = (props) => {
-
     const { handleSubmit, getVesselInfoDetails } = props;
     const dispatch = useDispatch();
     const loading = useSelector(state => state[STATE_REDUCER_KEY].vesselDetails.requestInProgress);
     useEffect(() => {
-        dispatch(getVesselInfoDetails());
+        getVesselInfoDetails();
         return () => dispatch(sliceAction.clearAll());
     }, []);
 
@@ -68,7 +67,7 @@ const mapDispatchToProps = (dispatch) => ({
     getVesselInfoDetails: data => dispatch(fetchVesselInfoDetails(data))
 });
 
-const VesselDetailsForm = withFormik({
+const VesselDetailsProfileForm = withFormik({
     enableReinitialize: true,
     validationSchema: validate,
     mapPropsToValues: (props) => {
@@ -77,7 +76,7 @@ const VesselDetailsForm = withFormik({
     handleSubmit: (values, { props: { submit } }) => {
         submit(values);
     },
-    displayName: "vesselDetailsForm"
+    displayName: "VesselDetailsProfileForm"
 })(VesselDetails);
 
-export default connect(mapStateToProps, mapDispatchToProps)(VesselDetailsForm);
+export default connect(mapStateToProps, mapDispatchToProps)(VesselDetailsProfileForm);

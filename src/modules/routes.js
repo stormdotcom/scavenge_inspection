@@ -8,12 +8,12 @@ import { routes as userManagement } from "../modules/user-management/routes";
 import { routes as orgRoutes } from "../modules/organization/routes";
 import React from "react";
 import OrgHome from "./organization/OrgHome";
-import ReportTable from "./vessel/components/Report/ReportList/ReportTable";
 
+
+const ReportTable = React.lazy(() => import("./vessel/components/Report/ReportList/ReportTable"));
 const VesselInfoDetails = React.lazy(() => import("./profile/components/VesselDetails"));
 // const Prediction = React.lazy(() => import("./home/components/VesselInspectionDetails"));
 const VesselHome = React.lazy(() => import("./vessel/components/HomeWrapper"));
-
 const { Home } = Icons;
 const routes =
     [
@@ -49,7 +49,7 @@ const routes =
                 {
                     title: "Report",
                     path: "reports",
-                    element: <ReportTable />,
+                    element: <PrivateRoute><ReportTable /></PrivateRoute>,
                     errorElement: <RootBoundary />
                 },
                 {
@@ -61,7 +61,7 @@ const routes =
                 {
                     title: "Profile",
                     path: "profile",
-                    element: <VesselInfoDetails />,
+                    element: <PrivateRoute> <VesselInfoDetails /></PrivateRoute>,
                     errorElement: <RootBoundary />
                 }
 
