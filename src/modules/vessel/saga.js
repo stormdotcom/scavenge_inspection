@@ -1,10 +1,10 @@
-import { all, call, fork, put, select, takeLatest, take } from "redux-saga/effects";
+import { all, call, fork, put, select, takeLatest, take, delay } from "redux-saga/effects";
 import { ACTION_TYPES } from "./actions";
 import { getReportListApi, getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi, savePredictedSagaApi, getReportByIdApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
-import { getCurrentCylinder, getExtraProps, getImageArray, getPagination, selectInspecDetailData, selectInspectionDetails, selectPredictedData } from "./selectors";
+import { getCurrentCylinder, getExtraProps, getImageArray, getPagination, selectInspectionDetails, selectPredictedData } from "./selectors";
 import { errorNotify, loaderNotify, successNotify } from "../../utils/notificationUtils";
-import { fromEpochToMuiDate, fromMuiDateEpoch } from "../../utils/dateUtils";
+import { fromMuiDateEpoch } from "../../utils/dateUtils";
 import { dismissNotification } from "reapop";
 import _ from "lodash";
 import { getUserData } from "../common/selectors";
@@ -20,14 +20,14 @@ export function* updateInspectionDetails({ payload }) {
 export function* showPredictionSaga() {
     const cylinder = yield select(getCurrentCylinder);
     const image = yield select(getImageArray);
-    const inspectionDetails = yield select(selectInspecDetailData);
+    const inspectionDetails = yield select(selectInspectionDetails);
     if (cylinder === 0 || cylinder === null || cylinder === undefined) {
         yield put(errorNotify({ title: "INPUT_ERROR", message: "Please Select  Cylinder" }));
     }
     if (cylinder && !image[cylinder]) {
         yield put(errorNotify({ title: "INPUT_ERROR", message: `For cylinder number ${cylinder} no image selected` }));
     } if (cylinder && image[cylinder]) {
-        let payload = { cylinder, image: image[cylinder], ...inspectionDetails };
+        let payload = { cylinder, image: image[cylinder], ...inspectionDetails.data };
         yield fork(handleAPIRequest, showPredictionApi, payload);
         const response = yield take([ACTION_TYPES.SHOW_PREDICTIONS_REQUEST, ACTION_TYPES.SHOW_PREDICTIONS_SUCCESS, ACTION_TYPES.SHOW_PREDICTIONS_FAILURE]);
         if (response.type === ACTION_TYPES.SHOW_PREDICTIONS_REQUEST) {
@@ -37,30 +37,29 @@ export function* showPredictionSaga() {
             yield put(dismissNotification("prediction_image_upload"));
         }
     }
-
 }
 
 export function* getInspectionDetailsSaga() {
     yield call(handleAPIRequest, getInspectionDetailsApi);
 }
 export function* savePredictedSaga() {
-    const predictionInfo = yield select(selectPredictedData).data;
+    const predictionInfo = yield select(selectPredictedData);
     const inspectionFormData = yield select(selectInspectionDetails);
     const inspectionDetails = _.cloneDeep(inspectionFormData.data);
     const userData = yield select(getUserData);
     const organization = _.get(userData, "organizationBelongsTo._id", "");
-    let resultDate = fromEpochToMuiDate(inspectionDetails.inspection_date);
-    const inspectionPayload = { ...inspectionDetails, inspection_date: resultDate };
-    let payload = { predictionInfo, ...inspectionPayload, organization };
+
+    let payload = { predictionInfo: predictionInfo, ...inspectionDetails, organization };
     yield fork(handleAPIRequest, savePredictedSagaApi, payload);
-    const response = yield take([ACTION_TYPES.GET_VESSEL_INSPECTION_REQUEST, ACTION_TYPES.GET_VESSEL_INSPECTION_SUCCESS, ACTION_TYPES.GET_VESSEL_INSPECTION_FAILURE]);
-    if (response.type === ACTION_TYPES.GET_VESSEL_INSPECTION_REQUEST) {
-        yield put(loaderNotify({ id: "prediction_data", title: "Saving", message: "Predicted Data" }));
-    }
-    if (response.type === ACTION_TYPES.GET_VESSEL_INSPECTION_SUCCESS) {
+    const response = yield take([ACTION_TYPES.SAVE_PREDICTED_SUCCESS]);
+
+    yield put(loaderNotify({ id: "prediction_data", title: "Saving", message: "Predicted Data" }));
+    if (response.type === ACTION_TYPES.SAVE_PREDICTED_SUCCESS) {
         yield put(dismissNotification("prediction_data"));
+        yield delay(200)
         yield put(successNotify({ title: "Success", message: "Predicted Data Saved" }));
     }
+
 }
 
 export function* getReportListSaga() {

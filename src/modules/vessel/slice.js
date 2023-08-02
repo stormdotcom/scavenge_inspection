@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import _ from "lodash";
 import { STATE_REDUCER_KEY } from "./constants";
 import { ACTION_TYPES } from "./actions";
-import { fromDateObjectToEpoch, fromDateObjectToMuiDate, fromEpochToMuiDate, fromMuiDateEpoch } from "../../utils/dateUtils";
+import { fromDateObjectToEpoch, fromMuiDateEpoch } from "../../utils/dateUtils";
 import { COMMON_TABLE_PAGINATION } from "../common/constants";
 
 let now = new Date();
@@ -28,7 +28,7 @@ const initialState = {
     inspectionDetails: {
         requestInProgress: false,
         data: {
-            inspection_date: fromDateObjectToMuiDate(now),
+            inspection_date: "",
             normal_service_load_in_percent_MCRMCR: "",
             total_running_hours: "asd",
             running_hrs_since_last: "asd",
@@ -122,10 +122,7 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.GET_VESSEL_INSPECTION_SUCCESS, (state, { payload = {} }) => {
                 _.set(state, "inspectionDetails.requestInProgress", false);
-                let resultDate = fromEpochToMuiDate(payload.data.inspection_date);
-                let initialInspectionDate = initialState.inspectionDetails.data.inspection_date;
-                let newPayload = { ...payload.data, inspection_date: resultDate ? resultDate : initialInspectionDate };
-                _.set(state, "inspectionDetails.data", newPayload);
+                _.set(state, "inspectionDetails.data", payload.data);
             })
             .addCase(ACTION_TYPES.GET_VESSEL_INSPECTION_FAILURE, (state) => {
                 _.set(state, "inspectionDetails.requestInProgress", false);
@@ -141,10 +138,6 @@ const slice = createSlice({
                 _.set(state, "inspectionDetails.requestInProgress", false);
                 _.set(state, "predictedData.requestInProgress", false);
                 _.set(state, "inspectionDetails.data", payload.data.updatedResult); // payload.data.updatedResult
-                let resultDate = fromEpochToMuiDate(payload.data.updatedResult.inspection_date);
-                let initialInspectionDate = initialState.inspectionDetails.data.inspection_date;
-                let newPayload = { ...payload.data.updatedResult, inspection_date: resultDate ? resultDate : initialInspectionDate };
-                _.set(state, "inspectionDetails.data", newPayload);
                 _.set(state, "predictedData.data", payload.data.predictionDetails);
             })
             .addCase(ACTION_TYPES.SHOW_PREDICTIONS_FAILURE, (state) => {
