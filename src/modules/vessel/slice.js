@@ -153,7 +153,7 @@ const slice = createSlice({
                 _.set(state, "reports.requestInProgress", false);
             })
             .addCase(ACTION_TYPES.REPORT_BY_ID_REQUEST, (state) => {
-                _.set(state, "reportDetails.requestInProgress", false);
+                _.set(state, "reportDetails.requestInProgress", true);
             })
             .addCase(ACTION_TYPES.REPORT_BY_ID_SUCCESS, (state, { payload = {} }) => {
                 _.set(state, "reportDetails.requestInProgress", false);

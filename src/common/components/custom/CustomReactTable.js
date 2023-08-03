@@ -35,7 +35,7 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
             }}>
                 <Grid sx={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px" }}>
                     <Grid>
-                        <Typography sx={{ float: "left", color: "#ffffff", padding: "5px", fontWeight: 600, fontSize: "24px" }} variant="h4" component='p'> {title}</Typography>
+                        <Typography sx={{ float: "left", color: "#ffffff", padding: "5px", fontWeight: 600, fontSize: "24px", mt: 3 }} variant="h4" component='p'> {title}</Typography>
                     </Grid>
                     {
                         toolBarActions.length > 0 && <Box sx={{ marginLeft: 2 }}>
