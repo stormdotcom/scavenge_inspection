@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import _ from "lodash";
 import { STATE_REDUCER_KEY } from "./constants";
 import { ACTION_TYPES } from "./actions";
-import { fromDateObjectToEpoch, fromMuiDateEpoch } from "../../utils/dateUtils";
+import { fromDateObjectToEpoch } from "../../utils/dateUtils";
 import { COMMON_TABLE_PAGINATION } from "../common/constants";
 
 let now = new Date();
@@ -86,10 +86,7 @@ const slice = createSlice({
         },
         setInspectionDetails: (state, { payload: formData = {} }) => {
             const payload = _.cloneDeep(formData);
-            let inspection_date = fromMuiDateEpoch(payload.inspection_date);
-            state.tempVesselData = payload;
             _.set(state, "tempVesselData", payload);
-            _.set(state, "tempVesselData.inspection_date", inspection_date);
         },
         clearForm: (state) => {
             state.inspectionDetails = initialState.inspectionDetails;

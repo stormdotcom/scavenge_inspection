@@ -2,7 +2,7 @@ import { all, call, fork, put, select, takeLatest, take, delay } from "redux-sag
 import { ACTION_TYPES } from "./actions";
 import { getReportListApi, getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi, savePredictedSagaApi, getReportByIdApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
-import { getCurrentCylinder, getExtraProps, getImageArray, getPagination, selectInspectionDetails, selectPredictedData } from "./selectors";
+import { getCurrentCylinder, getExtraProps, getImageArray, getPagination, selectInspecDetailData, selectInspectionDetails, selectPredictedData } from "./selectors";
 import { errorNotify, loaderNotify, successNotify } from "../../utils/notificationUtils";
 import { fromMuiDateEpoch } from "../../utils/dateUtils";
 import { dismissNotification } from "reapop";
@@ -20,14 +20,14 @@ export function* updateInspectionDetails({ payload }) {
 export function* showPredictionSaga() {
     const cylinder = yield select(getCurrentCylinder);
     const image = yield select(getImageArray);
-    const inspectionDetails = yield select(selectInspectionDetails);
+    const inspectionDetails = yield select(selectInspecDetailData);
     if (cylinder === 0 || cylinder === null || cylinder === undefined) {
         yield put(errorNotify({ title: "INPUT_ERROR", message: "Please Select  Cylinder" }));
     }
     if (cylinder && !image[cylinder]) {
         yield put(errorNotify({ title: "INPUT_ERROR", message: `For cylinder number ${cylinder} no image selected` }));
     } if (cylinder && image[cylinder]) {
-        let payload = { cylinder, image: image[cylinder], ...inspectionDetails.data };
+        let payload = { cylinder, image: image[cylinder], ...inspectionDetails };
         yield fork(handleAPIRequest, showPredictionApi, payload);
         const response = yield take([ACTION_TYPES.SHOW_PREDICTIONS_REQUEST, ACTION_TYPES.SHOW_PREDICTIONS_SUCCESS, ACTION_TYPES.SHOW_PREDICTIONS_FAILURE]);
         if (response.type === ACTION_TYPES.SHOW_PREDICTIONS_REQUEST) {
@@ -51,12 +51,15 @@ export function* savePredictedSaga() {
 
     let payload = { predictionInfo: predictionInfo, ...inspectionDetails, organization };
     yield fork(handleAPIRequest, savePredictedSagaApi, payload);
+    const responseReq = yield take([ACTION_TYPES.SAVE_PREDICTED_REQUEST]);
+    if (responseReq.type === ACTION_TYPES.SAVE_PREDICTED_REQUEST) {
+        yield put(loaderNotify({ id: "prediction_data", title: "Saving", message: "Predicted Data" }));
+    }
     const response = yield take([ACTION_TYPES.SAVE_PREDICTED_SUCCESS]);
 
-    yield put(loaderNotify({ id: "prediction_data", title: "Saving", message: "Predicted Data" }));
     if (response.type === ACTION_TYPES.SAVE_PREDICTED_SUCCESS) {
         yield put(dismissNotification("prediction_data"));
-        yield delay(200)
+        yield delay(200);
         yield put(successNotify({ title: "Success", message: "Predicted Data Saved" }));
     }
 
