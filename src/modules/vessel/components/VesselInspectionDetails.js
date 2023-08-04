@@ -55,9 +55,6 @@ const VesselDetails = (props) => {
                                 <Grid item sm={12} md={6} lg={6} xl={4}>
                                     <FormController control="input2" name="normal_service_load_in_percent_MCRMCR" label="Normal Service Load In %" />
                                 </Grid>
-                                <Grid item sm={12} md={6} lg={6} xl={4}>
-                                    <FormController disabled={true} control="input2" name="cylinder_numbers" label="Cylinder Numbers" />
-                                </Grid>
                                 {/* 2 */}
                             </Grid>
                             <Grid sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>

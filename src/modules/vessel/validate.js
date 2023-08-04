@@ -11,7 +11,6 @@ export const vesselDetailsSchema = Yup.object({
     cylinder_numbers: Yup.number()
         .max(100, "Cylinder Number should be less than 100")
         .required("Cylinder Number Required"),
-
     cyl_oil_Type: Yup.string()
         .max(200)
         .required("Cylinder Oil-Type Required"),
