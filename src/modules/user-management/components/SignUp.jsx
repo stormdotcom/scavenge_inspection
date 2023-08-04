@@ -47,6 +47,7 @@ function SignUp(props) {
 
     const handleOrgAdmin = () => {
         if (orgEmail && orgEmail !== "") {
+            setFieldValue("organizationAdmin", "");
             dispatch(fetchOrgAdmins(orgEmail));
             setOrgEmail("");
         }
@@ -87,9 +88,9 @@ function SignUp(props) {
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                             <FormController control="input" name="fullName" label="Full Name" isMandatory={true} />
                                         </Grid>
-                                        <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
-                                            <FormController control="input" name="vessel_name" label="Vessel Name" isMandatory={true} />
-                                        </Grid>
+                                        {!newOrg && <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                                            <FormController control="input" name="vessel_name" label="Vessel Name" />
+                                        </Grid>}
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                             <FormController
                                                 onClick={handleOrgAdmin}
@@ -98,9 +99,9 @@ function SignUp(props) {
                                                 icon={<AiOutlineFileSearch style={{ color: "#fff" }} />}
                                                 control="input" name="email" label="Organization Email" isMandatory={true} />
                                         </Grid>
-                                        <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
-                                            <FormController control="input" name="imo_number" label="IMO Number" isMandatory={true} />
-                                        </Grid>
+                                        {!newOrg && <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
+                                            <FormController control="input" name="imo_number" label="IMO Number" />
+                                        </Grid>}
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                                             <FormController control="select" name="organizationAdmin" label="Please choose the organization administrator for your vessel" options={orgAdmin}
                                                 info="If you are the administrator, please ignore this field. If an administrator already exists, please choose one using the Organization Email field to search for an administrator within your organization" />

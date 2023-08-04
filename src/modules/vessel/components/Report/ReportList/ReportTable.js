@@ -12,6 +12,10 @@ import { COMMON_TABLE_PAGINATION } from "../../../../common/constants";
 import ReportFilter from "./ReportFilter";
 
 const { VisibilityIcon } = Icons;
+const handleFilterToggle = () => {
+    // eslint-disable-next-line no-console
+    console.log("toggleFilter");
+};
 const ReportTable = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -33,7 +37,7 @@ const ReportTable = () => {
     const toolbarPermissions = [0, 1];
     if (toolbarPermissions[1]) {
         toolBarActions.push({
-            title: "Create", icon: <VisibilityIcon sx={{ color: "#fff" }} fontSize="medium" />, handleClick: () => navigate("create")
+            title: "Create", icon: <VisibilityIcon sx={{ color: "#fff" }} fontSize="medium" />, handleClick: () => handleFilterToggle()
         });
     }
 

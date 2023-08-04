@@ -22,8 +22,7 @@ export const signUpSchema = Yup.object({
         .required("Company Name Required"),
     vessel_name: Yup.string()
         .min(3)
-        .max(100)
-        .required("Vessel Name Required"),
+        .max(100),
     email: Yup.string()
         .min(3)
         .max(200)
@@ -36,6 +35,4 @@ export const signUpSchema = Yup.object({
         .required("Confirm Password Required"),
     imo_number: Yup.string()
         .max(30)
-        .required("IMO Number Required")
 });
-
