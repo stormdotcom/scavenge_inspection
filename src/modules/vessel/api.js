@@ -72,3 +72,29 @@ export const getReportByIdApi = (id) => {
 
     };
 };
+
+export const exportPdfApi = (data) => {
+    return {
+        url: API_URL.EXPORT.SAVE_PDF,
+        method: REQUEST_METHOD.POST,
+        payload: {
+            types: [ACTION_TYPES.EXPORT_DOCUMENT_PDF_REQUEST, ACTION_TYPES.EXPORT_DOCUMENT_PDF_SUCCESS, ACTION_TYPES.EXPORT_DOCUMENT_PDF_FAILURE],
+            data
+        },
+        fileName: "Inspection Report",
+        ext: "pdf"
+
+    };
+};
+export const exportExcelApi = (data) => {
+    return {
+        url: API_URL.EXPORT.SAVE_EXCEL,
+        method: REQUEST_METHOD.POST,
+        payload: {
+            types: [ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_REQUEST, ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_SUCCESS, ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_FAILURE],
+            data
+        },
+        fileName: "Inspection Report",
+        ext: "xlsx"
+    };
+};

@@ -83,31 +83,38 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
                     onRowSelectionChange={handleRowSelection}
                     enableBottomToolbar={false}
                     enableStickyFooter={false}
-                    muiTableBodyRowProps={{
-                        sx: {
-                            backgroundColor: "#212529",
-                            "&:hover": {
-                                backgroundColor: "#181b1e"
-                            }
-                        }
-                    }}
                     muiTableHeadRowProps={{
                         sx: {
                             backgroundColor: "#212529"
                         }
                     }}
-                    muiTablePaperProps={{
-                        elevation: 1,
-                        sx: {
-                            backgroundColor: "#181b1e"
-                        }
-                    }}
+                    // muiTablePaperProps={{
+                    //     elevation: 1,
+                    //     sx: {
+                    //         backgroundColor: "#181b1e"
+                    //     }
+                    // }}
                     muiTableBodyCellProps={{
                         sx: {
                             fontSize: "11px",
                             color: "#ffff",
-                            borderTop: "1px solid #181b1e",
-                            backgroundColor: "#181b1e"
+                            borderTop: "1px solid #181b1e"
+                        }
+                    }}
+                    muiTableBodyProps={{
+                        sx: {
+                            "& tr:nth-of-type(odd)": {
+                                backgroundColor: "#181b1e",
+                                "&:hover": {
+                                    backgroundColor: "#111" // Change the hover background color for odd rows
+                                }
+                            },
+                            "& tr:nth-of-type(even)": {
+                                backgroundColor: "#181b1e",
+                                "&:hover": {
+                                    backgroundColor: "#111" // Change the hover background color for even rows
+                                }
+                            }
                         }
                     }}
                     muiTopToolbarProps={{

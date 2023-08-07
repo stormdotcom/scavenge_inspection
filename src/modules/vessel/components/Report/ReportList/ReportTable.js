@@ -11,7 +11,7 @@ import CustomListMenu from "../../../../../common/components/custom/CustomListMe
 import { COMMON_TABLE_PAGINATION } from "../../../../common/constants";
 import ReportFilter from "./ReportFilter";
 
-const { VisibilityIcon } = Icons;
+const { VisibilityIcon, OpenInNewIcon } = Icons;
 const handleFilterToggle = () => {
     // eslint-disable-next-line no-console
     console.log("toggleFilter");
@@ -29,7 +29,7 @@ const ReportTable = () => {
         let item = [1, 2];
         let customActions = [];
         if (item[0]) {
-            customActions.push({ title: "View", icon: <VisibilityIcon fontSize="small" sx={{ color: "#fff" }} />, handleClick: () => navigate(`${row.original._id}/view`) });
+            customActions.push({ title: "View", icon: <OpenInNewIcon fontSize="small" sx={{ color: "#fff" }} />, handleClick: () => navigate(`${row.original._id}/view`) });
         }
         return customActions;
     };

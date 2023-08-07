@@ -59,3 +59,8 @@ export const reportsColOrder = [
     "running_hrs_since_last",
     "mrt-row-actions"
 ];
+
+export const documentType = {
+    pdf: "pdf",
+    xls: "xls"
+};

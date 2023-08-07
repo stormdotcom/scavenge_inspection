@@ -1,6 +1,6 @@
 import { all, call, fork, put, select, takeLatest, take, delay } from "redux-saga/effects";
 import { ACTION_TYPES } from "./actions";
-import { getReportListApi, getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi, savePredictedSagaApi, getReportByIdApi } from "./api";
+import { getReportListApi, getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi, savePredictedSagaApi, getReportByIdApi, exportPdfApi, exportExcelApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
 import { getCurrentCylinder, getExtraProps, getImageArray, getPagination, selectInspecDetailData, selectInspectionDetails, selectPredictedData } from "./selectors";
 import { errorNotify, loaderNotify, successNotify } from "../../utils/notificationUtils";
@@ -10,6 +10,7 @@ import _ from "lodash";
 import { getUserData } from "../common/selectors";
 import { formatProps } from "../../utils/sagaUtils";
 import { actions as sliceActions } from "./slice";
+import { handleFileAPIRequest } from "../../utils/handleFile";
 
 export function* updateInspectionDetails({ payload }) {
     const newPayload = _.cloneDeep(payload);
@@ -86,6 +87,14 @@ export function* reportByIdSaga({ payload }) {
     yield call(handleAPIRequest, getReportByIdApi, payload);
 }
 
+export function* exportPdfSaga({ payload }) {
+    yield call(handleFileAPIRequest, exportPdfApi, payload);
+}
+
+export function* exportExcelSaga({ payload }) {
+    yield call(handleFileAPIRequest, exportExcelApi, payload);
+}
+
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.SHOW_PREDICTIONS, showPredictionSaga),
@@ -94,6 +103,8 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.SAVE_PREDICTED, savePredictedSaga),
         takeLatest(ACTION_TYPES.REPORT_LIST, getReportListSaga),
         takeLatest(ACTION_TYPES.SEARCH_REPORT, searchReportSaga),
-        takeLatest(ACTION_TYPES.REPORT_BY_ID, reportByIdSaga)
+        takeLatest(ACTION_TYPES.REPORT_BY_ID, reportByIdSaga),
+        takeLatest(ACTION_TYPES.EXPORT_DOCUMENT_PDF, exportPdfSaga),
+        takeLatest(ACTION_TYPES.EXPORT_DOCUMENT_EXCEL, exportExcelSaga)
     ]);
 }
