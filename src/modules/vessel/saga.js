@@ -2,7 +2,7 @@ import { all, call, fork, put, select, takeLatest, take, delay } from "redux-sag
 import { ACTION_TYPES } from "./actions";
 import { getReportListApi, getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi, savePredictedSagaApi, getReportByIdApi, exportPdfApi, exportExcelApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
-import { getCurrentCylinder, getExtraProps, getImageArray, getPagination, getReportDetails, selectInspecDetailData, selectInspectionDetails, selectPredictedData } from "./selectors";
+import { getCurrentCylinder, getExtraProps, getImageArray, getPagination, selectInspecDetailData, selectInspectionDetails, selectPredictedData } from "./selectors";
 import { errorNotify, loaderNotify, successNotify } from "../../utils/notificationUtils";
 import { fromMuiDateEpoch } from "../../utils/dateUtils";
 import { dismissNotification } from "reapop";
