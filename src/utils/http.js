@@ -33,15 +33,19 @@ const getRequestParams = ({ url, data, method }) => {
 
     const api = (method === REQUEST_METHOD.DELETE) ? deleteRequest : (method === REQUEST_METHOD.PUT) ? putRequest : (method === REQUEST_METHOD.PATCH) ? patchRequest : (method === REQUEST_METHOD.POST) ? postRequest : getRequest;
     baseURL = process.env.NODE_ENV === "development" ? process.env.LOCAL_API_URL : process.env.DEV_API_URL;
-    console.log("here 1", process.env.REACT_APP_API_URL)
-    console.log("here 2", process.env.DEV_API_URL)
+    if (process.env.NODE_ENV === "development") {
+        baseURL = process.env.LOCAL_API_URL;
+    }
+    if (process.env.NODE_ENV === "production") {
+        baseURL = process.env.DEV_API_URL;
+
+    }
+    // console.log("here 1", process.env.REACT_APP_API_URL)
+    // console.log("here 2", process.env.DEV_API_URL)
     if (bearerToken) {
         authHeaders = { Authorization: `Bearer ${bearerToken}` };
     }
-    // else {
-    //     window.location.hash = "/";
-    //     return;
-    // }
+
 
     if ((method === REQUEST_METHOD.PUT || method === REQUEST_METHOD.PATCH || method === REQUEST_METHOD.POST) && url !== API_URL.AUTH.SIGN_IN) {
         data = requestWrapper(data);
