@@ -34,10 +34,10 @@ const getRequestParams = ({ url, data, method }) => {
     const api = (method === REQUEST_METHOD.DELETE) ? deleteRequest : (method === REQUEST_METHOD.PUT) ? putRequest : (method === REQUEST_METHOD.PATCH) ? patchRequest : (method === REQUEST_METHOD.POST) ? postRequest : getRequest;
     baseURL = process.env.NODE_ENV === "development" ? process.env.LOCAL_API_URL : process.env.DEV_API_URL;
     if (process.env.NODE_ENV === "development") {
-        baseURL = process.env.LOCAL_API_URL;
+        baseURL = process.env.REACT_APP_API_URL;
     }
     if (process.env.NODE_ENV === "production") {
-        baseURL = process.env.DEV_API_URL;
+        baseURL = process.env.REACT_APP_DEV;
 
     }
     // console.log("here 1", process.env.REACT_APP_API_URL)
