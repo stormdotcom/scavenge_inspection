@@ -64,3 +64,9 @@ export const documentType = {
     pdf: "pdf",
     xls: "xls"
 };
+
+
+export const formatUser = (data = {}) => {
+    let { _id = "", email = "", mobile = "" } = data;
+    return { _id, email, mobile };
+};

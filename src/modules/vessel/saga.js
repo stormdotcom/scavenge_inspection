@@ -2,7 +2,7 @@ import { all, call, fork, put, select, takeLatest, take, delay } from "redux-sag
 import { ACTION_TYPES } from "./actions";
 import { getReportListApi, getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi, savePredictedSagaApi, getReportByIdApi, exportPdfApi, exportExcelApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
-import { getCurrentCylinder, getExtraProps, getImageArray, getPagination, selectInspecDetailData, selectInspectionDetails, selectPredictedData } from "./selectors";
+import { getCurrentCylinder, getExtraProps, getImageArray, getPagination, getReportDetails, selectInspecDetailData, selectInspectionDetails, selectPredictedData } from "./selectors";
 import { errorNotify, loaderNotify, successNotify } from "../../utils/notificationUtils";
 import { fromMuiDateEpoch } from "../../utils/dateUtils";
 import { dismissNotification } from "reapop";
@@ -11,6 +11,7 @@ import { getUserData } from "../common/selectors";
 import { formatProps } from "../../utils/sagaUtils";
 import { actions as sliceActions } from "./slice";
 import { handleFileAPIRequest } from "../../utils/handleFile";
+import { formatUser } from "./constants";
 
 export function* updateInspectionDetails({ payload }) {
     const newPayload = _.cloneDeep(payload);
@@ -87,12 +88,27 @@ export function* reportByIdSaga({ payload }) {
     yield call(handleAPIRequest, getReportByIdApi, payload);
 }
 
-export function* exportPdfSaga({ payload }) {
-    yield call(handleFileAPIRequest, exportPdfApi, payload);
+export function* exportPdfSaga() {
+    let user = yield select(getUserData);
+    let inspectionDetails = yield select(selectInspectionDetails);
+
+    let info = _.get(inspectionDetails, "data");
+    const predictionInfoForm = yield select(selectPredictedData);
+
+    const predictionInfo = _.get(predictionInfoForm, "data");
+
+    yield call(handleFileAPIRequest, exportPdfApi, { user: formatUser(user), predictionInfo, info });
 }
 
-export function* exportExcelSaga({ payload }) {
-    yield call(handleFileAPIRequest, exportExcelApi, payload);
+export function* exportExcelSaga() {
+    let user = yield select(getUserData);
+    let inspectionDetails = yield select(selectInspectionDetails);
+    let info = _.get(inspectionDetails, "data");
+    const predictionInfoForm = yield select(selectPredictedData);
+
+    const predictionInfo = _.get(predictionInfoForm, "data");
+
+    yield call(handleFileAPIRequest, exportExcelApi, { user: formatUser(user), predictionInfo, info });
 }
 
 export default function* moduleSaga() {

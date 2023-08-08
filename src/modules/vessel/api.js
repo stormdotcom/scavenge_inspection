@@ -75,26 +75,28 @@ export const getReportByIdApi = (id) => {
 
 export const exportPdfApi = (data) => {
     return {
-        url: API_URL.EXPORT.SAVE_PDF,
+        url: API_URL.INSPECTION.PDF,
         method: REQUEST_METHOD.POST,
         payload: {
             types: [ACTION_TYPES.EXPORT_DOCUMENT_PDF_REQUEST, ACTION_TYPES.EXPORT_DOCUMENT_PDF_SUCCESS, ACTION_TYPES.EXPORT_DOCUMENT_PDF_FAILURE],
             data
         },
         fileName: "Inspection Report",
-        ext: "pdf"
+        ext: "pdf",
+        baseURL: "https://defectdetectionrings.azurewebsites.net"
 
     };
 };
 export const exportExcelApi = (data) => {
     return {
-        url: API_URL.EXPORT.SAVE_EXCEL,
+        url: API_URL.INSPECTION.EXCEL,
         method: REQUEST_METHOD.POST,
         payload: {
             types: [ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_REQUEST, ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_SUCCESS, ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_FAILURE],
             data
         },
         fileName: "Inspection Report",
-        ext: "xlsx"
+        ext: "xlsx",
+        baseURL: "https://defectdetectionrings.azurewebsites.net"
     };
 };

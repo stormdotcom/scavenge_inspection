@@ -15,5 +15,9 @@ export const API_URL = {
     EXPORT: {
         SAVE_PDF: `auth/vessel/predicted/export?documentType=${documentType.pdf}`,
         SAVE_EXCEL: `auth/vessel/predicted/export?documentType=${documentType.xls}`
+    },
+    INSPECTION: {
+        PDF: "pdf",
+        EXCEL: "excel"
     }
 };
