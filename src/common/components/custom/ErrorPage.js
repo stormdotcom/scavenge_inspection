@@ -19,6 +19,8 @@ const ErrorPage = (props) => {
     const navigate = useNavigate();
     const homePath = useSelector(state => state[COMMON].homePath);
     const dispatch = useDispatch();
+    const isLoggedIn = useSelector(state => state[COMMON].isLoggedIn);
+    const safePath = isLoggedIn ? homePath : "signin";
     useEffect(() => {
         dispatch(commonActions.setNavigator(navigate));
     }, []);
@@ -39,7 +41,7 @@ const ErrorPage = (props) => {
             </Grid>
             <Grid item xs={12} sx={{}}>
                 <Grid sx={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-                    <ContainedButton onClick={() => navigate(`../${homePath}`)} sx={{ fontWeight: 700 }}> Back to Homepage</ContainedButton>  <Typography sx={{
+                    <ContainedButton onClick={() => navigate(`../${safePath}`)} sx={{ fontWeight: 700 }}> Back to Homepage</ContainedButton>  <Typography sx={{
                         fontSize: "1.6rem", letterSpacing: "0.4rem"
                     }}>
                         <IconButton aria-label="home" size="large" onClick={() => dispatch(refresh())} color="primary">

@@ -15,7 +15,7 @@ import { STATE_REDUCER_KEY as COMMON_KEY } from "../../common";
 const VesselDetails = (props) => {
     const { handleSubmit, fetchFormData } = props;
     const loading = useSelector(state => state[STATE_REDUCER_KEY].inspectionDetails.requestInProgress);
-    const company_name = useSelector(state => state[COMMON_KEY].user.organizationBelongsTo.company_name);
+    const { company_name = "" } = useSelector(state => state[COMMON_KEY].user.organizationBelongsTo);
     const dispatch = useDispatch();
     const handleUpload = () => {
         dispatch(sliceActions.setImageUploader(true));

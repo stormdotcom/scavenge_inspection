@@ -29,11 +29,10 @@ function* logoutUser({ payload: data = {} }) {
     if (data.isManual) {
         yield delay(500);
         yield put(successNotify({ title: "Success", message: "You have been successfully logged out!" }));
-        yield delay(500);
-        yield call(refreshFn);
     }
     localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
     yield navigateToFn({ payload: "/signin" });
+    yield call(refreshFn);
     // yield put(navigateTo("/"));
 }
 

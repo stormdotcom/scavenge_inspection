@@ -41,12 +41,12 @@ export const REACT_TABLE_COMMON_OPTIONS = {
 
 };
 
-export const SHOW_EXAMPLE_MODULE = false;
-
-export const SHOW_IN_PROGRESS_MODULE = true;
-
 export const ROWS_PER_PAGE = [10, 15, 20];
 
+export const USER_TYPE = ["Vessel", "Organization", "Admin"];
 
-export const imageURL = `${process.env.REACT_APP_API_URL}/resource/api/auth/multimedia/download?id=`;
-
+export const KEY_USER_TYPE = {
+  VESSEL: USER_TYPE[0],
+  ORG: USER_TYPE[1],
+  ADMIN: USER_TYPE[2]
+};

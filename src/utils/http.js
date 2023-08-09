@@ -40,8 +40,6 @@ const getRequestParams = ({ url, data, method }) => {
         baseURL = process.env.REACT_APP_DEV;
 
     }
-    // console.log("here 1", process.env.REACT_APP_API_URL)
-    // console.log("here 2", process.env.DEV_API_URL)
     if (bearerToken) {
         authHeaders = { Authorization: `Bearer ${bearerToken}` };
     }
