@@ -97,23 +97,20 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
                     muiTableBodyCellProps={{
                         sx: {
                             fontSize: "11px",
-                            color: "#ffff",
+                            color: "#fff",
                             borderTop: "1px solid #181b1e"
+
                         }
                     }}
-                    muiTableBodyProps={{
+                    muiTableBodyRowProps={{
                         sx: {
-                            "& tr:nth-of-type(odd)": {
-                                backgroundColor: "#181b1e",
-                                "&:hover": {
-                                    backgroundColor: "#111" // Change the hover background color for odd rows
-                                }
-                            },
-                            "& tr:nth-of-type(even)": {
-                                backgroundColor: "#181b1e",
-                                "&:hover": {
-                                    backgroundColor: "#111" // Change the hover background color for even rows
-                                }
+                            fontSize: "11px",
+                            color: "#000",
+                            borderTop: "1px solid #181b1e",
+                            backgroundColor: "#0000",
+                            "&:hover": {
+                                color: "#ff0000", // Change color on hover
+                                backgroundColor: "#0fdd" // Change background color on hover
                             }
                         }
                     }}
