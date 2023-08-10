@@ -109,8 +109,7 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
                             borderTop: "1px solid #181b1e",
                             backgroundColor: "#0000",
                             "&:hover": {
-                                color: "#ff0000", // Change color on hover
-                                backgroundColor: "#0fdd" // Change background color on hover
+                                backgroundColor: "#0fdd !important"
                             }
                         }
                     }}
@@ -139,7 +138,6 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
                             "& .MuiSelect-icon": {
                                 color: "#ffffff"
                             }
-
                         }}
                         component="div"
                         count={totalCount}
