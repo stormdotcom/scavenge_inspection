@@ -16,12 +16,70 @@ const initialState = {
     predictedData: {
         requestInProgress: false,
         data: {
-            brk: {},
-            dep: {},
-            image: "",
-            lub: {},
-            surf: {},
-            cylinder: "--"
+            CYLINDER_1: {
+                predictionInfo: [
+                    {
+                        lubricationCondition: null,
+                        surfaceCondition: "*",
+                        depositsCondition: null,
+                        breakageCondition: null
+                    },
+
+                    {
+                        lubricationCondition: null,
+                        surfaceCondition: null,
+                        depositsCondition: null,
+                        breakageCondition: "*"
+                    },
+
+                    {
+                        lubricationCondition: "*",
+                        surfaceCondition: null,
+                        depositsCondition: null,
+                        breakageCondition: null
+                    },
+
+                    {
+                        lubricationCondition: "*",
+                        surfaceCondition: null,
+                        depositsCondition: null,
+                        breakageCondition: null
+                    }
+                ],
+                image: ""
+            },
+            CYLINDER_2: {
+                predictionInfo: [
+                    {
+                        lubricationCondition: null,
+                        surfaceCondition: "*",
+                        depositsCondition: null,
+                        breakageCondition: null
+                    },
+
+                    {
+                        lubricationCondition: null,
+                        surfaceCondition: null,
+                        depositsCondition: null,
+                        breakageCondition: "*"
+                    },
+
+                    {
+                        lubricationCondition: "*",
+                        surfaceCondition: null,
+                        depositsCondition: null,
+                        breakageCondition: null
+                    },
+
+                    {
+                        lubricationCondition: "123",
+                        surfaceCondition: null,
+                        depositsCondition: null,
+                        breakageCondition: null
+                    }
+                ],
+                image: ""
+            }
         }
     },
     viewToggle: false,

@@ -2,6 +2,32 @@ import { fromEpochToMuiDate } from "../../utils/dateUtils";
 
 export const STATE_REDUCER_KEY = "vessel";
 
+export const predictedDataCol = [
+    {
+        id: "lubricationCondition",
+        header: "Lubrication Condition",
+        accessorKey: "lubricationCondition",
+        size: 150
+    },
+    {
+        id: "surfaceCondition",
+        header: "Surface Condition",
+        accessorKey: "surfaceCondition",
+        size: 150
+    },
+    {
+        id: "depositsCondition",
+        header: "Deposits Condition",
+        accessorKey: "depositsCondition",
+        size: 150
+    },
+    {
+        id: "breakageCondition",
+        header: "Breakage Condition",
+        accessorKey: "breakageCondition",
+        size: 150
+    }
+];
 export const columnsReport = [{
     id: "inspectionDate",
     header: "Inspection Date",
@@ -58,6 +84,13 @@ export const reportsColOrder = [
     "total_running_hours",
     "running_hrs_since_last",
     "mrt-row-actions"
+];
+
+export const predictedDataColOrder = [
+    "lubricationCondition",
+    "surfaceCondition",
+    "depositsCondition",
+    "breakageCondition"
 ];
 
 export const documentType = {

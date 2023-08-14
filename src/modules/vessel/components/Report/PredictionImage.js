@@ -24,7 +24,7 @@ const PredictionImage = ({ image = "", cylinder }) => {
 
     return (
         <Box sm={6} md={3} lg={3} xl={3} sx={{ px: 2 }}>
-            <Typography sx={{ color: "white.main", fontSize: "18px", fontWeight: 700 }}> Cylinder No: {cylinder}</Typography>
+            <Typography sx={{ color: "white.main", fontSize: "18px", fontWeight: 700 }}>{cylinder}</Typography>
             <Box
                 sx={{ ...imageBoxStyle, backgroundImage: `url(${image})`, backgroundColor: "primary.light" }}
             >

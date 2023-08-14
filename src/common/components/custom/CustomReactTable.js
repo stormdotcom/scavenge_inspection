@@ -31,12 +31,12 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
             <Grid sx={{
                 m: 2, borderRadius: "25px", bgcolor: "#181b1e",
                 border: "1px solid #181b1e",
-                padding: "7px", color: "#ffffff"
+                padding: "7px", color: "#ffffff", pb: 2
             }}>
                 <Grid sx={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px" }}>
-                    <Grid>
+                    {title && <Grid>
                         <Typography sx={{ float: "left", color: "#ffffff", padding: "5px", fontWeight: 600, fontSize: "24px", mt: 3 }} variant="h4" component='p'> {title}</Typography>
-                    </Grid>
+                    </Grid>}
                     {
                         toolBarActions.length > 0 && <Box sx={{ marginLeft: 2 }}>
                             {toolBarActions && toolBarActions.map((element) => {
