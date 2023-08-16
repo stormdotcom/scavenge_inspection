@@ -31,7 +31,7 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
             <Grid sx={{
                 m: 2, borderRadius: "25px", bgcolor: "#181b1e",
                 border: "1px solid #181b1e",
-                padding: "7px", color: "#ffffff", pb: 2
+                padding: "7px", color: "#0000", pb: 2
             }}>
                 <Grid sx={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px" }}>
                     {title && <Grid>
@@ -85,32 +85,24 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
                     enableStickyFooter={false}
                     muiTableHeadRowProps={{
                         sx: {
-                            backgroundColor: "#212529"
+                            backgroundColor: "#ffff",
+                            color: "#000"
                         }
                     }}
-                    // muiTablePaperProps={{
-                    //     elevation: 1,
-                    //     sx: {
-                    //         backgroundColor: "#181b1e"
-                    //     }
-                    // }}
                     muiTableBodyCellProps={{
                         sx: {
                             fontSize: "11px",
-                            color: "#fff",
-                            borderTop: "1px solid #181b1e"
-
+                            color: "#000",
+                            borderTop: "1px solid #0000"
                         }
                     }}
                     muiTableBodyRowProps={{
                         sx: {
                             fontSize: "11px",
                             color: "#000",
-                            borderTop: "1px solid #181b1e",
-                            backgroundColor: "#0000",
-                            "&:hover": {
-                                backgroundColor: "#0fdd !important"
-                            }
+                            borderTop: "1px solid #0000",
+                            backgroundColor: "#ffff",
+                            borderTopRightRadius: "15px"
                         }
                     }}
                     muiTopToolbarProps={{
@@ -124,7 +116,7 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
                         sx: {
                             fontSize: "14px",
                             fontWeight: 700,
-                            color: "#ffffff",
+                            color: "#000",
                             py: 3
                         }
                     }}
