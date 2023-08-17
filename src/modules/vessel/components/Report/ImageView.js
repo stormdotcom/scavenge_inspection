@@ -11,7 +11,6 @@ const ImageView = () => {
     const [err, setError] = useState(false);
     const viewToggle = useSelector(state => state[STATE_REDUCER_KEY].viewToggle);
     const image = useSelector(state => state[STATE_REDUCER_KEY].image);
-    const cylinder = useSelector(state => state[STATE_REDUCER_KEY].currentCylinder);
     const imageMaxSize = 5000000; // bytes
     const dispatch = useDispatch();
     const verifyFile = (files) => {
@@ -42,7 +41,7 @@ const ImageView = () => {
                 const reader = new FileReader();
                 reader.onload = () => {
                     const imageData = reader.result;
-                    dispatch(sliceActions.setImage({ cylinder, image: imageData }));
+                    dispatch(sliceActions.setImage({ image: imageData }));
                 };
                 reader.readAsDataURL(currentFile);
             }
@@ -66,7 +65,7 @@ const ImageView = () => {
 
             }}>
                 {viewToggle ?
-                    <img src={image[cylinder]} alt="UploadedImage" style={{ width: "100%", height: "auto" }} />
+                    <img src={image} alt="UploadedImage" style={{ width: "100%", height: "auto" }} />
                     :
                     <Box> <UploadIcon sx={{ color: "primary.main", transform: "scale(2)", cursor: "pointer" }} /> </Box>
                 }

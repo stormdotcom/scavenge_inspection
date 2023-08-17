@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { createSlice } from "@reduxjs/toolkit";
 import _ from "lodash";
-import { STATE_REDUCER_KEY } from "./constants";
+import { STATE_REDUCER_KEY, testData } from "./constants";
 import { ACTION_TYPES } from "./actions";
 import { fromDateObjectToEpoch } from "../../utils/dateUtils";
 import { COMMON_TABLE_PAGINATION } from "../common/constants";
@@ -15,72 +15,7 @@ const initialState = {
     isPredicted: false,
     predictedData: {
         requestInProgress: false,
-        data: {
-            CYLINDER_1: {
-                predictionInfo: [
-                    {
-                        lubricationCondition: null,
-                        surfaceCondition: "*",
-                        depositsCondition: null,
-                        breakageCondition: null
-                    },
-
-                    {
-                        lubricationCondition: null,
-                        surfaceCondition: null,
-                        depositsCondition: null,
-                        breakageCondition: "*"
-                    },
-
-                    {
-                        lubricationCondition: "*",
-                        surfaceCondition: null,
-                        depositsCondition: null,
-                        breakageCondition: null
-                    },
-
-                    {
-                        lubricationCondition: "*",
-                        surfaceCondition: null,
-                        depositsCondition: null,
-                        breakageCondition: null
-                    }
-                ],
-                image: ""
-            },
-            CYLINDER_2: {
-                predictionInfo: [
-                    {
-                        lubricationCondition: null,
-                        surfaceCondition: "*",
-                        depositsCondition: null,
-                        breakageCondition: null
-                    },
-
-                    {
-                        lubricationCondition: null,
-                        surfaceCondition: null,
-                        depositsCondition: null,
-                        breakageCondition: "*"
-                    },
-
-                    {
-                        lubricationCondition: "*",
-                        surfaceCondition: null,
-                        depositsCondition: null,
-                        breakageCondition: null
-                    },
-
-                    {
-                        lubricationCondition: "123",
-                        surfaceCondition: null,
-                        depositsCondition: null,
-                        breakageCondition: null
-                    }
-                ],
-                image: ""
-            }
-        }
+        data: {}
     },
     viewToggle: false,
     inspectionDetails: {
@@ -88,8 +23,8 @@ const initialState = {
         data: {
             inspection_date: "",
             normal_service_load_in_percent_MCRMCR: "",
-            total_running_hours: "asd",
-            running_hrs_since_last: "asd",
+            total_running_hours: "",
+            running_hrs_since_last: "",
             cyl_oil_Type: "",
             cyl_oil_consump_Ltr_24hr: "",
             normal_service_load_in_percent_MCR: "",
@@ -153,8 +88,8 @@ const slice = createSlice({
             state.openImageUploader = payload;
         },
         setImage: (state, { payload }) => {
-            const { cylinder, image } = payload;
-            state.image[cylinder] = image;
+            const { image } = payload;
+            state.image = image;
             state.viewToggle = true;
         },
         setCylinderNumbers: (state, { payload }) => {
@@ -193,7 +128,10 @@ const slice = createSlice({
                 _.set(state, "inspectionDetails.requestInProgress", false);
                 _.set(state, "predictedData.requestInProgress", false);
                 _.set(state, "inspectionDetails.data", payload.data.updatedResult); // payload.data.updatedResult
-                _.set(state, "predictedData.data", payload.data.predictionDetails);
+                _.set(state, "predictedData.data", testData);
+                let { cylinder, results } = payload.data.predictionDetails;
+                // _.set(state, "predictedData.data", payload.data.predictionDetails);
+                _.set(state, `predictedData.data${cylinder}`, results);
             })
             .addCase(ACTION_TYPES.SHOW_PREDICTIONS_FAILURE, (state) => {
                 _.set(state, "predictedData.requestInProgress", false);

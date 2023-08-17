@@ -103,3 +103,71 @@ export const formatUser = (data = {}) => {
     let { _id = "", email = "", mobile = "" } = data;
     return { _id, email, mobile };
 };
+
+
+export const testData = {
+    CYLINDER_1: {
+        predictionInfo: [
+            {
+                lubricationCondition: null,
+                surfaceCondition: "*",
+                depositsCondition: null,
+                breakageCondition: null
+            },
+
+            {
+                lubricationCondition: null,
+                surfaceCondition: null,
+                depositsCondition: null,
+                breakageCondition: "*"
+            },
+
+            {
+                lubricationCondition: "*",
+                surfaceCondition: null,
+                depositsCondition: null,
+                breakageCondition: null
+            },
+
+            {
+                lubricationCondition: "*",
+                surfaceCondition: null,
+                depositsCondition: null,
+                breakageCondition: null
+            }
+        ],
+        image: ""
+    },
+    CYLINDER_2: {
+        predictionInfo: [
+            {
+                lubricationCondition: null,
+                surfaceCondition: "*",
+                depositsCondition: null,
+                breakageCondition: null
+            },
+
+            {
+                lubricationCondition: null,
+                surfaceCondition: null,
+                depositsCondition: null,
+                breakageCondition: "*"
+            },
+
+            {
+                lubricationCondition: "*",
+                surfaceCondition: null,
+                depositsCondition: null,
+                breakageCondition: null
+            },
+
+            {
+                lubricationCondition: "123",
+                surfaceCondition: null,
+                depositsCondition: null,
+                breakageCondition: null
+            }
+        ],
+        image: ""
+    }
+};
