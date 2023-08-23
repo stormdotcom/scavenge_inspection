@@ -1,33 +1,22 @@
 /* eslint-disable camelcase */
 import { createSlice } from "@reduxjs/toolkit";
-// import _ from "lodash";
+import _ from "lodash";
 
 import { STATE_REDUCER_KEY } from "./constants";
+import { ACTION_TYPES } from "./actions";
 const initialState = {
 
-    signIn: {
+    vesselList: {
         requestInProgress: false,
-        data: {
-            email: "",
-            password: ""
-        }
+        data: []
     },
-    signUp: {
+    pendingVesselRequest: {
         requestInProgress: false,
-        data: {
-            email: "",
-            password: "",
-            confirmPassword: "",
-            info: {
-                company_name: "",
-                vessel_name: "",
-                imo_number: "",
-                mobile: "",
-                userType: ""
-            }
-        }
-    }
-
+        data: []
+    },
+    createVesselModal: false,
+    viewVesselDetailsModal: false,
+    viewRequestDetails: {}
 };
 
 
@@ -38,21 +27,41 @@ const slice = createSlice({
         clearAll: () => initialState,
         clear: (state) => {
             state.table = initialState.table;
+        },
+        setModal: (state, { payload }) => {
+            state.createVesselModal = payload;
+        },
+        setModalViewDetails: (state, { payload }) => {
+            state.viewVesselDetailsModal = payload;
+        },
+        setRequestDetails: (state, { payload }) => {
+            state.viewRequestDetails = payload;
         }
 
     },
-    extraReducers: () => {
-        // builder
-        //     .addCase(ACTION_TYPES.FETCH_USER_BY_ID_REQUEST, (state) => {
-        //         _.set(state, "userDetails.requestInProgress", true);
-        //     })
-        //     .addCase(ACTION_TYPES.FETCH_USER_BY_ID_SUCCESS, (state, action) => {
-        //         _.set(state, "userDetails.requestInProgress", false);
-        //         _.set(state, "userDetails.data", action.payload);
-        //     })
-        //     .addCase(ACTION_TYPES.FETCH_USER_BY_ID_FAILURE, (state) => {
-        //         _.set(state, "userDetails.requestInProgress", false);
-        //     });
+    extraReducers: (builder) => {
+        builder
+            .addCase(ACTION_TYPES.FETCH_VESSEL_LIST_REQUEST, (state) => {
+                _.set(state, "vesselList.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_LIST_SUCCESS, (state, action) => {
+                _.set(state, "vesselList.requestInProgress", false);
+                _.set(state, "vesselList.data", action.payload.data);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_LIST_FAILURE, (state) => {
+                _.set(state, "userDetails.requestInProgress", false);
+            })
+            // Pending request
+            .addCase(ACTION_TYPES.VESSEL_REQUEST_LIST_REQUEST, (state) => {
+                _.set(state, "pendingVesselRequest.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.VESSEL_REQUEST_LIST_SUCCESS, (state, action) => {
+                _.set(state, "pendingVesselRequest.requestInProgress", false);
+                _.set(state, "pendingVesselRequest.data", action.payload.data);
+            })
+            .addCase(ACTION_TYPES.VESSEL_REQUEST_LIST_FAILURE, (state) => {
+                _.set(state, "pendingVesselRequest.requestInProgress", false);
+            });
 
     }
 });
