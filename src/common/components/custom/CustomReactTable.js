@@ -31,7 +31,7 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
             <Grid sx={{
                 m: 2, borderRadius: "25px", bgcolor: "#181b1e",
                 border: "1px solid #181b1e",
-                padding: "7px", color: "#ffffff", pb: 2
+                padding: "7px", color: "#0000", pb: 2
             }}>
                 <Grid sx={{ display: "flex", justifyContent: "space-between", paddingBottom: "10px" }}>
                     {title && <Grid>
@@ -85,31 +85,25 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
                     enableStickyFooter={false}
                     muiTableHeadRowProps={{
                         sx: {
-                            backgroundColor: "#212529"
+                            backgroundColor: "#212529",
+                            color: "#ffff"
                         }
                     }}
-                    // muiTablePaperProps={{
-                    //     elevation: 1,
-                    //     sx: {
-                    //         backgroundColor: "#181b1e"
-                    //     }
-                    // }}
                     muiTableBodyCellProps={{
                         sx: {
                             fontSize: "11px",
-                            color: "#fff",
-                            borderTop: "1px solid #181b1e"
-
+                            color: "#ffff",
+                            borderTop: "1px solid #0000"
                         }
                     }}
                     muiTableBodyRowProps={{
                         sx: {
                             fontSize: "11px",
-                            color: "#000",
-                            borderTop: "1px solid #181b1e",
-                            backgroundColor: "#0000",
-                            "&:hover": {
-                                backgroundColor: "#0fdd !important"
+                            color: "#ffff",
+                            borderTop: "1px solid #212529",
+                            backgroundColor: "#212529",
+                            "&:hover td": {
+                                backgroundColor: "#181b1e"
                             }
                         }
                     }}
@@ -124,7 +118,7 @@ const CustomReactTable = ({ data, columns, options, title = "", enableRowVirtual
                         sx: {
                             fontSize: "14px",
                             fontWeight: 700,
-                            color: "#ffffff",
+                            color: "#ffff",
                             py: 3
                         }
                     }}

@@ -43,7 +43,7 @@ export default function CustomListMenu({ customActions, type = "" }) {
                                 aria-haspopup="true"
                                 aria-expanded={open ? "true" : undefined}
                             >
-                                <MoreVertIcon sx={{ width: 32, height: 32, color: "#fff" }} />
+                                <MoreVertIcon sx={{ width: 32, height: 32, color: "#ffff" }} />
                             </IconButton>
                         </Tooltip></>}
             </Box>

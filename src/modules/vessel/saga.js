@@ -21,19 +21,18 @@ export function* updateInspectionDetails({ payload }) {
 
 export function* showPredictionSaga() {
     const cylinder = yield select(getCurrentCylinder);
-
     const image = yield select(getImageArray);
     const inspectionDetails = yield select(selectInspecDetailData);
     if (inspectionDetails.cylinder_numbers < 1) {
         yield put(errorNotify({ title: "INPUT_ERROR", message: "Cylinder Number Required" }));
     }
-    if (cylinder === 0 || cylinder === null || cylinder === undefined) {
+    if (!cylinder) {
         yield put(errorNotify({ title: "INPUT_ERROR", message: "Please Select  Cylinder" }));
     }
-    if (cylinder && !image[cylinder]) {
+    if (cylinder && !image) {
         yield put(errorNotify({ title: "INPUT_ERROR", message: `For cylinder number ${cylinder} no image selected` }));
-    } if (cylinder && image[cylinder] && inspectionDetails.cylinder_numbers > 0) {
-        let payload = { cylinder, image: image[cylinder], ...inspectionDetails };
+    } if (cylinder && image && inspectionDetails.cylinder_numbers > 0) {
+        let payload = { cylinder, image, ...inspectionDetails };
         yield fork(handleAPIRequest, showPredictionApi, payload);
         const response = yield take([ACTION_TYPES.SHOW_PREDICTIONS_REQUEST, ACTION_TYPES.SHOW_PREDICTIONS_SUCCESS, ACTION_TYPES.SHOW_PREDICTIONS_FAILURE]);
         if (response.type === ACTION_TYPES.SHOW_PREDICTIONS_REQUEST) {
