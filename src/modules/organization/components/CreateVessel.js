@@ -1,9 +1,12 @@
-import { Box, Button, IconButton, Modal, Typography } from "@mui/material";
+import { Box, IconButton, Modal, Typography } from "@mui/material";
 import React from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useDispatch, useSelector } from "react-redux";
 import { STATE_REDUCER_KEY } from "../constants";
 import { actions as sliceActions } from "../slice";
+import CreateVesselForm from "./CreateVesselForm";
+import { Icons } from "../../../common/components";
+const { Close } = Icons;
 const CreateVessel = () => {
     const dispatch = useDispatch();
     const createVesselModal = useSelector(state => state[STATE_REDUCER_KEY].createVesselModal);
@@ -22,7 +25,6 @@ const CreateVessel = () => {
         </Box>
         <Modal
             open={createVesselModal}
-            onClose={handleClose}
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
         >
@@ -34,17 +36,16 @@ const CreateVessel = () => {
                 bgcolor: "primary.600",
                 boxShadow: 24,
                 p: 4,
-                minWidth: 300
+                minWidth: 300,
+                textAlign: "center"
             }}>
-                <Typography id="modal-title" variant="h6" component="h2" sx={{ color: "secondary.light" }}>
-                    {"New Request"}
+                <IconButton onClick={handleClose} sx={{ position: "absolute", right: "-1px", top: "-2px" }}>
+                    <Close sx={{ color: "white.main" }} />
+                </IconButton>
+                <Typography id="modal-title" variant="h6" component="h2" sx={{ color: "secondary.light", fontWeight: 700 }}>
+                    {"Add New Vessel"}
                 </Typography>
-                <Typography id="modal-description" sx={{ mt: 2 }}>
-                    This is the modal content.
-                </Typography>
-                <Button onClick={handleClose} variant="outlined" color="secondary" sx={{ mt: 2 }}>
-                    Close
-                </Button>
+                <CreateVesselForm />
             </Box>
         </Modal>
     </Box>;

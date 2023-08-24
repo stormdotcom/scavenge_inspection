@@ -32,3 +32,13 @@ export const approveVesselApi = (id) => {
         }
     };
 };
+export const createVesselApi = (data) => {
+    return {
+        url: API_URL.DASHBOARD.CREATE_VESSEL,
+        method: REQUEST_METHOD.POST,
+        payload: {
+            types: [ACTION_TYPES.CREATE_VESSEL_REQUEST, ACTION_TYPES.CREATE_VESSEL_SUCCESS, ACTION_TYPES.CREATE_VESSEL_FAILURE],
+            data
+        }
+    };
+};

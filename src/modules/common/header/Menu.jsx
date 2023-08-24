@@ -10,7 +10,7 @@ const Menu = () => {
     const navigate = useNavigate();
     const handleLogout = () => dispatch(logout({ isManual: true }));
     const isLoggedIn = useSelector(state => state[COMMON].isLoggedIn);
-    const userType = useSelector(state => state[COMMON].user.userType);
+    const userType = useSelector(state => state[COMMON].user?.userType) || "";
     const isVessel = userType === USER_TYPE[0];
     if (isLoggedIn) {
         return <Box sx={{ display: "flex", justifyContent: "space-evenly", pr: 2 }}>

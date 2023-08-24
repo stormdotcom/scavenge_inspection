@@ -9,3 +9,5 @@ export const getSignIn = flow(getState, signIn);
 const signUp = (state) => state.signUp;
 export const getSignUp = flow(getState, signUp);
 
+const createVessel = (state) => state.createVessel;
+export const getCreateVessel = flow(getState, createVessel);

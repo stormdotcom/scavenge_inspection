@@ -16,9 +16,23 @@ const initialState = {
     },
     createVesselModal: false,
     viewVesselDetailsModal: false,
-    viewRequestDetails: {}
+    viewRequestDetails: {},
+    createVessel: {
+        requestInProgress: false,
+        data: {
+            vessel_name: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+            fullName: "",
+            manufacturer: "",
+            type_of_engine: "",
+            vessel_type: "",
+            cylinder_numbers: "",
+            imo_number: ""
+        }
+    }
 };
-
 
 const slice = createSlice({
     initialState,
@@ -60,6 +74,16 @@ const slice = createSlice({
                 _.set(state, "pendingVesselRequest.data", action.payload.data);
             })
             .addCase(ACTION_TYPES.VESSEL_REQUEST_LIST_FAILURE, (state) => {
+                _.set(state, "pendingVesselRequest.requestInProgress", false);
+            })
+            //1
+            .addCase(ACTION_TYPES.CREATE_VESSEL_REQUEST, (state) => {
+                _.set(state, "pendingVesselRequest.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.CREATE_VESSEL_SUCCESS, (state) => {
+                _.set(state, "pendingVesselRequest.requestInProgress", false);
+            })
+            .addCase(ACTION_TYPES.CREATE_VESSEL_FAILURE, (state) => {
                 _.set(state, "pendingVesselRequest.requestInProgress", false);
             });
 
