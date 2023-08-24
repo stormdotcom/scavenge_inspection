@@ -22,3 +22,13 @@ export const fetchVesselRequestListApi = () => {
         }
     };
 };
+
+export const approveVesselApi = (id) => {
+    return {
+        url: API_URL.DASHBOARD.APPROVE_REQUEST.replace(":id", id),
+        method: REQUEST_METHOD.POST,
+        payload: {
+            types: [ACTION_TYPES.APPROVE_VESSEL_REQUEST, ACTION_TYPES.APPROVE_VESSEL_SUCCESS, ACTION_TYPES.APPROVE_VESSEL_FAILURE]
+        }
+    };
+};

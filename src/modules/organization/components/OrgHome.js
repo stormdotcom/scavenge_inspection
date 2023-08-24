@@ -4,9 +4,11 @@ import React from "react";
 import VesselRequestListBox from "./VesselRequestListBox";
 import CreateVessel from "./CreateVessel";
 import VesselListSlider from "./VesselListSlider";
+import { useSelector } from "react-redux";
+import { STATE_REDUCER_KEY as COMMON } from "../../common/constants";
 
 const OrgHome = () => {
-    const username = "Ajmal";
+    const username = useSelector(state => state[COMMON].user?.fullName) || "username";
     return <>
         <Box sx={{ width: "100%", minHeight: "30vh", bgcolor: "primary.main", p: 2 }}>
             <Grid container rowSpacing={1}>
