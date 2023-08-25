@@ -19,15 +19,19 @@ const PredictionLoader = () => <Box borderRadius={1} display="flex" justifyConte
             <Typography sx={{ textAlign: "center", color: "secondary.light", fontSize: "12px", fontWeight: 800 }}> Processing Data... </Typography>
         </Box>
     </Box>
-
 </Box >;
 
+const VerticalLoader = () => <Box borderRadius={1} display="flex" justifyContent="center" alignItems="center" minHeight="3vh" maxWidth="15vw" backgroundColor="rgba(0, 0, 0, 0.37)" p={1} >
+    <Box sx={{ display: "flex", justifyContent: "space-evenly", alignItems: "center", flexDirection: "column", px: 3, py: 1 }}>
+        <Box> <PulseLoader color="#f0c246" size={10} speedMultiplier={1.1} /></Box>
+    </Box>
+</Box >;
 const LoadingCustomOverlay = ({ active, children, spinnerProps = "" }) => {
     let loader = <ScaleLoader color={palette.palette.primary.main} />;
 
     switch (spinnerProps) {
         case "selectTagProp":
-            loader = <PulseLoader color={palette.palette.primary.main} />;
+            loader = <VerticalLoader color={"#e8af13"} />;
             break;
         case "Prediction":
             loader = <PredictionLoader color={palette.palette.primary.main} />;

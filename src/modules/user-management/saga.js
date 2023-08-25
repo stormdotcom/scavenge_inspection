@@ -22,8 +22,8 @@ export function* signIn({ payload }) {
                 yield put(navigateTo("/admin/dashboard"));
                 yield put(commonActions.setHomePath("admin/dashboard"));
             } else if (userType === USER_TYPE.ORGANIZATION) {
-                yield put(navigateTo("/org"));
-                yield put(commonActions.setHomePath("org"));
+                yield put(navigateTo("/org/dashboard"));
+                yield put(commonActions.setHomePath("org/dashboard"));
             } else {
                 yield put(navigateTo("/home"));
                 yield put(commonActions.setHomePath("home"));

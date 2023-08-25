@@ -17,5 +17,4 @@ export const ACTION_TYPES = {
 };
 
 export const fetchUserList = createAction(ACTION_TYPES.FETCH_USERS_LIST);
-
 export const fetchUserById = createAction(ACTION_TYPES.FETCH_USER_BY_ID);

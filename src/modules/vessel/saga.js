@@ -112,7 +112,7 @@ export function* exportExcelSaga() {
 
 export default function* moduleSaga() {
     yield all([
-        takeLatest(ACTION_TYPES.SHOW_PREDICTIONS, showPredictionSaga),
+        takeLatest(ACTION_TYPES.SHOW_PREDICTIONS, showPredictionSaga), //FETCH_VESSEL_LIST
         takeLatest(ACTION_TYPES.UPDATE_VESSEL_INSPECTION, updateInspectionDetails),
         takeLatest(ACTION_TYPES.GET_VESSEL_INSPECTION, getInspectionDetailsSaga),
         takeLatest(ACTION_TYPES.SAVE_PREDICTED, savePredictedSaga),

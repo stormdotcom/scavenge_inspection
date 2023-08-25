@@ -1,17 +1,14 @@
-import ListVessel from "./components/ListVessel";
 import ViewEditVessel from "./components/ViewEditVessel";
 import OrgHome from "./components/OrgHome";
+import { RootBoundary } from "../../common/components";
 
 const routes = [
     {
         children: [
             {
                 path: "dashboard",
-                element: <OrgHome />
-            },
-            {
-                path: "vessels",
-                element: <ListVessel />
+                element: <OrgHome />,
+                errorElement: <RootBoundary />
             },
             {
                 path: "vessel/:id/edit",
