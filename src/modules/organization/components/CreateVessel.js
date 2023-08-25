@@ -15,9 +15,9 @@ const CreateVessel = () => {
     return <Box sx={{
         bgcolor: "primary.light", width: "80%", borderRadius: "5px"
     }}>
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", py: "29%", flexDirection: "column" }}>
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", pt: "29%", pb: { md: "30px" }, flexDirection: "column" }}>
             <Box >
-                <IconButton onClick={handleOpen}>
+                <IconButton onClick={handleOpen} >
                     <AddCircleIcon sx={{ color: "shaded.main", transform: "scale(5)" }} />
                 </IconButton>
             </Box>

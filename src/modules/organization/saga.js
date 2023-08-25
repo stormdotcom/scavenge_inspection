@@ -1,5 +1,5 @@
 import { all, call, fork, put, take, takeLatest } from "redux-saga/effects";
-import { ACTION_TYPES, fetchVesselRequestList } from "./actions";
+import { ACTION_TYPES, fetchVesselList, fetchVesselRequestList } from "./actions";
 import { handleAPIRequest } from "../../utils/http";
 import { approveVesselApi, createVesselApi, fetchVesselListApi, fetchVesselRequestListApi } from "./api";
 import { successNotify } from "../../utils/notificationUtils";
@@ -30,6 +30,7 @@ export function* createVesselSaga({ payload = {} }) {
     if (response.type === ACTION_TYPES.CREATE_VESSEL_SUCCESS) {
         yield put(successNotify({ title: "Success", message: "Vessel Created Successfully" }));
         yield put(actions.setModal(false));
+        yield put(fetchVesselList());
     }
 }
 
