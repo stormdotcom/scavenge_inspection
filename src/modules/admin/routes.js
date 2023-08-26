@@ -1,6 +1,8 @@
-import CreateUser from "./components/CreateUser";
+import { lazy } from "react";
+
 import ListOrg from "./components/ListOrg";
 import ListVessel from "./components/ListVessel";
+const AdminDashboard = lazy(() => import("./components/AdminDashboard"));
 
 const routes = [
     {
@@ -8,7 +10,7 @@ const routes = [
             {
 
                 path: "dashboard",
-                element: <CreateUser />
+                element: <AdminDashboard />
             },
             {
 
