@@ -3,6 +3,8 @@ import { lazy } from "react";
 import ListOrg from "./components/ListOrg";
 import ListVessel from "./components/ListVessel";
 const AdminDashboard = lazy(() => import("./components/AdminDashboard"));
+const ListUsers = lazy(() => import("./components/Users/ListUsers"));
+const UserDetails = lazy(() => import("./components/Users/UserDetails"));
 
 const routes = [
     {
@@ -13,8 +15,15 @@ const routes = [
                 element: <AdminDashboard />
             },
             {
-
-                path: "listVessels",
+                path: "users",
+                element: <ListUsers />
+            },
+            {
+                path: "users/:id/view",
+                element: <UserDetails />
+            },
+            {
+                path: "vessels",
                 element: <ListVessel />
             },
             {

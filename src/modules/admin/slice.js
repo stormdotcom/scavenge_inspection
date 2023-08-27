@@ -3,22 +3,40 @@ import _ from "lodash";
 
 import { ACTION_TYPES } from "./actions";
 import { STATE_REDUCER_KEY } from "./constants";
+import { COMMON_TABLE_PAGINATION } from "../common/constants";
 const initialState = {
 
-    userDetails: {
+    dashboardCards: {
         requestInProgress: false,
         data: {
-            name: "",
-            description: "",
-            eamil: ""
-
+            organizations: 0,
+            usersCount: 0,
+            fleetManagers: 0,
+            vesselsCount: 0, reportsCount: 0, imagesUploadedCount: 0
         }
     },
     usersList: {
         requestInProgress: false,
-        data: []
+        data: [],
+        table: {
+            data: [],
+            pagingInfo: {
+                ...COMMON_TABLE_PAGINATION
+            },
+            rowSelection: {},
+            rowSelectionState: {},
+        }
+    },
+    userDetails: {
+        requestInProgress: false,
+        data: {
+            fullName: "",
+            email: "",
+            phone: "",
+            password: "",
+            confirmPassword: ""
+        }
     }
-
 };
 
 
@@ -34,15 +52,15 @@ const slice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(ACTION_TYPES.FETCH_USER_BY_ID_REQUEST, (state) => {
-                _.set(state, "userDetails.requestInProgress", true);
+            .addCase(ACTION_TYPES.FETCH_DASHBOARD_STATS_REQUEST, (state) => {
+                _.set(state, "dashboardCards.requestInProgress", true);
             })
-            .addCase(ACTION_TYPES.FETCH_USER_BY_ID_SUCCESS, (state, action) => {
-                _.set(state, "userDetails.requestInProgress", false);
-                _.set(state, "userDetails.data", action.payload);
+            .addCase(ACTION_TYPES.FETCH_DASHBOARD_STATS_SUCCESS, (state, action) => {
+                _.set(state, "dashboardCards.requestInProgress", false);
+                _.set(state, "dashboardCards.data", action.payload);
             })
-            .addCase(ACTION_TYPES.FETCH_USER_BY_ID_FAILURE, (state) => {
-                _.set(state, "userDetails.requestInProgress", false);
+            .addCase(ACTION_TYPES.FETCH_DASHBOARD_STATS_FAILURE, (state) => {
+                _.set(state, "dashboardCards.requestInProgress", false);
             });
 
     }
