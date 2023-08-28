@@ -1,5 +1,5 @@
 import { all, call, fork, put, select, take, takeLatest } from "redux-saga/effects";
-import { ACTION_TYPES } from "./actions";
+import { ACTION_TYPES, fetchUserList } from "./actions";
 import { allowAccessApi, disAllowAccessApi, fetchDashboardApi, fetchUserByIdApi, updateUserDetailsApi, usersListApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
 import { getPagingInfo } from "./selectors";
@@ -24,6 +24,7 @@ export function* allowAccessSaga({ payload }) {
     const response = yield take([ACTION_TYPES.ALLOW_ACCESS_SUCCESS, ACTION_TYPES.ALLOW_ACCESS_FAILURE]);
     if (response.type === ACTION_TYPES.ALLOW_ACCESS_SUCCESS) {
         yield put(successNotify({ title: "Action Succeeded", message: "Enabled User access" }));
+        yield put(fetchUserList());
     }
 }
 
@@ -32,6 +33,7 @@ export function* disAllowAccessSaga({ payload }) {
     const response = yield take([ACTION_TYPES.DISALLOW_ACCESS_SUCCESS, ACTION_TYPES.DISALLOW_ACCESS_FAILURE]);
     if (response.type === ACTION_TYPES.DISALLOW_ACCESS_SUCCESS) {
         yield put(successNotify({ title: "Action Succeeded", message: "Disabled User access" }));
+        yield put(fetchUserList());
     }
 }
 
