@@ -12,3 +12,24 @@ export const fetchDashboardApi = () => {
         }
     };
 };
+
+export const usersListApi = (data) => {
+    return {
+        url: API_URL.USER.LIST,
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.FETCH_USERS_LIST_REQUEST, ACTION_TYPES.FETCH_USERS_LIST_SUCCESS, ACTION_TYPES.FETCH_USERS_LIST_FAILURE],
+            data
+        }
+    };
+};
+
+export const fetchUserByIdApi = (id) => {
+    return {
+        url: API_URL.USER.BY_ID.replace(":id", id),
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.FETCH_USER_BY_ID_REQUEST, ACTION_TYPES.FETCH_USER_BY_ID_SUCCESS, ACTION_TYPES.FETCH_USER_BY_ID_FAILURE]
+        }
+    };
+};

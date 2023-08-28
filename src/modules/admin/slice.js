@@ -10,21 +10,20 @@ const initialState = {
         requestInProgress: false,
         data: {
             organizations: 0,
-            usersCount: 0,
+            totalUsers: 0,
             fleetManagers: 0,
-            vesselsCount: 0, reportsCount: 0, imagesUploadedCount: 0
+            vessels: 0, reports: 0, cylinderImageCount: 0
         }
     },
     usersList: {
         requestInProgress: false,
-        data: [],
         table: {
             data: [],
-            pagingInfo: {
+            pageInfo: {
                 ...COMMON_TABLE_PAGINATION
             },
             rowSelection: {},
-            rowSelectionState: {},
+            rowSelectionState: {}
         }
     },
     userDetails: {
@@ -32,10 +31,11 @@ const initialState = {
         data: {
             fullName: "",
             email: "",
-            phone: "",
-            password: "",
-            confirmPassword: ""
+            phone: ""
         }
+    },
+    passwordDetails: {
+        requestInProgress: false
     }
 };
 
@@ -47,6 +47,9 @@ const slice = createSlice({
         clearAll: () => initialState,
         clear: (state) => {
             state.table = initialState.table;
+        },
+        setPagination: (state, { payload }) => {
+            state.usersList.table.pageInfo = payload;
         }
 
     },
@@ -57,10 +60,32 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.FETCH_DASHBOARD_STATS_SUCCESS, (state, action) => {
                 _.set(state, "dashboardCards.requestInProgress", false);
-                _.set(state, "dashboardCards.data", action.payload);
+                _.set(state, "dashboardCards.data", action.payload.data);
             })
             .addCase(ACTION_TYPES.FETCH_DASHBOARD_STATS_FAILURE, (state) => {
                 _.set(state, "dashboardCards.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.FETCH_USERS_LIST_REQUEST, (state) => {
+                _.set(state, "usersList.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_USERS_LIST_SUCCESS, (state, { payload = {} }) => {
+                _.set(state, "usersList.requestInProgress", false);
+                _.set(state, "usersList.table.data", payload.data);
+                _.set(state, "usersList.table.pageInfo", payload.pageInfo);
+            })
+            .addCase(ACTION_TYPES.FETCH_USERS_LIST_FAILURE, (state) => {
+                _.set(state, "usersList.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.FETCH_USER_BY_ID_REQUEST, (state) => {
+                _.set(state, "userDetails.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_USER_BY_ID_SUCCESS, (state, { payload }) => {
+                _.set(state, "userDetails.data", payload);
+            })
+            .addCase(ACTION_TYPES.FETCH_USER_BY_ID_FAILURE, (state) => {
+                _.set(state, "userDetails.requestInProgress", false);
             });
 
     }

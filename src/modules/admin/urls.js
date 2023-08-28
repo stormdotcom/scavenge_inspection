@@ -1,6 +1,10 @@
 export const API_URL = {
     DASHBOARD: {
-        STATS: "admin/dashboard/stats"
+        STATS: "auth/admin/dashboard"
+    },
+    USER: {
+        LIST: "auth/admin/users-all",
+        BY_ID: "auth/admin/users/:id"
     }
 };
 

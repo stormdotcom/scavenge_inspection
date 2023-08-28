@@ -14,12 +14,6 @@ export const columnsUsers = [
         size: 150
     },
     {
-        id: "phone",
-        header: "Phone",
-        accessorKey: "phone",
-        size: 150
-    },
-    {
         id: "userType",
         header: "User Type",
         accessorKey: "userType",
@@ -28,7 +22,7 @@ export const columnsUsers = [
     {
         id: "status",
         header: "Access Status",
-        accessorFn: (row) => row.status ? "Access" : "Blocked",
+        accessorFn: (row) => row.status ? "Access" : "Denied",
         size: 150
     }
 ];
@@ -37,7 +31,7 @@ export const columnsUsers = [
 export const usersColOrder = [
     "fullName",
     "email",
-    "phone",
     "userType",
-    "status"
+    "status",
+    "mrt-row-actions"
 ];
