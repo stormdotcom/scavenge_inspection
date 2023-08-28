@@ -35,6 +35,9 @@
       },
       "boneWhite": {
         "main": "#F9F6EE"
+      },
+      "orange": {
+        "main": "#c87b34"
       }
     }
   }

@@ -1,6 +1,11 @@
-import CreateUser from "./components/CreateUser";
+import { lazy } from "react";
+
 import ListOrg from "./components/ListOrg";
 import ListVessel from "./components/ListVessel";
+import { RootBoundary } from "../../common/components";
+const AdminDashboard = lazy(() => import("./components/AdminDashboard"));
+const ListUsers = lazy(() => import("./components/Users/ListUsers"));
+const UserDetails = lazy(() => import("./components/Users/UserDetails"));
 
 const routes = [
     {
@@ -8,17 +13,29 @@ const routes = [
             {
 
                 path: "dashboard",
-                element: <CreateUser />
+                element: <AdminDashboard />,
+                errorElement: <RootBoundary />
             },
             {
-
-                path: "listVessels",
-                element: <ListVessel />
+                path: "users",
+                element: <ListUsers />,
+                errorElement: <RootBoundary />
+            },
+            {
+                path: "users/:id/edit",
+                element: <UserDetails />,
+                errorElement: <RootBoundary />
+            },
+            {
+                path: "vessels",
+                element: <ListVessel />,
+                errorElement: <RootBoundary />
             },
             {
 
                 path: "orgs",
-                element: <ListOrg />
+                element: <ListOrg />,
+                errorElement: <RootBoundary />
             }
         ]
     }

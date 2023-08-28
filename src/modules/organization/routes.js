@@ -12,7 +12,8 @@ const routes = [
             },
             {
                 path: "vessel/:id/edit",
-                element: <ViewEditVessel />
+                element: <ViewEditVessel />,
+                errorElement: <RootBoundary />
             }
         ]
     }
