@@ -33,3 +33,39 @@ export const fetchUserByIdApi = (id) => {
         }
     };
 };
+
+export const allowAccessApi = (id) => {
+    let data = { id: id };
+    return {
+        url: API_URL.USER.ACCESS_CONTROL,
+        method: REQUEST_METHOD.POST,
+        payload: {
+            types: [ACTION_TYPES.ALLOW_ACCESS_REQUEST, ACTION_TYPES.ALLOW_ACCESS_SUCCESS, ACTION_TYPES.ALLOW_ACCESS_FAILURE],
+            data
+        }
+    };
+};
+
+export const disAllowAccessApi = (id) => {
+    let data = { id: id };
+    return {
+        url: API_URL.USER.ACCESS_CONTROL,
+        method: REQUEST_METHOD.POST,
+        payload: {
+            types: [ACTION_TYPES.DISALLOW_ACCESS_REQUEST, ACTION_TYPES.DISALLOW_ACCESS_SUCCESS, ACTION_TYPES.DISALLOW_ACCESS_FAILURE],
+            data
+        }
+    };
+};
+
+
+export const updateUserDetailsApi = (data) => {
+    return {
+        url: API_URL.USER.UPDATE,
+        method: REQUEST_METHOD.PUT,
+        payload: {
+            types: [ACTION_TYPES.UPDATE_USER_DETAILS_REQUEST, ACTION_TYPES.UPDATE_USER_DETAILS_SUCCESS, ACTION_TYPES.UPDATE_USER_DETAILS_FAILURE],
+            data
+        }
+    };
+};

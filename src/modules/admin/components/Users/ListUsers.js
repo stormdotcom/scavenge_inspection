@@ -12,7 +12,7 @@ import { actions as sliceActions } from "../../slice";
 import { REACT_TABLE_COMMON_OPTIONS } from "../../../../common/constants";
 import { COMMON_TABLE_PAGINATION } from "../../../common/constants";
 import CustomReactTable from "../../../../common/components/custom/CustomReactTable";
-import { fetchUserList } from "../../actions";
+import { allowAccess, disAllowAccess, fetchUserList } from "../../actions";
 import Swal from "sweetalert2";
 
 const { OpenInNewIcon } = Icons;
@@ -25,29 +25,25 @@ const ListUsers = () => {
         () => columnsUsers,
         []
     );
-    const handleAllow = () => {
+    const handleAllow = (id) => {
         Swal.fire({
-            title: "Are you sure you want to enable web access for this user??",
+            title: "Are you sure you want to enable web access for this user?",
             showCancelButton: true,
             confirmButtonText: "Enable Access"
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire("Saved!", "", "success")
-            } else if (result.isDenied) {
-                Swal.fire("Changes are not saved", "", "info")
+                dispatch(allowAccess(id));
             }
         });
     };
-    const handleDisAllow = () => {
+    const handleDisAllow = (id) => {
         Swal.fire({
-            title: "Are you sure you want to disable web access for this user??",
+            title: "Are you sure you want to disable web access for this user?",
             showCancelButton: true,
             confirmButtonText: "Disable Access"
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire("Saved!", "", "success")
-            } else if (result.isDenied) {
-                Swal.fire("Changes are not saved", "", "info")
+                dispatch(disAllowAccess(id));
             }
         });
     };

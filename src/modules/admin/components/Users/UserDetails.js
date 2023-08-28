@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { STATE_REDUCER_KEY } from "../../constants";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { actions as sliceActions } from "../../slice";
-import { Box, Grid, IconButton, Paper, Typography } from "@mui/material";
+import { Box, Button, Grid, IconButton, Paper, Typography } from "@mui/material";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
 import { Form, withFormik } from "formik";
@@ -11,7 +11,6 @@ import { createStructuredSelector } from "reselect";
 import { selectUserDetails } from "../../selectors";
 import { fetchUserById, updateUser } from "../../actions";
 import { useNavigate, useParams } from "react-router-dom";
-import ContainedButton from "../../../../common/components/custom/ContainedButton";
 import PasswordUpdate from "./PasswordUpdate";
 
 const UserDetails = (props) => {
@@ -30,7 +29,7 @@ const UserDetails = (props) => {
             <Paper sx={{ px: 3, pt: 4, width: "100%", bgcolor: "primary.light" }}>
                 <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> User Details </Typography>
                 <Box sx={{ position: "relative" }}>
-                    <IconButton sx={{ p: 0, position: "absolute", top: "-65px", right: "10px", display: "flex", flexDirection: "column" }} onClick={() => navigate("../users")}>
+                    <IconButton sx={{ position: "absolute", top: "-65px", right: "10px", display: "flex", flexDirection: "column" }} onClick={() => navigate("../users")}>
                         <KeyboardBackspaceIcon sx={{ color: "secondary.main" }} />
                         <Typography sx={{ color: "secondary.main" }}>Go Back</Typography>
                     </IconButton>
@@ -49,7 +48,13 @@ const UserDetails = (props) => {
                             </Grid>
                         </Grid>
                         <Grid sx={{ display: "flex", pb: 4, justifyContent: "center", alignItems: "center" }}>
-                            <ContainedButton sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Update Details"}</ContainedButton>
+                            <Button sx={{
+                                bgcolor: "secondary.main",
+                                "&.hover": {
+                                    bgcolor: "secondary.dark"
+                                },
+                                fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" }
+                            }} variant="contained" type="submit" onClick={handleSubmit}>{"Update Details"}</Button>
                         </Grid>
                     </Form>
                 </LoadingCustomOverlay>
@@ -66,7 +71,9 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    submit: data => dispatch(updateUser(data)),
+    submit: data => {
+        dispatch(updateUser(data));
+    },
     getUserById: (id) => dispatch(fetchUserById(id))
 });
 

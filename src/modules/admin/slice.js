@@ -29,6 +29,7 @@ const initialState = {
     userDetails: {
         requestInProgress: false,
         data: {
+            _id: "",
             fullName: "",
             email: "",
             phone: ""
@@ -82,9 +83,21 @@ const slice = createSlice({
                 _.set(state, "userDetails.requestInProgress", true);
             })
             .addCase(ACTION_TYPES.FETCH_USER_BY_ID_SUCCESS, (state, { payload }) => {
-                _.set(state, "userDetails.data", payload);
+                _.set(state, "userDetails.requestInProgress", false);
+                _.set(state, "userDetails.data", payload.data);
             })
             .addCase(ACTION_TYPES.FETCH_USER_BY_ID_FAILURE, (state) => {
+                _.set(state, "userDetails.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.UPDATE_USER_DETAILS_REQUEST, (state) => {
+                _.set(state, "userDetails.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.UPDATE_USER_DETAILS_SUCCESS, (state, { payload }) => {
+                _.set(state, "userDetails.requestInProgress", false);
+                _.set(state, "userDetails.data", payload.data);
+            })
+            .addCase(ACTION_TYPES.UPDATE_USER_DETAILS_FAILURE, (state) => {
                 _.set(state, "userDetails.requestInProgress", false);
             });
 

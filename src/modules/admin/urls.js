@@ -4,7 +4,9 @@ export const API_URL = {
     },
     USER: {
         LIST: "auth/admin/users-all",
-        BY_ID: "auth/admin/users/:id"
+        BY_ID: "auth/admin/users/:id",
+        ACCESS_CONTROL: "auth/admin/restrict-user",
+        UPDATE: "auth/admin/update-user"
     }
 };
 

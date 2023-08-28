@@ -1,14 +1,13 @@
 import React from "react";
 import { STATE_REDUCER_KEY } from "../../constants";
 import { connect, useSelector } from "react-redux";
-import { Grid, Paper, Typography } from "@mui/material";
+import { Button, Grid, Paper, Typography } from "@mui/material";
 import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
 import { Form, withFormik } from "formik";
 import { FormController } from "../../../../common/components";
 import { createStructuredSelector } from "reselect";
 import { selectUserDetails } from "../../selectors";
 import { resetPassword } from "../../actions";
-import ContainedButton from "../../../../common/components/custom/ContainedButton";
 
 
 const PasswordUpdate = (props) => {
@@ -31,7 +30,7 @@ const PasswordUpdate = (props) => {
                     </Grid>
                 </Grid>
                 <Grid sx={{ display: "flex", pb: 4, justifyContent: "center", alignItems: "center" }}>
-                    <ContainedButton sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Reset Password"}</ContainedButton>
+                    <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Reset Password"}</Button>
                 </Grid>
             </Form>
         </LoadingCustomOverlay>
