@@ -5,7 +5,15 @@ import { ACTION_TYPES } from "./actions";
 import { STATE_REDUCER_KEY } from "./constants";
 import { COMMON_TABLE_PAGINATION } from "../common/constants";
 const initialState = {
-
+    table: {
+        requestInProgress: false,
+        data: [],
+        pageInfo: {
+            ...COMMON_TABLE_PAGINATION
+        },
+        rowSelection: {},
+        rowSelectionState: {}
+    },
     dashboardCards: {
         requestInProgress: false,
         data: {
@@ -37,6 +45,18 @@ const initialState = {
     },
     passwordDetails: {
         requestInProgress: false
+    },
+    vesselList: {
+        requestInProgress: false
+    },
+    vesselDetails: {
+        requestInProgress: false,
+        data: {
+            vessel_name: "",
+            type_of_engine: "",
+            imo_number: "",
+            manufacturer: ""
+        }
     }
 };
 
@@ -51,8 +71,10 @@ const slice = createSlice({
         },
         setPagination: (state, { payload }) => {
             state.usersList.table.pageInfo = payload;
+        },
+        setTablePagination: (state, { payload }) => {
+            state.table.pageInfo = payload;
         }
-
     },
     extraReducers: (builder) => {
         builder
@@ -99,6 +121,18 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.UPDATE_USER_DETAILS_FAILURE, (state) => {
                 _.set(state, "userDetails.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.FETCH_VESSEL_LIST_REQUEST, (state) => {
+                _.set(state, "table.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_LIST_SUCCESS, (state, { payload }) => {
+                _.set(state, "table.requestInProgress", false);
+                _.set(state, "table.data", payload.data);
+                _.set(state, "table.pageInfo", payload.pageInfo);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_LIST_FAILURE, (state) => {
+                _.set(state, "table.requestInProgress", false);
             });
 
     }

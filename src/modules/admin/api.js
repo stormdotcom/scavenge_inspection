@@ -80,3 +80,14 @@ export const resetPasswordApi = (data) => {
         }
     };
 };
+
+export const fetchVesselListsApi = (data) => {
+    return {
+        url: API_URL.VESSEL.LIST,
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.FETCH_VESSEL_LIST_REQUEST, ACTION_TYPES.FETCH_VESSEL_LIST_SUCCESS, ACTION_TYPES.FETCH_VESSEL_LIST_FAILURE],
+            data
+        }
+    };
+};

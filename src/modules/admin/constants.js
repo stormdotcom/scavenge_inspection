@@ -35,3 +35,73 @@ export const usersColOrder = [
     "status",
     "mrt-row-actions"
 ];
+
+export const columnsVessels = [
+    {
+        id: "vessel_name",
+        header: "Vessel Name",
+        accessorFn: (row) => row.vesselDetails.vessel_name,
+        size: 150
+    },
+    {
+        id: "imo_number",
+        header: "IMO Number",
+        accessorFn: (row) => row.vesselDetails.imo_number,
+        size: 150
+    },
+    {
+        id: "manufacturer",
+        header: "Manufacturer",
+        accessorFn: (row) => row.vesselDetails.manufacturer,
+        size: 150
+    },
+    {
+        id: "type_of_engine",
+        header: "Type of Engine",
+        accessorFn: (row) => row.vesselDetails.type_of_engine,
+        size: 150
+    },
+    {
+        id: "vessel_type",
+        header: "Vessel Type",
+        accessorFn: (row) => row.vesselDetails.vessel_type,
+        size: 150
+    },
+    {
+        id: "officerAdmin",
+        header: "Organization",
+        accessorFn: (row) => row.officerAdmin?.fullName || "",
+        size: 150
+    },
+    {
+        id: "organizationBelongsTo",
+        header: "Organization",
+        accessorFn: (row) => row.organizationBelongsTo?.company_name || "",
+        size: 150
+    },
+    {
+        id: "subscription",
+        header: "Subscription Type",
+        accessorFn: (row) => row.subscription.plan,
+        size: 150
+    },
+    {
+        id: "approvedStatus",
+        header: "Approved Status",
+        accessorFn: (row) => row.approvedStatus ? "APPROVED" : "PENDING",
+        size: 150
+    }
+];
+
+export const vesselColOrder = [
+    "vessel_name",
+    "imo_number",
+    "manufacturer",
+    "type_of_engine",
+    "vessel_type",
+    "officerAdmin",
+    "organizationBelongsTo",
+    "subscription",
+    "approvedStatus",
+    "mrt-row-actions"
+];

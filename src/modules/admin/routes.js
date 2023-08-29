@@ -1,12 +1,11 @@
 import { lazy } from "react";
 
-import ListOrg from "./components/ListOrg";
-import ListVessel from "./components/ListVessel";
 import { RootBoundary } from "../../common/components";
 const AdminDashboard = lazy(() => import("./components/AdminDashboard"));
 const ListUsers = lazy(() => import("./components/Users/ListUsers"));
 const UserDetails = lazy(() => import("./components/Users/UserDetails"));
-
+const ListVessel = lazy(() => import("./components/Vessels/ListVessels"));
+const VesselDetails = lazy(() => import("./components/Vessels/VesselDetails"));
 const routes = [
     {
         children: [
@@ -32,11 +31,11 @@ const routes = [
                 errorElement: <RootBoundary />
             },
             {
-
-                path: "orgs",
-                element: <ListOrg />,
+                path: "vessels/:id/view",
+                element: <VesselDetails />,
                 errorElement: <RootBoundary />
-            }
+            },
+
         ]
     }
 ];

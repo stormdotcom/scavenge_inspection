@@ -8,6 +8,10 @@ export const API_URL = {
         ACCESS_CONTROL: "auth/admin/restrict-user",
         UPDATE: "auth/admin/update-user",
         PASSWORD_UPDATE: "auth/admin/update-password"
+    },
+    VESSEL: {
+        LIST: "auth/admin/vessel-all",
+        BY_ID: "auth/admin/vessel/:id"
     }
 };
 
