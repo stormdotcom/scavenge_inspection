@@ -18,7 +18,7 @@ const UserDetails = (props) => {
     const { handleSubmit, getUserById } = props;
     const dispatch = useDispatch();
     const loading = useSelector(state => state[STATE_REDUCER_KEY].userDetails.requestInProgress);
-    const { id = 1 } = useParams();
+    const { id = 0 } = useParams();
     useEffect(() => {
         getUserById(id);
         return () => dispatch(sliceActions.clearAll());
@@ -37,13 +37,13 @@ const UserDetails = (props) => {
                 <LoadingCustomOverlay active={loading} >
                     <Form>
                         <Grid container rowSpacing={2} columnSpacing={4}>
-                            <Grid item sm={12} md={6} lg={6} xl={4}>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
                                 <FormController control="input2" name="fullName" label="Full Name" isMandatory={true} />
                             </Grid>
-                            <Grid item sm={12} md={6} lg={6} xl={4}>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
                                 <FormController control="input2" name="email" label="Email" isMandatory={true} />
                             </Grid>
-                            <Grid item sm={12} md={6} lg={6} xl={4}>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
                                 <FormController control="input2" name="phone" label="Phone" isMandatory={true} />
                             </Grid>
                         </Grid>
@@ -58,9 +58,17 @@ const UserDetails = (props) => {
                         </Grid>
                     </Form>
                 </LoadingCustomOverlay>
-                <Box sx={{ my: 2 }}>
-                    <PasswordUpdate />
-                </Box>
+                <Grid container columnSpacing={2} rowSpacing={1} sx={{ my: 2, display: "flex" }}>
+                    <Grid item sm={12} md={6}>
+                        <Paper sx={{ width: "100%", height: "200px" }}>
+
+                        </Paper>
+                    </Grid>
+                    <Grid item sm={12} md={6}>
+                        <PasswordUpdate id={id} />
+                    </Grid>
+
+                </Grid>
             </Paper>
         </Box>
     </Grid >;

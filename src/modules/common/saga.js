@@ -1,5 +1,5 @@
 
-import { all, put, select, takeEvery, takeLatest, delay, call } from "redux-saga/effects";
+import { all, put, select, takeEvery, takeLatest, delay } from "redux-saga/effects";
 
 import { ACTION_TYPES } from "./actions";
 
@@ -32,7 +32,7 @@ function* logoutUser({ payload: data = {} }) {
     }
     localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
     yield navigateToFn({ payload: "/signin" });
-    yield call(refreshFn);
+    // clear all slice modules;
     // yield put(navigateTo("/"));
 }
 

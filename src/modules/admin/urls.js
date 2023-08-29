@@ -6,7 +6,8 @@ export const API_URL = {
         LIST: "auth/admin/users-all",
         BY_ID: "auth/admin/users/:id",
         ACCESS_CONTROL: "auth/admin/restrict-user",
-        UPDATE: "auth/admin/update-user"
+        UPDATE: "auth/admin/update-user",
+        PASSWORD_UPDATE: "auth/admin/update-password"
     }
 };
 
