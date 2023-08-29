@@ -1,8 +1,8 @@
 import { all, call, fork, put, select, take, takeLatest } from "redux-saga/effects";
 import { ACTION_TYPES, fetchUserList } from "./actions";
-import { allowAccessApi, disAllowAccessApi, fetchDashboardApi, fetchUserByIdApi, updateUserDetailsApi, usersListApi } from "./api";
+import { allowAccessApi, disAllowAccessApi, fetchDashboardApi, fetchUserByIdApi, fetchVesselListsApi, resetPasswordApi, updateUserDetailsApi, usersListApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
-import { getPagingInfo } from "./selectors";
+import { getPagingInfo, getTablePagination } from "./selectors";
 import { successNotify } from "../../utils/notificationUtils";
 
 export function* fetchDashboardSaga() {
@@ -45,6 +45,18 @@ export function* updateUserDetailsSaga({ payload }) {
     }
 }
 
+export function* resetPasswordSaga({ payload }) {
+    yield fork(handleAPIRequest, resetPasswordApi, payload);
+    const response = yield take([ACTION_TYPES.RESET_PASSWORD_SUCCESS, ACTION_TYPES.RESET_PASSWORD_FAILURE]);
+    if (response.type === ACTION_TYPES.RESET_PASSWORD_SUCCESS) {
+        yield put(successNotify({ title: "Success", message: "User password updated" }));
+    }
+}
+export function* fetchVesselListsSaga() {
+    const tablePagination = yield select(getTablePagination);
+    const payload = { ...tablePagination };
+    yield call(handleAPIRequest, fetchVesselListsApi, payload);
+}
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.FETCH_DASHBOARD_STATS, fetchDashboardSaga),
@@ -52,7 +64,7 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.FETCH_USER_BY_ID, fetchUserByIdSaga),
         takeLatest(ACTION_TYPES.ALLOW_ACCESS, allowAccessSaga),
         takeLatest(ACTION_TYPES.DISALLOW_ACCESS, disAllowAccessSaga),
-        takeLatest(ACTION_TYPES.UPDATE_USER_DETAILS, updateUserDetailsSaga)
+        takeLatest(ACTION_TYPES.RESET_PASSWORD, resetPasswordSaga),
+        takeLatest(ACTION_TYPES.FETCH_VESSEL_LIST, fetchVesselListsSaga)
     ]);
 }
-//UPDATE_USER_DETAILS

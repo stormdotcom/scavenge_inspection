@@ -69,3 +69,25 @@ export const updateUserDetailsApi = (data) => {
         }
     };
 };
+
+export const resetPasswordApi = (data) => {
+    return {
+        url: API_URL.USER.PASSWORD_UPDATE,
+        method: REQUEST_METHOD.PUT,
+        payload: {
+            types: [ACTION_TYPES.RESET_PASSWORD_REQUEST, ACTION_TYPES.RESET_PASSWORD_SUCCESS, ACTION_TYPES.RESET_PASSWORD_FAILURE],
+            data
+        }
+    };
+};
+
+export const fetchVesselListsApi = (data) => {
+    return {
+        url: API_URL.VESSEL.LIST,
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.FETCH_VESSEL_LIST_REQUEST, ACTION_TYPES.FETCH_VESSEL_LIST_SUCCESS, ACTION_TYPES.FETCH_VESSEL_LIST_FAILURE],
+            data
+        }
+    };
+};
