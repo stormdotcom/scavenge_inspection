@@ -91,6 +91,9 @@ function SignUp(props) {
                                         {!newOrg && <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                             <FormController control="input" name="vessel_name" label="Vessel Name" />
                                         </Grid>}
+                                        {!newOrg && <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                                            <FormController control="input" name="cylinder_numbers" label="No of Cylinders" />
+                                        </Grid>}
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                             <FormController
                                                 onClick={handleOrgAdmin}

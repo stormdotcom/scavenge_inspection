@@ -50,12 +50,42 @@ const initialState = {
         requestInProgress: false
     },
     vesselDetails: {
+        requestInProgress: true,
+        data: {
+            _id: "",
+            vesselDetails: {
+                vessel_name: "",
+                type_of_engine: "",
+                imo_number: "",
+                manufacturer: ""
+            },
+            organizationBelongsTo: { company_name: "" },
+            officerAdmin: { fullName: "", _id: "" },
+            inspectionDetails: {
+                inspection_date: "",
+                normal_service_load_in_percent_MCRMCR: "",
+                total_running_hours: "",
+                running_hrs_since_last: "",
+                cyl_oil_Type: "",
+                cyl_oil_consump_Ltr_24hr: "",
+                normal_service_load_in_percent_MCR: "",
+                cylinder_numbers: ""
+            },
+            subscription: {
+                plan: "",
+                startDate: "",
+                endDate: "",
+                transactionId: ""
+            }
+        }
+    },
+    orgDetails: {
         requestInProgress: false,
         data: {
-            vessel_name: "",
-            type_of_engine: "",
-            imo_number: "",
-            manufacturer: ""
+            company_name: "",
+            code: "",
+            domain: "",
+            manager: { fullName: "" }
         }
     }
 };
@@ -133,6 +163,39 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.FETCH_VESSEL_LIST_FAILURE, (state) => {
                 _.set(state, "table.requestInProgress", false);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_BY_ID_REQUEST, (state) => {
+                _.set(state, "vesselDetails.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_BY_ID_SUCCESS, (state, { payload }) => {
+                _.set(state, "vesselDetails.requestInProgress", false);
+                _.set(state, "vesselDetails.data", payload.data);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_BY_ID_FAILURE, (state) => {
+                _.set(state, "vesselDetails.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.FETCH_ORG_TABLE_REQUEST, (state) => {
+                _.set(state, "table.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_ORG_TABLE_SUCCESS, (state, { payload }) => {
+                _.set(state, "table.requestInProgress", false);
+                _.set(state, "table.data", payload.data);
+                _.set(state, "table.pageInfo", payload.pageInfo);
+            })
+            .addCase(ACTION_TYPES.FETCH_ORG_TABLE_FAILURE, (state) => {
+                _.set(state, "table.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.FETCH_ORG_BY_ID_REQUEST, (state) => {
+                _.set(state, "orgDetails.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_ORG_BY_ID_SUCCESS, (state, { payload }) => {
+                _.set(state, "orgDetails.requestInProgress", false);
+                _.set(state, "orgDetails.data", payload.data);
+            })
+            .addCase(ACTION_TYPES.FETCH_ORG_BY_ID_FAILURE, (state) => {
+                _.set(state, "orgDetails.requestInProgress", false);
             });
 
     }

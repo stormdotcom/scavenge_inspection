@@ -69,7 +69,7 @@ export const columnsVessels = [
     },
     {
         id: "officerAdmin",
-        header: "Organization",
+        header: "Fleet Manager",
         accessorFn: (row) => row.officerAdmin?.fullName || "",
         size: 150
     },
@@ -103,5 +103,39 @@ export const vesselColOrder = [
     "organizationBelongsTo",
     "subscription",
     "approvedStatus",
+    "mrt-row-actions"
+];
+
+export const columnsOrg = [
+    {
+        id: "company_name",
+        header: "Organization Name",
+        accessorKey: "company_name",
+        size: 150
+    },
+    {
+        id: "code",
+        header: "Organization Code",
+        accessorKey: "code",
+        size: 150
+    },
+    {
+        id: "domain",
+        header: "Domain",
+        accessorKey: "domain",
+        size: 150
+    },
+    {
+        id: "manager",
+        header: "Organization Manager",
+        accessorFn: (row) => row.manager?.fullName || "",
+        size: 150
+    }
+];
+export const orgColOrder = [
+    "company_name",
+    "code",
+    "domain",
+    "manager",
     "mrt-row-actions"
 ];

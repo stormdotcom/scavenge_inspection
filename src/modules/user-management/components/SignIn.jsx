@@ -41,7 +41,7 @@ function SignIn(props) {
                                             <FormController control="input" name="email" label="Email" />
                                         </Grid>
                                         <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
-                                            <FormController control="input" name="password" label="Password" />
+                                            <FormController control="input" name="password" label="Password" type={"password"} />
                                         </Grid>
                                         <Grid sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                             <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Sign In"}</Button>
@@ -54,14 +54,13 @@ function SignIn(props) {
                                             </Box>
                                         </Box>
                                         <Grid sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                            <Typography
+                                            {/* <Typography
                                                 variant="text"
                                                 sx={{ mb: 0, p: 0.5, fontSize: { lg: "16px", xl: "18px" }, color: "secondary.main", cursor: "pointer", "&:hover": { color: "secondary.dark" } }}
-                                            // onClick={() => navigate("../reset-password")}
                                             >
                                                 {"Forgot password?"}
 
-                                            </Typography>
+                                            </Typography> */}
                                         </Grid>
                                         <Box sx={{ display: "flex", py: { xs: 3, xl: 4.5 }, justifyContent: "center", alignItems: "space-around", boxShadow: 0 }} elevation={0}>
                                             <Typography display="inline" sx={{ fontSize: { lg: "16px", xl: "18px" }, pt: 0.6, color: "white.main" }}>{"Don't have account?"}</Typography>

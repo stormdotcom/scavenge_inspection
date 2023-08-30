@@ -91,3 +91,33 @@ export const fetchVesselListsApi = (data) => {
         }
     };
 };
+export const fetchVesselByIdApi = (id) => {
+    return {
+        url: API_URL.VESSEL.BY_ID.replace(":id", id),
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.FETCH_VESSEL_BY_ID_REQUEST, ACTION_TYPES.FETCH_VESSEL_BY_ID_SUCCESS, ACTION_TYPES.FETCH_VESSEL_BY_ID_FAILURE]
+        }
+    };
+};
+
+export const orgListApi = (data) => {
+    return {
+        url: API_URL.ORG.LIST,
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.FETCH_ORG_TABLE_REQUEST, ACTION_TYPES.FETCH_ORG_TABLE_SUCCESS, ACTION_TYPES.FETCH_ORG_TABLE_FAILURE],
+            data
+        }
+    };
+};
+
+export const fetchOrgByIdApi = (id) => {
+    return {
+        url: API_URL.ORG.BY_ID.replace(":id", id),
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.FETCH_ORG_BY_ID_REQUEST, ACTION_TYPES.FETCH_ORG_BY_ID_SUCCESS, ACTION_TYPES.FETCH_ORG_BY_ID_FAILURE]
+        }
+    };
+};

@@ -1,6 +1,9 @@
 import { all, call, fork, put, select, take, takeLatest } from "redux-saga/effects";
 import { ACTION_TYPES, fetchUserList } from "./actions";
-import { allowAccessApi, disAllowAccessApi, fetchDashboardApi, fetchUserByIdApi, fetchVesselListsApi, resetPasswordApi, updateUserDetailsApi, usersListApi } from "./api";
+import {
+    orgListApi, allowAccessApi, disAllowAccessApi, fetchDashboardApi, fetchVesselByIdApi, fetchUserByIdApi,
+    fetchVesselListsApi, resetPasswordApi, updateUserDetailsApi, usersListApi, fetchOrgByIdApi
+} from "./api";
 import { handleAPIRequest } from "../../utils/http";
 import { getPagingInfo, getTablePagination } from "./selectors";
 import { successNotify } from "../../utils/notificationUtils";
@@ -57,6 +60,19 @@ export function* fetchVesselListsSaga() {
     const payload = { ...tablePagination };
     yield call(handleAPIRequest, fetchVesselListsApi, payload);
 }
+
+export function* fetchVesselByIdSaga({ payload }) {
+    yield call(handleAPIRequest, fetchVesselByIdApi, payload);
+}
+
+export function* fetchOrgListSaga() {
+    const tablePagination = yield select(getTablePagination);
+    const payload = { ...tablePagination };
+    yield call(handleAPIRequest, orgListApi, payload);
+}
+export function* fetchOrgByIdSaga({ payload }) {
+    yield call(handleAPIRequest, fetchOrgByIdApi, payload);
+}
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.FETCH_DASHBOARD_STATS, fetchDashboardSaga),
@@ -65,6 +81,9 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.ALLOW_ACCESS, allowAccessSaga),
         takeLatest(ACTION_TYPES.DISALLOW_ACCESS, disAllowAccessSaga),
         takeLatest(ACTION_TYPES.RESET_PASSWORD, resetPasswordSaga),
-        takeLatest(ACTION_TYPES.FETCH_VESSEL_LIST, fetchVesselListsSaga)
+        takeLatest(ACTION_TYPES.FETCH_VESSEL_LIST, fetchVesselListsSaga),
+        takeLatest(ACTION_TYPES.FETCH_VESSEL_BY_ID, fetchVesselByIdSaga),
+        takeLatest(ACTION_TYPES.FETCH_ORG_TABLE, fetchOrgListSaga),
+        takeLatest(ACTION_TYPES.FETCH_ORG_BY_ID, fetchOrgByIdSaga)
     ]);
 }

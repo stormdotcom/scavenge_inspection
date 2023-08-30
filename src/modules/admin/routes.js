@@ -6,6 +6,8 @@ const ListUsers = lazy(() => import("./components/Users/ListUsers"));
 const UserDetails = lazy(() => import("./components/Users/UserDetails"));
 const ListVessel = lazy(() => import("./components/Vessels/ListVessels"));
 const VesselDetails = lazy(() => import("./components/Vessels/VesselDetails"));
+const OrgList = lazy(() => import("./components/Organizations/OrgList"));
+const OrgDetails = lazy(() => import("./components/Organizations/OrgDetails"));
 const routes = [
     {
         children: [
@@ -35,6 +37,16 @@ const routes = [
                 element: <VesselDetails />,
                 errorElement: <RootBoundary />
             },
+            {
+                path: "organizations",
+                element: <OrgList />,
+                errorElement: <RootBoundary />
+            },
+            {
+                path: "organizations/:id/edit",
+                element: <OrgDetails />,
+                errorElement: <RootBoundary />
+            }
 
         ]
     }

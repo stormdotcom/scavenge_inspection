@@ -12,6 +12,10 @@ export const API_URL = {
     VESSEL: {
         LIST: "auth/admin/vessel-all",
         BY_ID: "auth/admin/vessel/:id"
+    },
+    ORG: {
+        LIST: "auth/admin/organizations",
+        BY_ID: "auth/admin/organizations/:id"
     }
 };
 
