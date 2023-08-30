@@ -2,24 +2,24 @@ import React, { useEffect } from "react";
 import { STATE_REDUCER_KEY } from "../../constants";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { actions as sliceActions } from "../../slice";
-import { Box, Button, Grid, IconButton, Paper, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Paper, Typography } from "@mui/material";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
 import { Form, withFormik } from "formik";
 import { FormController } from "../../../../common/components";
 import { createStructuredSelector } from "reselect";
 import { selectVesselDetails } from "../../selectors";
-import { fetchUserById, updateUser } from "../../actions";
+import { fetchVesselById } from "../../actions";
 import { useNavigate, useParams } from "react-router-dom";
 
 const VesselDetailsView = (props) => {
     const navigate = useNavigate();
-    const { handleSubmit, getUserById } = props;
+    const { getVesselById } = props;
     const dispatch = useDispatch();
     const loading = useSelector(state => state[STATE_REDUCER_KEY].vesselDetails.requestInProgress);
     const { id = 0 } = useParams();
     useEffect(() => {
-        getUserById(id);
+        getVesselById(id);
         return () => dispatch(sliceActions.clearAll());
     }, []);
 
@@ -33,30 +33,82 @@ const VesselDetailsView = (props) => {
                         <Typography sx={{ color: "secondary.main" }}>Go Back</Typography>
                     </IconButton>
                 </Box>
-                <LoadingCustomOverlay active={loading} >
-                    <Form>
+
+                <Form>
+                    <LoadingCustomOverlay active={loading}>
                         <Grid container rowSpacing={2} columnSpacing={4}>
                             <Grid item sm={12} md={12} lg={6} xl={4}>
-                                <FormController control="input2" name="vessel_name" label="Vessel Name" isMandatory={true} />
+                                <FormController control="input2" name="vesselDetails.vessel_name" label="Vessel Name" disabled={true} />
                             </Grid>
                             <Grid item sm={12} md={12} lg={6} xl={4}>
-                                <FormController control="input2" name="imo_number" label="IMO Number" isMandatory={true} />
+                                <FormController control="input2" name="vesselDetails.imo_number" label="IMO Number" disabled={true} />
                             </Grid>
                             <Grid item sm={12} md={12} lg={6} xl={4}>
-                                <FormController control="input2" name="type_of_engine" label="Type of engine" isMandatory={true} />
+                                <FormController control="input2" name="vesselDetails.manufacturer" label="Manufacturer" disabled={true} />
+                            </Grid>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="vesselDetails.type_of_engine" label="Type of engine" disabled={true} />
+                            </Grid>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="vesselDetails.vessel_type" label="Vessel Type" disabled={true} />
+                            </Grid>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="inspectionDetails.inspection_date" label="Latest Inspection Date" disabled={true} />
+                            </Grid>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="inspectionDetails.normal_service_load_in_percent_MCRMCR" label="Normal Service Load (%)" disabled={true} />
+                            </Grid>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="inspectionDetails.total_running_hours" label="Total Running Hours" disabled={true} />
+                            </Grid>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="inspectionDetails.running_hrs_since_last" label="Last Running Hours" disabled={true} />
+                            </Grid>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="inspectionDetails.cyl_oil_Type" label="Cylinder Oil Type" disabled={true} />
+                            </Grid>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="inspectionDetails.cyl_oil_consump_Ltr_24hr" label="Cylinder Oil Consumption Last 24 hours" disabled={true} />
+                            </Grid>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="inspectionDetails.normal_service_load_in_percent_MCR" label="Normal Service Load (%)" disabled={true} />
+                            </Grid>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="inspectionDetails.cylinder_numbers" label="No. of Cylinders" disabled={true} />
                             </Grid>
                         </Grid>
-                        <Grid sx={{ display: "flex", pb: 4, justifyContent: "center", alignItems: "center" }}>
-                            <Button sx={{
-                                bgcolor: "secondary.main",
-                                "&.hover": {
-                                    bgcolor: "secondary.dark"
-                                },
-                                fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" }
-                            }} variant="contained" type="submit" onClick={handleSubmit}>{"Update Details"}</Button>
+                    </LoadingCustomOverlay>
+                    <Paper sx={{ px: 3, pt: 4, my: 2, pb: 2, width: "100%" }}>
+                        <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> Organizations Details </Typography>
+                        <Grid container rowSpacing={2} columnSpacing={4}>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="organizationBelongsTo.company_name" label="Company Name" disabled={true} />
+                            </Grid>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="officerAdmin.fullName" label="Fleet Manager" disabled={true} />
+                            </Grid>
                         </Grid>
-                    </Form>
-                </LoadingCustomOverlay>
+                    </Paper>
+                    <Paper sx={{ px: 3, pt: 4, my: 2, width: "100%" }}>
+                        <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> Subscription Details </Typography>
+                        <Grid container rowSpacing={2} columnSpacing={4}>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="subscription.plan" label="Plan" disabled={true} />
+                            </Grid>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="subscription.startDate" label="Plan Start Date" disabled={true} />
+                            </Grid>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="subscription.startDate" label="Plan End Date" disabled={true} />
+                            </Grid>
+                            <Grid item sm={12} md={12} lg={6} xl={4}>
+                                <FormController control="input2" name="subscription.transactionId" label="Transaction ID" disabled={true} />
+                            </Grid>
+                        </Grid>
+                    </Paper>
+                    <Grid sx={{ display: "flex", pb: 4, justifyContent: "center", alignItems: "center" }}>
+                    </Grid>
+                </Form>
             </Paper>
         </Box>
     </Grid >;
@@ -67,10 +119,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    submit: data => {
-        dispatch(updateUser(data));
-    },
-    getUserById: (id) => dispatch(fetchUserById(id))
+    getVesselById: (id) => dispatch(fetchVesselById(id))
 });
 
 const VesselDetailsViewForm = withFormik({

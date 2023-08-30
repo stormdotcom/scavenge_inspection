@@ -34,7 +34,7 @@ const routes = [
                 path: "vessels/:id/view",
                 element: <VesselDetails />,
                 errorElement: <RootBoundary />
-            },
+            }
 
         ]
     }

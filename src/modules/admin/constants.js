@@ -69,7 +69,7 @@ export const columnsVessels = [
     },
     {
         id: "officerAdmin",
-        header: "Organization",
+        header: "Fleet Manager",
         accessorFn: (row) => row.officerAdmin?.fullName || "",
         size: 150
     },
