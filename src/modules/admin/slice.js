@@ -78,6 +78,15 @@ const initialState = {
                 transactionId: ""
             }
         }
+    },
+    orgDetails: {
+        requestInProgress: false,
+        data: {
+            company_name: "",
+            code: "",
+            domain: "",
+            manager: { fullName: "" }
+        }
     }
 };
 
@@ -164,6 +173,18 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.FETCH_VESSEL_BY_ID_FAILURE, (state) => {
                 _.set(state, "vesselDetails.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.FETCH_ORG_TABLE_REQUEST, (state) => {
+                _.set(state, "table.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_ORG_TABLE_SUCCESS, (state, { payload }) => {
+                _.set(state, "table.requestInProgress", false);
+                _.set(state, "table.data", payload.data);
+                _.set(state, "table.pageInfo", payload.pageInfo);
+            })
+            .addCase(ACTION_TYPES.FETCH_ORG_TABLE_FAILURE, (state) => {
+                _.set(state, "table.requestInProgress", false);
             });
 
     }

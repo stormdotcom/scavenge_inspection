@@ -15,3 +15,6 @@ export const getTablePagination = flow(getState, tablePageInfo);
 
 const vesselDetails = (state) => state.vesselDetails;
 export const selectVesselDetails = flow(getState, vesselDetails);
+
+const orgDetails = (state) => state.orgDetails;
+export const selectOrgDetails = flow(getState, orgDetails);
