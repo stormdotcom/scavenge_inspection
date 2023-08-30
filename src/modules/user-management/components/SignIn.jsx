@@ -54,14 +54,13 @@ function SignIn(props) {
                                             </Box>
                                         </Box>
                                         <Grid sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                            <Typography
+                                            {/* <Typography
                                                 variant="text"
                                                 sx={{ mb: 0, p: 0.5, fontSize: { lg: "16px", xl: "18px" }, color: "secondary.main", cursor: "pointer", "&:hover": { color: "secondary.dark" } }}
-                                            // onClick={() => navigate("../reset-password")}
                                             >
                                                 {"Forgot password?"}
 
-                                            </Typography>
+                                            </Typography> */}
                                         </Grid>
                                         <Box sx={{ display: "flex", py: { xs: 3, xl: 4.5 }, justifyContent: "center", alignItems: "space-around", boxShadow: 0 }} elevation={0}>
                                             <Typography display="inline" sx={{ fontSize: { lg: "16px", xl: "18px" }, pt: 0.6, color: "white.main" }}>{"Don't have account?"}</Typography>
