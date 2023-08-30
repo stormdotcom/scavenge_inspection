@@ -9,17 +9,17 @@ import { Form, withFormik } from "formik";
 import { FormController } from "../../../../common/components";
 import { createStructuredSelector } from "reselect";
 import { selectOrgDetails } from "../../selectors";
-import { fetchVesselById } from "../../actions";
+import { fetchOrgById } from "../../actions";
 import { useNavigate, useParams } from "react-router-dom";
 
 const OrgDetails = (props) => {
     const navigate = useNavigate();
-    const { getVesselById } = props;
+    const { getOrgById } = props;
     const dispatch = useDispatch();
     const loading = useSelector(state => state[STATE_REDUCER_KEY].orgDetails.requestInProgress);
     const { id = 0 } = useParams();
     useEffect(() => {
-        // getVesselById(id);
+        getOrgById(id);
         return () => dispatch(sliceActions.clearAll());
     }, []);
 
@@ -28,7 +28,7 @@ const OrgDetails = (props) => {
             <Paper sx={{ px: 3, pt: 4, width: "100%", bgcolor: "primary.light" }}>
                 <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> Organization Details </Typography>
                 <Box sx={{ position: "relative" }}>
-                    <IconButton sx={{ position: "absolute", top: "-65px", right: "10px", display: "flex", flexDirection: "column" }} onClick={() => navigate("../vessels")}>
+                    <IconButton sx={{ position: "absolute", top: "-65px", right: "10px", display: "flex", flexDirection: "column" }} onClick={() => navigate("../organizations")}>
                         <KeyboardBackspaceIcon sx={{ color: "secondary.main" }} />
                         <Typography sx={{ color: "secondary.main" }}>Go Back</Typography>
                     </IconButton>
@@ -41,13 +41,13 @@ const OrgDetails = (props) => {
                                 <FormController control="input2" name="company_name" label="Organization Name" />
                             </Grid>
                             <Grid item sm={12} md={12} lg={6} xl={4}>
-                                <FormController control="input2" name="code" label="Organization Code" />
+                                <FormController control="input2" name="code" label="Organization Code" disabled={true} />
                             </Grid>
                             <Grid item sm={12} md={12} lg={6} xl={4}>
-                                <FormController control="input2" name="domain" label="Domain" />
+                                <FormController control="input2" name="domain" label="Domain" disabled={true} />
                             </Grid>
                             <Grid item sm={12} md={12} lg={6} xl={4}>
-                                <FormController control="input2" name="manager.fullName" label="Organization Manager" />
+                                <FormController control="input2" name="manager.fullName" label="Organization Manager" disabled={true} />
                             </Grid>
                         </Grid>
                     </LoadingCustomOverlay>
@@ -60,11 +60,11 @@ const OrgDetails = (props) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-    vesselDetails: selectOrgDetails
+    orgDetails: selectOrgDetails
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getVesselById: (id) => dispatch(fetchVesselById(id))
+    getOrgById: (id) => dispatch(fetchOrgById(id))
 });
 
 const OrgDetailsForm = withFormik({

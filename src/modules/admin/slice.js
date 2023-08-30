@@ -165,7 +165,7 @@ const slice = createSlice({
                 _.set(state, "table.requestInProgress", false);
             })
             .addCase(ACTION_TYPES.FETCH_VESSEL_BY_ID_REQUEST, (state) => {
-                _.set(state, "vesselDetails.requestInProgress", false);
+                _.set(state, "vesselDetails.requestInProgress", true);
             })
             .addCase(ACTION_TYPES.FETCH_VESSEL_BY_ID_SUCCESS, (state, { payload }) => {
                 _.set(state, "vesselDetails.requestInProgress", false);
@@ -185,6 +185,17 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.FETCH_ORG_TABLE_FAILURE, (state) => {
                 _.set(state, "table.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.FETCH_ORG_BY_ID_REQUEST, (state) => {
+                _.set(state, "orgDetails.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_ORG_BY_ID_SUCCESS, (state, { payload }) => {
+                _.set(state, "orgDetails.requestInProgress", false);
+                _.set(state, "orgDetails.data", payload.data);
+            })
+            .addCase(ACTION_TYPES.FETCH_ORG_BY_ID_FAILURE, (state) => {
+                _.set(state, "orgDetails.requestInProgress", false);
             });
 
     }
