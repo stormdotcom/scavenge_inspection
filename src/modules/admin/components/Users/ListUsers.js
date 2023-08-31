@@ -14,13 +14,14 @@ import { COMMON_TABLE_PAGINATION } from "../../../common/constants";
 import CustomReactTable from "../../../../common/components/custom/CustomReactTable";
 import { allowAccess, disAllowAccess, fetchUserList } from "../../actions";
 import Swal from "sweetalert2";
+import UserFilter from "./UserFilter";
 
 const { OpenInNewIcon } = Icons;
 const ListUsers = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { requestInProgress = false } = useSelector(state => state[STATE_REDUCER_KEY]).usersList;
-    const { data = [], pageInfo: { pageSize, pageIndex, totalCount } = {} } = useSelector(state => state[STATE_REDUCER_KEY]).usersList.table;
+    const requestInProgress = useSelector(state => state[STATE_REDUCER_KEY]).table.requestInProgress;
+    const { data = [], pageInfo: { pageSize, pageIndex, totalCount } = {} } = useSelector(state => state[STATE_REDUCER_KEY]).table;
     const columns = useMemo(
         () => columnsUsers,
         []
@@ -68,12 +69,12 @@ const ListUsers = () => {
     };
 
     const handleChangePage = (e, newPage) => {
-        dispatch(sliceActions.setPagination({ totalCount, pageSize, pageIndex: newPage }));
+        dispatch(sliceActions.setTablePagination({ totalCount, pageSize, pageIndex: newPage }));
         dispatch(fetchUserList());
     };
 
     const handleChangeRowsPerPage = (e) => {
-        dispatch(sliceActions.setPagination({ ...COMMON_TABLE_PAGINATION, pageSize: e.target.value }));
+        dispatch(sliceActions.setTablePagination({ ...COMMON_TABLE_PAGINATION, pageSize: e.target.value }));
         dispatch(fetchUserList());
     };
     const options = {
@@ -102,7 +103,7 @@ const ListUsers = () => {
         return (() => dispatch(sliceActions.clearAll()));
     }, []);
     return (
-        <>
+        <> <UserFilter />
             <CustomReactTable
                 data={data}
                 columns={columns}

@@ -11,6 +11,7 @@ import { REACT_TABLE_COMMON_OPTIONS } from "../../../../common/constants";
 import { COMMON_TABLE_PAGINATION } from "../../../common/constants";
 import CustomReactTable from "../../../../common/components/custom/CustomReactTable";
 import { fetchVesselList } from "../../actions";
+import VesselFilter from "./VesselFilter";
 
 
 const { OpenInNewIcon } = Icons;
@@ -74,6 +75,7 @@ const ListUsers = () => {
     }, []);
     return (
         <>
+            <VesselFilter />
             <CustomReactTable
                 data={data}
                 columns={columns}

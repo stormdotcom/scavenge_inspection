@@ -12,7 +12,8 @@ const initialState = {
             ...COMMON_TABLE_PAGINATION
         },
         rowSelection: {},
-        rowSelectionState: {}
+        rowSelectionState: {},
+        extraProps: {}
     },
     dashboardCards: {
         requestInProgress: false,
@@ -104,6 +105,9 @@ const slice = createSlice({
         },
         setTablePagination: (state, { payload }) => {
             state.table.pageInfo = payload;
+        },
+        setExtraProps: (state, { payload }) => {
+            state.table.extraProps = payload;
         }
     },
     extraReducers: (builder) => {
@@ -120,15 +124,15 @@ const slice = createSlice({
             })
 
             .addCase(ACTION_TYPES.FETCH_USERS_LIST_REQUEST, (state) => {
-                _.set(state, "usersList.requestInProgress", true);
+                _.set(state, "table.requestInProgress", true);
             })
             .addCase(ACTION_TYPES.FETCH_USERS_LIST_SUCCESS, (state, { payload = {} }) => {
-                _.set(state, "usersList.requestInProgress", false);
-                _.set(state, "usersList.table.data", payload.data);
-                _.set(state, "usersList.table.pageInfo", payload.pageInfo);
+                _.set(state, "table.requestInProgress", false);
+                _.set(state, "table.data", payload.data);
+                _.set(state, "table.pageInfo", payload.pageInfo);
             })
             .addCase(ACTION_TYPES.FETCH_USERS_LIST_FAILURE, (state) => {
-                _.set(state, "usersList.requestInProgress", false);
+                _.set(state, "table.requestInProgress", false);
             })
 
             .addCase(ACTION_TYPES.FETCH_USER_BY_ID_REQUEST, (state) => {
