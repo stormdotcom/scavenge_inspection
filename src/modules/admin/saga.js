@@ -5,16 +5,18 @@ import {
     fetchVesselListsApi, resetPasswordApi, updateUserDetailsApi, usersListApi, fetchOrgByIdApi
 } from "./api";
 import { handleAPIRequest } from "../../utils/http";
-import { getPagingInfo, getTablePagination } from "./selectors";
+import { getExtraProps, getTablePagination } from "./selectors";
 import { successNotify } from "../../utils/notificationUtils";
+import { actions as sliceActions } from "./slice";
 
 export function* fetchDashboardSaga() {
     yield call(handleAPIRequest, fetchDashboardApi);
 }
 
 export function* fetchUsersListSaga() {
-    const tablePagination = yield select(getPagingInfo);
-    const payload = { ...tablePagination };
+    const extraProps = yield select(getExtraProps);
+    const tablePagination = yield select(getTablePagination);
+    const payload = { ...tablePagination, ...extraProps };
     yield call(handleAPIRequest, usersListApi, payload);
 }
 
@@ -57,7 +59,8 @@ export function* resetPasswordSaga({ payload }) {
 }
 export function* fetchVesselListsSaga() {
     const tablePagination = yield select(getTablePagination);
-    const payload = { ...tablePagination };
+    const extraProps = yield select(getExtraProps);
+    const payload = { ...tablePagination, ...extraProps };
     yield call(handleAPIRequest, fetchVesselListsApi, payload);
 }
 
@@ -67,12 +70,29 @@ export function* fetchVesselByIdSaga({ payload }) {
 
 export function* fetchOrgListSaga() {
     const tablePagination = yield select(getTablePagination);
-    const payload = { ...tablePagination };
+    const extraProps = yield select(getExtraProps);
+    const payload = { ...tablePagination, ...extraProps };
     yield call(handleAPIRequest, orgListApi, payload);
 }
 export function* fetchOrgByIdSaga({ payload }) {
     yield call(handleAPIRequest, fetchOrgByIdApi, payload);
 }
+
+export function* searchUserListSaga({ payload }) {
+    yield put(sliceActions.setExtraProps(payload));
+    yield call(fetchUsersListSaga);
+}
+
+export function* searchVesselListSaga({ payload }) {
+    yield put(sliceActions.setExtraProps(payload));
+    yield call(fetchVesselListsSaga);
+}
+
+export function* searchOrgListSaga({ payload }) {
+    yield put(sliceActions.setExtraProps(payload));
+    yield call(fetchOrgListSaga);
+}
+
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.FETCH_DASHBOARD_STATS, fetchDashboardSaga),
@@ -84,6 +104,9 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.FETCH_VESSEL_LIST, fetchVesselListsSaga),
         takeLatest(ACTION_TYPES.FETCH_VESSEL_BY_ID, fetchVesselByIdSaga),
         takeLatest(ACTION_TYPES.FETCH_ORG_TABLE, fetchOrgListSaga),
-        takeLatest(ACTION_TYPES.FETCH_ORG_BY_ID, fetchOrgByIdSaga)
+        takeLatest(ACTION_TYPES.FETCH_ORG_BY_ID, fetchOrgByIdSaga),
+        takeLatest(ACTION_TYPES.FILTER_USER_LIST, searchUserListSaga),
+        takeLatest(ACTION_TYPES.FILTER_VESSEL_LIST, searchVesselListSaga),
+        takeLatest(ACTION_TYPES.FILTER_ORG_LIST, searchOrgListSaga)
     ]);
 }
