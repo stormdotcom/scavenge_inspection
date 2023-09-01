@@ -24,9 +24,9 @@ function OrgFilter(props) {
                         <Grid item sm={12} md={6} lg={3} xl={3} sx={{ my: 1 }}>
                             <FormController control="input" name="company_name" label="Organization Name" />
                         </Grid>
-                        {/* <Grid item sm={12} md={6} lg={3} xl={3} sx={{ my: 1 }}>
+                        <Grid item sm={12} md={6} lg={3} xl={3} sx={{ my: 1 }}>
                             <FormController control="input" name="orgManager" label="Organization Manager" />
-                        </Grid> */}
+                        </Grid>
                         <Grid item sm={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Search"}</Button>
                         </Grid>

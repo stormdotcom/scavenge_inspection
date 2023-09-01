@@ -1,6 +1,7 @@
 export const API_URL = {
     DASHBOARD: {
-        STATS: "auth/admin/dashboard"
+        STATS: "auth/admin/dashboard",
+        CARD: "auth/admin/dashboard-count"
     },
     USER: {
         LIST: "auth/admin/users-all",
@@ -15,7 +16,8 @@ export const API_URL = {
     },
     ORG: {
         LIST: "auth/admin/organizations",
-        BY_ID: "auth/admin/organizations/:id"
+        BY_ID: "auth/admin/organizations/:id",
+        UPDATE: "auth/admin/organizations"
     }
 };
 

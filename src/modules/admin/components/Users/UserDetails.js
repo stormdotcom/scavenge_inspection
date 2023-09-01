@@ -15,12 +15,13 @@ import PasswordUpdate from "./PasswordUpdate";
 
 const UserDetails = (props) => {
     const navigate = useNavigate();
-    const { handleSubmit, getUserById } = props;
+    const { handleSubmit, getUserById, setFieldValue } = props;
     const dispatch = useDispatch();
     const loading = useSelector(state => state[STATE_REDUCER_KEY].userDetails.requestInProgress);
     const { id = 0 } = useParams();
     useEffect(() => {
         getUserById(id);
+        setFieldValue("_id", id);
         return () => dispatch(sliceActions.clearAll());
     }, []);
 
@@ -41,7 +42,7 @@ const UserDetails = (props) => {
                                 <FormController control="input2" name="fullName" label="Full Name" isMandatory={true} />
                             </Grid>
                             <Grid item sm={12} md={12} lg={6} xl={4}>
-                                <FormController control="input2" name="email" label="Email" isMandatory={true} />
+                                <FormController control="input2" name="email" label="Email" disabled={true} />
                             </Grid>
                             <Grid item sm={12} md={12} lg={6} xl={4}>
                                 <FormController control="input2" name="phone" label="Phone" isMandatory={true} />
@@ -79,8 +80,9 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    submit: data => {
-        dispatch(updateUser(data));
+    submit: (data) => {
+        const { fullName, phone, _id } = data;
+        dispatch(updateUser({ fullName, phone, _id }));
     },
     getUserById: (id) => dispatch(fetchUserById(id))
 });

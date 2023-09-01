@@ -1,0 +1,15 @@
+.overlay-container {
+    position: fixed;
+    top: 90px;
+    /* Adjust this value as needed */
+    left: 0;
+    width: 100%;
+    height: calc(100% - 90px);
+    /* Adjust to account for the top gap */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}

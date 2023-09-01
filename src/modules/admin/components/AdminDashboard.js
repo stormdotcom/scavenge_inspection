@@ -18,9 +18,11 @@ import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
-    const { data: { organizations = 0, totalUsers = 0, fleetManagers = 0, vessels = 0, reports = 0, cylinderImageCount = 0 } = {}, requestInProgress = false } =
+    const { data: { organizations = 0, totalUsers = 0, fleetManagers = 0, vessels = 0 } = {}, requestInProgress = false } =
         useSelector(state => state[STATE_REDUCER_KEY].dashboardCards);
     const dispatch = useDispatch();
+    const { data: { reports = 0, cylinderImageCount = 0 } = {}, requestInProgress: cardTwoLoading = false } =
+        useSelector(state => state[STATE_REDUCER_KEY].dashboardSecondaryCard);
     useEffect(() => {
         dispatch(fetchDashboardCards());
     }, []);
@@ -61,7 +63,7 @@ const AdminDashboard = () => {
                 </LoadingCustomOverlay>
             </Grid>
             <Grid item xs={12} sm={12} md={5} lg={5} xl={5} p={1}>
-                <LoadingCustomOverlay active={requestInProgress} spinnerProps="selectTagProp">
+                <LoadingCustomOverlay active={cardTwoLoading} spinnerProps="selectTagProp">
                     <Paper sx={{
                         width: "100%", minHeight: "150px", bgcolor: "primary.light", display: "flex", justifyContent: "space-evenly", py: 4
                     }}>

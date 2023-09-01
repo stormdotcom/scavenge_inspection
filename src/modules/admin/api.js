@@ -12,6 +12,16 @@ export const fetchDashboardApi = () => {
         }
     };
 };
+//fetchDashboardSecondaryApi
+export const fetchDashboardSecondaryApi = () => {
+    return {
+        url: API_URL.DASHBOARD.CARD,
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.FETCH_DASHBOARD_CARD_REQUEST, ACTION_TYPES.FETCH_DASHBOARD_CARD_SUCCESS, ACTION_TYPES.FETCH_DASHBOARD_CARD_FAILURE]
+        }
+    };
+};
 
 export const usersListApi = (data) => {
     return {
@@ -118,6 +128,17 @@ export const fetchOrgByIdApi = (id) => {
         method: REQUEST_METHOD.GET,
         payload: {
             types: [ACTION_TYPES.FETCH_ORG_BY_ID_REQUEST, ACTION_TYPES.FETCH_ORG_BY_ID_SUCCESS, ACTION_TYPES.FETCH_ORG_BY_ID_FAILURE]
+        }
+    };
+};
+
+export const updateOrgApi = (data) => {
+    return {
+        url: API_URL.ORG.UPDATE,
+        method: REQUEST_METHOD.PUT,
+        payload: {
+            types: [ACTION_TYPES.UPDATE_ORG_REQUEST, ACTION_TYPES.UPDATE_ORG_SUCCESS, ACTION_TYPES.UPDATE_ORG_FAILURE],
+            data
         }
     };
 };
