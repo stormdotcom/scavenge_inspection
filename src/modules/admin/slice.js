@@ -24,6 +24,12 @@ const initialState = {
             vessels: 0, reports: 0, cylinderImageCount: 0
         }
     },
+    dashboardSecondaryCard: {
+        requestInProgress: false,
+        data: {
+            reports: 0, cylinderImageCount: 0
+        }
+    },
     usersList: {
         requestInProgress: false,
         table: {
@@ -123,6 +129,16 @@ const slice = createSlice({
                 _.set(state, "dashboardCards.requestInProgress", false);
             })
 
+            .addCase(ACTION_TYPES.FETCH_DASHBOARD_CARD_REQUEST, (state) => {
+                _.set(state, "dashboardSecondaryCard.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_DASHBOARD_CARD_SUCCESS, (state, action) => {
+                _.set(state, "dashboardSecondaryCard.requestInProgress", false);
+                _.set(state, "dashboardSecondaryCard.data", action.payload.data);
+            })
+            .addCase(ACTION_TYPES.FETCH_DASHBOARD_CARD_FAILURE, (state) => {
+                _.set(state, "dashboardSecondaryCard.requestInProgress", false);
+            })
             .addCase(ACTION_TYPES.FETCH_USERS_LIST_REQUEST, (state) => {
                 _.set(state, "table.requestInProgress", true);
             })

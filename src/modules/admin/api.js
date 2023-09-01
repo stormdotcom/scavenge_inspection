@@ -12,6 +12,16 @@ export const fetchDashboardApi = () => {
         }
     };
 };
+//fetchDashboardSecondaryApi
+export const fetchDashboardSecondaryApi = () => {
+    return {
+        url: API_URL.DASHBOARD.CARD,
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.FETCH_DASHBOARD_CARD_REQUEST, ACTION_TYPES.FETCH_DASHBOARD_CARD_SUCCESS, ACTION_TYPES.FETCH_DASHBOARD_CARD_FAILURE]
+        }
+    };
+};
 
 export const usersListApi = (data) => {
     return {

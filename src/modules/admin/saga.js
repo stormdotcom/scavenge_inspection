@@ -2,7 +2,8 @@ import { all, call, fork, put, select, take, takeLatest } from "redux-saga/effec
 import { ACTION_TYPES, fetchUserList } from "./actions";
 import {
     orgListApi, allowAccessApi, disAllowAccessApi, fetchDashboardApi, fetchVesselByIdApi, fetchUserByIdApi,
-    fetchVesselListsApi, resetPasswordApi, updateUserDetailsApi, usersListApi, fetchOrgByIdApi, updateOrgApi
+    fetchVesselListsApi, resetPasswordApi, updateUserDetailsApi, usersListApi, fetchOrgByIdApi, updateOrgApi,
+    fetchDashboardSecondaryApi
 } from "./api";
 import { handleAPIRequest } from "../../utils/http";
 import { getExtraProps, getTablePagination } from "./selectors";
@@ -11,6 +12,7 @@ import { actions as sliceActions } from "./slice";
 
 export function* fetchDashboardSaga() {
     yield call(handleAPIRequest, fetchDashboardApi);
+    yield call(handleAPIRequest, fetchDashboardSecondaryApi);
 }
 
 export function* fetchUsersListSaga() {
