@@ -15,6 +15,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import RoomPreferencesIcon from "@mui/icons-material/RoomPreferences";
 import WavesIcon from "@mui/icons-material/Waves";
 import { useNavigate } from "react-router-dom";
+import SquareStatsCad from "./SquareStatsCad";
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
@@ -29,6 +30,7 @@ const AdminDashboard = () => {
     return <Box sx={{ width: "100%", minHeight: "30vh", bgcolor: "primary.main", px: 2, py: 4 }}>
         <Grid container rowSpacing={1} columnSpacing={4}>
             <Grid item xs={12} sm={12} md={7} lg={7} xl={7} p={1}>
+                <Typography sx={{ fontWeight: 700, fontSize: "16px", color: "secondary.dark", mb: 1 }}>{"User Stats"}</Typography>
                 <LoadingCustomOverlay active={requestInProgress} spinnerProps="selectTagProp">
                     <Paper sx={{ width: "100%", minHeight: "150px", bgcolor: "primary.light", display: "flex", justifyContent: "space-evenly", py: 4 }}>
                         <Box>
@@ -63,6 +65,7 @@ const AdminDashboard = () => {
                 </LoadingCustomOverlay>
             </Grid>
             <Grid item xs={12} sm={12} md={5} lg={5} xl={5} p={1}>
+                <Typography sx={{ fontWeight: 700, fontSize: "16px", color: "secondary.dark", mb: 1 }}>{"Report Stats"}</Typography>
                 <LoadingCustomOverlay active={cardTwoLoading} spinnerProps="selectTagProp">
                     <Paper sx={{
                         width: "100%", minHeight: "150px", bgcolor: "primary.light", display: "flex", justifyContent: "space-evenly", py: 4
@@ -86,14 +89,17 @@ const AdminDashboard = () => {
             </Grid>
         </Grid>
         <Grid container rowSpacing={2} columnSpacing={3}>
-            <Grid item sm={12} md={6} lg={6} xl={6}>
-                <Paper sx={{ height: "140x", width: "100%", bgcolor: "primary.light", mt: 1, p: 3 }}>
-                    <Box sx={{ height: "200px" }}>
-
-                    </Box>
-                </Paper>
+            <Grid item sm={12} md={6} lg={7} xl={7}>
+                <Typography sx={{ fontWeight: 700, fontSize: "16px", color: "secondary.dark" }}>{"Subscription Stats"}</Typography>
+                <Box sx={{ height: "140x", width: "100%", mt: 1, p: 3, pl: 0, display: "flex" }}>
+                    <SquareStatsCad value={122} type="Free Trial" title="Organizations" />
+                    <SquareStatsCad value={5} type="BASIC" title="Organizations" />
+                    <SquareStatsCad value={10} type="PRO" title="Organizations" />
+                    <SquareStatsCad value={56} type="PREMIUM" title="Organizations" />
+                </Box>
             </Grid>
-            <Grid item sm={12} md={6} lg={6} xl={6}>
+            <Grid item sm={12} md={6} lg={5} xl={5}>
+                <Typography sx={{ fontWeight: 700, fontSize: "16px", color: "secondary.dark" }}>{"Other Stats"}</Typography>
                 <Paper sx={{ height: "140x", width: "100%", bgcolor: "primary.light", mt: 1, p: 3 }}>
                     <Grid container>
                         <Grid item sm={12} md={6} lg={6} xl={6}>
