@@ -15,7 +15,8 @@ export const API_URL = {
     },
     ORG: {
         LIST: "auth/admin/organizations",
-        BY_ID: "auth/admin/organizations/:id"
+        BY_ID: "auth/admin/organizations/:id",
+        UPDATE: "auth/admin/organizations"
     }
 };
 

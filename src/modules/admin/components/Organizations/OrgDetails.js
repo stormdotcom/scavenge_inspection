@@ -2,23 +2,24 @@ import React, { useEffect } from "react";
 import { STATE_REDUCER_KEY } from "../../constants";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { actions as sliceActions } from "../../slice";
-import { Box, Grid, IconButton, Paper, Typography } from "@mui/material";
+import { Box, Button, Grid, IconButton, Paper, Typography } from "@mui/material";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
 import { Form, withFormik } from "formik";
 import { FormController } from "../../../../common/components";
 import { createStructuredSelector } from "reselect";
 import { selectOrgDetails } from "../../selectors";
-import { fetchOrgById } from "../../actions";
+import { fetchOrgById, updateOrg } from "../../actions";
 import { useNavigate, useParams } from "react-router-dom";
 
 const OrgDetails = (props) => {
     const navigate = useNavigate();
-    const { getOrgById } = props;
+    const { getOrgById, handleSubmit, setFieldValue } = props;
     const dispatch = useDispatch();
     const loading = useSelector(state => state[STATE_REDUCER_KEY].orgDetails.requestInProgress);
     const { id = 0 } = useParams();
     useEffect(() => {
+        setFieldValue("_id", id);
         getOrgById(id);
         return () => dispatch(sliceActions.clearAll());
     }, []);
@@ -53,6 +54,15 @@ const OrgDetails = (props) => {
                     </LoadingCustomOverlay>
                     <Grid sx={{ display: "flex", pb: 4, justifyContent: "center", alignItems: "center" }}>
                     </Grid>
+                    <Grid sx={{ display: "flex", pb: 4, justifyContent: "center", alignItems: "center" }}>
+                        <Button sx={{
+                            bgcolor: "secondary.main",
+                            "&.hover": {
+                                bgcolor: "secondary.dark"
+                            },
+                            fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" }
+                        }} variant="contained" type="submit" onClick={handleSubmit}>{"Update Details"}</Button>
+                    </Grid>
                 </Form>
             </Paper>
         </Box>
@@ -64,7 +74,11 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getOrgById: (id) => dispatch(fetchOrgById(id))
+    getOrgById: (id) => dispatch(fetchOrgById(id)),
+    submit: (data) => {
+        const { company_name, _id } = data;
+        dispatch(updateOrg({ company_name, _id }));
+    }
 });
 
 const OrgDetailsForm = withFormik({

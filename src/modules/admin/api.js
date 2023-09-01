@@ -121,3 +121,14 @@ export const fetchOrgByIdApi = (id) => {
         }
     };
 };
+
+export const updateOrgApi = (data) => {
+    return {
+        url: API_URL.ORG.UPDATE,
+        method: REQUEST_METHOD.PUT,
+        payload: {
+            types: [ACTION_TYPES.UPDATE_ORG_REQUEST, ACTION_TYPES.UPDATE_ORG_SUCCESS, ACTION_TYPES.UPDATE_ORG_FAILURE],
+            data
+        }
+    };
+};

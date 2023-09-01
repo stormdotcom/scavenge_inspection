@@ -2,7 +2,7 @@ import { all, call, fork, put, select, take, takeLatest } from "redux-saga/effec
 import { ACTION_TYPES, fetchUserList } from "./actions";
 import {
     orgListApi, allowAccessApi, disAllowAccessApi, fetchDashboardApi, fetchVesselByIdApi, fetchUserByIdApi,
-    fetchVesselListsApi, resetPasswordApi, updateUserDetailsApi, usersListApi, fetchOrgByIdApi
+    fetchVesselListsApi, resetPasswordApi, updateUserDetailsApi, usersListApi, fetchOrgByIdApi, updateOrgApi
 } from "./api";
 import { handleAPIRequest } from "../../utils/http";
 import { getExtraProps, getTablePagination } from "./selectors";
@@ -93,6 +93,14 @@ export function* searchOrgListSaga({ payload }) {
     yield call(fetchOrgListSaga);
 }
 
+export function* updateOrgSaga({ payload }) {
+    yield fork(handleAPIRequest, updateOrgApi, payload);
+    const response = yield take([ACTION_TYPES.UPDATE_ORG_SUCCESS, ACTION_TYPES.UPDATE_ORG_FAILURE]);
+    if (response.type === ACTION_TYPES.UPDATE_ORG_SUCCESS) {
+        yield put(successNotify({ title: "Success", message: "Organization Details Updated" }));
+    }
+}
+
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.FETCH_DASHBOARD_STATS, fetchDashboardSaga),
@@ -107,6 +115,8 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.FETCH_ORG_BY_ID, fetchOrgByIdSaga),
         takeLatest(ACTION_TYPES.FILTER_USER_LIST, searchUserListSaga),
         takeLatest(ACTION_TYPES.FILTER_VESSEL_LIST, searchVesselListSaga),
-        takeLatest(ACTION_TYPES.FILTER_ORG_LIST, searchOrgListSaga)
+        takeLatest(ACTION_TYPES.FILTER_ORG_LIST, searchOrgListSaga),
+        takeLatest(ACTION_TYPES.UPDATE_USER_DETAILS, updateUserDetailsSaga),
+        takeLatest(ACTION_TYPES.UPDATE_ORG, updateOrgSaga)
     ]);
 }

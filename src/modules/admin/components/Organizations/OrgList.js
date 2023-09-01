@@ -26,7 +26,7 @@ const ListUsers = () => {
 
     const actions = (row) => {
         let customActions = [];
-        customActions.push({ title: "View", icon: <OpenInNewIcon fontSize="small" sx={{ color: "#fff" }} />, handleClick: () => navigate(`${row.original._id}/edit`) });
+        customActions.push({ title: "Edit", icon: <OpenInNewIcon fontSize="small" sx={{ color: "#fff" }} />, handleClick: () => navigate(`${row.original._id}/edit`) });
 
         return customActions;
     };
