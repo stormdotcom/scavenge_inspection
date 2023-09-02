@@ -24,25 +24,27 @@ function CustomSelect(props) {
                   styles={{
                     control: (baseStyles, state) => ({
                       ...baseStyles,
-                      border: state.isFocused ? "1px solid #e8af13" : "1px solid #f0c246",
+                      border: state.isFocused ? "1px solid #454545" : "1px solid #4F4F4F",
                       boxShadow: "none",
                       color: "#fff",
-                      fontSize: "14px",
-                      minHeight: "20px",
+                      fontSize: "13px",
+                      minHeight: "16px",
                       fontWeight: 400,
                       borderRadius: "5px",
-                      backgroundColor: "#181b1e",
+                      backgroundColor: "#101010",
+                      width: "98%",
                       "&:hover": {
-                        borderColor: "#d6a112"
+                        borderColor: "#4F4F4F"
                       }
                     }),
                     menuList: baseStyles => ({
                       ...baseStyles,
-                      backgroundColor: "#181b1e"
+                      backgroundColor: "#101010",
+                      color: "#fff"
                     }),
                     option: (baseStyles, state) => ({
                       ...baseStyles,
-                      backgroundColor: state.isFocused ? "#303134" : "inherit"
+                      backgroundColor: state.isFocused ? "#4F4F4F" : "inherit"
                     }),
                     singleValue: baseStyles => ({
                       ...baseStyles,

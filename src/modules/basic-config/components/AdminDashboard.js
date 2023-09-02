@@ -11,9 +11,7 @@ import { STATE_REDUCER_KEY } from "../constants";
 import { fetchDashboardCards } from "../actions";
 import { formatNumber } from "./utils";
 import LoadingCustomOverlay from "../../common/components/LoadingOverlay";
-import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-import RoomPreferencesIcon from "@mui/icons-material/RoomPreferences";
-import WavesIcon from "@mui/icons-material/Waves";
+
 import { useNavigate } from "react-router-dom";
 import SquareStatsCad from "./SquareStatsCad";
 
@@ -110,26 +108,7 @@ const AdminDashboard = () => {
             </Grid>
             <Grid item sm={12} md={6} lg={5} xl={5} p={1}>
                 <Typography sx={{ fontWeight: 700, fontSize: "16px", color: "secondary.dark" }}>{"Other Stats"}</Typography>
-                <Paper sx={{ height: "140x", width: "100%", bgcolor: "primary.light", mt: 1, p: 3 }}>
-                    <Grid container>
-                        <Grid item sm={12} md={6} lg={6} xl={6}>
-                            <Box sx={{ height: "140x", width: "100%", display: "flex", bgcolor: "primary.light", flexDirection: "column", mt: 1, p: 3, justifyContent: "center" }}>
-                                <Box onClick={() => navigate("../users")} sx={{ display: "flex", justifyContent: "flex-start", my: 1, "&:hover": { bgcolor: "primary.dark", cursor: "pointer" }, width: "100%" }} >
-                                    <Box> <ManageAccountsIcon /></Box>
-                                    <Typography sx={{ fontWeight: 600, pl: 1 }}> Manage Users</Typography>
-                                </Box>
-                                <Box onClick={() => navigate("../organizations")} sx={{ display: "flex", justifyContent: "flex-start", my: 1, "&:hover": { bgcolor: "primary.dark", cursor: "pointer" }, width: "100%" }}>
-                                    <Box>             <RoomPreferencesIcon /></Box>
-                                    <Typography sx={{ fontWeight: 600, pl: 1 }}> Organizations</Typography>
-                                </Box>
-                                <Box onClick={() => navigate("../vessels")} sx={{ display: "flex", justifyContent: "flex-start", my: 1, "&:hover": { bgcolor: "primary.dark", cursor: "pointer" }, width: "100%" }}>
-                                    <Box> <WavesIcon /></Box>
-                                    <Typography sx={{ fontWeight: 600, pl: 1 }}> Vessels</Typography>
-                                </Box>
-                            </Box>
-                        </Grid>
-                    </Grid>
-                </Paper>
+                sdfdsf
             </Grid>
         </Grid>
     </Box >;

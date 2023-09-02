@@ -9,7 +9,7 @@
                 "width": "100%",
                 "fontWeight": 500,
                 "color": "#5E5E5E",
-                "backgroundColor": "#fff",
+                "backgroundColor": "transparent",
                 " &:Mui-focused": {
                     "backgroundColor": "#303134",
                     "boxShadow": "none"

@@ -2,8 +2,8 @@
     "MuiPaper": {
         "styleOverrides": {
             "root": {
-                "backgroundColor": "#212529",
-                "color": "#ffff"
+                "background": "rgba(14, 14, 14, 0.50)",
+                "backdropFilter": "blur(25px)"
             }
         }
     }

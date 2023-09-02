@@ -1,6 +1,6 @@
 import { withFormik } from "formik";
 import { useEffect } from "react";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { Form, useNavigate } from "react-router-dom";
 
 import { Components, FormController } from "../../../common/components";
@@ -11,7 +11,9 @@ import { signIn } from "../actions";
 import { Box, CircularProgress, Paper } from "@mui/material";
 import { createStructuredSelector } from "reselect";
 import { getSignIn } from "../selectors";
-import Header from "../../common/header/Header";
+import { STATE_REDUCER_KEY as COMMON } from "../../common";
+import logoImg from "../../../assets/images/logoDark.png";
+import backgroundImage from "../../../assets/images/vesselBg.jpg";
 
 const { Divider, Grid, Typography } = Components;
 
@@ -21,19 +23,38 @@ function SignIn(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { handleSubmit, signIn: { requestInProgress = true } = {} } = props;
+    const homePath = useSelector(state => state[COMMON].homePath);
     useEffect(() => {
         dispatch(commonSliceActions.setNavigator(navigate));
         return () => dispatch(sliceActions.clear());
     }, []);
 
     return (
-        <>    <Header />
-            <Grid height="92vh" container sx={{ overflowY: "hidden", width: 1, bgcolor: "primary.main", p: 0, display: "flex", alignItems: "center" }}>
-                <Box sx={{ mt: 1, width: "100%", display: "flex", alignItems: "center", mb: { lg: "130px", xl: "140px", justifyContent: "center" } }}>
-                    <Paper sx={{ bgcolor: "primary.light", boxShadow: 0, width: { xs: "90%", sm: "90%", md: "520px", lg: "680px", xl: "680px" } }} >
+        <>
+            <Box sx={{ width: "240px", position: "relative" }}>
+                <Box sx={{ display: "flex", position: "absolute", top: "5px", left: "10px" }}>
+                    <img
+                        onClick={() => navigate(`../${homePath}`)}
+                        style={{ cursor: "pointer" }}
+                        alt="logo_scavenge"
+                        src={logoImg}
+                        width={60}
+                        height={60}
+                    />
+                </Box>
+            </Box>
+            <Grid height="100vh" container sx={{
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                overflowY: "hidden", width: 1, bgcolor: "primary.main", p: 0, display: "flex", alignItems: "center"
+            }}>
+                <Box sx={{ mt: 3, width: "100%", display: "flex", alignItems: "center", mb: { lg: "130px", xl: "140px", justifyContent: "center" } }}>
+                    <Paper sx={{ boxShadow: 0, width: { xs: "90%", sm: "90%", md: "420px", lg: "420px", xl: "520px" }, borderRadius: "20px", border: "1px solid #AD7E14" }} >
                         <Grid sx={{ display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
                             <Box sx={{ px: { xs: 3, xl: 6 }, py: 4 }}>
-                                <Typography sx={{ fontSize: { xs: "20px", md: "26px", lg: "30px", xl: "35px", textAlign: "center" }, color: "secondary.main", pb: 2, fontWeight: 600 }} >ScavAI Vision</Typography>
+                                <Typography sx={{ fontSize: { xs: "20px", md: "26px", lg: "30px", xl: "35px", textAlign: "center" }, color: "secondary.main", pb: 2, fontWeight: 600 }} >Scav AI Vision</Typography>
                                 <Divider sx={{ color: "primary.light" }} />
                                 <Box >
                                     <Form>
