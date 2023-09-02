@@ -3,7 +3,7 @@
         "styleOverrides": {
             "root": {
                 "width": "100%",
-                "border": "2px solid #d6a112",
+                "border": "2px solid #4F4F4F",
                 "borderRadius": " 5px"
             }
         }

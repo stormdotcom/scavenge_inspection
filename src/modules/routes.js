@@ -1,3 +1,4 @@
+import React from "react";
 import App from "../App";
 import { Icons, RootBoundary } from "../common/components";
 import AdminHome from "./admin/Home";
@@ -6,7 +7,7 @@ import { PrivateRoute } from "./common/protected-route/protectedRoute";
 import { routes as adminRoutes } from "../modules/admin/routes";
 import { routes as userManagement } from "../modules/user-management/routes";
 import { routes as orgRoutes } from "../modules/organization/routes";
-import React from "react";
+
 import OrgHome from "./organization/OrgHome";
 
 
@@ -15,6 +16,8 @@ const ViewReport = React.lazy(() => import("./vessel/components/Report/ReportLis
 const VesselInfoDetails = React.lazy(() => import("./profile/components/VesselDetails"));
 // const Prediction = React.lazy(() => import("./home/components/VesselInspectionDetails"));
 const VesselHome = React.lazy(() => import("./vessel/components/HomeWrapper"));
+
+
 const { Home } = Icons;
 const routes =
     [

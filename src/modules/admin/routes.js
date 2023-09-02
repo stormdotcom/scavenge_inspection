@@ -8,6 +8,7 @@ const ListVessel = lazy(() => import("./components/Vessels/ListVessels"));
 const VesselDetails = lazy(() => import("./components/Vessels/VesselDetails"));
 const OrgList = lazy(() => import("./components/Organizations/OrgList"));
 const OrgDetails = lazy(() => import("./components/Organizations/OrgDetails"));
+const ConfigPage = lazy(() => import("../basic-config/components/ConfigPage"));
 const routes = [
     {
         children: [
@@ -45,6 +46,11 @@ const routes = [
             {
                 path: "organizations/:id/edit",
                 element: <OrgDetails />,
+                errorElement: <RootBoundary />
+            },
+            {
+                path: "config",
+                element: <ConfigPage />,
                 errorElement: <RootBoundary />
             }
 
