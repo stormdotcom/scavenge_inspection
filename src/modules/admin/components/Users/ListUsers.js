@@ -111,7 +111,7 @@ const ListUsers = () => {
                 enableRowVirtualization={false}
                 enableCustomTableFilter={true}
                 // filterComponent={({ setOpen }) => <DashboardFilter onClose={setOpen} />}
-                title={"User Management"} />
+                title={"Users"} />
         </>
     );
 };

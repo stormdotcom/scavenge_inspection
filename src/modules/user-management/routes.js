@@ -1,12 +1,14 @@
-import Signin from "./components/SignIn";
-import SignUp from "./components/SignUp";
+import { lazy } from "react";
+
+const SignIn = lazy(() => import("./components/SignIn"));
+const SignUp = lazy(() => import("./components/SignUp"));
 
 const routes = [
     {
         children: [
             {
                 path: "signin",
-                element: <Signin />
+                element: <SignIn />
             },
             {
                 path: "signup",
