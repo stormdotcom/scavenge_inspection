@@ -51,7 +51,7 @@ function SignIn(props) {
                 overflowY: "hidden", width: 1, bgcolor: "primary.main", p: 0, display: "flex", alignItems: "center"
             }}>
                 <Box sx={{ mt: 3, width: "100%", display: "flex", alignItems: "center", mb: { lg: "130px", xl: "140px", justifyContent: "center" } }}>
-                    <Paper sx={{ boxShadow: 0, width: { xs: "90%", sm: "90%", md: "420px", lg: "420px", xl: "520px" }, borderRadius: "20px", border: "1px solid #AD7E14" }} >
+                    <Paper sx={{ boxShadow: 0, width: { xs: "300px", sm: "360px", md: "420px", lg: "420px", xl: "520px" }, borderRadius: "20px", border: "1px solid #AD7E14" }} >
                         <Grid sx={{ display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
                             <Box sx={{ px: { xs: 3, xl: 6 }, py: 4 }}>
                                 <Typography sx={{ fontSize: { xs: "20px", md: "26px", lg: "30px", xl: "35px", textAlign: "center" }, color: "secondary.main", pb: 2, fontWeight: 600 }} >Scav AI Vision</Typography>
