@@ -25,7 +25,7 @@ const ReportOverView = () => {
     return !_.isEmpty(data) ? <LoadingCustomOverlay active={requestInProgress}>
         {_.map(data, (value = {}, key) =>
         (<Grid container key={key} spacing={2} sx={{ bgcolor: "primary.200", display: "flex", justifyContent: "space-evenly", p: 1, borderRadius: "5px" }}>
-            <PredictionImage image={""} cylinder={key} />
+            <PredictionImage image={value?.image} cylinder={key} />
             {/* Table  data[key]*/}
             <Grid sm={6} md={9} lg={9} xl={9}>
                 <CustomReactTable

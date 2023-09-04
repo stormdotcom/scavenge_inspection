@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { createSlice } from "@reduxjs/toolkit";
 import _ from "lodash";
-import { STATE_REDUCER_KEY, testData } from "./constants";
+import { STATE_REDUCER_KEY } from "./constants";
 import { ACTION_TYPES } from "./actions";
 import { fromDateObjectToEpoch } from "../../utils/dateUtils";
 import { COMMON_TABLE_PAGINATION } from "../common/constants";
@@ -128,10 +128,9 @@ const slice = createSlice({
                 _.set(state, "inspectionDetails.requestInProgress", false);
                 _.set(state, "predictedData.requestInProgress", false);
                 _.set(state, "inspectionDetails.data", payload.data.updatedResult); // payload.data.updatedResult
-                _.set(state, "predictedData.data", testData);
                 let { cylinder, results } = payload.data.predictionDetails;
-                // _.set(state, "predictedData.data", payload.data.predictionDetails);
-                _.set(state, `predictedData.data${cylinder}`, results);
+                _.set(state, "predictedData.data", {});
+                _.set(state, `predictedData.data.${cylinder}`, results);
             })
             .addCase(ACTION_TYPES.SHOW_PREDICTIONS_FAILURE, (state) => {
                 _.set(state, "predictedData.requestInProgress", false);
