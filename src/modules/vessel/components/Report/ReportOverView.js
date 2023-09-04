@@ -27,7 +27,7 @@ const ReportOverView = () => {
         (<Grid container key={key} spacing={2} sx={{ bgcolor: "primary.200", display: "flex", justifyContent: "space-evenly", p: 1, borderRadius: "5px" }}>
             <PredictionImage image={value?.image} cylinder={key} />
             {/* Table  data[key]*/}
-            <Grid sm={6} md={9} lg={9} xl={9}>
+            <Grid item sm={6} md={9} lg={9} xl={9}>
                 <CustomReactTable
                     data={value.predictionInfo || []}
                     columns={columns}
