@@ -47,6 +47,9 @@ const slice = createSlice({
             .addCase(ACTION_TYPES.FETCH_ORG_ADMINS_SUCCESS, (state, { payload = {} }) => {
                 _.set(state, "orgAdmin", payload.data);
             })
+            .addCase(ACTION_TYPES.FETCH_ADMIN_BY_ORG_SUCCESS, (state, { payload = {} }) => {
+                _.set(state, "orgAdmin", payload.data);
+            })
             .addCase(ACTION_TYPES.SIGN_IN_REQUEST, (state) => {
                 _.set(state, "signIn.requestInProgress", true);
             })

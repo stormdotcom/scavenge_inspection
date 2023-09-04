@@ -111,10 +111,10 @@ const AdminDashboard = () => {
                 <Typography sx={{ fontWeight: 700, fontSize: "16px", color: "secondary.dark" }}>{"Other Stats"}</Typography>
                 <Box sx={{ height: "140x", width: "100%", mt: 1, p: 3, pl: 0, display: "flex" }}>
                     <Grid container rowSpacing={1}>
-                        <Grid item xs={12} sm={4}>
+                        <Grid item xs={12} sm={6}>
                             <SquareStatsCad value={111} type="Total Revenue" cardType="dark" />
                         </Grid>
-                        <Grid item xs={12} sm={4}>
+                        <Grid item xs={12} sm={6}>
                             <SquareStatsCad value={111} type="Total Transaction" cardType="dark" />
                         </Grid>
                     </Grid>

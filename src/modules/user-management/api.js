@@ -56,4 +56,13 @@ export const fetchOrgListApi = () => {
     };
 };
 
-//fetchOrgListApi
+export const fetchOrgAdminDropdownApi = (data) => {
+    return {
+        url: API_URL.USER_MANAGEMENT.BY_ORG,
+        method: REQUEST_METHOD.POST,
+        payload: {
+            types: [ACTION_TYPES.FETCH_ADMIN_BY_ORG_REQUEST, ACTION_TYPES.FETCH_ADMIN_BY_ORG_SUCCESS, ACTION_TYPES.FETCH_ADMIN_BY_ORG_FAILURE],
+            data
+        }
+    };
+};
