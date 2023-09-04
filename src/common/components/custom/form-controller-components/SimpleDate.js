@@ -3,6 +3,16 @@ import { Field } from "formik";
 import { Grid, Input, InputLabel } from "@mui/material";
 import { FORM_CONTROL_STYLE_ALT } from "./style";
 import { fromDateObjectToEpoch, fromEpochToMuiDate, fromMuiDateEpoch } from "../../../../utils/dateUtils";
+import { styled } from "@mui/system";
+
+const StyledInput = styled(Input)`
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); // This will invert the icon color (e.g., white -> black)
+    /* You can also set the color using 'color' property like so:
+    color:;
+    */
+  }
+`;
 
 const SimpleDate = ({ label, name, isMandatory, ...rest }) => {
     const [err, setErr] = useState(null);
@@ -33,8 +43,8 @@ const SimpleDate = ({ label, name, isMandatory, ...rest }) => {
                         const muiCompatibleDate = fromEpochToMuiDate(value);
                         return (
                             <>
-                                <Input
-                                    sx={{ color: "white.main", bgcolor: "primary.dark", py: 2 }}
+                                <StyledInput
+                                    sx={{ color: "white.main", bgcolor: "#101010", py: 2, "$.hover": { bgcolor: "red" } }}
                                     type="date"
                                     id={name}
                                     value={muiCompatibleDate}
