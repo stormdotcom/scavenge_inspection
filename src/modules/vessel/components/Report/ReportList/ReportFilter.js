@@ -23,13 +23,13 @@ function ReportFilter(props) {
             <Paper sx={{ bgcolor: "primary.dark", boxShadow: 0, width: "100%", borderRadius: "25px", py: 3 }} >
                 <Form>
                     <Grid container sx={{ display: "flex", justifyContent: "space-around" }} >
-                        <Grid item sm={12} md={6} lg={4} xl={3} sx={{ my: 1 }}>
+                        <Grid item sm={12} md={5} lg={6} xl={3} sx={{ my: 1 }}>
                             <FormController control="date3" name="startDate" label="Start Date" />
                         </Grid>
-                        <Grid item sm={12} md={6} lg={4} xl={3} sx={{ my: 1 }}>
+                        <Grid item sm={12} md={5} lg={6} xl={3} sx={{ my: 1 }}>
                             <FormController control="date3" name="endDate" label="End Date" />
                         </Grid>
-                        <Grid item sm={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                        <Grid item sm={12} md={12} lg={12} xl={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Search"}</Button>
                         </Grid>
                     </Grid>

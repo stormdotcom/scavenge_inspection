@@ -67,4 +67,3 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.FETCH_ADMIN_BY_ORG, fetchOrgAdminDropdown)
     ]);
 }
-//FETCH_ADMIN_BY_ORG

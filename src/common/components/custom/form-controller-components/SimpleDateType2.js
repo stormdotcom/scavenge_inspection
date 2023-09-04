@@ -4,6 +4,16 @@ import { Grid, Input, InputLabel } from "@mui/material";
 import { FORM_CONTROL_DATE_STYLE } from "./style";
 import { fromDateObjectToEpoch, fromEpochToMuiDate, fromMuiDateEpoch } from "../../../../utils/dateUtils";
 import { useState } from "react";
+import { styled } from "@mui/system";
+
+const StyledInput = styled(Input)`
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); // This will invert the icon color (e.g., white -> black)
+    /* You can also set the color using 'color' property like so:
+    color: your-desired-color;
+    */
+  }
+`;
 
 const SimpleDate = ({ label, name, isMandatory, sx = { justifyContent: "center", alignCenter: "center" }, ...rest }) => {
     const [err, setErr] = useState(null);
@@ -35,8 +45,8 @@ const SimpleDate = ({ label, name, isMandatory, sx = { justifyContent: "center",
 
                         return (
                             <>
-                                <Input
-                                    sx={{ color: "white.main", bgcolor: "primary.dark", py: 2 }}
+                                <StyledInput
+                                    sx={{ color: "white.main", bgcolor: "#101010", py: 2 }}
                                     type="date"
                                     id={name}
                                     value={muiCompatibleDate}
