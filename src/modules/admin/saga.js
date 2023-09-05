@@ -3,7 +3,7 @@ import { ACTION_TYPES, fetchUserList } from "./actions";
 import {
     orgListApi, allowAccessApi, disAllowAccessApi, fetchDashboardApi, fetchVesselByIdApi, fetchUserByIdApi,
     fetchVesselListsApi, resetPasswordApi, updateUserDetailsApi, usersListApi, fetchOrgByIdApi, updateOrgApi,
-    fetchDashboardSecondaryApi
+    fetchDashboardSecondaryApi, fetchDashboardSubStatsApi
 } from "./api";
 import { handleAPIRequest } from "../../utils/http";
 import { getExtraProps, getTablePagination } from "./selectors";
@@ -13,6 +13,7 @@ import { actions as sliceActions } from "./slice";
 export function* fetchDashboardSaga() {
     yield call(handleAPIRequest, fetchDashboardApi);
     yield call(handleAPIRequest, fetchDashboardSecondaryApi);
+    yield call(handleAPIRequest, fetchDashboardSubStatsApi);
 }
 
 export function* fetchUsersListSaga() {

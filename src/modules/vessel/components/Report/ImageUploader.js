@@ -12,7 +12,7 @@ import { STATE_REDUCER_KEY } from "../../constants";
 const ImageUploader = (props) => {
     const { cylinder_numbers = 0, openImageUploader = false } = props;
     const cylinders = Array.from({ length: cylinder_numbers }, (_, idx) => ({
-        id: `CYLINDER_${idx + 1}`,
+        id: `cylinder${idx + 1}`,
         name: `Cylinder ${idx + 1}`
     }));
     const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const ImageUploader = (props) => {
             aria-labelledby="ImageUploader"
             aria-describedby="ImageUploader_desc"
         >
-            <DialogTitle id="alert-dialog-title">
+            <DialogTitle sx={{ color: "white.main", fontColor: 700 }} id="alert-dialog-title">
                 Cylinder Image Uploader
             </DialogTitle>
             <DialogContent>

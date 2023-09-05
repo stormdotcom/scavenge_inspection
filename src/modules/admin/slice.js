@@ -30,6 +30,12 @@ const initialState = {
             reports: 0, cylinderImageCount: 0
         }
     },
+    dashboardSubStatsCard: {
+        requestInProgress: false,
+        data: {
+            freeTrail: 0, basic: 0, pro: 0, premium: 0
+        }
+    },
     usersList: {
         requestInProgress: false,
         table: {
@@ -216,9 +222,20 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.FETCH_ORG_BY_ID_FAILURE, (state) => {
                 _.set(state, "orgDetails.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.FETCH_DASHBOARD_SUB_STATS_REQUEST, (state) => {
+                _.set(state, "dashboardSubStatsCard.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_DASHBOARD_SUB_STATS_SUCCESS, (state, { payload = {} }) => {
+                _.set(state, "dashboardSubStatsCard.requestInProgress", false);
+                _.set(state, "dashboardSubStatsCard.data", payload.data);
+            })
+            .addCase(ACTION_TYPES.FETCH_DASHBOARD_SUB_STATS_FAILURE, (state) => {
+                _.set(state, "dashboardSubStatsCard.requestInProgress", false);
             });
 
     }
 });
-
+//FETCH_DASHBOARD_SUB_STATS
 export const { actions, reducer } = slice;

@@ -142,3 +142,14 @@ export const updateOrgApi = (data) => {
         }
     };
 };
+
+export const fetchDashboardSubStatsApi = (data) => {
+    return {
+        url: API_URL.DASHBOARD.SUBSCRIPTION,
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.FETCH_DASHBOARD_SUB_STATS_REQUEST, ACTION_TYPES.FETCH_DASHBOARD_SUB_STATS_SUCCESS, ACTION_TYPES.FETCH_DASHBOARD_SUB_STATS_FAILURE],
+            data
+        }
+    };
+};

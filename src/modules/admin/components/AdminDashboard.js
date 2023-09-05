@@ -23,6 +23,9 @@ const AdminDashboard = () => {
     const dispatch = useDispatch();
     const { data: { reports = 0, cylinderImageCount = 0 } = {}, requestInProgress: cardTwoLoading = false } =
         useSelector(state => state[STATE_REDUCER_KEY].dashboardSecondaryCard);
+
+    const { data = {}, requestInProgress: subStatsCardLoading = false } =
+        useSelector(state => state[STATE_REDUCER_KEY].dashboardSubStatsCard);
     useEffect(() => {
         dispatch(fetchDashboardCards());
     }, []);
@@ -87,25 +90,28 @@ const AdminDashboard = () => {
                 </LoadingCustomOverlay>
             </Grid>
         </Grid>
+        {/* subStatsCardLoading */}
         <Grid container rowSpacing={2} columnSpacing={3}>
             <Grid item sm={12} md={6} lg={7} xl={7}>
                 <Typography sx={{ fontWeight: 700, fontSize: "16px", color: "secondary.dark" }}>{"Subscription Stats"}</Typography>
-                <Box sx={{ height: "140x", width: "100%", mt: 1, p: 3, pl: 0, display: "flex" }}>
-                    <Grid container rowSpacing={1}>
-                        <Grid item xs={12} sm={3}>
-                            <SquareStatsCad value={122} type="Free Trial" title="Organizations" />
+                <LoadingCustomOverlay active={subStatsCardLoading} spinnerProps="selectTagProp">
+                    <Box sx={{ height: "140x", width: "100%", mt: 1, p: 3, pl: 0, display: "flex" }}>
+                        <Grid container rowSpacing={1}>
+                            <Grid item xs={12} sm={3}>
+                                <SquareStatsCad value={data.freeTrail} type="Free Trial" title="Organizations" />
+                            </Grid>
+                            <Grid item xs={12} sm={3}>
+                                <SquareStatsCad value={data.basic} type="BASIC" title="Organizations" />
+                            </Grid>
+                            <Grid item xs={12} sm={3}>
+                                <SquareStatsCad value={data.pro} type="PRO" title="Organizations" />
+                            </Grid>
+                            <Grid item xs={12} sm={3}>
+                                <SquareStatsCad value={data.premium} type="PREMIUM" title="Organizations" />
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={3}>
-                            <SquareStatsCad value={5} type="BASIC" title="Organizations" />
-                        </Grid>
-                        <Grid item xs={12} sm={3}>
-                            <SquareStatsCad value={10} type="PRO" title="Organizations" />
-                        </Grid>
-                        <Grid item xs={12} sm={3}>
-                            <SquareStatsCad value={56} type="PREMIUM" title="Organizations" />
-                        </Grid>
-                    </Grid>
-                </Box>
+                    </Box>
+                </LoadingCustomOverlay>
             </Grid>
             <Grid item sm={12} md={6} lg={5} xl={5} p={1}>
                 <Typography sx={{ fontWeight: 700, fontSize: "16px", color: "secondary.dark" }}>{"Other Stats"}</Typography>
