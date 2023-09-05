@@ -153,3 +153,14 @@ export const fetchDashboardSubStatsApi = (data) => {
         }
     };
 };
+
+export const fetchDashboardTransactionStatsApi = (data) => {
+    return {
+        url: API_URL.DASHBOARD.TRANSACTION,
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.FETCH_DASHBOARD_TRANSACTION_REQUEST, ACTION_TYPES.FETCH_DASHBOARD_TRANSACTION_SUCCESS, ACTION_TYPES.FETCH_DASHBOARD_TRANSACTION_FAILURE],
+            data
+        }
+    };
+};

@@ -39,7 +39,7 @@ const initialState = {
     dashboardOtherStatsCard: {
         requestInProgress: false,
         data: {
-            totalRevenue: 0, totalTransactions: 0
+            totalRevenue: 0, totalTransaction: 0
         }
     },
     usersList: {
@@ -239,9 +239,19 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.FETCH_DASHBOARD_SUB_STATS_FAILURE, (state) => {
                 _.set(state, "dashboardSubStatsCard.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.FETCH_DASHBOARD_TRANSACTION_REQUEST, (state) => {
+                _.set(state, "dashboardOtherStatsCard.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_DASHBOARD_TRANSACTION_SUCCESS, (state, { payload = {} }) => {
+                _.set(state, "dashboardOtherStatsCard.requestInProgress", false);
+                _.set(state, "dashboardOtherStatsCard.data", payload.data);
+            })
+            .addCase(ACTION_TYPES.FETCH_DASHBOARD_TRANSACTION_FAILURE, (state) => {
+                _.set(state, "dashboardOtherStatsCard.requestInProgress", false);
             });
 
     }
 });
-//FETCH_DASHBOARD_SUB_STATS
 export const { actions, reducer } = slice;
