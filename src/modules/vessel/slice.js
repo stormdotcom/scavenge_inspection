@@ -41,7 +41,7 @@ const initialState = {
             rowSelection: {},
             rowSelectionState: {},
             extraProps: {
-                startDate: 1680000000, //1680887898 1690887698
+                startDate: 0, //1680887898 1690887698 1680000000
                 endDate: fromDateObjectToEpoch(now)
             }
         }
@@ -57,14 +57,7 @@ const initialState = {
             cyl_oil_consump_Ltr_24hr: "",
             normal_service_load_in_percent_MCR: "",
             cylinder_numbers: "",
-            predictionInfo: {
-                brk: {},
-                dep: {},
-                image: "",
-                lub: {},
-                surf: {},
-                cylinder: 0
-            }
+            cylindersReport: {}
         }
     }
 };

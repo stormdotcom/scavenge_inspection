@@ -10,7 +10,7 @@ function Input(props) {
                 {({ form }) => {
                     return (
                         <>
-                            <Typography sx={{ fontWeight: 700, pt: 2 }}>
+                            <Typography sx={{ color: "#ffffff", fontWeight: 600, pt: 2 }}>
                                 {form.values[name]}
                             </Typography>
                         </>
