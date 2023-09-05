@@ -21,7 +21,8 @@ const initialState = {
         designation: "",
         __v: 0
     },
-    isLoggedIn: false
+    isLoggedIn: false,
+    tcOpen: false
 };
 
 
@@ -42,6 +43,9 @@ const slice = createSlice({
         clearLogout: (state) => {
             state.isLoggedIn = initialState.isLoggedIn;
             state.homePath = initialState.homePath;
+        },
+        toggleShowHideTC: (state, { payload }) => {
+            state.tcOpen = payload;
         }
     },
     extraReducers: (builder) => {
