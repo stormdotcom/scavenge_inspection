@@ -1,0 +1,81 @@
+{
+    "September2023Terms": [
+        {
+            "section": "Acceptance of Terms",
+            "content": [
+                "By downloading, installing, accessing, or using the Scavenge Inspection App (the \"App\"), you agree to comply with and be bound by these Terms and Conditions.",
+                "If you do not agree to these terms, please do not use the App."
+            ]
+        },
+        {
+            "section": "User Registration",
+            "content": [
+                "You may be required to register an account to use certain features of the App.",
+                "You agree to provide accurate and complete information during the registration process.",
+                "You are responsible for maintaining the security of your account credentials and for any activity that occurs under your account."
+            ]
+        },
+        {
+            "section": "Use of the App",
+            "content": [
+                "You may use the App only for lawful purposes and in accordance with these Terms and Conditions.",
+                "You may not:",
+                "- Use the App in any way that could damage, disable, overburden, or impair the App or interfere with any other party's use of the App.",
+                "- Attempt to gain unauthorized access to any part of the App or its related systems.",
+                "- Use the App to conduct any illegal or fraudulent activities."
+            ]
+        },
+        {
+            "section": "Privacy",
+            "content": [
+                "Your use of the App is also governed by our Privacy Policy, which can be found [insert link to Privacy Policy].",
+                "By using the App, you consent to the collection, use, and sharing of your information as described in the Privacy Policy."
+            ]
+        },
+        {
+            "section": "Intellectual Property",
+            "content": [
+                "The App and its content, including but not limited to text, graphics, logos, and software, are the property of [Your Company] and are protected by copyright and other intellectual property laws.",
+                "You may not reproduce, distribute, modify, create derivative works of, publicly display, or otherwise use the App or its content without our prior written consent."
+            ]
+        },
+        {
+            "section": "Termination",
+            "content": [
+                "We reserve the right to terminate or suspend your access to the App, with or without notice, for any reason, including if you violate these Terms and Conditions."
+            ]
+        },
+        {
+            "section": "Disclaimer of Warranties",
+            "content": [
+                "THE APP IS PROVIDED \"AS IS\" AND WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT."
+            ]
+        },
+        {
+            "section": "Limitation of Liability",
+            "content": [
+                "TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, [YOUR COMPANY] SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR EXEMPLARY DAMAGES ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE APP."
+            ]
+        },
+        {
+            "section": "Changes to Terms and Conditions",
+            "content": [
+                "We may revise these Terms and Conditions at any time by updating this page.",
+                "Your continued use of the App after any changes are made constitutes your acceptance of the new Terms and Conditions."
+            ]
+        },
+        {
+            "section": "Governing Law",
+            "content": [
+                "These Terms and Conditions are governed by and construed in accordance with the laws of [Your Jurisdiction]."
+            ]
+        },
+        {
+            "section": "Contact Information",
+            "content": [
+                "If you have any questions about these Terms and Conditions, please contact us at [Contact Email]."
+            ]
+        }
+    ],
+    "Acknowledgement": "By using the Scavenge Inspection App, you acknowledge that you have read, understood, and agreed to these Terms and Conditions."
+}

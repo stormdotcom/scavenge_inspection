@@ -17,7 +17,7 @@ import { STATE_REDUCER_KEY as COMMON } from "../../common";
 import { confirmDialog } from "../../../utils/notificationUtils";
 import logoImg from "../../../assets/images/logoDark.png";
 import backgroundImage from "../../../assets/images/vesselBg.jpg";
-
+import TermsAndCondition from "../../common/TermsAndCondition/TermsAndCondition";
 
 const { Divider, Grid, Typography } = Components;
 const { Button } = Components;
@@ -40,7 +40,9 @@ function SignUp(props) {
             }
         });
     }
-
+    const handleTC = () => dispatch(commonSliceActions.toggleShowHideTC(true));
+    const handleCloseTC = () => dispatch(commonSliceActions.toggleShowHideTC(false));
+    const tcOpen = useSelector(state => state[COMMON].tcOpen);
     // eslint-disable-next-line no-unused-vars
     const handleOnChange = (value) => {
         let string = value.trim();
@@ -162,12 +164,18 @@ function SignUp(props) {
                                                 }
                                                 }>{"Sign-In"}</Typography>
                                         </Box>
+                                        <Box sx={{ textAlign: "center" }}>
+                                            <Typography sx={{ color: "white.main" }}>Your sign-up confirms your acceptance of our {" "}
+                                                <span onClick={handleTC} style={{ cursor: "pointer", textDecoration: "underline" }}>
+                                                    Terms and Conditions.</span> Welcome aboard!</Typography>
+                                        </Box>
                                     </Form>
                                 </Box>
                             </Box>
                         </Grid>
                     </Paper >
                 </Box>
+                <TermsAndCondition handleClose={handleCloseTC} open={tcOpen} />
             </Grid >
         </>
 
