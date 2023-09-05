@@ -48,13 +48,13 @@ export function* getInspectionDetailsSaga() {
     yield call(handleAPIRequest, getInspectionDetailsApi);
 }
 export function* savePredictedSaga() {
-    const predictionInfo = yield select(selectPredictedData);
+    const predictionData = yield select(selectPredictedData);
     const inspectionFormData = yield select(selectInspectionDetails);
     const inspectionDetails = _.cloneDeep(inspectionFormData.data);
     const userData = yield select(getUserData);
     const organization = _.get(userData, "organizationBelongsTo._id", "");
 
-    let payload = { predictionInfo: predictionInfo, ...inspectionDetails, organization };
+    let payload = { cylindersReport: predictionData, ...inspectionDetails, organization };
     yield fork(handleAPIRequest, savePredictedSagaApi, payload);
     const responseReq = yield take([ACTION_TYPES.SAVE_PREDICTED_REQUEST]);
     if (responseReq.type === ACTION_TYPES.SAVE_PREDICTED_REQUEST) {

@@ -8,7 +8,7 @@ import CustomReactTable from "../../../../common/components/custom/CustomReactTa
 import { useMemo } from "react";
 import { REACT_TABLE_COMMON_OPTIONS } from "../../../../common/constants";
 const ReportOverView = () => {
-    const columns = useMemo(
+    const columnsCylinderReport = useMemo(
         () => predictedDataCol,
         []
     );
@@ -29,7 +29,7 @@ const ReportOverView = () => {
             <Grid item sm={6} md={9} lg={9} xl={9}>
                 <CustomReactTable
                     data={value.predictionInfo || []}
-                    columns={columns}
+                    columns={columnsCylinderReport}
                     options={options}
                     enableRowVirtualization={false}
                     enableCustomTableFilter={false}
