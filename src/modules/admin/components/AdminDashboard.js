@@ -25,7 +25,7 @@ const AdminDashboard = () => {
         useSelector(state => state[STATE_REDUCER_KEY].dashboardSecondaryCard);
     const { data = {}, requestInProgress: subStatsCardLoading = false } =
         useSelector(state => state[STATE_REDUCER_KEY].dashboardSubStatsCard);
-    const { data: { totalRevenue, totalTransactions } = {}, requestInProgress: otherStatsCardLoading = false } =
+    const { data: { totalRevenue, totalTransaction } = {}, requestInProgress: otherStatsCardLoading = false } =
         useSelector(state => state[STATE_REDUCER_KEY].dashboardOtherStatsCard);
     //dashboardOtherStatsCard
     useEffect(() => {
@@ -125,7 +125,7 @@ const AdminDashboard = () => {
                                 <SquareStatsCad value={totalRevenue} type="Total Revenue" cardType="dark" />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <SquareStatsCad value={totalTransactions} type="Total Transaction" cardType="dark" />
+                                <SquareStatsCad value={totalTransaction} type="Total Transaction" cardType="dark" />
                             </Grid>
                         </Grid>
                     </Box>
