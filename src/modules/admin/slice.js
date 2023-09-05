@@ -36,6 +36,12 @@ const initialState = {
             freeTrail: 0, basic: 0, pro: 0, premium: 0
         }
     },
+    dashboardOtherStatsCard: {
+        requestInProgress: false,
+        data: {
+            totalRevenue: 0, totalTransactions: 0
+        }
+    },
     usersList: {
         requestInProgress: false,
         table: {
