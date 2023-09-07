@@ -8,7 +8,7 @@ const CustomToggleButton = (props) => {
 
   return (
     <Grid sx={{ display: "flex", justifyContent: "space-between", pb: 1.5 }}>
-      <Grid ds>
+      <Grid >
         <InputLabel htmlFor={name}>{label} </InputLabel>
       </Grid>
       <Grid>

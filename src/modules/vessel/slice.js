@@ -41,7 +41,7 @@ const initialState = {
             rowSelection: {},
             rowSelectionState: {},
             extraProps: {
-                startDate: 0, //1680887898 1690887698 1680000000
+                startDate: 1680000000, //1680887898 1690887698 1680000000
                 endDate: fromDateObjectToEpoch(now)
             }
         }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Dialog, DialogContent, DialogContentText, DialogTitle, IconButton, Typography } from "@mui/material";
+import { Box, Dialog, DialogContent, DialogTitle, IconButton, Typography } from "@mui/material";
 import { Icons } from "../../../common/components";
 import TC_data from "./TC.json";
 import _ from "lodash";
@@ -29,18 +29,18 @@ const TermsAndCondition = ({ handleClose, open }) => {
             {"Terms and Conditions"}
         </DialogTitle>
         <DialogContent sx={{ width: "100%", overflowY: "scroll", bgcolor: "primary.light" }}>
-            <DialogContentText sx={{ color: "white.main" }} id="terms-and-conditions-description">
+            <Box sx={{ color: "white.main" }} id="terms-and-conditions-description">
 
                 <Box>
-                    <Typography variant="h6"> {_.keys(TC_data)[0]}</Typography>
+                    <Typography variant="h6" component="p"> {_.keys(TC_data)[0]}</Typography>
                     {_.map(TC_data.September2023Terms, (section, sectionIndex) => (
                         <Box key={sectionIndex} sx={{ py: 1 }}>
-                            <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                            <Typography variant="h6" component="p" sx={{ fontWeight: 600 }}>
                                 {sectionIndex + 1}. {section.section}
                             </Typography>
                             {_.map(section.content, (point, pointIndex) => (
                                 <Box key={pointIndex} sx={{ pl: 2 }}>
-                                    <Typography>
+                                    <Typography component="p">
                                         {sectionIndex + 1}.{pointIndex + 1} {point}
                                     </Typography>
                                 </Box>
@@ -56,7 +56,7 @@ const TermsAndCondition = ({ handleClose, open }) => {
                     </Typography>
                 </Box>
 
-            </DialogContentText>
+            </Box>
         </DialogContent>
     </Dialog>;
 };

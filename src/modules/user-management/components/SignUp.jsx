@@ -105,27 +105,27 @@ function SignUp(props) {
                                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                                     <Form>
                                         <Grid container columnSpacing={3} rowSpacing={1} sx={{ overflowY: "scroll", height: { sm: "400px", md: "400px", lg: "500px", xl: "600px" } }}>
-                                            <Grid xs={12} sm={6} md={12} lg={12} xl={12} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                                            <Grid item xs={12} sm={6} md={12} lg={12} xl={12} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                                 <FormController control="toggleButton" name="newOrg" label="New Organization" />
                                             </Grid>
                                             {newOrg ?
-                                                <Grid xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                                                <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                                     <FormController control="input" name="company_name" label="Organization Name" isMandatory={true} />
                                                 </Grid> :
-                                                <Grid xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                                                <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                                     <FormController control="select" name="company_name" label="Organization Name" isMandatory={true} options={orgList} onChangeFromController={handleManager} />
                                                 </Grid>}
 
-                                            <Grid xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                                            <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                                 <FormController control="input" name="fullName" label="Full Name" isMandatory={true} />
                                             </Grid>
-                                            {!newOrg && <Grid xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                                            {!newOrg && <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                                 <FormController control="input" name="vessel_name" label="Vessel Name" />
                                             </Grid>}
-                                            {!newOrg && <Grid xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                                            {!newOrg && <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                                 <FormController control="input" name="cylinder_numbers" label="No of Cylinders" />
                                             </Grid>}
-                                            <Grid xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                                            <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                                 <FormController
                                                     // onClick={handleOrgAdmin}
                                                     // onChangeFromController={handleOnChange}
@@ -133,19 +133,19 @@ function SignUp(props) {
                                                     // icon={<AiOutlineFileSearch style={{ color: "#fff" }} />}
                                                     control="input" name="email" label="Organization Email" isMandatory={true} />
                                             </Grid>
-                                            {!newOrg && <Grid xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
+                                            {!newOrg && <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                                                 <FormController control="input" name="imo_number" label="IMO Number" />
                                             </Grid>}
-                                            <Grid xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
+                                            <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                                                 <FormController control="select" name="organizationAdmin" label="Select Manager" options={orgAdmin || []} />
                                             </Grid>
-                                            <Grid xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
+                                            <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                                                 <FormController control="input" name="password" label="Password" isMandatory={true} />
                                             </Grid>
-                                            <Grid xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
+                                            <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                                                 <FormController control="input" name="confirmPassword" label="Confirm Password" isMandatory={true} />
                                             </Grid>
-                                            <Grid xs={12} sm={12} md={12} lg={12} xl={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                            <Grid item xs={12} sm={12} md={12} lg={12} xl={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                                 <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Sign Up"}</Button>
                                             </Grid>
                                         </Grid>
