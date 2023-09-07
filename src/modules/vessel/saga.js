@@ -1,17 +1,16 @@
 import { all, call, fork, put, select, takeLatest, take, delay } from "redux-saga/effects";
 import { ACTION_TYPES } from "./actions";
-import { getReportListApi, getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi, savePredictedSagaApi, getReportByIdApi, exportPdfApi, exportExcelApi } from "./api";
+import { getReportListApi, getInspectionDetailsApi, showPredictionApi, updateInspectionDetailsApi, savePredictedSagaApi, getReportByIdApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
 import { getCurrentCylinder, getExtraProps, getImageArray, getPagination, selectInspecDetailData, selectInspectionDetails, selectPredictedData } from "./selectors";
 import { errorNotify, loaderNotify, successNotify } from "../../utils/notificationUtils";
-import { fromMuiDateEpoch } from "../../utils/dateUtils";
+import { fromEpochToMuiDate, fromMuiDateEpoch } from "../../utils/dateUtils";
 import { dismissNotification } from "reapop";
 import _ from "lodash";
 import { getUserData } from "../common/selectors";
 import { formatProps } from "../../utils/sagaUtils";
 import { actions as sliceActions } from "./slice";
-import { handleFileAPIRequest } from "../../utils/handleFile";
-import { formatUser } from "./constants";
+import { formatPredictedData, formatUser } from "./constants";
 
 export function* updateInspectionDetails({ payload }) {
     const newPayload = _.cloneDeep(payload);
@@ -89,31 +88,98 @@ export function* reportByIdSaga({ payload }) {
 }
 
 export function* exportPdfSaga() {
-    let user = yield select(getUserData);
-    let inspectionDetails = yield select(selectInspectionDetails);
+    const user = yield select(getUserData);
+    const inspectionDetails = yield select(selectInspectionDetails);
+    const cloneInspectionDetails = _.cloneDeep(inspectionDetails);
+    const rawInspectionDetails = _.get(cloneInspectionDetails, "data");
+    const rawFormData = yield select(selectPredictedData);
+    const { inspection_date, total_running_hours } = rawInspectionDetails;
+    const { predictionInfo } = formatPredictedData(rawFormData, inspection_date, total_running_hours);
+    const { company_name } = user.organizationBelongsTo;
+    const modifiedInspectionDetails = _.omit(rawInspectionDetails, ["normal_service_load_in_percent_MCRMCR", "inspection_date"]);
+    const { vessel_name, imo_number, manufacturer, type_of_engine, vessel_type } = user.vesselDetails;
+    const info = { ...modifiedInspectionDetails, inspection_date: fromEpochToMuiDate(inspection_date), company_name, vessel_name, imo_number, manufacturer, type_of_engine, vessel_type };
+    const input = { user: formatUser(user), info, predictionInfo };
+    try {
+        yield put({ type: ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_REQUEST });
+        yield put(loaderNotify({ title: "Downloading", message: "Inspection Report.pdf", id: "Inspection_Report.pdf" }));
+        const res = yield call(fetch, "https://defectdetectionrings.azurewebsites.net/pdf", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(input)
+        });
 
-    let info = _.get(inspectionDetails, "data");
-    const predictionInfoForm = yield select(selectPredictedData);
-
-    const predictionInfo = _.get(predictionInfoForm, "data");
-
-    yield call(handleFileAPIRequest, exportPdfApi, { user: formatUser(user), predictionInfo, info });
+        if (res.ok) {
+            yield put({ type: ACTION_TYPES.EXPORT_DOCUMENT_PDF_SUCCESS });
+            const dataDownload = yield call([res, res.blob]);
+            const url = window.URL.createObjectURL(new Blob([dataDownload], { type: "application/pdf" }));
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", "Inspection_Report.pdf");
+            document.body.appendChild(link);
+            link.click();
+            yield put(dismissNotification("Inspection_Report.pdf"));
+            yield put(successNotify({ title: "Successfully Downloaded", message: "Inspection_Report.pdf" }));
+        } else {
+            yield put(errorNotify({ title: "Failed", message: "Failed to download PDF", id: "Inspection Report.pdf" }));
+            yield put({ type: ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_FAILURE, error: "Failed to download PDF." });
+        }
+    } catch (error) {
+        yield put(errorNotify({ title: "Error", message: "Failed to download  pdf", id: "Inspection Report.pdf" }));
+        yield put({ type: ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_FAILURE, error: "An error occurred while downloading PDF" });
+    }
 }
 
 export function* exportExcelSaga() {
-    let user = yield select(getUserData);
-    let inspectionDetails = yield select(selectInspectionDetails);
-    let info = _.get(inspectionDetails, "data");
-    const predictionInfoForm = yield select(selectPredictedData);
+    const user = yield select(getUserData);
+    const inspectionDetails = yield select(selectInspectionDetails);
+    const cloneInspectionDetails = _.cloneDeep(inspectionDetails);
+    const rawInspectionDetails = _.get(cloneInspectionDetails, "data");
+    const rawFormData = yield select(selectPredictedData);
+    const { inspection_date, total_running_hours } = rawInspectionDetails;
+    const { predictionInfo } = formatPredictedData(rawFormData, inspection_date, total_running_hours);
+    const { company_name } = user.organizationBelongsTo;
+    const modifiedInspectionDetails = _.omit(rawInspectionDetails, ["normal_service_load_in_percent_MCRMCR", "inspection_date"]);
+    const { vessel_name, imo_number, manufacturer, type_of_engine, vessel_type } = user.vesselDetails;
+    const info = { ...modifiedInspectionDetails, inspection_date: fromEpochToMuiDate(inspection_date), company_name, vessel_name, imo_number, manufacturer, type_of_engine, vessel_type };
+    const input = { user: formatUser(user), info, predictionInfo };
+    try {
+        yield put({ type: ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_REQUEST });
+        yield put(loaderNotify({ title: "Downloading", message: "Inspection Report.xslx", id: "Inspection_Report.xslx" }));
+        const res = yield call(fetch, "https://defectdetectionrings.azurewebsites.net/excel", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(input)
+        });
 
-    const predictionInfo = _.get(predictionInfoForm, "data");
-
-    yield call(handleFileAPIRequest, exportExcelApi, { user: formatUser(user), predictionInfo, info });
+        if (res.ok) {
+            yield put({ type: ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_SUCCESS });
+            const dataDownload = yield call([res, res.blob]);
+            const url = window.URL.createObjectURL(new Blob([dataDownload], { type: "application/pdf" }));
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", "Inspection_Report.xlsx");
+            document.body.appendChild(link);
+            link.click();
+            yield put(dismissNotification("Inspection_Report.xslx"));
+            yield put(successNotify({ title: "Successfully Downloaded", message: "Inspection_Report.xslx" }));
+        } else {
+            yield put(errorNotify({ title: "Failed", message: "Failed to download  Excel", id: "Inspection Report.xslx" }));
+            yield put({ type: ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_FAILURE, error: "Failed to download Excel." });
+        }
+    } catch (error) {
+        yield put(errorNotify({ title: "Failed", message: "Failed to download  Excel", id: "Inspection Report.xslx" }));
+        yield put({ type: ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_FAILURE, error: "An error occurred while downloading Excel" });
+    }
 }
 
 export default function* moduleSaga() {
     yield all([
-        takeLatest(ACTION_TYPES.SHOW_PREDICTIONS, showPredictionSaga), //FETCH_VESSEL_LIST
+        takeLatest(ACTION_TYPES.SHOW_PREDICTIONS, showPredictionSaga),
         takeLatest(ACTION_TYPES.UPDATE_VESSEL_INSPECTION, updateInspectionDetails),
         takeLatest(ACTION_TYPES.GET_VESSEL_INSPECTION, getInspectionDetailsSaga),
         takeLatest(ACTION_TYPES.SAVE_PREDICTED, savePredictedSaga),
@@ -124,3 +190,28 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.EXPORT_DOCUMENT_EXCEL, exportExcelSaga)
     ]);
 }
+//getUserData
+
+// try {
+//     const res = yield call(fetch, "https://defectdetectionrings.azurewebsites.net/excel", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(input)
+//     });
+
+//     if (res.ok) {
+//         const dataDownload = yield call([res, res.blob]);
+//         const url = window.URL.createObjectURL(new Blob([dataDownload], { type: "application/pdf" }));
+//         const link = document.createElement("a");
+//         link.href = url;
+//         link.setAttribute("download", "Prediction_Report.xlsx");
+//         document.body.appendChild(link);
+//         link.click();
+//     } else {
+//         yield put({ type: "PDF_DOWNLOAD_FAILURE", error: "Failed to download PDF." });
+//     }
+// } catch (error) {
+//     yield put({ type: "PDF_DOWNLOAD_FAILURE", error: "An error occurred while downloading PDF." });
+// }

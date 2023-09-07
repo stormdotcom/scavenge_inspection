@@ -3,6 +3,9 @@ export const HTTP_CONSTANTS = {
   HTTP_HEADERS: {
     "Content-Type": "application/json",
     Accept: "application/json"
+  },
+  FILE_EXPORT_HEADER: {
+    "Content-Type": "application/json"
   }
 };
 
