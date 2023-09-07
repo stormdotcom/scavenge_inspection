@@ -16,18 +16,13 @@ export const ERROR_CODE = {
 const requestWrapper = (body = {}) => body;
 
 const getRequestParams = ({ data, method }) => {
-    let headers = HTTP_CONSTANTS.HTTP_HEADERS;
+    let headers = HTTP_CONSTANTS.FILE_EXPORT_HEADER;
     let authHeaders = {};
     let extraParams = {};
-
     const api = (method === REQUEST_METHOD.POST) ? postRequest : getRequest;
 
     if ((method === REQUEST_METHOD.PUT || method === REQUEST_METHOD.PATCH || method === REQUEST_METHOD.POST)) {
         data = requestWrapper(data);
-    }
-
-    if (method === REQUEST_METHOD.FILE) {
-        extraParams.responseType = "blob";
     }
     return { config: { headers: { ...headers, ...authHeaders }, ...extraParams }, data, api };
 };
@@ -50,6 +45,7 @@ function* invokeFileApi(method, baseURL, url, ext, fileName, payload) {
     const { api, config, data } = getRequestParams({ url, data: payloadData, method });
     const apiResponse = yield call(api, url, { config, baseURL, data });
     const { data: response, error } = apiResponse;
+
     if (error) {
         yield put(failureAction({ error }));
         const { code: id, message: netWorkMessage, response: { statusText, data: { errorTitle, message } = {} } = {} } = error;
@@ -58,7 +54,9 @@ function* invokeFileApi(method, baseURL, url, ext, fileName, payload) {
         yield put(dismissNotification(`${fileName}.${ext}`));
         yield put(successNotify({ title: "Successfully Downloaded", message: `${fileName}.${ext}`, id: `${fileName}.${ext}` }));
         yield put(successAction());
-        const urlFile = ext === "pdf" ? window.URL.createObjectURL(new Blob([response], { type: "application/pdf" })) : window.URL.createObjectURL(new Blob([response], { type: "application/vnd.ms-excel" }));
+
+        const fileType = ext === "pdf" ? "application/pdf" : "application/vnd.ms-excel";
+        const urlFile = window.URL.createObjectURL(new Blob([response], { type: fileType }));
         const link = document.createElement("a");
         link.href = urlFile;
         link.setAttribute("download", `${fileName}.${ext}`);
@@ -67,8 +65,7 @@ function* invokeFileApi(method, baseURL, url, ext, fileName, payload) {
     }
     return { response, error };
 }
-
 export function* handleFileAPIRequest(apiFn, ...rest) {
-    let { method, baseURL, url, ext, fileName, payload } = apiFn(...rest);
-    return yield call(invokeFileApi, method, baseURL, url, ext, fileName, payload);
+    let { method, url, ext, fileName, payload } = apiFn(...rest);
+    return yield call(invokeFileApi, method, url, ext, fileName, payload);
 }

@@ -28,7 +28,7 @@ const VesselRequestListBox = () => {
         dispatch(fetchVesselRequestList());
     };
     const handleApprove = (data) => dispatch(approveVessel(data));
-    return <Box sx={{ bgcolor: "primary.light", width: "80%", py: 0.8, px: 0.5, borderRadius: "5px", height: { lg: "220px", xl: "380px" }, overflowY: "scroll" }}>
+    return <Box sx={{ bgcolor: "primary.light", width: "80%", py: 0.8, px: 0.5, borderRadius: "5px", height: { sm: "180px", md: "220px", lg: "220px", xl: "380px" }, overflowY: "scroll" }}>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Typography sx={{ color: "secondary.main", mt: 2, ml: 3, borderRadius: "5px", fontSize: "14px", fontWeight: 700 }}> {"New Requests"}</Typography>
             <Box>
