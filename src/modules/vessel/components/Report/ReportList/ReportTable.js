@@ -11,11 +11,8 @@ import CustomListMenu from "../../../../../common/components/custom/CustomListMe
 import { COMMON_TABLE_PAGINATION } from "../../../../common/constants";
 import ReportFilter from "./ReportFilter";
 
-const { VisibilityIcon, OpenInNewIcon } = Icons;
-const handleFilterToggle = () => {
-    // eslint-disable-next-line no-console
-    console.log("toggleFilter");
-};
+const { OpenInNewIcon } = Icons;
+
 const ReportTable = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -34,12 +31,6 @@ const ReportTable = () => {
         return customActions;
     };
     const toolBarActions = [];
-    const toolbarPermissions = [0, 1];
-    if (toolbarPermissions[1]) {
-        toolBarActions.push({
-            title: "Create", icon: <VisibilityIcon sx={{ color: "#fff" }} fontSize="medium" />, handleClick: () => handleFilterToggle()
-        });
-    }
 
     const displayColumnDefOptions = {
         "mrt-row-actions": {

@@ -53,21 +53,23 @@ const Header = () => {
             </Box>
             <Box >
                 <Box>
-                    <HeaderMenu handleClick={handleClick} />
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClose}
-                        MenuListProps={{
-                            "aria-labelledby": "basic-button"
-                        }}
-                    >
-                        {isVessel && <MenuItem onClick={() => navigate("../profile")}>Profile</MenuItem>}
-                        {isVessel && <MenuItem onClick={() => navigate("../reports")}>Reports</MenuItem>}
-                        {isAdmin && <MenuItem onClick={() => navigate("../admin/config")}>Configuration</MenuItem>}
-                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                    </Menu>
+                    <Box sx={{ minWidth: { sm: "30px", md: "220px" } }}>
+                        <HeaderMenu handleClick={handleClick} />
+                        <Menu
+                            id="basic-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                "aria-labelledby": "basic-button"
+                            }}
+                        >
+                            {isVessel && <MenuItem onClick={() => navigate("../profile")}>Profile</MenuItem>}
+                            {isVessel && <MenuItem onClick={() => navigate("../reports")}>Reports</MenuItem>}
+                            {isAdmin && <MenuItem onClick={() => navigate("../admin/config")}>Configuration</MenuItem>}
+                            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                        </Menu>
+                    </Box>
                 </Box>
             </Box>
         </Grid >

@@ -58,13 +58,13 @@ function SignIn(props) {
                                 <Divider sx={{ color: "primary.light" }} />
                                 <Box >
                                     <Form>
-                                        <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                                        <Grid item sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                             <FormController control="input" name="email" label="Email" />
                                         </Grid>
-                                        <Grid sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
+                                        <Grid item sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                                             <FormController control="input" name="password" label="Password" type={"password"} />
                                         </Grid>
-                                        <Grid sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                        <Grid item sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                                             <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Sign In"}</Button>
                                         </Grid>
                                         <Box sx={{ display: "flex", position: "relative" }}>
