@@ -24,15 +24,15 @@ const OrgHome = () => {
             </Grid>
 
             <Grid container columnSpacing={2} rowSpacing={1} my={1}>
-                <Grid item xs={12} sm={6} md={4} lg={4} xl={4} sx={{ display: "flex", justifyContent: "center" }}>
+                <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
                     <VesselRequestListBox />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={4} xl={4} sx={{ display: "flex", justifyContent: "center" }}>
-                    <Box sx={{ width: "100%", height: "200px", display: "flex", justifyContent: "center" }}>
+                <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
+                    <Box sx={{ width: "100%", height: "200px" }}>
                         <CreateVessel />
                     </Box>
                 </Grid>
-                <Grid item xs={6} sm={6} md={4} lg={4} xl={4} sx={{ display: "flex", justifyContent: "center" }}>
+                <Grid item xs={6} sm={6} md={4} lg={4} xl={4} >
                     <Box sx={{ width: "100%", height: "200px" }}>
                     </Box>
                 </Grid>
