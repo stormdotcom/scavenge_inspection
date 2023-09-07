@@ -104,7 +104,7 @@ function SignUp(props) {
                                 <Divider sx={{ color: "primary.light" }} />
                                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                                     <Form>
-                                        <Grid container columnSpacing={3} rowSpacing={1} sx={{ overflowY: "scroll", height: { sm: "400px", md: "400px", xl: "400px" } }}>
+                                        <Grid container columnSpacing={3} rowSpacing={1} sx={{ overflowY: "scroll", height: { sm: "400px", md: "400px", lg: "500px", xl: "600px" } }}>
                                             <Grid xs={12} sm={6} md={12} lg={12} xl={12} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
                                                 <FormController control="toggleButton" name="newOrg" label="New Organization" />
                                             </Grid>

@@ -59,6 +59,7 @@ export function* savePredictedSaga() {
     const responseReq = yield take([ACTION_TYPES.SAVE_PREDICTED_REQUEST]);
     if (responseReq.type === ACTION_TYPES.SAVE_PREDICTED_REQUEST) {
         yield put(loaderNotify({ id: "prediction_data", title: "Saving", message: "Predicted Data" }));
+        yield put(sliceActions.clearPredictedDate());
     }
     const response = yield take([ACTION_TYPES.SAVE_PREDICTED_SUCCESS]);
 

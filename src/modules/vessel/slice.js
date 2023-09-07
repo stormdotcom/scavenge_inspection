@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import _ from "lodash";
 import { STATE_REDUCER_KEY } from "./constants";
 import { ACTION_TYPES } from "./actions";
-import { fromDateObjectToEpoch } from "../../utils/dateUtils";
+import { fromDateObjectToEpoch, fromEpochToMuiDate } from "../../utils/dateUtils";
 import { COMMON_TABLE_PAGINATION } from "../common/constants";
 
 let now = new Date();
@@ -94,6 +94,10 @@ const slice = createSlice({
         },
         setExtraProps: (state, { payload }) => {
             state.reports.table.extraProps = payload;
+        },
+        clearPredictedDate: (state) => {
+            state.predictedData.data = {};
+            state.isPredicted = false;
         }
 
 
@@ -144,7 +148,10 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.REPORT_BY_ID_SUCCESS, (state, { payload = {} }) => {
                 _.set(state, "reportDetails.requestInProgress", false);
+                const { inspection_date = "" } = payload.data;
+                const formattedDate = fromEpochToMuiDate(inspection_date);
                 _.set(state, "reportDetails.data", payload.data);
+                _.set(state, "reportDetails.data.inspection_date", formattedDate);
             })
             .addCase(ACTION_TYPES.REPORT_BY_ID_FAILURE, (state) => {
                 _.set(state, "reportDetails.requestInProgress", false);
