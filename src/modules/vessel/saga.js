@@ -4,14 +4,14 @@ import { getReportListApi, getInspectionDetailsApi, showPredictionApi, updateIns
 import { handleAPIRequest } from "../../utils/http";
 import { getCurrentCylinder, getExtraProps, getImageArray, getPagination, selectInspecDetailData, selectInspectionDetails, selectPredictedData } from "./selectors";
 import { errorNotify, loaderNotify, successNotify } from "../../utils/notificationUtils";
-import { fromMuiDateEpoch } from "../../utils/dateUtils";
+import { fromEpochToMuiDate, fromMuiDateEpoch } from "../../utils/dateUtils";
 import { dismissNotification } from "reapop";
 import _ from "lodash";
 import { getUserData } from "../common/selectors";
 import { formatProps } from "../../utils/sagaUtils";
 import { actions as sliceActions } from "./slice";
 import { handleFileAPIRequest } from "../../utils/handleFile";
-import { formatUser } from "./constants";
+import { formatPredictedData, formatUser } from "./constants";
 
 export function* updateInspectionDetails({ payload }) {
     const newPayload = _.cloneDeep(payload);
@@ -89,26 +89,35 @@ export function* reportByIdSaga({ payload }) {
 }
 
 export function* exportPdfSaga() {
-    let user = yield select(getUserData);
-    let inspectionDetails = yield select(selectInspectionDetails);
-
-    let info = _.get(inspectionDetails, "data");
-    const predictionInfoForm = yield select(selectPredictedData);
-
-    const predictionInfo = _.get(predictionInfoForm, "data");
-
-    yield call(handleFileAPIRequest, exportPdfApi, { user: formatUser(user), predictionInfo, info });
+    const user = yield select(getUserData);
+    const inspectionDetails = yield select(selectInspectionDetails);
+    const cloneInspectionDetails = _.cloneDeep(inspectionDetails);
+    const rawInspectionDetails = _.get(cloneInspectionDetails, "data");
+    const rawFormData = yield select(selectPredictedData);
+    const { inspection_date, total_running_hours } = rawInspectionDetails;
+    const { predictionInfo } = formatPredictedData(rawFormData, inspection_date, total_running_hours);
+    const { company_name } = user.organizationBelongsTo;
+    const modifiedInspectionDetails = _.omit(rawInspectionDetails, ["normal_service_load_in_percent_MCRMCR", "inspection_date"]);
+    const { vessel_name, imo_number, manufacturer, type_of_engine, vessel_type } = user.vesselDetails;
+    const info = { ...modifiedInspectionDetails, inspection_date: fromEpochToMuiDate(inspection_date), company_name, vessel_name, imo_number, manufacturer, type_of_engine, vessel_type };
+    const input = { user: formatUser(user), info, predictionInfo };
+    yield call(handleFileAPIRequest, exportPdfApi, input);
 }
 
 export function* exportExcelSaga() {
-    let user = yield select(getUserData);
-    let inspectionDetails = yield select(selectInspectionDetails);
-    let info = _.get(inspectionDetails, "data");
-    const predictionInfoForm = yield select(selectPredictedData);
-
-    const predictionInfo = _.get(predictionInfoForm, "data");
-
-    yield call(handleFileAPIRequest, exportExcelApi, { user: formatUser(user), predictionInfo, info });
+    const user = yield select(getUserData);
+    const inspectionDetails = yield select(selectInspectionDetails);
+    const cloneInspectionDetails = _.cloneDeep(inspectionDetails);
+    const rawInspectionDetails = _.get(cloneInspectionDetails, "data");
+    const rawFormData = yield select(selectPredictedData);
+    const { inspection_date, total_running_hours } = rawInspectionDetails;
+    const { predictionInfo } = formatPredictedData(rawFormData, inspection_date, total_running_hours);
+    const { company_name } = user.organizationBelongsTo;
+    const modifiedInspectionDetails = _.omit(rawInspectionDetails, ["normal_service_load_in_percent_MCRMCR", "inspection_date"]);
+    const { vessel_name, imo_number, manufacturer, type_of_engine, vessel_type } = user.vesselDetails;
+    const info = { ...modifiedInspectionDetails, inspection_date: fromEpochToMuiDate(inspection_date), company_name, vessel_name, imo_number, manufacturer, type_of_engine, vessel_type };
+    const input = { user: formatUser(user), info, predictionInfo };
+    yield call(handleFileAPIRequest, exportExcelApi, input);
 }
 
 export default function* moduleSaga() {
@@ -124,3 +133,4 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.EXPORT_DOCUMENT_EXCEL, exportExcelSaga)
     ]);
 }
+//getUserData
