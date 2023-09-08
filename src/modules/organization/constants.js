@@ -5,59 +5,66 @@ export const USER_TYPE = {
     ORGANIZATION: "ORGANIZATION",
     ADMIN: "ADMIN"
 };
-export const vesselList = [{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 },
-{ vesselName: "Test", profileName: "S", inspectionCount: 11, latestInspectionDate: 1692781403 }];
 
-export const pendingList = [
+export const columnsVesselList = [
     {
-        vesselName: "sdfsd",
-        email: "sfds"
+        id: "email",
+        header: "Registered Email",
+        accessorKey: "email",
+        size: 150
     },
     {
-        vesselName: "sdfsd",
-        email: "sfds"
+        id: "vessel_name",
+        header: "Vessel Name",
+        accessorFn: ({ vesselDetails }) => vesselDetails?.vessel_name,
+        size: 150
     },
     {
-        vesselName: "sdfsd",
-        email: "sfds"
-    }, {
-        vesselName: "sdfsd",
-        email: "sfds"
+        id: "imo_number",
+        header: "IMO Number",
+        accessorFn: ({ vesselDetails }) => vesselDetails?.imo_number,
+        size: 150
     },
     {
-        vesselName: "sdfsd",
-        email: "sfds"
+        id: "manufacturer",
+        header: "Manufacturer",
+        accessorFn: ({ vesselDetails }) => vesselDetails?.manufacturer,
+        size: 150
     },
     {
-        vesselName: "sdfsd",
-        email: "sfds"
+        id: "type_of_engine",
+        header: "Engine Type",
+        accessorFn: ({ vesselDetails }) => vesselDetails?.type_of_engine,
+        size: 150
     },
     {
-        vesselName: "sdfsd",
-        email: "sfds"
+        id: "vessel_type",
+        header: "Vessel Type",
+        accessorFn: ({ vesselDetails }) => vesselDetails?.vessel_type,
+        size: 150
     },
     {
-        vesselName: "sdfsd",
-        email: "sfds"
+        id: "cylinder_numbers",
+        header: "Cylinder Number",
+        accessorFn: ({ inspectionDetails }) => inspectionDetails?.cylinder_numbers
     },
     {
-        vesselName: "sdfsd",
-        email: "sfds"
+        id: "approvedStatus",
+        header: "Status",
+        accessorFn: ({ approvedStatus }) => approvedStatus ? "Approved" : "Approval Pending",
+        size: 150
     }
+];
+
+
+export const vesselListColOrder = [
+    "vessel_name",
+    "imo_number",
+    "manufacturer",
+    "type_of_engine",
+    "vessel_type",
+    "cylinder_numbers",
+    "email",
+    "approvedStatus",
+    "mrt-row-actions"
 ];

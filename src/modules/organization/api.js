@@ -42,3 +42,14 @@ export const createVesselApi = (data) => {
         }
     };
 };
+
+export const fetchVesselDetailListsApi = (data) => {
+    return {
+        url: API_URL.VESSELS.LIST,
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST_REQUEST, ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST_SUCCESS, ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST_FAILURE],
+            data
+        }
+    };
+};

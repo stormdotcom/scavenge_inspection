@@ -1,6 +1,9 @@
 import ViewEditVessel from "./components/ViewEditVessel";
-import OrgHome from "./components/OrgHome";
 import { RootBoundary } from "../../common/components";
+import { lazy } from "react";
+
+const OrgHome = lazy(() => import("./components/OrgHome"));
+const VesselDetailList = lazy(() => import("./components/Vessels/VesselDetailList"));
 
 const routes = [
     {
@@ -8,6 +11,11 @@ const routes = [
             {
                 path: "dashboard",
                 element: <OrgHome />,
+                errorElement: <RootBoundary />
+            },
+            {
+                path: "vessels",
+                element: <VesselDetailList />,
                 errorElement: <RootBoundary />
             },
             {

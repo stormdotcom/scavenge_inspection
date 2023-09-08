@@ -21,13 +21,13 @@ function UserFilter(props) {
             <Paper sx={{ bgcolor: "primary.dark", boxShadow: 0, width: "100%", borderRadius: "25px", py: 3, px: 2 }} >
                 <Form>
                     <Grid container columnSpacing={2} sx={{ display: "flex", justifyContent: "space-around" }} >
-                        <Grid item sm={12} md={6} lg={4} xl={3} sx={{ my: 1 }}>
+                        <Grid item sm={12} md={4} lg={4} xl={3} sx={{ my: 1 }}>
                             <FormController control="input" name="fullName" label="Full Name" />
                         </Grid>
-                        <Grid item sm={12} md={6} lg={4} xl={3} sx={{ my: 1 }}>
+                        <Grid item sm={12} md={4} lg={4} xl={3} sx={{ my: 1 }}>
                             <FormController control="input" name="phone" label="Phone Number" />
                         </Grid>
-                        <Grid item sm={12} md={6} lg={4} xl={3} sx={{ my: 1 }}>
+                        <Grid item sm={12} md={4} lg={4} xl={3} sx={{ my: 1 }}>
                             <FormController control="input" name="email" label="Registered Email" />
                         </Grid>
                         <Grid item sm={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>

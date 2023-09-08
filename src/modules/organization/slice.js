@@ -4,8 +4,21 @@ import _ from "lodash";
 
 import { STATE_REDUCER_KEY } from "./constants";
 import { ACTION_TYPES } from "./actions";
-const initialState = {
+import { COMMON_TABLE_PAGINATION } from "../common/constants";
 
+const initialState = {
+    vesselDetailList: {
+        requestInProgress: false,
+        table: {
+            data: [],
+            pageInfo: {
+                ...COMMON_TABLE_PAGINATION
+            },
+            rowSelection: {},
+            rowSelectionState: {},
+            extraProps: {}
+        }
+    },
     vesselList: {
         requestInProgress: false,
         data: []
@@ -32,6 +45,7 @@ const initialState = {
             imo_number: ""
         }
     }
+
 };
 
 const slice = createSlice({
@@ -50,6 +64,12 @@ const slice = createSlice({
         },
         setRequestDetails: (state, { payload }) => {
             state.viewRequestDetails = payload;
+        },
+        setPagination: (state, { payload }) => {
+            state.vesselDetailList.table.pageInfo = payload;
+        },
+        setExtraProps: (state, { payload }) => {
+            state.vesselDetailList.table.extraProps = payload;
         }
 
     },
@@ -85,6 +105,19 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.CREATE_VESSEL_FAILURE, (state) => {
                 _.set(state, "pendingVesselRequest.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST_REQUEST, (state) => {
+                _.set(state, "vesselDetailList.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST_SUCCESS, (state, { payload }) => {
+                const { data, pageInfo = {} } = payload;
+                _.set(state, "vesselDetailList.table.data", data);
+                _.set(state, "vesselDetailList.table.pageInfo", pageInfo);
+                _.set(state, "vesselDetailList.requestInProgress", false);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST_FAILURE, (state) => {
+                _.set(state, "vesselDetailList.requestInProgress", false);
             });
 
     }

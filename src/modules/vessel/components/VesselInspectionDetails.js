@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Grid, Typography } from "@mui/material";
+import { Alert, Box, Grid, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { FormController } from "../../../common/components";
 import { createStructuredSelector } from "reselect";
@@ -11,6 +11,7 @@ import { actions as sliceActions } from "../slice";
 import LoadingCustomOverlay from "../../common/components/LoadingOverlay";
 import { STATE_REDUCER_KEY } from "../constants";
 import { STATE_REDUCER_KEY as COMMON_KEY } from "../../common";
+import ContainedButton from "../../../common/components/custom/ContainedButton";
 
 const VesselDetails = (props) => {
     const { handleSubmit, fetchFormData } = props;
@@ -58,7 +59,7 @@ const VesselDetails = (props) => {
                                 {/* 2 */}
                             </Grid>
                             <Grid sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <Button onClick={handleUpload} sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" >{"Upload Cylinder Image"}</Button>
+                                <ContainedButton onClick={handleUpload} sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" >{"Upload Cylinder Image"}</ContainedButton>
                             </Grid>
                         </Form>
                     </Box>

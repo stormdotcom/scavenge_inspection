@@ -41,13 +41,10 @@ const ErrorPage = (props) => {
             </Grid>
             <Grid item xs={12} sx={{}}>
                 <Grid sx={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-                    <ContainedButton onClick={() => navigate(`../${safePath}`)} sx={{ fontWeight: 700 }}> Back to Homepage</ContainedButton>  <Typography sx={{
-                        fontSize: "1.6rem", letterSpacing: "0.4rem"
-                    }}>
-                        <IconButton aria-label="home" size="large" onClick={() => dispatch(refresh())} color="primary">
-                            <Refresh fontSize="inherit" sx={{ color: "secondary.main" }} />
-                        </IconButton>
-                    </Typography>
+                    <ContainedButton onClick={() => navigate(`../${safePath}`)} sx={{ fontWeight: 700 }}> Back to Homepage</ContainedButton>
+                    <IconButton aria-label="home" size="large" onClick={() => dispatch(refresh())} color="primary">
+                        <Refresh fontSize="inherit" sx={{ color: "secondary.main" }} />
+                    </IconButton>
                 </Grid>
             </Grid>
             {(process.env.NODE_ENV === "development") && <Grid sx={{ top: "50px", position: "absolute", backgroundColor: "primary.light", p: 3, borderRadius: "15px" }}>
