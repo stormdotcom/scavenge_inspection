@@ -59,7 +59,7 @@ const VesselDetails = (props) => {
                                 {/* 2 */}
                             </Grid>
                             <Grid sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <ContainedButton onClick={handleUpload} sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" >{"Upload Cylinder Image"}</ContainedButton>
+                                <ContainedButton onClick={handleUpload} >{"Upload Cylinder Image"}</ContainedButton>
                             </Grid>
                         </Form>
                     </Box>

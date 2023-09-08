@@ -15,7 +15,7 @@ const VesselListSlider = () => {
     }, []);
     return <Grid container columnSpacing={2} sx={{ display: "flex", justifyContent: "center" }}>
         <LoadingCustomOverlay active={requestInProgress} spinnerProps="selectTagProp">
-            <Box sx={{ display: "flex", justifyContent: "flex-start", wrap: "nowrap", mt: 3, p: 0.5, width: { xs: "400px", sm: "700px", md: "1000px", lg: "1300px", xl: "1800px" }, overflowX: "scroll" }}>
+            <Box sx={{ display: "flex", justifyContent: "flex-start", wrap: "nowrap", mt: 3, p: 0.5, width: { xs: "95vw", sm: "700px", md: "1000px", lg: "1300px", xl: "1900px" }, overflowX: "scroll" }}>
                 {vesselList.map((ele, idx) => {
                     return (
                         <Box key={idx} sx={{ mx: 0.8, bgcolor: "primary.light", minWidth: "160px", minHeight: "90px", borderRadius: "5px" }}>

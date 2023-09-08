@@ -56,12 +56,12 @@ const Header = () => {
                     <Box sx={{ minWidth: { sm: "30px", md: "220px" } }}>
                         <HeaderMenu handleClick={handleClick} />
                         <Menu
-                            id="basic-menu"
+                            id="header-menu"
                             anchorEl={anchorEl}
                             open={open}
                             onClose={handleClose}
                             MenuListProps={{
-                                "aria-labelledby": "basic-button"
+                                "aria-labelledby": "header-button"
                             }}
                         >
                             {isVessel && <MenuItem onClick={() => navigate("../profile")}>Profile</MenuItem>}
