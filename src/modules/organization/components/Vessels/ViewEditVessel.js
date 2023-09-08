@@ -63,7 +63,7 @@ const ViewEditVessel = (props) => {
                             </Grid>
                             <Grid container rowSpacing={1}>
                                 <Grid item xs={12} sm={6}>
-                                    <SquareStatsCad value={cylinderImageCount} type="Total Images Uploaed" cardType="dark" />
+                                    <SquareStatsCad value={cylinderImageCount} type="Total Images Uploaded" cardType="dark" />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <SquareStatsCad value={reportCount} type="Total Report Generated" cardType="dark" />
