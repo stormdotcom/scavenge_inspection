@@ -59,7 +59,7 @@ const initialState = {
             phone: ""
         },
         report: {
-            reportCount: 1111, cylinderImageCount: 0
+            reportCount: 0, cylinderImageCount: 0
         }
     }
 
