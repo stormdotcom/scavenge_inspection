@@ -40,14 +40,18 @@ export function* fetchVesselDetailListsSaga() {
     const payload = { ...tablePagination, ...extraProps };
     yield call(handleAPIRequest, fetchVesselDetailListsApi, payload);
 }
-
+export function* filterVesselListSaga({ payload }) {
+    yield put(actions.setExtraProps(payload));
+    yield call(fetchVesselDetailListsSaga);
+}
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.FETCH_VESSEL_LIST, fetchVesselListSaga),
         takeLatest(ACTION_TYPES.VESSEL_REQUEST_LIST, fetchVesselRequestListSaga),
         takeLatest(ACTION_TYPES.APPROVE_VESSEL, approveVessel),
         takeLatest(ACTION_TYPES.CREATE_VESSEL, createVesselSaga),
-        takeLatest(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST, fetchVesselDetailListsSaga)
+        takeLatest(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST, fetchVesselDetailListsSaga),
+        takeLatest(ACTION_TYPES.FILTER_VESSEL, filterVesselListSaga)
     ]);
 }
 //FETCH_VESSEL_DETAILS_LIST

@@ -10,9 +10,9 @@ const HoverButton = styled(Button)(({ theme }) => ({
     }
 }));
 
-const ContainedButton = ({ onClick, children, sx = { fontWeight: 600, textTransform: "upper-case", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } } }) => {
+const ContainedButton = ({ type = "", onClick, children, sx = { fontWeight: 600, textTransform: "upper-case", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } } }) => {
     return (
-        <HoverButton variant="contained" onClick={onClick} sx={sx} >
+        <HoverButton variant="contained" onClick={onClick} sx={sx} type={type}>
             {children}
         </HoverButton>
     );

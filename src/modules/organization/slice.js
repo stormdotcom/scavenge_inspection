@@ -44,6 +44,12 @@ const initialState = {
             cylinder_numbers: "",
             imo_number: ""
         }
+    },
+    vesselDetails: {
+        requestInProgress: false,
+        data: {
+
+        }
     }
 
 };

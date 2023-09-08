@@ -5,9 +5,10 @@ import { connect, useDispatch } from "react-redux";
 import { actions as sliceActions } from "../../slice";
 import { Box, Paper } from "@mui/material";
 import { Components, FormController } from "../../../../common/components";
+import ContainedButton from "../../../../common/components/custom/ContainedButton";
+import { filterVessel } from "../../actions";
 
-
-const { Grid, Button } = Components;
+const { Grid } = Components;
 
 function VesselFilter(props) {
     const dispatch = useDispatch();
@@ -28,7 +29,7 @@ function VesselFilter(props) {
                             <FormController control="input" name="imo_number" label="IMO Number" />
                         </Grid>
                         <Grid item sm={12} md={12} lg={12} xl={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Search"}</Button>
+                            <ContainedButton type="submit" onClick={handleSubmit}>{"Filter"}</ContainedButton>
                         </Grid>
                     </Grid>
                 </Form>
@@ -37,8 +38,8 @@ function VesselFilter(props) {
     );
 }
 
-const mapDispatchToProps = () => ({
-
+const mapDispatchToProps = (dispatch) => ({
+    submit: (data) => dispatch(filterVessel(data))
 });
 
 const VesselFilterForm = withFormik({

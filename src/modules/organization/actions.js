@@ -2,6 +2,9 @@ import { createAction } from "@reduxjs/toolkit";
 import { STATE_REDUCER_KEY } from "./constants";
 
 export const ACTION_TYPES = {
+
+    FILTER_VESSEL: `${STATE_REDUCER_KEY}/FILTER_VESSEL`,
+
     FETCH_VESSEL_LIST: `${STATE_REDUCER_KEY}/FETCH_VESSEL_LIST`,
     FETCH_VESSEL_LIST_REQUEST: `${STATE_REDUCER_KEY}/FETCH_VESSEL_LIST_REQUEST`,
     FETCH_VESSEL_LIST_SUCCESS: `${STATE_REDUCER_KEY}/FETCH_VESSEL_LIST_SUCCESS`,
@@ -34,3 +37,5 @@ export const fetchVesselRequestList = createAction(ACTION_TYPES.VESSEL_REQUEST_L
 export const approveVessel = createAction(ACTION_TYPES.APPROVE_VESSEL);
 export const createVesselAsync = createAction(ACTION_TYPES.CREATE_VESSEL);
 export const fetchVesselDetailsList = createAction(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST);
+export const filterVessel = createAction(ACTION_TYPES.FILTER_VESSEL);
+export const fetchVesselById = createAction(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST);
