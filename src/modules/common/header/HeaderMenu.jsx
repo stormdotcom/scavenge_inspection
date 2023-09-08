@@ -31,7 +31,7 @@ const HeaderMenu = ({ handleClick }) => {
             </Box>;
         }
     } else {
-        return <Box sx={{ width: "100px", bgcolor: "green.main" }}>
+        return <Box sx={{ width: "100px", bgcolor: "green.main", display: "flex", justifyContent: "flex-end" }}>
             <MenuIcon onClick={handleClick} fontSize="large" sx={{ color: "white.main", cursor: "pointer" }} />
         </Box>;
     }

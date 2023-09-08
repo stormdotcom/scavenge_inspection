@@ -4,8 +4,21 @@ import _ from "lodash";
 
 import { STATE_REDUCER_KEY } from "./constants";
 import { ACTION_TYPES } from "./actions";
-const initialState = {
+import { COMMON_TABLE_PAGINATION } from "../common/constants";
 
+const initialState = {
+    vesselDetailList: {
+        requestInProgress: false,
+        table: {
+            data: [],
+            pageInfo: {
+                ...COMMON_TABLE_PAGINATION
+            },
+            rowSelection: {},
+            rowSelectionState: {},
+            extraProps: {}
+        }
+    },
     vesselList: {
         requestInProgress: false,
         data: []
@@ -31,7 +44,25 @@ const initialState = {
             cylinder_numbers: "",
             imo_number: ""
         }
+    },
+    vesselDetails: {
+        requestInProgress: false,
+        data: {
+            vessel_name: "",
+            imo_number: "",
+            manufacturer: "",
+            type_of_engine: "",
+            vessel_type: "",
+            cylinder_numbers: "",
+            _id: "",
+            email: "",
+            phone: ""
+        },
+        report: {
+            reportCount: 0, cylinderImageCount: 0
+        }
     }
+
 };
 
 const slice = createSlice({
@@ -50,6 +81,12 @@ const slice = createSlice({
         },
         setRequestDetails: (state, { payload }) => {
             state.viewRequestDetails = payload;
+        },
+        setPagination: (state, { payload }) => {
+            state.vesselDetailList.table.pageInfo = payload;
+        },
+        setExtraProps: (state, { payload }) => {
+            state.vesselDetailList.table.extraProps = payload;
         }
 
     },
@@ -85,7 +122,34 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.CREATE_VESSEL_FAILURE, (state) => {
                 _.set(state, "pendingVesselRequest.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST_REQUEST, (state) => {
+                _.set(state, "vesselDetailList.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST_SUCCESS, (state, { payload }) => {
+                const { data, pageInfo = {} } = payload;
+                _.set(state, "vesselDetailList.table.data", data);
+                _.set(state, "vesselDetailList.table.pageInfo", pageInfo);
+                _.set(state, "vesselDetailList.requestInProgress", false);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST_FAILURE, (state) => {
+                _.set(state, "vesselDetailList.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID_REQUEST, (state) => {
+                _.set(state, "vesselDetails.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID_SUCCESS, (state, { payload }) => {
+                const { data, report } = payload;
+                _.set(state, "vesselDetails.requestInProgress", false);
+                _.set(state, "vesselDetails.data", data);
+                _.set(state, "vesselDetails.report", report);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID_FAILURE, (state) => {
+                _.set(state, "vesselDetails.requestInProgress", false);
             });
+
 
     }
 });

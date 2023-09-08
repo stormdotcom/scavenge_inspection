@@ -190,28 +190,3 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.EXPORT_DOCUMENT_EXCEL, exportExcelSaga)
     ]);
 }
-//getUserData
-
-// try {
-//     const res = yield call(fetch, "https://defectdetectionrings.azurewebsites.net/excel", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify(input)
-//     });
-
-//     if (res.ok) {
-//         const dataDownload = yield call([res, res.blob]);
-//         const url = window.URL.createObjectURL(new Blob([dataDownload], { type: "application/pdf" }));
-//         const link = document.createElement("a");
-//         link.href = url;
-//         link.setAttribute("download", "Prediction_Report.xlsx");
-//         document.body.appendChild(link);
-//         link.click();
-//     } else {
-//         yield put({ type: "PDF_DOWNLOAD_FAILURE", error: "Failed to download PDF." });
-//     }
-// } catch (error) {
-//     yield put({ type: "PDF_DOWNLOAD_FAILURE", error: "An error occurred while downloading PDF." });
-// }

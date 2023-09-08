@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 function convertToCylinderFormat(inputString) {
     // Use a regular expression to find "cylinder" followed by a digit
     return inputString.replace(/cylinder(\d+)/i, (match, digit) => {
@@ -51,13 +51,15 @@ const PredictionImage = ({ image = "", cylinder }) => {
     const mimeType = "image/png";
     const imageUrl = base64ToImageUrl(image, mimeType);
     return (
-        <Box sm={6} md={3} lg={3} xl={3} sx={{ px: 2 }}>
+        <Grid item xs={12} sm={6} md={3} lg={3} xl={3} sx={{ px: 2, width: "100%" }}>
             <Typography sx={{ color: "white.main", fontSize: "18px", fontWeight: 700 }}>{convertToCylinderFormat(cylinder)}</Typography>
-            <Box src={imageUrl}
-                style={{ ...imageBoxStyle, backgroundImage: `url(${imageUrl})`, backgroundColor: "primary.light" }}
-            >
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Box src={imageUrl}
+                    style={{ ...imageBoxStyle, backgroundImage: `url(${imageUrl})`, backgroundColor: "primary.light" }}
+                >
+                </Box>
             </Box>
-        </Box>
+        </Grid>
     );
 };
 
