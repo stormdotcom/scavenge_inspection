@@ -48,7 +48,15 @@ const initialState = {
     vesselDetails: {
         requestInProgress: false,
         data: {
-
+            vessel_name: "",
+            imo_number: "",
+            manufacturer: "",
+            type_of_engine: "",
+            vessel_type: "",
+            cylinder_numbers: "",
+            _id: "",
+            email: "",
+            phone: ""
         }
     }
 
@@ -124,7 +132,21 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST_FAILURE, (state) => {
                 _.set(state, "vesselDetailList.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID_REQUEST, (state) => {
+                _.set(state, "vesselDetails.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID_SUCCESS, (state, { payload }) => {
+                const { data, report } = payload;
+                _.set(state, "vesselDetails.requestInProgress", false);
+                _.set(state, "vesselDetails.data", data);
+                _.set(state, "vesselDetails.report", report);
+            })
+            .addCase(ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID_FAILURE, (state) => {
+                _.set(state, "vesselDetails.requestInProgress", false);
             });
+
 
     }
 });

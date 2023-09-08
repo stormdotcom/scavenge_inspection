@@ -1,7 +1,10 @@
 import { all, call, fork, put, select, take, takeLatest } from "redux-saga/effects";
 import { ACTION_TYPES, fetchVesselList, fetchVesselRequestList } from "./actions";
 import { handleAPIRequest } from "../../utils/http";
-import { approveVesselApi, createVesselApi, fetchVesselListApi, fetchVesselRequestListApi, fetchVesselDetailListsApi } from "./api";
+import {
+    approveVesselApi, createVesselApi, fetchVesselListApi, fetchVesselRequestListApi,
+    fetchVesselDetailListsApi, fetchVesselByApi
+} from "./api";
 import { successNotify } from "../../utils/notificationUtils";
 import { actions } from "./slice";
 import _ from "lodash";
@@ -44,6 +47,10 @@ export function* filterVesselListSaga({ payload }) {
     yield put(actions.setExtraProps(payload));
     yield call(fetchVesselDetailListsSaga);
 }
+export function* fetchVesselById({ payload }) {
+    yield call(handleAPIRequest, fetchVesselByApi, payload);
+}
+
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.FETCH_VESSEL_LIST, fetchVesselListSaga),
@@ -51,7 +58,8 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.APPROVE_VESSEL, approveVessel),
         takeLatest(ACTION_TYPES.CREATE_VESSEL, createVesselSaga),
         takeLatest(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST, fetchVesselDetailListsSaga),
-        takeLatest(ACTION_TYPES.FILTER_VESSEL, filterVesselListSaga)
+        takeLatest(ACTION_TYPES.FILTER_VESSEL, filterVesselListSaga),
+        takeLatest(ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID, fetchVesselById)
     ]);
 }
 //FETCH_VESSEL_DETAILS_LIST

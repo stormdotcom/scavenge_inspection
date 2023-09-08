@@ -19,7 +19,7 @@ const routes = [
                 errorElement: <RootBoundary />
             },
             {
-                path: "vessel/:id/view",
+                path: "vessels/:id/view",
                 element: <ViewEditVessel />,
                 errorElement: <RootBoundary />
             }

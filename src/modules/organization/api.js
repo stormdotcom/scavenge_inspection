@@ -53,3 +53,13 @@ export const fetchVesselDetailListsApi = (data) => {
         }
     };
 };
+
+export const fetchVesselByApi = (id) => {
+    return {
+        url: API_URL.VESSELS.ID.replace(":id", id),
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID_REQUEST, ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID_SUCCESS, ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID_FAILURE]
+        }
+    };
+};
