@@ -21,7 +21,7 @@ const PredictionLoader = () => <Box borderRadius={1} display="flex" justifyConte
     </Box>
 </Box >;
 
-const VerticalLoader = () => <Box borderRadius={1} display="flex" justifyContent="center" alignItems="center" minHeight="3vh" maxWidth="15vw" backgroundColor="rgba(0, 0, 0, 0.37)" p={1} >
+const VerticalLoader = () => <Box borderRadius={1} display="flex" justifyContent="center" alignItems="center" minHeight="30px" sx={{ width: "180px" }} backgroundColor="rgba(0, 0, 0, 0.37)" p={1} >
     <Box sx={{ display: "flex", justifyContent: "space-evenly", alignItems: "center", flexDirection: "column", px: 3, py: 1 }}>
         <Box> <PulseLoader color="#f0c246" size={10} speedMultiplier={1.1} /></Box>
     </Box>
