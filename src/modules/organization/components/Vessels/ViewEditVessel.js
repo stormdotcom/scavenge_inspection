@@ -1,19 +1,21 @@
 import React, { useEffect } from "react";
 import { FormController } from "../../../../common/components";
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Paper, Typography } from "@mui/material";
+import { KeyboardBackspace } from "@mui/icons-material";
 import { connect } from "react-redux";
 import { Form, withFormik } from "formik";
 import { createStructuredSelector } from "reselect";
 import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
 import { fetchVesselById } from "../../actions";
 import { getVesselDetails } from "../../selectors";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SquareStatsCad from "../../../admin/components/SquareStatsCad";
 
 const ViewEditVessel = (props) => {
     const { vesselDetails: { requestInProgress = false, report = {} } = {}, getVessel } = props;
     const { cylinderImageCount = 0, reportCount = 0 } = report;
     const { id } = useParams();
+    const navigate = useNavigate();
     useEffect(() => {
         getVessel(id);
     }, []);
@@ -21,6 +23,12 @@ const ViewEditVessel = (props) => {
         <Paper elevation={2} sx={{ mt: 2, pb: 3, bgcolor: "primary.600" }}>
             <Box sx={{ display: "flex", flexDirection: "column", px: 5, mb: 2 }}>
                 <Typography sx={{ color: "secondary.main", fontSize: "28px", mt: 3, fontWeight: 700, pb: 1 }}> Vessel Details </Typography>
+                <Box sx={{ position: "relative" }}>
+                    <IconButton sx={{ position: "absolute", top: "-65px", right: "10px", display: "flex", flexDirection: "column" }} onClick={() => navigate("../vessels")}>
+                        <KeyboardBackspace sx={{ color: "secondary.main" }} />
+                        <Typography sx={{ color: "secondary.main" }}>Go Back</Typography>
+                    </IconButton>
+                </Box>
                 <Box sx={{ px: 2, pt: 4, width: "100%" }}>
                     <Form>
                         <LoadingCustomOverlay active={requestInProgress} >

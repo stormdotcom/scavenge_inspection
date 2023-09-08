@@ -57,6 +57,9 @@ const initialState = {
             _id: "",
             email: "",
             phone: ""
+        },
+        report: {
+            reportCount: 1111, cylinderImageCount: 0
         }
     }
 
