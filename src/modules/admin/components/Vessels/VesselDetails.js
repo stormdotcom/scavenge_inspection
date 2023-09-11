@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
-import { STATE_REDUCER_KEY } from "../../constants";
-import { connect, useDispatch, useSelector } from "react-redux";
-import { actions as sliceActions } from "../../slice";
-import { Box, Grid, IconButton, Paper, Typography } from "@mui/material";
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
+import { useParams } from "react-router-dom";
 import { Form, withFormik } from "formik";
-import { FormController } from "../../../../common/components";
 import { createStructuredSelector } from "reselect";
+import { Box, Grid, Paper, Typography } from "@mui/material";
+import { connect, useDispatch, useSelector } from "react-redux";
+
+import { STATE_REDUCER_KEY } from "../../constants";
+import { actions as sliceActions } from "../../slice";
+import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
+import { FormController } from "../../../../common/components";
 import { selectVesselDetails } from "../../selectors";
 import { fetchVesselById } from "../../actions";
-import { useNavigate, useParams } from "react-router-dom";
+import BackButton from "../../../../common/components/custom/BackButton";
 
 const VesselDetailsView = (props) => {
-    const navigate = useNavigate();
     const { getVesselById } = props;
     const dispatch = useDispatch();
     const loading = useSelector(state => state[STATE_REDUCER_KEY].vesselDetails.requestInProgress);
@@ -26,13 +26,8 @@ const VesselDetailsView = (props) => {
     return <Grid sx={{ width: "100%", minHeight: "90vh", bgcolor: "primary.main", p: 4 }}>
         <Box sx={{ display: "flex", flexDirection: "column", px: 5, mb: 2 }}>
             <Paper sx={{ px: 3, pt: 4, width: "100%", bgcolor: "primary.light" }}>
-                <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> Vessel Details </Typography>
-                <Box sx={{ position: "relative" }}>
-                    <IconButton sx={{ position: "absolute", top: "-65px", right: "10px", display: "flex", flexDirection: "column" }} onClick={() => navigate("../vessels")}>
-                        <KeyboardBackspaceIcon sx={{ color: "secondary.main" }} />
-                        <Typography sx={{ color: "secondary.main" }}>Go Back</Typography>
-                    </IconButton>
-                </Box>
+                <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", md: "28px" }, fontWeight: 600, pb: 1 }}> Vessel Details </Typography>
+                <BackButton path="../vessels" />
 
                 <Form>
                     <LoadingCustomOverlay active={loading}>
@@ -79,7 +74,7 @@ const VesselDetailsView = (props) => {
                         </Grid>
                     </LoadingCustomOverlay>
                     <Paper sx={{ px: 3, pt: 4, my: 2, pb: 2, width: "100%" }}>
-                        <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> Organizations Details </Typography>
+                        <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", md: "28px" }, fontWeight: 600, pb: 1 }}> Organizations Details </Typography>
                         <Grid container rowSpacing={2} columnSpacing={4}>
                             <Grid item sm={12} md={12} lg={6} xl={4}>
                                 <FormController control="input2" name="organizationBelongsTo.company_name" label="Company Name" disabled={true} />
@@ -90,7 +85,7 @@ const VesselDetailsView = (props) => {
                         </Grid>
                     </Paper>
                     <Paper sx={{ px: 3, pt: 4, my: 2, width: "100%" }}>
-                        <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> Subscription Details </Typography>
+                        <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", md: "28px" }, fontWeight: 600, pb: 1 }}> Subscription Details </Typography>
                         <Grid container rowSpacing={2} columnSpacing={4}>
                             <Grid item sm={12} md={12} lg={6} xl={4}>
                                 <FormController control="input2" name="subscription.plan" label="Plan" disabled={true} />

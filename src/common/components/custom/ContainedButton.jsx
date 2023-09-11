@@ -11,9 +11,9 @@ const HoverButton = styled(Button)(({ theme }) => ({
     }
 }));
 
-const ContainedButton = ({ icon = "", type = "", onClick, children, sx = { fontWeight: { xs: 400, md: 600 }, textTransform: "upper-case", fontSize: { xs: "12px", xl: "18px" }, height: { xs: "40px", xl: "50px" }, my: 0.8 } }) => {
+const ContainedButton = ({ color, variant = "contained", icon = "", type = "", onClick, children, sx = { fontWeight: { xs: 400, md: 600 }, textTransform: "upper-case", fontSize: { xs: "12px", xl: "18px" }, height: { xs: "40px", xl: "50px" }, my: 0.8 } }) => {
     return (
-        <HoverButton variant="contained" onClick={onClick} sx={sx} type={type}>
+        <HoverButton color={color} variant={variant} onClick={onClick} sx={sx} type={type}>
             {icon && <Box sx={{ display: "flex" }}>{icon}</Box>}
             {children}
         </HoverButton>

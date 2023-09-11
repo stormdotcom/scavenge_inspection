@@ -1,21 +1,17 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import CorporateFareIcon from "@mui/icons-material/CorporateFare";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import DirectionsBoatIcon from "@mui/icons-material/DirectionsBoat";
-import ImageSearchIcon from "@mui/icons-material/ImageSearch";
-import AssignmentIcon from "@mui/icons-material/Assignment";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import { STATE_REDUCER_KEY } from "../constants";
 import { fetchDashboardCards } from "../actions";
 import { formatNumber } from "./utils";
 import LoadingCustomOverlay from "../../common/components/LoadingOverlay";
-import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-import RoomPreferencesIcon from "@mui/icons-material/RoomPreferences";
-import { useNavigate } from "react-router-dom";
 import SquareStatsCad from "./SquareStatsCad";
+import { Icons } from "../../../common/components";
 
+const { CorporateFareIcon, PeopleAltIcon, AdminPanelSettingsIcon, DirectionsBoatIcon, ImageSearchIcon,
+    AssignmentIcon, ManageAccountsIcon, RoomPreferencesIcon } = Icons;
 const AdminDashboard = () => {
     const navigate = useNavigate();
     const { data: { organizations = 0, totalUsers = 0, fleetManagers = 0, vessels = 0 } = {}, requestInProgress = false } =
@@ -27,7 +23,6 @@ const AdminDashboard = () => {
         useSelector(state => state[STATE_REDUCER_KEY].dashboardSubStatsCard);
     const { data: { totalRevenue, totalTransaction } = {}, requestInProgress: otherStatsCardLoading = false } =
         useSelector(state => state[STATE_REDUCER_KEY].dashboardOtherStatsCard);
-    //dashboardOtherStatsCard
     useEffect(() => {
         dispatch(fetchDashboardCards());
     }, []);
@@ -92,7 +87,7 @@ const AdminDashboard = () => {
                 </LoadingCustomOverlay>
             </Grid>
         </Grid>
-        {/* subStatsCardLoading */}
+
         <Grid container rowSpacing={2} columnSpacing={3}>
             <Grid item sm={12} md={6} lg={7} xl={7}>
                 <Typography sx={{ fontWeight: 700, fontSize: "16px", color: "secondary.dark" }}>{"Subscription Stats"}</Typography>

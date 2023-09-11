@@ -1,15 +1,16 @@
 import React from "react";
-import { STATE_REDUCER_KEY } from "../../constants";
+import { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import { Button, Grid, Paper, Typography } from "@mui/material";
-import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
 import { Form, withFormik } from "formik";
-import { FormController } from "../../../../common/components";
 import { createStructuredSelector } from "reselect";
+
+import { STATE_REDUCER_KEY } from "../../constants";
+import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
+import { FormController } from "../../../../common/components";
 import { selectUserDetails } from "../../selectors";
 import { resetPassword } from "../../actions";
 import { passwordChangeSchema } from "../../validate";
-import { useEffect } from "react";
 
 
 const PasswordUpdate = (props) => {
@@ -18,8 +19,8 @@ const PasswordUpdate = (props) => {
     useEffect(() => {
         setFieldValue("id", id);
     }, []);
-    return <Paper sx={{ px: 3, pt: 4, width: "100%" }}>
-        <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> Update Password </Typography>
+    return <Paper sx={{ px: 3, pt: 4, width: "100%", pr: 3 }}>
+        <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", md: "28px" }, fontWeight: 600, pb: 1 }}> Update Password </Typography>
         <LoadingCustomOverlay active={loading} >
             <Form>
                 <Grid container rowSpacing={2} columnSpacing={4}>
