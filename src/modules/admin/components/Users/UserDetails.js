@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { Box, Button, Grid, IconButton, Paper, Typography } from "@mui/material";
-import { useNavigate, useParams } from "react-router-dom";
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import { useParams } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { Form, withFormik } from "formik";
 
@@ -12,11 +12,11 @@ import { FormController } from "../../../../common/components";
 import { selectUserDetails } from "../../selectors";
 import { fetchUserById, updateUser } from "../../actions";
 import PasswordUpdate from "./PasswordUpdate";
-import { Icons } from "../../../../common/components";
-const { KeyboardBackspaceIcon } = Icons;
+import BackButton from "../../../../common/components/custom/BackButton";
+
 
 const UserDetails = (props) => {
-    const navigate = useNavigate();
+
     const { handleSubmit, getUserById, setFieldValue } = props;
     const dispatch = useDispatch();
     const loading = useSelector(state => state[STATE_REDUCER_KEY].userDetails.requestInProgress);
@@ -30,13 +30,8 @@ const UserDetails = (props) => {
     return <Grid sx={{ width: "100%", minHeight: "90vh", bgcolor: "primary.main", p: 4 }}>
         <Box sx={{ display: "flex", flexDirection: "column", px: 5, mb: 2 }}>
             <Paper sx={{ px: 3, pt: 4, width: "100%", bgcolor: "primary.light" }}>
-                <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> User Details </Typography>
-                <Box sx={{ position: "relative" }}>
-                    <IconButton sx={{ position: "absolute", top: "-65px", right: "10px", display: "flex", flexDirection: "column" }} onClick={() => navigate("../users")}>
-                        <KeyboardBackspaceIcon sx={{ color: "secondary.main" }} />
-                        <Typography sx={{ color: "secondary.main" }}>Go Back</Typography>
-                    </IconButton>
-                </Box>
+                <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", md: "28px" }, fontWeight: 600, pb: 1 }}> User Details </Typography>
+                <BackButton path="../users" />
                 <LoadingCustomOverlay active={loading} >
                     <Form>
                         <Grid container rowSpacing={2} columnSpacing={4}>

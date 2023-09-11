@@ -3,16 +3,13 @@ import { withFormik, Form } from "formik";
 import { connect, useDispatch } from "react-redux";
 import { Box, Paper } from "@mui/material";
 import { createStructuredSelector } from "reselect";
-<<<<<<< HEAD
 
 import { actions as sliceActions } from "../../slice";
-import { Components, FormController } from "../../../../common/components";
-=======
 import { Components, FormController, Icons } from "../../../../common/components";
->>>>>>> 7b463438a4c2451f810d89b00e0cd7b16cc2d7c1
 import { getExtraProps } from "../../../vessel/selectors";
 import { orgFilterSearch } from "../../actions";
 import ContainedButton from "../../../../common/components/custom/ContainedButton";
+
 const { Grid } = Components;
 const { FilterAltRounded } = Icons;
 function OrgFilter(props) {
