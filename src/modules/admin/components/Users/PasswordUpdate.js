@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
-import { Button, Grid, Paper, Typography } from "@mui/material";
+import { Grid, Paper, Typography } from "@mui/material";
 import { Form, withFormik } from "formik";
 import { createStructuredSelector } from "reselect";
 
@@ -11,6 +11,7 @@ import { FormController } from "../../../../common/components";
 import { selectUserDetails } from "../../selectors";
 import { resetPassword } from "../../actions";
 import { passwordChangeSchema } from "../../validate";
+import ContainedButton from "../../../../common/components/custom/ContainedButton";
 
 
 const PasswordUpdate = (props) => {
@@ -19,7 +20,7 @@ const PasswordUpdate = (props) => {
     useEffect(() => {
         setFieldValue("id", id);
     }, []);
-    return <Paper sx={{ px: 3, pt: 4, width: "100%", pr: 3 }}>
+    return <Paper sx={{ px: 3, pt: 4, width: "99%", pr: 3 }}>
         <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", md: "28px" }, fontWeight: 600, pb: 1 }}> Update Password </Typography>
         <LoadingCustomOverlay active={loading} >
             <Form>
@@ -32,7 +33,7 @@ const PasswordUpdate = (props) => {
                     </Grid>
                 </Grid>
                 <Grid sx={{ display: "flex", pb: 4, pt: 3, justifyContent: "center", alignItems: "center" }}>
-                    <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Reset Password"}</Button>
+                    <ContainedButton variant="contained" type="submit" onClick={handleSubmit}>{"Reset Password"}</ContainedButton>
                 </Grid>
             </Form>
         </LoadingCustomOverlay>

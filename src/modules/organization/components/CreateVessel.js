@@ -42,7 +42,7 @@ const CreateVessel = () => {
                 <IconButton onClick={handleClose} sx={{ position: "absolute", right: "-1px", top: "-2px" }}>
                     <Close sx={{ color: "white.main" }} />
                 </IconButton>
-                <Typography id="modal-title" variant="h6" component="h2" sx={{ color: "secondary.light", fontWeight: 700 }}>
+                <Typography id="modal-title" variant="h6" component="h2" sx={{ color: "secondary.light", fontWeight: 700, fontSize: { xs: "11px", sm: "14px", md: "16px" } }}>
                     {"Add New Vessel"}
                 </Typography>
                 <CreateVesselForm />

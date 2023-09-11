@@ -27,7 +27,7 @@ const UserDetails = (props) => {
         return () => dispatch(sliceActions.clearAll());
     }, []);
 
-    return <Grid sx={{ width: "100%", minHeight: "90vh", bgcolor: "primary.main", p: 4 }}>
+    return <Grid sx={{ minHeight: "90vh", bgcolor: "primary.main", p: 4 }}>
         <Box sx={{ display: "flex", flexDirection: "column", px: 5, mb: 2 }}>
             <Paper sx={{ px: 3, pt: 4, width: "100%", bgcolor: "primary.light" }}>
                 <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", md: "28px" }, fontWeight: 600, pb: 1 }}> User Details </Typography>
@@ -56,24 +56,26 @@ const UserDetails = (props) => {
                         </Grid>
                     </Form>
                 </LoadingCustomOverlay>
-                <Grid container columnSpacing={2} rowSpacing={1} sx={{ my: 2, display: "flex" }}>
+                <Grid container columnSpacing={2} rowSpacing={1} sx={{ my: 2, px: 2, display: "flex" }}>
                     <Grid item sm={12} md={6} sx={{ p: { xs: 3, sm: 4 } }}>
-                        <Paper sx={{ width: "100%", height: "200px", px: 3, py: 5, overflowY: "scroll" }}>
-                            <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px", py: 0.4 } }}>
-                                &#8226; The password should contain a minimum of 8 characters.<br />
-                            </Typography>
-                            <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px", py: 0.4 } }}>
-                                &#8226; The password should contain at least one uppercase letter.<br />
-                            </Typography>
-                            <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px", py: 0.4 } }}>
-                                &#8226; The password should contain at least one lowercase letter.<br />
-                            </Typography>
-                            <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px", py: 0.4 } }}>
-                                &#8226; The password should contain at least one numeric character.<br />
-                            </Typography>
-                            <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px", py: 0.4 } }}>
-                                &#8226; The password should contain at least one special character (symbol or non-alphanumeric character).<br />
-                            </Typography>
+                        <Paper sx={{ px: 3, py: 1 }}>
+                            <Box sx={{ width: "100%", height: "200px", px: 3, py: 1, overflowY: "scroll" }}>
+                                <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px" }, my: 1 }}>
+                                    &#8226; The password should contain a minimum of 8 characters.<br />
+                                </Typography>
+                                <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px" }, my: 1 }}>
+                                    &#8226; The password should contain at least one uppercase letter.<br />
+                                </Typography>
+                                <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px" }, my: 1 }}>
+                                    &#8226; The password should contain at least one lowercase letter.<br />
+                                </Typography>
+                                <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px" }, my: 1 }}>
+                                    &#8226; The password should contain at least one numeric character.<br />
+                                </Typography>
+                                <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px" }, my: 1 }}>
+                                    &#8226; The password should contain at least one special character (symbol or non-alphanumeric character).<br />
+                                </Typography>
+                            </Box>
                         </Paper>
                     </Grid>
                     <Grid item sm={12} md={6} sx={{ p: { xs: 3, sm: 4 } }}>

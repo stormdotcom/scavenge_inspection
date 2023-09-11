@@ -54,7 +54,7 @@ function Input(props) {
                   )
                 }}
               />
-              {statusError ? <Typography variant="p" sx={{ color: "red", mt: 1, lineHeight: 0 }}>{errorName}</Typography> :
+              {statusError ? <Typography variant="p" sx={{ color: "red", mt: 1, lineHeight: 0, fontSize: { xs: "9px", sm: "10px", md: "11px", lg: "12px" } }}>{errorName}</Typography> :
                 <ErrorMessage component={TextError} name={name} />}
             </>
           );
