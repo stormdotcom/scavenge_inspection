@@ -15,3 +15,8 @@ export const getOrgAdmin = flow(getState, orgAdmin);
 const orgList = (state) => state.orgList;
 export const getOrgList = flow(getState, orgList);
 
+const signUpManager = (state) => state.signUpManager;
+export const getSignUpManager = flow(getState, signUpManager);
+
+const signUpVessel = (state) => state.signUpVessel;
+export const getSignUpVessel = flow(getState, signUpVessel);

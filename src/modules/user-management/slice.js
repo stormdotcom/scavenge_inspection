@@ -27,6 +27,29 @@ const initialState = {
             company_name: "",
             vessel_name: ""
         }
+    },
+    signUpManager: {
+        requestInProgress: false,
+        data: {
+            fullName: "",
+            isNewOrg: "existingOrg",
+            email: "",
+            password: "",
+            confirmPassword: "",
+            company_name: ""
+        }
+    },
+    signUpVessel: {
+        requestInProgress: false,
+        data: {
+            fullName: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+            company_name: "",
+            vessel_name: "",
+            cylinder_numbers: ""
+        }
     }
 
 };
