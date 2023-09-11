@@ -7,7 +7,7 @@ const { Close } = Icons;
 const closeBtnStyle = {
     position: "relative",
     top: "32px",
-    left: "96%",
+    left: "94%",
     width: "20px",
     borderRadius: "15px",
     height: "20px"

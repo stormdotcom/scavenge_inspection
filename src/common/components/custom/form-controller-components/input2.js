@@ -53,7 +53,7 @@ function Input2(props) {
                                     }}
                                 />
                                 <Box sx={{ display: "block", position: "relative" }}>
-                                    {statusError ? <Typography variant="p" sx={{ color: "error.main", lineHeight: 0 }}>{errorName}</Typography> :
+                                    {statusError ? <Typography variant="p" sx={{ color: "error.main", fontSize: { xs: "9px", sm: "10px", md: "11px", lg: "12px" }, lineHeight: 0 }}>{errorName}</Typography> :
                                         <ErrorMessage component={TextError} name={name} />}
                                 </Box>
 

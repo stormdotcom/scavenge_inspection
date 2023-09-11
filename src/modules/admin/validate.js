@@ -7,7 +7,7 @@ export const passwordChangeSchema = Yup.object({
         .max(100)
         .matches(
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
-            "Password must contain at least one lowercase letter,\n one uppercase letter, and one number"
+            "Must contain at least 1 lowercase, 1 uppercase, and 1 num"
         )
         .required("Password is required"),
     confirmPassword: Yup.string()
