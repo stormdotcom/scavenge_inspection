@@ -10,7 +10,7 @@ function Input(props) {
   //sx={{ fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }}
   return (
     <Grid sx={{ ...FORM_CONTROL_STYLE, ...sx }}>
-      <InputLabel htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }}> *</span>}</InputLabel>
+      <InputLabel htmlFor={name} sx={{ fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }}>{label} {isMandatory && <span style={{ color: "red" }}> *</span>}</InputLabel>
       <Field name={name} >
         {({ form, field }) => {
           const { handleChange } = form;
