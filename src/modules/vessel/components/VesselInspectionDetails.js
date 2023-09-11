@@ -17,6 +17,7 @@ const VesselDetails = (props) => {
     const { handleSubmit, fetchFormData } = props;
     const loading = useSelector(state => state[STATE_REDUCER_KEY].inspectionDetails.requestInProgress);
     const { company_name = "" } = useSelector(state => state[COMMON_KEY].user.organizationBelongsTo);
+    const fullName = useSelector(state => state[COMMON_KEY].user.fullName);
     const dispatch = useDispatch();
     const handleUpload = () => {
         dispatch(sliceActions.setImageUploader(true));
@@ -31,7 +32,7 @@ const VesselDetails = (props) => {
         <Grid sx={{ width: "100%", minHeight: "30vh", bgcolor: "primary.main", p: 4 }}>
             <LoadingCustomOverlay active={loading} spinnerProps="Prediction">
                 <Box sx={{ display: "flex", flexDirection: "column", px: 5, mb: 2 }}>
-                    <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> {company_name} </Typography>
+                    <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", sm: "13px", md: "28px" }, fontWeight: 600, pb: 1 }}> {`${fullName} (${company_name})`} </Typography>
                     <Box sx={{ px: 2, pt: 4, width: "100%" }}>
                         <Form>
                             <Grid container rowSpacing={4} columnSpacing={4}>
@@ -67,9 +68,9 @@ const VesselDetails = (props) => {
             </LoadingCustomOverlay >
         </Grid >
 
-        <Box >
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-                <Alert severity="info"> Images once uploaded cannot be retrieved. You can only save or download generated reports </Alert>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Box sx={{ display: "flex", justifyContent: "center", width: { xs: "80%", md: "100%" } }}>
+                <Alert severity="info" sx={{ fontSize: { xs: "12px", md: "16px" } }}> Images once uploaded cannot be retrieved. You can only save or download generated reports </Alert>
             </Box>
         </Box></>;
 };

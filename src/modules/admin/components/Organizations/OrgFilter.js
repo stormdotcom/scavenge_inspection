@@ -3,13 +3,18 @@ import { withFormik, Form } from "formik";
 import { connect, useDispatch } from "react-redux";
 import { Box, Paper } from "@mui/material";
 import { createStructuredSelector } from "reselect";
+<<<<<<< HEAD
 
 import { actions as sliceActions } from "../../slice";
 import { Components, FormController } from "../../../../common/components";
+=======
+import { Components, FormController, Icons } from "../../../../common/components";
+>>>>>>> 7b463438a4c2451f810d89b00e0cd7b16cc2d7c1
 import { getExtraProps } from "../../../vessel/selectors";
 import { orgFilterSearch } from "../../actions";
-const { Grid, Button } = Components;
-
+import ContainedButton from "../../../../common/components/custom/ContainedButton";
+const { Grid } = Components;
+const { FilterAltRounded } = Icons;
 function OrgFilter(props) {
     const dispatch = useDispatch();
     const { handleSubmit } = props;
@@ -29,8 +34,7 @@ function OrgFilter(props) {
                             <FormController control="input" name="orgManager" label="Organization Manager" />
                         </Grid>
                         <Grid item sm={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Search"}</Button>
-                        </Grid>
+                            <ContainedButton icon={<FilterAltRounded />} type="submit" onClick={handleSubmit}>{"Filter"}</ContainedButton>                        </Grid>
                     </Grid>
                 </Form>
             </Paper >

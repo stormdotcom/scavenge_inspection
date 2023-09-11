@@ -14,8 +14,10 @@ import { COMMON_TABLE_PAGINATION } from "../../../common/constants";
 import CustomReactTable from "../../../../common/components/custom/CustomReactTable";
 import { allowAccess, disAllowAccess, fetchUserList } from "../../actions";
 import UserFilter from "./UserFilter";
-const { NotInterestedIcon, CheckCircleIcon } = Icons;
-const { OpenInNewIcon } = Icons;
+import "./modal.css";
+
+const { NotInterestedIcon, CheckCircleIcon, OpenInNewIcon } = Icons;
+
 const ListUsers = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();

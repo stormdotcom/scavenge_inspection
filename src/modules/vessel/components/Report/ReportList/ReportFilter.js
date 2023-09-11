@@ -5,12 +5,13 @@ import { connect, useDispatch } from "react-redux";
 import { actions as sliceActions } from "../../../slice";
 import { Box, Paper } from "@mui/material";
 import { createStructuredSelector } from "reselect";
-import { Components, FormController } from "../../../../../common/components";
+import { Components, FormController, Icons } from "../../../../../common/components";
 import { searchReport } from "../../../actions";
 import { getExtraProps } from "../../../selectors";
 import { reportValidationSchema } from "../../../validate";
-const { Grid, Button } = Components;
-
+import ContainedButton from "../../../../../common/components/custom/ContainedButton";
+const { Grid } = Components;
+const { FilterAltRounded } = Icons;
 function ReportFilter(props) {
     const dispatch = useDispatch();
     const { handleSubmit } = props;
@@ -30,7 +31,7 @@ function ReportFilter(props) {
                             <FormController control="date3" name="endDate" label="End Date" />
                         </Grid>
                         <Grid item sm={12} md={12} lg={12} xl={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Search"}</Button>
+                            <ContainedButton icon={<FilterAltRounded />} type="submit" onClick={handleSubmit}>{"Filter"}</ContainedButton>
                         </Grid>
                     </Grid>
                 </Form>

@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
 import { FormController } from "../../../common/components";
 import { createStructuredSelector } from "reselect";
@@ -22,9 +22,9 @@ const VesselDetails = (props) => {
     }, []);
 
     return <Grid sx={{ width: "100%", minHeight: "90vh", bgcolor: "primary.main", p: 4 }}>
-        <Box sx={{ display: "flex", flexDirection: "column", px: 5, mb: 2 }}>
-            <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> Update Vessel Details </Typography>
-            <Box sx={{ px: 2, pt: 4, width: "100%" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", px: 5, mb: 2, textAlign: "center" }}>
+            <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", sm: "13px", md: "28px" }, fontWeight: 600, pb: 1 }}> VESSEL PROFILE </Typography>
+            <Paper sx={{ bgcolor: "primary.light", px: 2, pt: 4, pb: 2, width: "100%" }}>
                 <LoadingCustomOverlay active={loading} >
                     <Form>
                         <Grid container rowSpacing={2} columnSpacing={4}>
@@ -46,13 +46,22 @@ const VesselDetails = (props) => {
                             <Grid item sm={12} md={6} lg={6} xl={4}>
                                 <FormController control="input2" name="cylinder_numbers" label="Number of Cylinders" isMandatory={true} />
                             </Grid>
+                            <Grid item sm={12} md={6} lg={6} xl={4}>
+                                <FormController control="input2" name="phone" label="Contact Number" isMandatory={true} />
+                            </Grid>
+                            <Grid item sm={12} md={6} lg={6} xl={4}>
+                                <FormController control="input2" name="email" label="Email Address" isMandatory={true} />
+                            </Grid>
+                            <Grid item sm={12} md={6} lg={6} xl={4}>
+                                <FormController control="input2" name="fleetManager" label="Fleet Manager" disabled={true} />
+                            </Grid>
                         </Grid>
                         <Grid sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Update Details"}</Button>
+                            <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Save"}</Button>
                         </Grid>
                     </Form>
                 </LoadingCustomOverlay>
-            </Box>
+            </Paper>
         </Box>
     </Grid >;
 };

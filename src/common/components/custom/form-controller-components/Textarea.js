@@ -23,7 +23,7 @@ function Textarea(props) {
 
   return (
     <Grid sx={FORM_CONTROL_STYLE}>
-      <InputLabel htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", fontSize: "14px" }}> *</span>}</InputLabel>
+      <InputLabel htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }}> *</span>}</InputLabel>
       <Field onKeyUp={onChangeFromController} className="formik-textarea" style={style} as='textarea' id={name} name={name} disabled={disabled} {...rest} />
       {statusError ? <Typography variant="p" sx={{ color: "red", mt: 1, lineHeight: 0 }}>{errorName}</Typography> :
         <ErrorMessage component={TextError} name={name} />}

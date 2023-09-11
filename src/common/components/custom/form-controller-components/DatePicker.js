@@ -15,7 +15,7 @@ const DatePicker = (props) => {
   const { label = "", name = "", mode = "", onChangeFromController, isMandatory = false, ...rest } = props;
   return (
     <Grid sx={FORM_CONTROL_STYLE}>
-      <FormLabel htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", fontSize: "14px" }}> *</span>}</FormLabel>
+      <FormLabel htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }}> *</span>}</FormLabel>
       <Field name={name}>
         {({ form, field }) => {
           const { setFieldValue } = form;
