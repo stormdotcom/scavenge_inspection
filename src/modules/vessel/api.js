@@ -82,8 +82,7 @@ export const exportPdfApi = (data) => {
             data
         },
         fileName: "Inspection Report",
-        ext: "pdf",
-        baseURL: "https://defectdetectionrings.azurewebsites.net"
+        ext: "pdf"
 
     };
 };
@@ -96,7 +95,6 @@ export const exportExcelApi = (data) => {
             data
         },
         fileName: "Inspection Report",
-        ext: "xlsx",
-        baseURL: "https://defectdetectionrings.azurewebsites.net"
+        ext: "xlsx"
     };
 };

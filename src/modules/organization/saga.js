@@ -1,10 +1,14 @@
-import { all, call, fork, put, take, takeLatest } from "redux-saga/effects";
+import { all, call, fork, put, select, take, takeLatest } from "redux-saga/effects";
 import { ACTION_TYPES, fetchVesselList, fetchVesselRequestList } from "./actions";
 import { handleAPIRequest } from "../../utils/http";
-import { approveVesselApi, createVesselApi, fetchVesselListApi, fetchVesselRequestListApi } from "./api";
+import {
+    approveVesselApi, createVesselApi, fetchVesselListApi, fetchVesselRequestListApi,
+    fetchVesselDetailListsApi, fetchVesselByApi
+} from "./api";
 import { successNotify } from "../../utils/notificationUtils";
 import { actions } from "./slice";
 import _ from "lodash";
+import { getExtraProps, getTablePagination } from "./selectors";
 
 export function* fetchVesselListSaga() {
     yield call(handleAPIRequest, fetchVesselListApi);
@@ -33,13 +37,29 @@ export function* createVesselSaga({ payload = {} }) {
         yield put(fetchVesselList());
     }
 }
+export function* fetchVesselDetailListsSaga() {
+    const tablePagination = yield select(getTablePagination);
+    const extraProps = yield select(getExtraProps);
+    const payload = { ...tablePagination, ...extraProps };
+    yield call(handleAPIRequest, fetchVesselDetailListsApi, payload);
+}
+export function* filterVesselListSaga({ payload }) {
+    yield put(actions.setExtraProps(payload));
+    yield call(fetchVesselDetailListsSaga);
+}
+export function* fetchVesselById({ payload }) {
+    yield call(handleAPIRequest, fetchVesselByApi, payload);
+}
 
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.FETCH_VESSEL_LIST, fetchVesselListSaga),
         takeLatest(ACTION_TYPES.VESSEL_REQUEST_LIST, fetchVesselRequestListSaga),
         takeLatest(ACTION_TYPES.APPROVE_VESSEL, approveVessel),
-        takeLatest(ACTION_TYPES.CREATE_VESSEL, createVesselSaga)
+        takeLatest(ACTION_TYPES.CREATE_VESSEL, createVesselSaga),
+        takeLatest(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST, fetchVesselDetailListsSaga),
+        takeLatest(ACTION_TYPES.FILTER_VESSEL, filterVesselListSaga),
+        takeLatest(ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID, fetchVesselById)
     ]);
 }
-//CREATE_VESSEL
+//FETCH_VESSEL_DETAILS_LIST

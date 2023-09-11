@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import React from "react";
 import ContainedButton from "../../../../common/components/custom/ContainedButton";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,19 +18,27 @@ const ReportActions = () => {
     const handleExcel = () => {
         dispatch(exportExcel());
     };
-    return <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-        {isPredicted && <>
-            <Box>
-                <ContainedButton onClick={handleSave} > Save</ContainedButton>
-            </Box>
-            <Box>
-                <ContainedButton onClick={handlePdf}> Download PDF </ContainedButton>
-            </Box>
-            <Box>
-                <ContainedButton onClick={handleExcel}> Download Excel </ContainedButton>
-            </Box>
-        </>}
-    </Box>;
+    if (isPredicted) {
+        return <Box sx={{ width: "100%", display: "flex", justifyContent: "center", mt: 2 }}>
+            <Grid container columnSpacing={3} sx={{ width: "80%" }}>
+                <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
+                    <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
+                        <ContainedButton onClick={handleSave} > Save</ContainedButton>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
+                    <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
+                        <ContainedButton onClick={handlePdf}> Download PDF </ContainedButton>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
+                    <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
+                        <ContainedButton onClick={handleExcel}> Download Excel </ContainedButton>
+                    </Box>
+                </Grid>
+            </Grid>
+        </Box >;
+    }
 };
 
 export default ReportActions;

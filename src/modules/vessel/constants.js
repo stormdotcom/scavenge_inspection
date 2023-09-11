@@ -104,6 +104,49 @@ export const formatUser = (data = {}) => {
     return { _id, email, mobile };
 };
 
+export const formatPredictedData = (data, date, total_running_hours) => {
+
+    const formattedData = {
+        predictionInfo: {
+            date: fromEpochToMuiDate(date),
+            total_running_hours
+        }
+    };
+    for (const cylinderName in data) {
+        const cylinderData = data[cylinderName];
+        formattedData.predictionInfo[cylinderName] = {
+            lubrication: {
+                ring1: cylinderData.predictionInfo[0].lubricationCondition,
+                ring2: cylinderData.predictionInfo[1].lubricationCondition,
+                ring3: cylinderData.predictionInfo[2].lubricationCondition,
+                ring4: cylinderData.predictionInfo[3].lubricationCondition
+            },
+            surface: {
+                ring1: cylinderData.predictionInfo[0].surfaceCondition,
+                ring2: cylinderData.predictionInfo[1].surfaceCondition,
+                ring3: cylinderData.predictionInfo[2].surfaceCondition,
+                ring4: cylinderData.predictionInfo[3].surfaceCondition
+            },
+            deposit: {
+                ring1: cylinderData.predictionInfo[0].depositsCondition,
+                ring2: cylinderData.predictionInfo[1].depositsCondition,
+                ring3: cylinderData.predictionInfo[2].depositsCondition,
+                ring4: cylinderData.predictionInfo[3].depositsCondition
+            },
+            breakage: {
+                ring1: cylinderData.predictionInfo[0].breakageCondition,
+                ring2: cylinderData.predictionInfo[1].breakageCondition,
+                ring3: cylinderData.predictionInfo[2].breakageCondition,
+                ring4: cylinderData.predictionInfo[3].breakageCondition
+            },
+            image: cylinderData.image,
+            remark: ""
+        };
+    }
+
+    return formattedData;
+};
+
 
 export const testData = {
     CYLINDER_1: {

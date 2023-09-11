@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Divider, Grid } from "@mui/material";
 import React from "react";
 import PredictionImage from "./PredictionImage";
 import { useSelector } from "react-redux";
@@ -26,7 +26,7 @@ const ReportOverView = () => {
         (<Grid container key={key} spacing={2} sx={{ bgcolor: "primary.200", display: "flex", justifyContent: "space-evenly", p: 1, borderRadius: "5px" }}>
             <PredictionImage image={value?.image} cylinder={key} />
             {/* Table  data[key]*/}
-            <Grid item sm={6} md={9} lg={9} xl={9}>
+            <Grid item xs={12} sm={6} md={9} lg={9} xl={9}>
                 <CustomReactTable
                     data={value.predictionInfo || []}
                     columns={columnsCylinderReport}
@@ -35,6 +35,10 @@ const ReportOverView = () => {
                     enableCustomTableFilter={false}
                 />
             </Grid>
+            <Divider sx={{
+                width: "100%",
+                bgcolor: "primary.dark"
+            }} variant="inset" />
         </Grid>)
         )}
     </Box > : ""
