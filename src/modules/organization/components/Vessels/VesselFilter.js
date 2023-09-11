@@ -4,11 +4,12 @@ import { connect, useDispatch } from "react-redux";
 
 import { actions as sliceActions } from "../../slice";
 import { Box, Paper } from "@mui/material";
-import { Components, FormController } from "../../../../common/components";
+import { Components, FormController, Icons } from "../../../../common/components";
 import ContainedButton from "../../../../common/components/custom/ContainedButton";
 import { filterVessel } from "../../actions";
 
 const { Grid } = Components;
+const { FilterAltRounded } = Icons;
 
 function VesselFilter(props) {
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ function VesselFilter(props) {
                             <FormController control="input" name="imo_number" label="IMO Number" />
                         </Grid>
                         <Grid item sm={12} md={12} lg={12} xl={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <ContainedButton type="submit" onClick={handleSubmit}>{"Filter"}</ContainedButton>
+                            <ContainedButton icon={<FilterAltRounded />} type="submit" onClick={handleSubmit}>{"Filter"}</ContainedButton>
                         </Grid>
                     </Grid>
                 </Form>

@@ -7,10 +7,10 @@ import TextError from "./TextError";
 
 function Input(props) {
   const { toolTipTitle = "", label, name, icon, onClick, sx = {}, errorName = "", statusError = false, onChangeText, onChangeFromController, digitsOnly = false, isMandatory = false, upperCase = false, ...rest } = props;
-
+  //sx={{ fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }}
   return (
     <Grid sx={{ ...FORM_CONTROL_STYLE, ...sx }}>
-      <InputLabel htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", fontSize: "11px" }}> *</span>}</InputLabel>
+      <InputLabel htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }}> *</span>}</InputLabel>
       <Field name={name} >
         {({ form, field }) => {
           const { handleChange } = form;

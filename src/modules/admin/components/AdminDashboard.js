@@ -38,31 +38,31 @@ const AdminDashboard = () => {
                 <LoadingCustomOverlay active={requestInProgress} spinnerProps="selectTagProp">
                     <Paper sx={{ width: "100%", minHeight: "150px", bgcolor: "primary.light", display: "flex", justifyContent: "space-evenly", py: 4 }}>
                         <Box>
-                            <Typography sx={{ fontSize: "40px", fontWeight: 800, textAlign: "center", color: "orange.main" }}>{formatNumber(organizations)}</Typography>
+                            <Typography sx={{ fontSize: { xs: "20px", sm: "30px", md: "40px" }, fontWeight: { xs: 500, sm: 600, md: 800 }, textAlign: "center", color: "orange.main" }}>{formatNumber(organizations)}</Typography>
                             <Box sx={{ textAlign: "center" }}>
                                 <Box><CorporateFareIcon sx={{ color: "secondary.light" }} /></Box>
-                                <Typography sx={{ fontSize: "18px", fontWeight: 600, color: "secondary.light" }}>{"Organizations"}</Typography>
+                                <Typography sx={{ fontSize: { xs: "11px", sm: "16px", md: "18px" }, fontWeight: { xs: 500, sm: 600 }, color: "secondary.light" }}>{"Organizations"}</Typography>
                             </Box>
                         </Box>
                         <Box>
-                            <Typography sx={{ fontSize: "40px", fontWeight: 800, textAlign: "center", color: "orange.main" }}>{formatNumber(totalUsers)}</Typography>
+                            <Typography sx={{ fontSize: { xs: "20px", sm: "30px", md: "40px" }, fontWeight: { xs: 500, sm: 600, md: 800 }, textAlign: "center", color: "orange.main" }}>{formatNumber(totalUsers)}</Typography>
                             <Box sx={{ textAlign: "center" }}>
                                 <Box><PeopleAltIcon sx={{ color: "secondary.light" }} /></Box>
-                                <Typography sx={{ fontSize: "18px", fontWeight: 600, color: "secondary.light" }}>{"Total Users"}</Typography>
+                                <Typography sx={{ fontSize: { xs: "11px", sm: "16px", md: "18px" }, fontWeight: { xs: 500, sm: 600 }, color: "secondary.light" }}>{"Total Users"}</Typography>
                             </Box>
                         </Box>
                         <Box>
-                            <Typography sx={{ fontSize: "40px", fontWeight: 800, textAlign: "center", color: "orange.main" }}>{fleetManagers}</Typography>
+                            <Typography sx={{ fontSize: { xs: "20px", sm: "30px", md: "40px" }, fontWeight: { xs: 500, sm: 600, md: 800 }, textAlign: "center", color: "orange.main" }}>{fleetManagers}</Typography>
                             <Box sx={{ textAlign: "center" }}>
                                 <Box><AdminPanelSettingsIcon sx={{ color: "secondary.light" }} /></Box>
-                                <Typography sx={{ fontSize: "18px", fontWeight: 600, color: "secondary.light" }}>{"Fleet Managers"}</Typography>
+                                <Typography sx={{ fontSize: { xs: "11px", sm: "16px", md: "18px" }, fontWeight: { xs: 500, sm: 600 }, color: "secondary.light" }}>{"Fleet Managers"}</Typography>
                             </Box>
                         </Box>
                         <Box>
-                            <Typography sx={{ fontSize: "40px", fontWeight: 800, textAlign: "center", color: "orange.main" }}>{vessels}</Typography>
+                            <Typography sx={{ fontSize: { xs: "20px", sm: "30px", md: "40px" }, fontWeight: { xs: 500, sm: 600, md: 800 }, textAlign: "center", color: "orange.main" }}>{vessels}</Typography>
                             <Box sx={{ textAlign: "center" }}>
                                 <Box><DirectionsBoatIcon sx={{ color: "secondary.light" }} /></Box>
-                                <Typography sx={{ fontSize: "18px", fontWeight: 600, color: "secondary.light" }}>{"Vessels"}</Typography>
+                                <Typography sx={{ fontSize: { xs: "11px", sm: "16px", md: "18px" }, fontWeight: { xs: 500, sm: 600 }, color: "secondary.light" }}>{"Vessels"}</Typography>
                             </Box>
                         </Box>
                     </Paper>
@@ -75,17 +75,17 @@ const AdminDashboard = () => {
                         width: "100%", minHeight: "150px", bgcolor: "primary.light", display: "flex", justifyContent: "space-evenly", py: 4
                     }}>
                         <Box>
-                            <Typography sx={{ fontSize: "40px", fontWeight: 800, textAlign: "center", color: "orange.main" }}>{formatNumber(reports)}</Typography>
+                            <Typography sx={{ fontSize: { xs: "20px", sm: "30px", md: "40px" }, fontWeight: { xs: 500, sm: 600, md: 800 }, textAlign: "center", color: "orange.main" }}>{formatNumber(reports)}</Typography>
                             <Box sx={{ textAlign: "center" }}>
                                 <Box><AssignmentIcon sx={{ color: "secondary.light" }} /></Box>
-                                <Typography sx={{ fontSize: "18px", fontWeight: 600, color: "secondary.light" }}>{"Saved Reports"}</Typography>
+                                <Typography sx={{ fontSize: { xs: "11px", sm: "16px", md: "18px" }, fontWeight: { xs: 500, sm: 600 }, color: "secondary.light" }}>{"Saved Reports"}</Typography>
                             </Box>
                         </Box>
                         <Box>
-                            <Typography sx={{ fontSize: "40px", fontWeight: 800, textAlign: "center", color: "orange.main" }}>{formatNumber(cylinderImageCount)}</Typography>
+                            <Typography sx={{ fontSize: { xs: "20px", sm: "30px", md: "40px" }, fontWeight: { xs: 500, sm: 600, md: 800 }, textAlign: "center", color: "orange.main" }}>{formatNumber(cylinderImageCount)}</Typography>
                             <Box sx={{ textAlign: "center" }}>
                                 <Box><ImageSearchIcon sx={{ color: "secondary.light" }} /></Box>
-                                <Typography sx={{ fontSize: "18px", fontWeight: 600, color: "secondary.light" }}>{"Cylinder Images uploaded"}</Typography>
+                                <Typography sx={{ fontSize: { xs: "11px", sm: "16px", md: "18px" }, fontWeight: { xs: 500, sm: 600 }, color: "secondary.light" }}>{"Cylinder Images uploaded"}</Typography>
                             </Box>
                         </Box>
                     </Paper>
