@@ -19,8 +19,8 @@ const PasswordUpdate = (props) => {
     useEffect(() => {
         setFieldValue("id", id);
     }, []);
-    return <Paper sx={{ px: 3, pt: 4, width: "100%" }}>
-        <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> Update Password </Typography>
+    return <Paper sx={{ px: 3, pt: 4, width: "100%", pr: 3 }}>
+        <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", md: "28px" }, fontWeight: 600, pb: 1 }}> Update Password </Typography>
         <LoadingCustomOverlay active={loading} >
             <Form>
                 <Grid container rowSpacing={2} columnSpacing={4}>

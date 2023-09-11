@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Paper } from "@mui/material";
+import { Box, Grid, Paper } from "@mui/material";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Form, withFormik } from "formik";
@@ -10,6 +10,7 @@ import { getCreateVessel } from "../selectors";
 import LoadingCustomOverlay from "../../common/components/LoadingOverlay";
 import { createVesselSchema as validationSchema } from "../validate";
 import { createVesselAsync } from "../actions";
+import ContainedButton from "../../../common/components/custom/ContainedButton";
 
 const CreateVesselForm = (props) => {
     const { handleSubmit, createVessel = {}, errors = {} } = props;
@@ -26,7 +27,7 @@ const CreateVesselForm = (props) => {
     };
     return <Box>
         <LoadingCustomOverlay active={requestInProgress} spinnerProps="selectTagProp">
-            <Box sx={{ height: { sm: "80vh", md: "60vh" }, overflowY: "scroll" }}>
+            <Box sx={{ height: { xs: "70vh", sm: "80vh", md: "60vh", diplay: "flex", justifyContent: "center" }, overflowY: "scroll" }}>
                 <Form>
                     <Grid container rowSpacing={3} columnSpacing={3}>
                         <Grid item sm={12} md={4} lg={4} xl={4} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
@@ -56,7 +57,7 @@ const CreateVesselForm = (props) => {
                         {next && <Grid item sm={12} md={4} lg={4} xl={4} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                             <FormController control="input" name="password" label="Enter Password" isMandatory={true} />
                         </Grid>}
-                        {next && <Grid item sm={8} md={8} lg={8} xl={8} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
+                        {next && <Grid item sm={8} md={8} lg={8} xl={8} sx={{ display: { xs: "none" }, my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                             <Paper sx={{ borderRadius: "10px", width: "90%", height: "230px" }}>
                             </Paper>
                         </Grid>}
@@ -73,13 +74,13 @@ const CreateVesselForm = (props) => {
                     </Box>
                     <Box sx={{ display: "flex", justifyContent: { sm: "center", md: "flex-end" } }}>
                         <Box>
-                            {next && <Button onClick={goBack} variant="outlined" color="secondary" sx={{ fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }}>
+                            {next && <ContainedButton onClick={goBack} variant="outlined" color="secondary" >
                                 Go Back
-                            </Button>}
-                            {!next && <Button onClick={goNext} variant="contained" color="secondary" sx={{ bgcolor: "secondary.main", color: "white.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} >
+                            </ContainedButton>}
+                            {!next && <ContainedButton onClick={goNext} variant="contained" color="secondary" >
                                 Continue
-                            </Button>}
-                            {next && <Button onClick={handleConfirm} sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" >{"Confirm"}</Button>}
+                            </ContainedButton>}
+                            {next && <ContainedButton onClick={handleConfirm} >{"Confirm"}</ContainedButton>}
                         </Box>
                     </Box>
                 </Form>

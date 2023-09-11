@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { Form, withFormik } from "formik";
-import { Box, Button, Grid, IconButton, Paper, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import { connect, useDispatch, useSelector } from "react-redux";
 
 import { STATE_REDUCER_KEY } from "../../constants";
@@ -11,12 +11,10 @@ import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
 import { FormController } from "../../../../common/components";
 import { selectOrgDetails } from "../../selectors";
 import { fetchOrgById, updateOrg } from "../../actions";
-import { Icons } from "../../../../common/components";
-const { KeyboardBackspaceIcon } = Icons;
+import BackButton from "../../../../common/components/custom/BackButton";
 
 
 const OrgDetails = (props) => {
-    const navigate = useNavigate();
     const { getOrgById, handleSubmit, setFieldValue } = props;
     const dispatch = useDispatch();
     const loading = useSelector(state => state[STATE_REDUCER_KEY].orgDetails.requestInProgress);
@@ -30,13 +28,8 @@ const OrgDetails = (props) => {
     return <Grid sx={{ width: "100%", minHeight: "90vh", bgcolor: "primary.main", p: 4 }}>
         <Box sx={{ display: "flex", flexDirection: "column", px: 5, mb: 2 }}>
             <Paper sx={{ px: 3, pt: 4, width: "100%", bgcolor: "primary.light" }}>
-                <Typography sx={{ color: "secondary.main", fontSize: "28px", fontWeight: 600, pb: 1 }}> Organization Details </Typography>
-                <Box sx={{ position: "relative" }}>
-                    <IconButton sx={{ position: "absolute", top: "-65px", right: "10px", display: "flex", flexDirection: "column" }} onClick={() => navigate("../organizations")}>
-                        <KeyboardBackspaceIcon sx={{ color: "secondary.main" }} />
-                        <Typography sx={{ color: "secondary.main" }}>Go Back</Typography>
-                    </IconButton>
-                </Box>
+                <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", md: "28px" }, fontWeight: 600, pb: 1 }}> Organization Details </Typography>
+                <BackButton path="../organizations" />
 
                 <Form>
                     <LoadingCustomOverlay active={loading}>

@@ -57,12 +57,26 @@ const UserDetails = (props) => {
                     </Form>
                 </LoadingCustomOverlay>
                 <Grid container columnSpacing={2} rowSpacing={1} sx={{ my: 2, display: "flex" }}>
-                    <Grid item sm={12} md={6}>
-                        <Paper sx={{ width: "100%", height: "200px" }}>
-
+                    <Grid item sm={12} md={6} sx={{ p: { xs: 3, sm: 4 } }}>
+                        <Paper sx={{ width: "100%", height: "200px", px: 3, py: 5, overflowY: "scroll" }}>
+                            <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px", py: 0.4 } }}>
+                                &#8226; The password should contain a minimum of 8 characters.<br />
+                            </Typography>
+                            <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px", py: 0.4 } }}>
+                                &#8226; The password should contain at least one uppercase letter.<br />
+                            </Typography>
+                            <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px", py: 0.4 } }}>
+                                &#8226; The password should contain at least one lowercase letter.<br />
+                            </Typography>
+                            <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px", py: 0.4 } }}>
+                                &#8226; The password should contain at least one numeric character.<br />
+                            </Typography>
+                            <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px", py: 0.4 } }}>
+                                &#8226; The password should contain at least one special character (symbol or non-alphanumeric character).<br />
+                            </Typography>
                         </Paper>
                     </Grid>
-                    <Grid item sm={12} md={6}>
+                    <Grid item sm={12} md={6} sx={{ p: { xs: 3, sm: 4 } }}>
                         <PasswordUpdate id={id} />
                     </Grid>
 
