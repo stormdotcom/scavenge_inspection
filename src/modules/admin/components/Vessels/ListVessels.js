@@ -2,8 +2,8 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { STATE_REDUCER_KEY, columnsVessels, vesselColOrder } from "../../constants";
 import { useMemo } from "react";
+
 import { Icons } from "../../../../common/components";
 import CustomListMenu from "../../../../common/components/custom/CustomListMenu";
 import { actions as sliceActions } from "../../slice";
@@ -11,6 +11,7 @@ import { REACT_TABLE_COMMON_OPTIONS } from "../../../../common/constants";
 import { COMMON_TABLE_PAGINATION } from "../../../common/constants";
 import CustomReactTable from "../../../../common/components/custom/CustomReactTable";
 import { fetchVesselList } from "../../actions";
+import { STATE_REDUCER_KEY, columnsVessels, vesselColOrder } from "../../constants";
 import VesselFilter from "./VesselFilter";
 
 

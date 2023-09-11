@@ -1,15 +1,16 @@
 import React from "react";
-import { STATE_REDUCER_KEY } from "../../constants";
+import { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import { Button, Grid, Paper, Typography } from "@mui/material";
-import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
 import { Form, withFormik } from "formik";
-import { FormController } from "../../../../common/components";
 import { createStructuredSelector } from "reselect";
+
+import { STATE_REDUCER_KEY } from "../../constants";
+import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
+import { FormController } from "../../../../common/components";
 import { selectUserDetails } from "../../selectors";
 import { resetPassword } from "../../actions";
 import { passwordChangeSchema } from "../../validate";
-import { useEffect } from "react";
 
 
 const PasswordUpdate = (props) => {

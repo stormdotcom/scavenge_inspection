@@ -2,10 +2,10 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import NotInterestedIcon from "@mui/icons-material/NotInterested";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { STATE_REDUCER_KEY, columnsUsers, usersColOrder } from "../../constants";
 import { useMemo } from "react";
+import Swal from "sweetalert2";
+
+import { STATE_REDUCER_KEY, columnsUsers, usersColOrder } from "../../constants";
 import { Icons } from "../../../../common/components";
 import CustomListMenu from "../../../../common/components/custom/CustomListMenu";
 import { actions as sliceActions } from "../../slice";
@@ -13,9 +13,8 @@ import { REACT_TABLE_COMMON_OPTIONS } from "../../../../common/constants";
 import { COMMON_TABLE_PAGINATION } from "../../../common/constants";
 import CustomReactTable from "../../../../common/components/custom/CustomReactTable";
 import { allowAccess, disAllowAccess, fetchUserList } from "../../actions";
-import Swal from "sweetalert2";
 import UserFilter from "./UserFilter";
-
+const { NotInterestedIcon, CheckCircleIcon } = Icons;
 const { OpenInNewIcon } = Icons;
 const ListUsers = () => {
     const navigate = useNavigate();

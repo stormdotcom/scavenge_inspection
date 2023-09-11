@@ -1,5 +1,5 @@
-import { Box, Paper, Typography } from "@mui/material";
 import React from "react";
+import { Box, Paper, Typography } from "@mui/material";
 
 const SquareStatsCad = ({ value = 0, type = "", title = "", cardType = "light" }) => {
     return <Paper sx={{ minWidth: "140px", bgcolor: cardType ? "primary.dark" : "primary.light", mx: 2, textAlign: "center", p: 2 }}>

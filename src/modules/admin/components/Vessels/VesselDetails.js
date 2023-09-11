@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
-import { STATE_REDUCER_KEY } from "../../constants";
-import { connect, useDispatch, useSelector } from "react-redux";
-import { actions as sliceActions } from "../../slice";
-import { Box, Grid, IconButton, Paper, Typography } from "@mui/material";
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
+import { useNavigate, useParams } from "react-router-dom";
 import { Form, withFormik } from "formik";
-import { FormController } from "../../../../common/components";
 import { createStructuredSelector } from "reselect";
+import { Box, Grid, IconButton, Paper, Typography } from "@mui/material";
+import { connect, useDispatch, useSelector } from "react-redux";
+
+import { STATE_REDUCER_KEY } from "../../constants";
+import { actions as sliceActions } from "../../slice";
+import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
+import { FormController } from "../../../../common/components";
 import { selectVesselDetails } from "../../selectors";
 import { fetchVesselById } from "../../actions";
-import { useNavigate, useParams } from "react-router-dom";
+import { Icons } from "../../../../common/components";
+const { KeyboardBackspaceIcon } = Icons;
 
 const VesselDetailsView = (props) => {
     const navigate = useNavigate();
