@@ -136,9 +136,9 @@ function SignUp(props) {
                                             {!newOrg && <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                                                 <FormController control="input" name="imo_number" label="IMO Number" />
                                             </Grid>}
-                                            <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
+                                            {!newOrg && <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                                                 <FormController control="select" name="organizationAdmin" label="Select Manager" options={orgAdmin || []} />
-                                            </Grid>
+                                            </Grid>}
                                             <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                                                 <FormController control="input" name="password" label="Password" isMandatory={true} />
                                             </Grid>
