@@ -20,8 +20,8 @@ const VesselListSlider = () => {
                     return (
                         <Box key={idx} sx={{ mx: 0.8, bgcolor: "primary.light", minWidth: "160px", minHeight: "90px", borderRadius: "5px" }}>
                             <Box sx={{ display: "flex", py: 2, justifyContent: "space-evenly", alignItems: "center", flexDirection: "column" }}>
-                                <Typography sx={{ color: "white.main", fontWeight: 700 }}>{ele.vesselName}</Typography>
-                                <Typography sx={{ color: "white.main", fontWeight: 500 }}>{ele.profileName}</Typography>
+                                <Typography sx={{ color: "white.main", fontWeight: { xs: 500, md: 700 }, fontSize: { xs: "11px", md: "14px" } }}>{ele.vesselName}</Typography>
+                                <Typography sx={{ color: "white.main", fontWeight: { xs: 400, md: 500 }, fontSize: { xs: "11px", md: "14px" } }}>{ele.profileName}</Typography>
                             </Box>
                             <CircleYellow
                                 latestInspectionDate={ele.latestInspectionDate}
