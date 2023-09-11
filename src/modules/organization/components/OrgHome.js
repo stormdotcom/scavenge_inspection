@@ -35,7 +35,7 @@ const OrgHome = () => {
                             <CreateVessel />
                         </Box>
                     </Grid>
-                    <Grid item xs={6} sm={6} md={4} lg={4} xl={4} >
+                    <Grid item xs={12} sm={6} md={4} lg={4} xl={4} >
                         <Box sx={{ width: "100%", height: "200px" }}>
                             <BottomThirdCard />
                         </Box>

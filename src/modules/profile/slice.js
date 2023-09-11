@@ -14,7 +14,10 @@ const initialState = {
             manufacturer: "",
             type_of_engine: "",
             vessel_type: "",
-            cylinder_numbers: 0
+            cylinder_numbers: 0,
+            phone: "",
+            email: "",
+            fleetManager: ""
         }
     }
 

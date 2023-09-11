@@ -8,7 +8,7 @@
   src: url("./assets/fonts/ClashDisplay_Complete/ClashDisplay-Variable.ttf");
 }
 
-@import '@sweetalert2/theme-dark/dark.scss';
+@import "sweetalert2-custom.css";
 
 body {
   font-family: "Franklin Gothic Book";

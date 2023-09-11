@@ -4,11 +4,12 @@ import { connect, useDispatch } from "react-redux";
 import { actions as sliceActions } from "../../slice";
 import { Box, Paper } from "@mui/material";
 import { createStructuredSelector } from "reselect";
-import { Components, FormController } from "../../../../common/components";
+import { Components, FormController, Icons } from "../../../../common/components";
 import { getExtraProps } from "../../../vessel/selectors";
 import { vesselFilterSearch } from "../../actions";
-const { Grid, Button } = Components;
-
+import ContainedButton from "../../../../common/components/custom/ContainedButton";
+const { Grid } = Components;
+const { FilterAltRounded } = Icons;
 function VesselFilter(props) {
     const dispatch = useDispatch();
     const { handleSubmit } = props;
@@ -28,7 +29,7 @@ function VesselFilter(props) {
                             <FormController control="input" name="imo_number" label="IMO Number" />
                         </Grid>
                         <Grid item sm={12} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                            <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Search"}</Button>
+                            <ContainedButton icon={<FilterAltRounded />} type="submit" onClick={handleSubmit}>{"Filter"}</ContainedButton>
                         </Grid>
                     </Grid>
                 </Form>

@@ -15,6 +15,7 @@ import CustomReactTable from "../../../../common/components/custom/CustomReactTa
 import { allowAccess, disAllowAccess, fetchUserList } from "../../actions";
 import Swal from "sweetalert2";
 import UserFilter from "./UserFilter";
+import "./modal.css";
 
 const { OpenInNewIcon } = Icons;
 const ListUsers = () => {

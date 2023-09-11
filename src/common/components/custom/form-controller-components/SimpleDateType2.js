@@ -19,8 +19,8 @@ const SimpleDate = ({ label, name, isMandatory, sx = { justifyContent: "center",
     const [err, setErr] = useState(null);
     return (
         <Grid sx={{ ...FORM_CONTROL_DATE_STYLE, ...sx }}>
-            <Grid>
-                <InputLabel sx={{ fontWeight: 600, fontSize: "12px" }} htmlFor={name}>
+            <Grid sx={{ width: { xs: "100%" } }}>
+                <InputLabel sx={{ fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }} htmlFor={name}>
                     {label} {isMandatory && <span style={{ color: "red", fontSize: "14px" }}> *</span>}
                 </InputLabel>
                 <Field name={name}>
@@ -46,7 +46,7 @@ const SimpleDate = ({ label, name, isMandatory, sx = { justifyContent: "center",
                         return (
                             <>
                                 <StyledInput
-                                    sx={{ color: "white.main", bgcolor: "#101010", py: 2 }}
+                                    sx={{ color: "white.main", bgcolor: "#101010", py: 2, width: { xs: "100%" } }}
                                     type="date"
                                     id={name}
                                     value={muiCompatibleDate}
@@ -55,7 +55,7 @@ const SimpleDate = ({ label, name, isMandatory, sx = { justifyContent: "center",
                                     {...rest}
                                 />
                                 {isError && <div>{errors[name]}</div>}
-                                {err && <p style={{ color: "red", fontSize: "14px" }}> {err}</p>}
+                                {err && <p style={{ color: "red", fontSize: "14px", fontWeight: 600 }}> {err}</p>}
                             </>
                         );
                     }}
