@@ -2,8 +2,8 @@ export const API_URL = {
     AUTH: {
         SIGN_IN: "no-auth/sign-in",
         SIGN_UP: "no-auth/sign-up",
-        SIGN_UP_VO: "no-auth/sign-up-vo",
-        SIGN_UP_VU: "no-auth/sign-up-VU"
+        SIGN_UP_VO: "no-auth/org-registration",
+        SIGN_UP_VU: "no-auth/vessel-registration"
     },
     USER_MANAGEMENT: {
         GET_CURRENT_PROFILE: "auth/common/profile",

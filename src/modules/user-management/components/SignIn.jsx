@@ -12,9 +12,9 @@ import { Box, Paper } from "@mui/material";
 import { createStructuredSelector } from "reselect";
 import { getSignIn } from "../selectors";
 import { STATE_REDUCER_KEY as COMMON } from "../../common";
-import logoImg from "../../../assets/images/logoDark.png";
 import backgroundImage from "../../../assets/images/vesselBg.jpg";
 import ContainedButton from "../../../common/components/custom/ContainedButton";
+import { HomeIcon } from "./HomeIcon";
 
 const { Divider, Grid, Typography } = Components;
 
@@ -27,20 +27,11 @@ function SignIn(props) {
         dispatch(commonSliceActions.setNavigator(navigate));
         return () => dispatch(sliceActions.clear());
     }, []);
-
+    const handleClick = () => navigate(`../${homePath}`);
     return (
         <>
             <Box sx={{ width: "240px", position: "relative" }}>
-                <Box sx={{ display: "flex", position: "absolute", top: "5px", left: "10px" }}>
-                    <img
-                        onClick={() => navigate(`../${homePath}`)}
-                        style={{ cursor: "pointer" }}
-                        alt="logo_scavenge"
-                        src={logoImg}
-                        width={60}
-                        height={60}
-                    />
-                </Box>
+                <HomeIcon handleClick={handleClick} />
             </Box>
             <Grid height="100vh" container sx={{
                 backgroundImage: `url(${backgroundImage})`,
