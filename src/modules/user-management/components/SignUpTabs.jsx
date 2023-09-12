@@ -64,7 +64,8 @@ const SignUpTabs = () => {
                                     <Tabs sx={{ width: "100%" }} value={value} onChange={handleChange} variant="scrollable" allowScrollButtonsMobile >
                                         <Tab sx={{
                                             width: "50%",
-                                            fontWeight: 700,
+                                            borderTopLeftRadius: "15px",
+                                            fontSize: { xs: "12px", md: "14px" }, fontWeight: { sm: 500, md: 700 },
                                             "& .MuiTabs-indicator": {
                                                 backgroundColor: "#fff",
                                                 color: "#fff",
@@ -80,7 +81,8 @@ const SignUpTabs = () => {
                                         }} label={"Fleet Manger"} />
                                         <Tab sx={{
                                             width: "50%",
-                                            fontWeight: 700,
+                                            borderTopRightRadius: "15px",
+                                            fontSize: { xs: "12px", md: "14px" }, fontWeight: { sm: 500, md: 700 },
                                             "&.Mui-selected": {
                                                 backgroundColor: "#AD7E14"
                                             },
