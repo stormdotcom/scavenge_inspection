@@ -71,24 +71,24 @@ const SignUpTabs = () => {
                                                 height: "3px"
                                             },
                                             "&.Mui-selected": {
-                                                color: "red"
+                                                backgroundColor: "#AD7E14"
                                             },
                                             "&.MuiTab-root": {
                                                 color: "white.main"
                                             }
 
-                                        }} label={"VESSEL OWNER"} />
+                                        }} label={"Manger"} />
                                         <Tab sx={{
                                             width: "50%",
                                             fontWeight: 700,
                                             "&.Mui-selected": {
-                                                color: "red.main"
+                                                backgroundColor: "#AD7E14"
                                             },
                                             "&.MuiTab-root": {
                                                 color: "white.main"
                                             }
 
-                                        }} label={"VESSEL"} />
+                                        }} label={"Vessel"} />
                                     </Tabs>
                                 </Box>
                             </Box>
