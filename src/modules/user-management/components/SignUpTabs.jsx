@@ -77,7 +77,7 @@ const SignUpTabs = () => {
                                                 color: "white.main"
                                             }
 
-                                        }} label={"Manger"} />
+                                        }} label={"Fleet Manger"} />
                                         <Tab sx={{
                                             width: "50%",
                                             fontWeight: 700,
