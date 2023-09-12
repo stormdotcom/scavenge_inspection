@@ -8,16 +8,15 @@ import { actions as commonSliceActions } from "../../common/slice";
 import { actions as sliceActions } from "../slice";
 import { signInSchema as validator } from "../validate";
 import { signIn } from "../actions";
-import { Box, CircularProgress, Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { createStructuredSelector } from "reselect";
 import { getSignIn } from "../selectors";
 import { STATE_REDUCER_KEY as COMMON } from "../../common";
-import logoImg from "../../../assets/images/logoDark.png";
 import backgroundImage from "../../../assets/images/vesselBg.jpg";
+import ContainedButton from "../../../common/components/custom/ContainedButton";
+import { HomeIcon } from "./HomeIcon";
 
 const { Divider, Grid, Typography } = Components;
-
-const { Button } = Components;
 
 function SignIn(props) {
     const dispatch = useDispatch();
@@ -28,20 +27,11 @@ function SignIn(props) {
         dispatch(commonSliceActions.setNavigator(navigate));
         return () => dispatch(sliceActions.clear());
     }, []);
-
+    const handleClick = () => navigate(`../${homePath}`);
     return (
         <>
             <Box sx={{ width: "240px", position: "relative" }}>
-                <Box sx={{ display: "flex", position: "absolute", top: "5px", left: "10px" }}>
-                    <img
-                        onClick={() => navigate(`../${homePath}`)}
-                        style={{ cursor: "pointer" }}
-                        alt="logo_scavenge"
-                        src={logoImg}
-                        width={60}
-                        height={60}
-                    />
-                </Box>
+                <HomeIcon handleClick={handleClick} />
             </Box>
             <Grid height="100vh" container sx={{
                 backgroundImage: `url(${backgroundImage})`,
@@ -65,15 +55,8 @@ function SignIn(props) {
                                             <FormController control="input" name="password" label="Password" type={"password"} />
                                         </Grid>
                                         <Grid item sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                            <Button sx={{ bgcolor: "secondary.main", fontSize: { xs: "16px", xl: "18px" }, height: { xs: "40px", xl: "50px" } }} variant="contained" type="submit" onClick={handleSubmit}>{"Sign In"}</Button>
+                                            <ContainedButton loader={requestInProgress} type="submit" onClick={handleSubmit}>{"Sign In"}</ContainedButton>
                                         </Grid>
-                                        <Box sx={{ display: "flex", position: "relative" }}>
-                                            <Box sx={{ position: "absolute", top: "-35px", right: "20px" }}>
-                                                {requestInProgress && <CircularProgress size={25} sx={{
-                                                    color: "secondary.main"
-                                                }} />}
-                                            </Box>
-                                        </Box>
                                         <Grid sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                             {/* <Typography
                                                 variant="text"

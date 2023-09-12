@@ -1,6 +1,6 @@
 import { all, call, fork, put, take, takeLatest } from "redux-saga/effects";
 import { ACTION_TYPES } from "./actions";
-import { signInApi, signUpApi, fetchOrgAdminsSagaApi, fetchCurrentUserAPI, fetchOrgListApi, fetchOrgAdminDropdownApi } from "./api";
+import { signInApi, signUpApi, fetchOrgAdminsSagaApi, fetchCurrentUserAPI, fetchOrgListApi, fetchOrgAdminDropdownApi, signUpVOApi, signUpVUApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
 import { STORAGE_KEYS } from "../../common/constants";
 import { navigateTo } from "../common/actions";
@@ -58,12 +58,34 @@ export function* fetchOrgAdminDropdown({ payload }) {
     yield call(handleAPIRequest, fetchOrgAdminDropdownApi, payload);
 }
 
+export function* signUpVOsaga({ payload }) {
+    const formData = _.cloneDeep(payload);
+    if (formData.isNewOrg === "existingOrg") {
+        _.set(formData, "company_name", _.get(formData, "company_name._id"));
+        _.set(formData, "isNewOrg", false);
+    }
+    if (formData.isNewOrg === "newOrg") {
+        _.set(formData, "isNewOrg", true);
+    }
+
+    yield call(handleAPIRequest, signUpVOApi, formData);
+}
+
+export function* signUpVUSaga({ payload }) {
+    const formData = _.cloneDeep(payload);
+    _.set(formData, "officerAdmin", _.get(formData, "officerAdmin._id"));
+    _.set(formData, "company_name", _.get(formData, "company_name._id"));
+    yield call(handleAPIRequest, signUpVUApi, formData);
+}
+
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.SIGN_IN, signIn),
         takeLatest(ACTION_TYPES.SIGN_UP, signUp),
         takeLatest(ACTION_TYPES.FETCH_ORG_ADMINS, fetchOrgAdminsSaga),
         takeLatest(ACTION_TYPES.FETCH_ORG_LIST, fetchOrgListSaga),
-        takeLatest(ACTION_TYPES.FETCH_ADMIN_BY_ORG, fetchOrgAdminDropdown)
+        takeLatest(ACTION_TYPES.FETCH_ADMIN_BY_ORG, fetchOrgAdminDropdown),
+        takeLatest(ACTION_TYPES.SIGN_UP_VO, signUpVOsaga),
+        takeLatest(ACTION_TYPES.SIGN_UP_VU, signUpVUSaga)
     ]);
 }

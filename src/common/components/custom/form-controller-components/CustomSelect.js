@@ -10,7 +10,7 @@ function CustomSelect(props) {
   const { name = "", options = [], multiple = false, label = "", errorName = "", statusError = false, onChangeFromController, disabled = false, isMandatory = false, info = "", ...rest } = props;
   return (
     <Grid sx={FORM_CONTROL_STYLE}>
-      <InputLabel htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", width: { sx: "100%" }, fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }}> *</span>}</InputLabel>
+      <InputLabel sx={{ fontSize: { xs: "11px", sm: "12px", md: "14px" }, fontWeight: { xs: 400, md: 700 } }} htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", width: { sx: "100%" }, fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", sm: "12px", md: "14px" } }}> *</span>}</InputLabel>
       <Field
         as='select'
         name={name}
