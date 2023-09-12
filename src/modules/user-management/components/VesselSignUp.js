@@ -6,25 +6,22 @@ import { Form, useLocation, useNavigate } from "react-router-dom";
 import { Components, FormController } from "../../../common/components";
 import { actions as commonSliceActions } from "../../common/slice";
 import { actions as sliceActions } from "../slice";
-import { signUpVesselSchema, } from "../validate";
-import { fetchAdminDropDown, fetchOrgAdmins, fetchOrgList, signUp } from "../actions";
+import { signUpVesselSchema } from "../validate";
+import { fetchAdminDropDown, fetchOrgList, signUpVesselUser } from "../actions";
 import { STATE_REDUCER_KEY, USER_TYPE } from "../constants";
 
 import { getOrgAdmin, getOrgList, getSignUpVessel } from "../selectors";
 import { createStructuredSelector } from "reselect";
-import { useState } from "react";
 import { confirmDialog } from "../../../utils/notificationUtils";
 import ContainedButton from "../../../common/components/custom/ContainedButton";
 
 const { Grid } = Components;
 
 function SignUpVessel(props) {
-    const [orgEmail, setOrgEmail] = useState();
     const { pathname } = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { handleSubmit, setFieldValue, orgAdmin = [], orgList = [], signUp: { requestInProgress = false } = {},
-        values: { newOrg = true } = {} } = props;
+    const { handleSubmit, setFieldValue, orgAdmin = [], orgList = [], signUp: { requestInProgress = false } = {} } = props;
     const confirmed = useSelector(state => state[STATE_REDUCER_KEY].signUp.confirm);
 
 
@@ -37,27 +34,14 @@ function SignUpVessel(props) {
             }
         });
     }
-    // eslint-disable-next-line no-unused-vars
-    const handleOnChange = (value) => {
-        let string = value.trim();
-        if (string) {
-            setOrgEmail(string);
-        }
-    };
+
+
     const handleManager = (v) => {
-        setFieldValue("organizationAdmin", []);
+        setFieldValue("officerAdmin", []);
         dispatch(fetchAdminDropDown(v));
 
     };
 
-    // eslint-disable-next-line no-unused-vars
-    const handleOrgAdmin = () => {
-        if (orgEmail && orgEmail !== "") {
-            setFieldValue("organizationAdmin", "");
-            dispatch(fetchOrgAdmins(orgEmail));
-            setOrgEmail("");
-        }
-    };
 
     useEffect(() => {
         setFieldValue("userType", USER_TYPE.VESSEL);
@@ -71,30 +55,31 @@ function SignUpVessel(props) {
     return (
         <>
             <Form>
-                <Grid container columnSpacing={3} rowSpacing={1} sx={{ overflowY: "scroll", height: { xs: "300px", sm: "300px", md: "400px", lg: "390px", xl: "600px" } }}>
+                <Grid container columnSpacing={3} rowSpacing={1} sx={{ overflowY: "scroll", height: { xs: "300px", sm: "300px", md: "330px", lg: "350px", xl: "600px" } }}>
                     <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
-                        <FormController control="select" name="company_name" label="Organization Name" isMandatory={true} options={orgList} onChangeFromController={handleManager} />
+                        <FormController control="select" name="company_name" label="Select Organization" isMandatory={true} options={orgList} onChangeFromController={handleManager} />
                     </Grid>
-
                     <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
-                        <FormController control="input" name="fullName" label="Full Name" isMandatory={true} />
+                        <FormController control="select" name="officerAdmin" label="Select Manager" isMandatory={true} options={orgAdmin} />
                     </Grid>
-                    {!newOrg && <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
-                        <FormController control="input" name="vessel_name" label="Vessel Name" />
-                    </Grid>}
-                    {!newOrg && <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
-                        <FormController control="input" name="cylinder_numbers" label="No of Cylinders" />
-                    </Grid>}
                     <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
-                        <FormController
-                            control="input" name="email" label="Organization Email" isMandatory={true} />
+                        <FormController control="input" name="fullName" label="Name" isMandatory={true} />
                     </Grid>
-                    {!newOrg && <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
-                        <FormController control="input" name="imo_number" label="IMO Number" />
-                    </Grid>}
-                    {!newOrg && <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
-                        <FormController control="select" name="organizationAdmin" label="Select Manager" options={orgAdmin || []} />
-                    </Grid>}
+                    <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                        <FormController control="input" name="vessel_name" label="Vessel Name" isMandatory={true} />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                        <FormController control="input" name="cylinder_numbers" label="No of Cylinders" isMandatory={true} />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                        <FormController control="input" name="email" label="Email Address" isMandatory={true} />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 } }}>
+                        <FormController control="input" name="phone" label="Phone Number" />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
+                        <FormController control="input" name="imo_number" label="IMO Number" isMandatory={true} />
+                    </Grid>
                     <Grid item xs={12} sm={6} md={6} lg={6} xl={6} sx={{ my: 1, py: { md: 1, xl: 1.5 }, pb: { md: 2, xl: 3 } }}>
                         <FormController control="input" name="password" label="Password" isMandatory={true} />
                     </Grid>
@@ -118,7 +103,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    submit: data => dispatch(signUp(data))
+    submit: data => dispatch(signUpVesselUser(data))
 });
 
 const VesselRegistrationForm = withFormik({

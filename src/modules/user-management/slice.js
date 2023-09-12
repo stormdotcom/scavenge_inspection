@@ -28,26 +28,30 @@ const initialState = {
             vessel_name: ""
         }
     },
-    signUpManager: {
+    signUpVesselOwner: {
         requestInProgress: false,
         data: {
+            company_name: "",
             fullName: "",
             isNewOrg: "existingOrg",
             email: "",
+            phone: "",
             password: "",
-            confirmPassword: "",
-            company_name: ""
+            confirmPassword: ""
         }
     },
     signUpVessel: {
         requestInProgress: false,
         data: {
+            company_name: "",
+            officerAdmin: "",
             fullName: "",
             email: "",
+            phone: "",
             password: "",
             confirmPassword: "",
-            company_name: "",
             vessel_name: "",
+            imo_number: "",
             cylinder_numbers: ""
         }
     }
@@ -92,6 +96,29 @@ const slice = createSlice({
             .addCase(ACTION_TYPES.SIGN_UP_FAILURE, (state) => {
                 _.set(state, "signUp.requestInProgress", false);
             })
+
+            .addCase(ACTION_TYPES.SIGN_UP_VO_REQUEST, (state) => {
+                _.set(state, "signUpVesselOwner.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.SIGN_UP_VO_SUCCESS, (state) => {
+                _.set(state, "signUp.confirm", true);
+                _.set(state, "signUpVesselOwner.requestInProgress", false);
+            })
+            .addCase(ACTION_TYPES.SIGN_UP_VO_FAILURE, (state) => {
+                _.set(state, "signUpVesselOwner.requestInProgress", false);
+            })
+
+            .addCase(ACTION_TYPES.SIGN_UP_VU_REQUEST, (state) => {
+                _.set(state, "signUpVessel.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.SIGN_UP_VU_SUCCESS, (state) => {
+                _.set(state, "signUp.confirm", true);
+                _.set(state, "signUpVessel.requestInProgress", false);
+            })
+            .addCase(ACTION_TYPES.SIGN_UP_VU_FAILURE, (state) => {
+                _.set(state, "signUpVessel.requestInProgress", false);
+            })
+
             .addCase(ACTION_TYPES.FETCH_ORG_LIST_SUCCESS, (state, { payload = {} }) => {
                 _.set(state, "orgList", payload.data);
             });

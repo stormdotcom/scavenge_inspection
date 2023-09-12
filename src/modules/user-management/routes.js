@@ -13,11 +13,11 @@ const routes = [
             },
             {
                 path: "sign-up",
-                element: <SignUpTabs />
+                element: <SignUp /> //SignUpTabs
             },
             {
                 path: "signup",
-                element: <SignUp />
+                element: <SignUpTabs /> //SignUp
             }
         ]
     }

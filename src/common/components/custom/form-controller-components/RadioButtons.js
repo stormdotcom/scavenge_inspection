@@ -14,7 +14,7 @@ const RadioButtons = (props) => {
             {({ field }) => {
 
               return <>
-                <Box sx={{ my: 0.8, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <Box sx={{ my: 0.8, display: "flex", justifyContent: "space-between", alignItems: "center", flexDirection: { xs: "column", md: "row" } }}>
                   <FormControlLabel
                     control={<Radio sx={{
                       color: "grey",

@@ -9,7 +9,7 @@ function Input2(props) {
     return (
         <Grid container sx={{ ...FORM_CONTROL_STYLE_ALT, ...sx }}>
             <Grid item xs={12} sm={6} md={6} sx={{ width: { xs: "140px", sm: "100%" } }}>
-                <InputLabel sx={{ fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }} htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", fontSize: "11px" }}> *</span>}</InputLabel>
+                <InputLabel sx={{ fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }} htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", sm: "12px", md: "14px" } }}> *</span>}</InputLabel>
             </Grid>
             <Grid item xs={12} sm={6} md={6} sx={{ width: { xs: "140px", sm: "100%" } }}>
                 <Field name={name} sx={{ height: "20px" }}>

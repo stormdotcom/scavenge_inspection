@@ -92,6 +92,7 @@ const SignUpTabs = () => {
                                     </Tabs>
                                 </Box>
                             </Box>
+                            <Divider sx={{ width: "100%" }} />
                             {value === 0 && <VesselOwner />}
                             {value === 1 && <VesselSignUp />}
                             <Box sx={{ display: "flex", py: { xs: 3, xl: 4.5 }, justifyContent: "center", alignItems: "space-around", boxShadow: 0 }} elevation={0}>
@@ -103,7 +104,7 @@ const SignUpTabs = () => {
                                     }>{"Sign-In"}</Typography>
                             </Box>
                             <Box sx={{ textAlign: "center" }}>
-                                <Typography sx={{ color: "white.main" }}>Your sign-up confirms your acceptance of our {" "}
+                                <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}>Your sign-up confirms your acceptance of our {" "}
                                     <span onClick={handleTC} style={{ cursor: "pointer", textDecoration: "underline" }}>
                                         Terms and Conditions.</span> Welcome aboard!</Typography>
                             </Box>

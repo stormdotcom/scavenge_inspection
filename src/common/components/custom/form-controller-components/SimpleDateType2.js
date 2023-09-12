@@ -21,7 +21,7 @@ const SimpleDate = ({ label, name, isMandatory, sx = { justifyContent: "center",
         <Grid sx={{ ...FORM_CONTROL_DATE_STYLE, ...sx }}>
             <Grid sx={{ width: { xs: "100%" } }}>
                 <InputLabel sx={{ fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }} htmlFor={name}>
-                    {label} {isMandatory && <span style={{ color: "red", fontSize: "14px" }}> *</span>}
+                    {label} {isMandatory && <span style={{ color: "red", fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", sm: "12px", md: "14px" } }}> *</span>}
                 </InputLabel>
                 <Field name={name}>
                     {({ field, form }) => {
