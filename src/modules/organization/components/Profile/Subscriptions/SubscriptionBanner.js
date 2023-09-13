@@ -4,17 +4,17 @@ import { Icons } from "../../../../../common/components";
 import ContainedButton from "../../../../../common/components/custom/ContainedButton";
 
 const btnStyle = {
-    bgcolor: "#F6F37F",
+    bgcolor: "#ebd56d",
     color: "#000000",
     "&:hover": {
-        backgroundColor: "#f5f16d"
+        backgroundColor: "#e9d05c"
     },
     fontWeight: { xs: 400, md: 600 }, textTransform: "upper-case", fontSize: { xs: "12px", xl: "14px" }, height: { xs: "30px", xl: "35px" }, my: 0.8
-}
+};
 const SubScriptionBanner = ({ type = "", subTittle = "", premiumAmount, term = "Per month", features = [], active = false, customized = false }) => {
     const { CheckCircle, RemoveCircleOutline } = Icons;
     return (
-        <Paper sx={{ m: 2, bgcolor: "primary.light", overflow: "visible", minWidth: "300px", maxWidth: "400px", p: 1, border: "2px solid #f0c246" }}>
+        <Paper sx={{ m: 2, bgcolor: "primary.light", textAlign: "left", overflow: "visible", minWidth: "300px", maxWidth: "400px", p: 1, border: "2px solid #f0c246" }}>
             {active ? <Chip sx={{ position: "relative", top: "-20px", left: "40%", fontSize: "14px", fontWeight: 500 }} label="Active" color="primary" />
                 : <Grid sx={{ height: "20px" }}> </Grid>}
             <Grid sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", pl: 2 }}>

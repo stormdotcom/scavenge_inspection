@@ -14,10 +14,10 @@ const SubscribeTermButton = ({ handleButton1, button1, button2 }) => {
                     borderBottomRightRadius: "0px",
                     p: 0,
                     m: 0,
-                    backgroundColor: button1 ? "#F6F37F" : "#C0C0C0",
+                    backgroundColor: button1 ? "#EBD56D" : "#C0C0C0",
                     color: button1 ? "primary.main" : "primary.100",
                     "&:hover": {
-                        backgroundColor: button1 ? "#f5f16d" : "#b6b6b6"
+                        backgroundColor: button1 ? "#e9d05c" : "#b6b6b6"
                     }
                 }}
                 onClick={handleButton1}
@@ -32,10 +32,10 @@ const SubscribeTermButton = ({ handleButton1, button1, button2 }) => {
                     p: 0,
                     P: 0,
                     m: "0px",
-                    backgroundColor: button2 ? "#F6F37F" : "#C0C0C0",
+                    backgroundColor: button2 ? "#EBD56D" : "#C0C0C0",
                     color: button2 ? "primary.main" : "primary.100",
                     "&:hover": {
-                        backgroundColor: button2 ? "#f5f16d" : "#b6b6b6"
+                        backgroundColor: button2 ? "#e9d05c" : "#b6b6b6"
                     }
                 }}
                 onClick={handleButton1}

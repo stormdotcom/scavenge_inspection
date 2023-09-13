@@ -21,7 +21,7 @@ const ManagerProfile = (props) => {
 
     return <Grid sx={{ width: "100%", minHeight: "90vh", bgcolor: "primary.main", p: 4 }}>
         <Box sx={{ display: "flex", flexDirection: "column", px: 5, mb: 2, textAlign: "start" }}>
-            <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", sm: "13px", md: "28px" }, fontWeight: 600, pb: 1 }}> PROFILE </Typography>
+            <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", sm: "13px", md: "28px" }, fontWeight: 600, pb: 1 }}>  </Typography>
             <Paper sx={{ bgcolor: "primary.light", px: 2, pt: 4, pb: 2, width: "100%" }}>
                 <LoadingCustomOverlay active={loading} >
                     <Form>
@@ -36,7 +36,7 @@ const ManagerProfile = (props) => {
                                 <FormController control="input2" name="phone" label="Phone" isMandatory={true} />
                             </Grid>
                             <Grid item sm={12} md={6} lg={6} xl={4}>
-                                <FormController control="input2" name="organizationBelongsTo" label="Organization" disabled={true} />
+                                <FormController control="input2" name="company_name" label="Organization" disabled={true} />
                             </Grid>
                         </Grid>
                         <Grid sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>

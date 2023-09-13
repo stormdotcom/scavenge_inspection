@@ -65,7 +65,7 @@ const initialState = {
     profile: {
         requestInProgress: false,
         data: {
-            fullName: "", email: "", phone: "", organizationBelongsTo: ""
+            fullName: "", email: "", phone: "", company_name: ""
         }
     }
 
