@@ -27,9 +27,9 @@ const UserDetails = (props) => {
         return () => dispatch(sliceActions.clearAll());
     }, []);
 
-    return <Grid sx={{ minHeight: "90vh", bgcolor: "primary.main", p: 4 }}>
+    return <Grid sx={{ minHeight: "90vh", bgcolor: "primary.main", p: { xs: 0.2, sm: 0.8, md: 4 } }}>
         <Box sx={{ display: "flex", flexDirection: "column", px: 5, mb: 2 }}>
-            <Paper sx={{ px: 3, pt: 4, width: "100%", bgcolor: "primary.light" }}>
+            <Paper sx={{ px: { xs: 0.2, sm: 0.8, md: 3 }, pt: 4, width: "100%", bgcolor: "primary.light" }}>
                 <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", md: "28px" }, fontWeight: 600, pb: 1 }}> User Details </Typography>
                 <BackButton path="../users" />
                 <LoadingCustomOverlay active={loading} >
@@ -56,9 +56,9 @@ const UserDetails = (props) => {
                         </Grid>
                     </Form>
                 </LoadingCustomOverlay>
-                <Grid container columnSpacing={2} rowSpacing={1} sx={{ my: 2, px: 2, display: "flex" }}>
+                <Grid container columnSpacing={2} rowSpacing={1} sx={{ my: 2, px: { sm: 0.3, md: 2 }, display: "flex" }}>
                     <Grid item sm={12} md={6} sx={{ p: { xs: 3, sm: 4 } }}>
-                        <Paper sx={{ px: 3, py: 1 }}>
+                        <Paper sx={{ px: { sm: 0.3, md: 3 }, py: 1 }}>
                             <Box sx={{ width: "100%", height: "200px", px: 3, py: 1, overflowY: "scroll" }}>
                                 <Typography sx={{ color: "white.main", fontSize: { xs: "11px", md: "14px" }, my: 1 }}>
                                     &#8226; The password should contain a minimum of 8 characters.<br />
