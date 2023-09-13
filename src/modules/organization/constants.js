@@ -68,3 +68,28 @@ export const vesselListColOrder = [
     "approvedStatus",
     "mrt-row-actions"
 ];
+
+export const FREE_TIER = [
+    { name: "Basic user access", status: true },
+    { name: "Unlimited inspection access", status: true },
+    { name: "Limited reports download", status: true },
+    { name: "Access older reports for a limited time", status: true },
+    { name: "Can create 3 fleet managers", status: false },
+    { name: "Can create 3 vessels under each fleet manager", status: false }
+];
+export const PREMIUM_TIER = [
+    { name: "Basic user access", status: true },
+    { name: "Unlimited inspection access", status: true },
+    { name: "Unlimited reports download", status: true },
+    { name: "Full access to all older reports", status: true },
+    { name: "Can create 7 fleet managers", status: false },
+    { name: "Can create 5 vessels under each fleet manager", status: false }
+];
+export const CUSTOMIZED_TIER = [
+    { name: "Basic user access", status: true },
+    { name: "Unlimited inspection access", status: true },
+    { name: "Unlimited reports download", status: true },
+    { name: "Full access to all older reports", status: true },
+    { name: "Customized number of fleet managers", status: true },
+    { name: "Customized number vessels under each fleet manager", status: true }
+];

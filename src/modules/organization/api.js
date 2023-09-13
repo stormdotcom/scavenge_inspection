@@ -63,3 +63,14 @@ export const fetchVesselByApi = (id) => {
         }
     };
 };
+
+export const fetchManagerProfileApi = (data) => {
+    return {
+        url: API_URL.PROFILE.ID,
+        method: REQUEST_METHOD.GET,
+        payload: {
+            types: [ACTION_TYPES.FETCH_MANAGER_PROFILE_REQUEST, ACTION_TYPES.FETCH_MANAGER_PROFILE_SUCCESS, ACTION_TYPES.FETCH_MANAGER_PROFILE_FAILURE],
+            data
+        }
+    };
+};

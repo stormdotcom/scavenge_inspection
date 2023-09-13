@@ -27,7 +27,7 @@ const Header = () => {
     const handleLogout = () => dispatch(logout({ isManual: true }));
     const isVessel = userType === USER_TYPE[0];
     const isAdmin = userType === USER_TYPE[2];
-
+    const isManger = userType === USER_TYPE[1];
     // const { userDetails: { data: { activeProfile: { imageId = "" } = {}, firstName = "", lastName = "" } } = {} } = useSelector(state => state[STATE_REDUCER_KEY]);
     return (
         <Grid
@@ -66,6 +66,7 @@ const Header = () => {
                         >
                             {isVessel && <MenuItem onClick={() => navigate("../profile")}>Profile</MenuItem>}
                             {isVessel && <MenuItem onClick={() => navigate("../reports")}>Reports</MenuItem>}
+                            {isManger && <MenuItem onClick={() => navigate("../org/profile/info")}>Profile</MenuItem>}
                             {isAdmin && <MenuItem onClick={() => navigate("../admin/config")}>Configuration</MenuItem>}
                             <MenuItem onClick={handleLogout}>Logout</MenuItem>
                         </Menu>

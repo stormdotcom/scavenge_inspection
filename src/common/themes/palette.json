@@ -39,7 +39,11 @@
         "main": "#F9F6EE"
       },
       "orange": {
-        "main": "#c87b34"
+        "main": "#c87b34",
+        "default": "#EF8829"
+      },
+      "green": {
+        "main": "#2AC355"
       }
     }
   }

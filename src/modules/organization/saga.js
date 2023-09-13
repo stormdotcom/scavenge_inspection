@@ -2,13 +2,14 @@ import { all, call, fork, put, select, take, takeLatest } from "redux-saga/effec
 import { ACTION_TYPES, fetchVesselList, fetchVesselRequestList } from "./actions";
 import { handleAPIRequest } from "../../utils/http";
 import {
-    approveVesselApi, createVesselApi, fetchVesselListApi, fetchVesselRequestListApi,
+    approveVesselApi, createVesselApi, fetchVesselListApi, fetchVesselRequestListApi, fetchManagerProfileApi,
     fetchVesselDetailListsApi, fetchVesselByApi
 } from "./api";
 import { successNotify } from "../../utils/notificationUtils";
 import { actions } from "./slice";
 import _ from "lodash";
 import { getExtraProps, getTablePagination } from "./selectors";
+import { USER_TYPE } from "../common/constants";
 
 export function* fetchVesselListSaga() {
     yield call(handleAPIRequest, fetchVesselListApi);
@@ -51,6 +52,10 @@ export function* fetchVesselById({ payload }) {
     yield call(handleAPIRequest, fetchVesselByApi, payload);
 }
 
+export function* fetchManagerProfile() {
+    yield call(handleAPIRequest, fetchManagerProfileApi, { userType: USER_TYPE[1] });
+}
+
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.FETCH_VESSEL_LIST, fetchVesselListSaga),
@@ -59,7 +64,8 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.CREATE_VESSEL, createVesselSaga),
         takeLatest(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST, fetchVesselDetailListsSaga),
         takeLatest(ACTION_TYPES.FILTER_VESSEL, filterVesselListSaga),
-        takeLatest(ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID, fetchVesselById)
+        takeLatest(ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID, fetchVesselById),
+        takeLatest(ACTION_TYPES.FETCH_MANAGER_PROFILE, fetchManagerProfile)
     ]);
 }
-//FETCH_VESSEL_DETAILS_LIST
+//FETCH_MANAGER_PROFILE
