@@ -4,7 +4,7 @@ import SubscribeTermButton from "./SubscriptionButton";
 import SubScriptionBanner from "./SubscriptionBanner";
 import { CUSTOMIZED_TIER, FREE_TIER, PREMIUM_TIER } from "../../../constants";
 
-const Subscriptions = ({ plan = "PRO" }) => {
+const Subscriptions = ({ plan = "free trial" }) => {
     const [button1, setButton1] = useState(false);
     const [button2, setButton2] = useState(true);
     const handleButton1 = () => {
