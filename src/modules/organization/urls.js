@@ -10,5 +10,8 @@ export const API_URL = {
     VESSELS: {
         LIST: "auth/organization/vessel-list",
         ID: "auth/organization/vessel/:id"
+    },
+    PROFILE: {
+        ID: "auth/common/profile"
     }
 };

@@ -61,6 +61,12 @@ const initialState = {
         report: {
             reportCount: 0, cylinderImageCount: 0
         }
+    },
+    profile: {
+        requestInProgress: false,
+        data: {
+            fullName: "", email: "", phone: "", company_name: ""
+        }
     }
 
 };
@@ -148,10 +154,19 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID_FAILURE, (state) => {
                 _.set(state, "vesselDetails.requestInProgress", false);
+            })//
+            .addCase(ACTION_TYPES.FETCH_MANAGER_PROFILE_REQUEST, (state) => {
+                _.set(state, "profile.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.FETCH_MANAGER_PROFILE_SUCCESS, (state, { payload }) => {
+                const { data } = payload;
+                _.set(state, "profile.requestInProgress", false);
+                _.set(state, "profile.data", data);
+            })
+            .addCase(ACTION_TYPES.FETCH_MANAGER_PROFILE_FAILURE, (state) => {
+                _.set(state, "profile.requestInProgress", false);
             });
-
 
     }
 });
-
 export const { actions, reducer } = slice;

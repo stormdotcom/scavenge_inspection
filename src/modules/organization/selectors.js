@@ -20,3 +20,6 @@ export const getExtraProps = flow(getState, extraProps);
 
 const vesselDetails = (state) => state.vesselDetails;
 export const getVesselDetails = flow(getState, vesselDetails);
+
+const profile = (state) => state.profile;
+export const getProfileManager = flow(getState, profile);
