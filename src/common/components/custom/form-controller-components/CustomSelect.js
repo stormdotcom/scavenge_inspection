@@ -40,7 +40,8 @@ function CustomSelect(props) {
                     menuList: baseStyles => ({
                       ...baseStyles,
                       backgroundColor: "#101010",
-                      color: "#fff"
+                      color: "#fff",
+                      maxHeight: "20vh"
                     }),
                     option: (baseStyles, state) => ({
                       ...baseStyles,

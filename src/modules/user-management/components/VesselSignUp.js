@@ -8,7 +8,7 @@ import { actions as commonSliceActions } from "../../common/slice";
 import { actions as sliceActions } from "../slice";
 import { signUpVesselSchema } from "../validate";
 import { fetchAdminDropDown, fetchOrgList, signUpVesselUser } from "../actions";
-import { STATE_REDUCER_KEY, USER_TYPE } from "../constants";
+import { STATE_REDUCER_KEY } from "../constants";
 
 import { getOrgAdmin, getOrgList, getSignUpVessel } from "../selectors";
 import { createStructuredSelector } from "reselect";
@@ -44,7 +44,6 @@ function SignUpVessel(props) {
 
 
     useEffect(() => {
-        setFieldValue("userType", USER_TYPE.VESSEL);
         return () => dispatch(sliceActions.clearAll());
     }, [pathname]);
 
