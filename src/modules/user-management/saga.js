@@ -61,7 +61,7 @@ export function* fetchOrgAdminDropdown({ payload }) {
 export function* signUpVOsaga({ payload }) {
     const formData = _.cloneDeep(payload);
     if (formData.isNewOrg === "existingOrg") {
-        _.set(formData, "company_name", _.get(formData, "company_name._id"));
+        _.set(formData, "company_name", _.get(formData, "company_name.id"));
         _.set(formData, "isNewOrg", false);
     }
     if (formData.isNewOrg === "newOrg") {
@@ -73,8 +73,8 @@ export function* signUpVOsaga({ payload }) {
 
 export function* signUpVUSaga({ payload }) {
     const formData = _.cloneDeep(payload);
-    _.set(formData, "officerAdmin", _.get(formData, "officerAdmin._id"));
-    _.set(formData, "company_name", _.get(formData, "company_name._id"));
+    _.set(formData, "officerAdmin", _.get(formData, "officerAdmin.id"));
+    _.set(formData, "company_name", _.get(formData, "company_name.id"));
     yield call(handleAPIRequest, signUpVUApi, formData);
 }
 

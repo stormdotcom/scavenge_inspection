@@ -112,7 +112,9 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    submit: data => dispatch(signUpVesselOwner(data))
+    submit: data => {
+        dispatch(signUpVesselOwner(data));
+    }
 });
 
 const VesselOwnerRegistrationForm = withFormik({
