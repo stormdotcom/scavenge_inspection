@@ -9,7 +9,8 @@ import LoadingCustomOverlay from "../../../common/components/LoadingOverlay";
 import { actions as sliceAction } from "../../slice";
 import { getProfileManager } from "../../selectors";
 import { STATE_REDUCER_KEY } from "../../constants";
-import { fetchManagerProfile } from "../../actions";
+import { fetchManagerProfile, updateMangerProfile } from "../../actions";
+import { managerProfileValidate } from "../../validate";
 const ManagerProfile = (props) => {
     const { handleSubmit, getManagerProfile } = props;
     const dispatch = useDispatch();
@@ -55,12 +56,13 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    // submit: data => dispatch(updateVessel(data))
+    submit: data => dispatch(updateMangerProfile(data)),
     getManagerProfile: () => dispatch(fetchManagerProfile())
 });
 
 const ManagerProfileForm = withFormik({
     enableReinitialize: true,
+    validationSchema: managerProfileValidate,
     mapPropsToValues: (props) => {
         return props.profile.data;
     },

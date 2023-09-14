@@ -74,3 +74,14 @@ export const fetchManagerProfileApi = (data) => {
         }
     };
 };
+
+export const updateManagerProfileApi = (data) => {
+    return {
+        url: API_URL.PROFILE.UPDATE,
+        method: REQUEST_METHOD.PUT,
+        payload: {
+            types: [ACTION_TYPES.UPDATE_MANAGER_PROFILE_REQUEST, ACTION_TYPES.UPDATE_MANAGER_PROFILE_SUCCESS, ACTION_TYPES.UPDATE_MANAGER_PROFILE_FAILURE],
+            data
+        }
+    };
+};
