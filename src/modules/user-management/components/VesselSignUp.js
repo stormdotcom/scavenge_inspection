@@ -21,7 +21,7 @@ function SignUpVessel(props) {
     const { pathname } = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { handleSubmit, setFieldValue, orgAdmin = [], orgList = [], signUp: { requestInProgress = false } = {} } = props;
+    const { handleSubmit, setFieldValue, orgAdmin = [], orgList = [], signUpVessel: { requestInProgress = false } = {} } = props;
     const confirmed = useSelector(state => state[STATE_REDUCER_KEY].signUp.confirm);
 
 
