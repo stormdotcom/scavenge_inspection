@@ -3,6 +3,7 @@ import { lazy } from "react";
 
 import ProfileWrapper from "./components/Profile/ProfileWrapper";
 import { routes as profileRoute } from "./components/Profile/routes";
+import { PrivateRoute } from "../common/protected-route/protectedRoute";
 
 const OrgHome = lazy(() => import("./components/OrgHome"));
 const VesselDetailList = lazy(() => import("./components/Vessels/VesselDetailList"));
@@ -13,23 +14,23 @@ const routes = [
         children: [
             {
                 path: "dashboard",
-                element: <OrgHome />,
+                element: <PrivateRoute> <OrgHome /></PrivateRoute>,
                 errorElement: <RootBoundary />
             },
             {
                 path: "vessels",
-                element: <VesselDetailList />,
+                element: <PrivateRoute> <VesselDetailList /></PrivateRoute>,
                 errorElement: <RootBoundary />
             },
             {
                 path: "profile",
-                element: <ProfileWrapper />,
+                element: <PrivateRoute> <ProfileWrapper /> </PrivateRoute>,
                 children: profileRoute,
                 errorElement: <RootBoundary />
             },
             {
                 path: "vessels/:id/view",
-                element: <ViewEditVessel />,
+                element: <PrivateRoute>   <ViewEditVessel /> </PrivateRoute>,
                 errorElement: <RootBoundary />
             }
         ]
