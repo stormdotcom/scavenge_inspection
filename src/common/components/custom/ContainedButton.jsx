@@ -19,7 +19,7 @@ const ContainedButton = ({ color, variant = "contained", icon = "", type = "", o
             {children}
             <Box>
                 {loader && (
-                    <Box sx={{ display: "flex", alignItems: "center", position: "absolute", right: "10px", top: "10px" }}>
+                    <Box sx={{ display: "flex", alignItems: "center", position: "sticky" }}>
                         <CircularProgress size={18} thickness={4} sx={{ ml: 1, color: "white.main" }} />
                     </Box>
                 )}
