@@ -57,9 +57,13 @@ export const signUpVesselSchema = Yup.object({
         .max(200)
         .required("Email Required"),
     password: Yup.string()
+        .min(8)
         .max(150)
         .required("Password Required"),
     confirmPassword: Yup.string()
+        .oneOf([Yup.ref("password"), null], "Passwords must match")
+        .required("Confirm Password Required")
+
         .max(150)
         .required("Confirm Password Required"),
     imo_number: Yup.string()
@@ -82,9 +86,10 @@ export const signUpOwnerSchema = Yup.object({
         .max(200)
         .required("Phone Number Required"),
     password: Yup.string()
+        .min(8)
         .max(150)
         .required("Password Required"),
     confirmPassword: Yup.string()
-        .max(150)
+        .oneOf([Yup.ref("password"), null], "Passwords must match")
         .required("Confirm Password Required")
 });
