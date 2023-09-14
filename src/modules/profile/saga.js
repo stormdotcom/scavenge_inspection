@@ -10,7 +10,7 @@ export function* updateVesselInfo({ payload }) {
     const clonedFormData = _.cloneDeep(payload);
     _.unset(clonedFormData, "fleetManager");
     yield call(handleAPIRequest, updateVesselInfoApi, clonedFormData);
-    yield call(handleAPIRequest, fetchCurrentUserAPI)
+    yield call(handleAPIRequest, fetchCurrentUserAPI);
 }
 
 export function* fetchVesselInfo() {
