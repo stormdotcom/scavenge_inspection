@@ -1,4 +1,4 @@
-import { all, call, fork, put, take, takeLatest } from "redux-saga/effects";
+import { all, call, delay, fork, put, take, takeLatest } from "redux-saga/effects";
 import { ACTION_TYPES } from "./actions";
 import { signInApi, signUpApi, fetchOrgAdminsSagaApi, fetchCurrentUserAPI, fetchOrgListApi, fetchOrgAdminDropdownApi, signUpVOApi, signUpVUApi } from "./api";
 import { handleAPIRequest } from "../../utils/http";
@@ -7,6 +7,8 @@ import { navigateTo } from "../common/actions";
 import { USER_TYPE } from "./constants";
 import { actions as commonActions } from "../common/slice";
 import _ from "lodash";
+import { loaderNotify } from "../../utils/notificationUtils";
+import { dismissNotification } from "reapop";
 
 export function* signIn({ payload }) {
     yield fork(handleAPIRequest, signInApi, payload);
@@ -15,6 +17,7 @@ export function* signIn({ payload }) {
         const { payload: { token } = {} } = responseAction;
         localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, token);
         yield fork(handleAPIRequest, fetchCurrentUserAPI, {});
+        yield put(loaderNotify({ title: "Preparing Your Profile", message: "We are currently fetching your profile data. This won't take long!", id: "profile_fetch" }));
         const profileResponseAction = yield take([ACTION_TYPES.USER_PROFILE_SUCCESS, ACTION_TYPES.USER_PROFILE_FAILURE]);
         if (profileResponseAction.type === ACTION_TYPES.USER_PROFILE_SUCCESS) {
             const { data: { userType = "" } = {} } = profileResponseAction.payload || {};
@@ -28,6 +31,8 @@ export function* signIn({ payload }) {
                 yield put(navigateTo("/home"));
                 yield put(commonActions.setHomePath("home"));
             }
+            yield delay(500);
+            yield put(dismissNotification("profile_fetch"));
         }
     }
 }
