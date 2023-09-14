@@ -117,12 +117,12 @@ const slice = createSlice({
 
             .addCase(ACTION_TYPES.SHOW_PREDICTIONS_REQUEST, (state) => {
                 _.set(state, "openImageUploader", false);
-                _.set(state, "inspectionDetails.requestInProgress", true);
+                // _.set(state, "inspectionDetails.requestInProgress", true);
                 _.set(state, "predictedData.requestInProgress", true);
             })
             .addCase(ACTION_TYPES.SHOW_PREDICTIONS_SUCCESS, (state, { payload = {} }) => {
                 _.set(state, "isPredicted", true);
-                _.set(state, "inspectionDetails.requestInProgress", false);
+                // _.set(state, "inspectionDetails.requestInProgress", false);
                 _.set(state, "predictedData.requestInProgress", false);
                 _.set(state, "inspectionDetails.data", payload.data.updatedResult); // payload.data.updatedResult
                 let { cylinder, results } = payload.data.predictionDetails;
@@ -130,7 +130,7 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.SHOW_PREDICTIONS_FAILURE, (state) => {
                 _.set(state, "predictedData.requestInProgress", false);
-                _.set(state, "inspectionDetails.requestInProgress", false);
+                // _.set(state, "inspectionDetails.requestInProgress", false);
             })
             .addCase(ACTION_TYPES.REPORT_LIST_REQUEST, (state) => {
                 _.set(state, "reports.requestInProgress", true);
