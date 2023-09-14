@@ -12,6 +12,7 @@ export const API_URL = {
         ID: "auth/organization/vessel/:id"
     },
     PROFILE: {
-        ID: "auth/common/profile"
+        ID: "auth/common/profile",
+        UPDATE: "auth/common/profile"
     }
 };
