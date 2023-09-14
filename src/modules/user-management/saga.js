@@ -7,6 +7,8 @@ import { navigateTo } from "../common/actions";
 import { USER_TYPE } from "./constants";
 import { actions as commonActions } from "../common/slice";
 import _ from "lodash";
+import { loaderNotify } from "../../utils/notificationUtils";
+import { dismissNotification } from "reapop";
 
 export function* signIn({ payload }) {
     yield fork(handleAPIRequest, signInApi, payload);
@@ -15,8 +17,10 @@ export function* signIn({ payload }) {
         const { payload: { token } = {} } = responseAction;
         localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, token);
         yield fork(handleAPIRequest, fetchCurrentUserAPI, {});
+        yield put(loaderNotify({ title: "Fetching", message: "preparing profile", id: "profile_fetch" }));
         const profileResponseAction = yield take([ACTION_TYPES.USER_PROFILE_SUCCESS, ACTION_TYPES.USER_PROFILE_FAILURE]);
         if (profileResponseAction.type === ACTION_TYPES.USER_PROFILE_SUCCESS) {
+            yield put(dismissNotification("profile_fetch"));
             const { data: { userType = "" } = {} } = profileResponseAction.payload || {};
             if (userType === USER_TYPE.ADMIN) {
                 yield put(navigateTo("/admin/dashboard"));
