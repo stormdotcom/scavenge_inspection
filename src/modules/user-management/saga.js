@@ -17,7 +17,7 @@ export function* signIn({ payload }) {
         const { payload: { token } = {} } = responseAction;
         localStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, token);
         yield fork(handleAPIRequest, fetchCurrentUserAPI, {});
-        yield put(loaderNotify({ title: "Preparing Your Profile", message: "We are currently fetching your profile data. This won't take long!", id: "profile_fetch" }));
+        yield put(loaderNotify({ title: "Preparing Your Profile", message: "We are fetching your profile data. This won't take long!", id: "profile_fetch" }));
         const profileResponseAction = yield take([ACTION_TYPES.USER_PROFILE_SUCCESS, ACTION_TYPES.USER_PROFILE_FAILURE]);
         if (profileResponseAction.type === ACTION_TYPES.USER_PROFILE_SUCCESS) {
             const { data: { userType = "" } = {} } = profileResponseAction.payload || {};
