@@ -59,7 +59,11 @@ export function* fetchManagerProfile() {
 export function* updateManagerProfile({ payload }) {
     const newPayload = _.cloneDeep(payload);
     _.unset(newPayload, "company_name");
-    yield call(handleAPIRequest, updateManagerProfileApi, newPayload);
+    yield fork(handleAPIRequest, updateManagerProfileApi, newPayload);
+    const responseAction = yield take([ACTION_TYPES.UPDATE_MANAGER_PROFILE_SUCCESS, ACTION_TYPES.UPDATE_MANAGER_PROFILE_FAILURE]);
+    if (responseAction.type === ACTION_TYPES.UPDATE_MANAGER_PROFILE_SUCCESS) {
+        yield put(successNotify({ title: "Success", message: "Profile updated" }));
+    }
 }
 export default function* moduleSaga() {
     yield all([
@@ -74,4 +78,4 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.UPDATE_MANAGER_PROFILE, updateManagerProfile)
     ]);
 }
-//UPDATE_MANAGER_PROFILE
+
