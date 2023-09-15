@@ -12,23 +12,23 @@ const Subscriptions = ({ plan = "free trial" }) => {
         setButton2(prev => !prev);
     };
     return <Box sx={{ mt: 1, p: 2, textAlign: "center" }}>
-        <Box>
-            <Typography sx={{ color: "white.main", py: 1.5 }}> You're now in <span style={{ color: "#EBD56D" }}> {plan}</span>, Explore more plans.</Typography>
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+            <Typography sx={{ color: "white.main", py: 1.5, fontSize: { xs: "11px", sm: "12px" } }}> You're now in <span style={{ color: "#EBD56D" }}> {plan}</span>, Explore more plans.</Typography>
             <SubscribeTermButton handleButton1={handleButton1} button1={button1} button2={button2} />
         </Box>
-        <Box>
-            <Grid container rowSpacing={1} columnSpacing={3}>
-                <Grid item xs={12} sm={12} md={4} >
+        <Box >
+            <Grid container rowSpacing={1} columnSpacing={1} >
+                <Grid item xs={12} sm={12} md={4} sx={{ display: "flex", justifyContent: "center" }}>
                     <SubScriptionBanner
                         subTittle="Better features, affordable pricing"
                         type="Basic" premiumAmount="$ 1,000" features={FREE_TIER} />
                 </Grid>
-                <Grid item xs={12} sm={12} md={4} >
+                <Grid item xs={12} sm={12} md={4} sx={{ display: "flex", justifyContent: "center" }}>
                     <SubScriptionBanner
                         subTittle="Elevate your experience"
                         type="Pro" premiumAmount="$ 1,500" features={PREMIUM_TIER} />
                 </Grid>
-                <Grid item xs={12} sm={12} md={4} >
+                <Grid item xs={12} sm={12} md={4} sx={{ display: "flex", justifyContent: "center" }}>
                     <SubScriptionBanner
                         subTittle="Tailored to suit your needs"
                         type="Customized" premiumAmount="$0" features={CUSTOMIZED_TIER} customized={true} />

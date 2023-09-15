@@ -35,12 +35,12 @@ const TermsAndCondition = ({ handleClose, open }) => {
                     <Typography variant="h6" component="p"> {_.keys(TC_data)[0]}</Typography>
                     {_.map(TC_data.September2023Terms, (section, sectionIndex) => (
                         <Box key={sectionIndex} sx={{ py: 1 }}>
-                            <Typography variant="h6" component="p" sx={{ fontWeight: 600 }}>
+                            <Typography variant="h6" component="p" sx={{ fontWeight: { xs: 600, md: 700 }, fontSize: { xs: "11px", md: "14px" } }}>
                                 {sectionIndex + 1}. {section.section}
                             </Typography>
                             {_.map(section.content, (point, pointIndex) => (
                                 <Box key={pointIndex} sx={{ pl: 2 }}>
-                                    <Typography component="p">
+                                    <Typography sx={{ fontSize: { xs: "11px", md: "14px" } }} component="p">
                                         {sectionIndex + 1}.{pointIndex + 1} {point}
                                     </Typography>
                                 </Box>
@@ -48,10 +48,10 @@ const TermsAndCondition = ({ handleClose, open }) => {
                         </Box>
                     ))}
                     {/* {_.keys(TC_data)[0]} */}
-                    <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                    <Typography sx={{ fontSize: { xs: "11px", md: "16px" }, fontWeight: { xs: 600, md: 700 } }} variant="h6">
                         {_.keys(TC_data)[1]}
                     </Typography>
-                    <Typography variant="body1">
+                    <Typography sx={{ fontSize: { xs: "11px", md: "16px" } }} variant="body1">
                         {_.get(TC_data, "Acknowledgement")}
                     </Typography>
                 </Box>
