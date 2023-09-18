@@ -28,6 +28,7 @@ function SignIn(props) {
         return () => dispatch(sliceActions.clear());
     }, []);
     const handleClick = () => navigate(`../${homePath}`);
+    const handleTC = () => dispatch(commonSliceActions.toggleShowHideTC(true));
     return (
         <>
             <Box sx={{ width: "240px", position: "relative" }}>
@@ -40,8 +41,8 @@ function SignIn(props) {
                 backgroundPosition: "center",
                 overflowY: "hidden", width: 1, bgcolor: "primary.main", p: 0, display: "flex", alignItems: "center"
             }}>
-                <Box sx={{ mt: 3, width: "100%", display: "flex", alignItems: "center", mb: { lg: "130px", xl: "140px", justifyContent: "center" } }}>
-                    <Paper sx={{ mt: { sm: 3, md: 6 }, boxShadow: 0, width: { xs: "300px", sm: "360px", md: "420px", lg: "420px", xl: "520px" }, borderRadius: "20px", border: "1px solid #AD7E14" }} >
+                <Box sx={{ mt: 3, width: "100%", display: "flex", alignItems: "center", mb: { lg: "130px", xl: "140px" }, justifyContent: "center", flexDirection: "column" }}>
+                    <Paper sx={{ mt: { sm: 3, md: 6 }, pd: { sm: 2, md: 3 }, boxShadow: 0, width: { xs: "300px", sm: "360px", md: "420px", lg: "420px", xl: "520px" }, borderRadius: "20px", border: "1px solid #AD7E14" }} >
                         <Grid sx={{ display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
                             <Box sx={{ px: { xs: 3, xl: 6 }, py: 4 }}>
                                 <Typography sx={{ fontSize: { xs: "20px", md: "26px", lg: "30px", xl: "35px", textAlign: "center" }, color: "secondary.main", pb: 2, fontWeight: 600 }} >Scav AI Vision</Typography>
@@ -79,6 +80,18 @@ function SignIn(props) {
                             </Box>
                         </Grid>
                     </Paper >
+                    <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
+                        <Box sx={{ textAlign: "center", mx: 0.3 }}>
+                            <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}> {" "}
+                                <span onClick={() => navigate("../docs/home")} style={{ cursor: "pointer", textDecoration: "underline" }}>
+                                    Read Documentation.</span></Typography>
+                        </Box>
+                        <Box sx={{ textAlign: "center", mx: 0.3 }}>
+                            <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}>{" "}
+                                <span onClick={handleTC} style={{ cursor: "pointer", textDecoration: "underline" }}>
+                                    Read Terms and Conditions.</span> </Typography>
+                        </Box>
+                    </Box>
                 </Box>
             </Grid ></>
 

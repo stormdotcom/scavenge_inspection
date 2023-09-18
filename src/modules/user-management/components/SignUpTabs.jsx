@@ -54,7 +54,7 @@ const SignUpTabs = () => {
             overflowY: "hidden", width: 1, bgcolor: "primary.main", p: 0, display: "flex", alignItems: "center"
         }}>
             <Box sx={{ mt: 3, width: "100%", display: "flex", alignItems: "center", justifyContent: "center", mb: { lg: "130px", xl: "140px" } }}>
-                <Paper sx={{ borderRadius: "20px", px: 1, border: "1px solid #AD7E14", boxShadow: 0, height: "90vh", width: { xs: "80%", sm: "70%", md: "560px", lg: "700px", xl: "700px" } }}>
+                <Paper sx={{ borderRadius: "20px", px: 1, border: "1px solid #AD7E14", boxShadow: 0, height: "88vh", width: { xs: "80%", sm: "70%", md: "560px", lg: "700px", xl: "700px" } }}>
                     <Grid sx={{ display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
                         <Box sx={{ px: { xs: 3, xl: 6 }, py: 4 }}>
                             <Typography sx={{ fontSize: { xs: "20px", md: "26px", lg: "30px", xl: "35px", textAlign: "center" }, color: "secondary.main", pb: 2, fontWeight: 600 }} >Scav AI Vision</Typography>
@@ -97,13 +97,18 @@ const SignUpTabs = () => {
                             <Divider sx={{ width: "100%" }} />
                             {value === 0 && <VesselOwner />}
                             {value === 1 && <VesselSignUp />}
-                            <Box sx={{ display: "flex", py: { xs: 3, xl: 4.5 }, justifyContent: "center", alignItems: "space-around", boxShadow: 0 }} elevation={0}>
+                            <Box sx={{ display: "flex", py: { xs: 1.9, xl: 4.5 }, justifyContent: "center", alignItems: "space-around", boxShadow: 0 }} elevation={0}>
                                 <Typography display="inline" sx={{ fontSize: { lg: "16px", xl: "18px" }, pt: 0.6, color: "white.main" }}>{"Already have account?"}</Typography>
                                 <Typography display="inline" variant="text" sx={{ fontWeight: 600, fontSize: { lg: "16px", xl: "18px" }, p: 0.5, m: 0, ml: 1, cursor: "pointer", "&:hover": { color: "#e8af13" } }} color="#e8af13"
                                     onClick={() => {
                                         navigate("../signin");
                                     }
                                     }>{"Sign-In"}</Typography>
+                            </Box>
+                            <Box sx={{ textAlign: "center" }}>
+                                <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}> {" "}
+                                    <span onClick={() => navigate("../docs/home")} style={{ cursor: "pointer", textDecoration: "underline" }}>
+                                        Read Documentation.</span></Typography>
                             </Box>
                             <Box sx={{ textAlign: "center" }}>
                                 <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}>Your sign-up confirms your acceptance of our {" "}

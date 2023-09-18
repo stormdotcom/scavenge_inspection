@@ -67,5 +67,5 @@ export const routePermission = (user = {}, routes = []) => {
         }
     });
     _.set(newRoutes, "children", newChildren);
-    return [newRoutes, routes[1]];
+    return [newRoutes, routes[1], routes[2]];
 };

@@ -26,6 +26,5 @@ export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.UPDATE_VESSEL, updateVesselInfo),
         takeLatest(ACTION_TYPES.FETCH_VESSEL_DETAILS, fetchVesselInfo)
-
     ]);
 }
