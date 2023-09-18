@@ -82,14 +82,15 @@ function SignIn(props) {
                     </Paper >
                     <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
                         <Box sx={{ textAlign: "center", mx: 0.3 }}>
-                            <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}> {" "}
-                                <span onClick={() => navigate("../docs/home")} style={{ cursor: "pointer", textDecoration: "underline" }}>
-                                    Read Documentation.</span></Typography>
-                        </Box>
-                        <Box sx={{ textAlign: "center", mx: 0.3 }}>
                             <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}>{" "}
                                 <span onClick={handleTC} style={{ cursor: "pointer", textDecoration: "underline" }}>
                                     Read Terms and Conditions.</span> </Typography>
+                        </Box>
+                        <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}> {" | "}</Typography>
+                        <Box sx={{ textAlign: "center", mx: 0.3 }}>
+                            <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}> {" "}
+                                <span onClick={() => navigate("../docs/home")} style={{ cursor: "pointer", textDecoration: "underline" }}>
+                                    User Guide.</span></Typography>
                         </Box>
                     </Box>
                 </Box>
