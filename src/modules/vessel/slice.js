@@ -130,7 +130,7 @@ const slice = createSlice({
                 _.set(state, "inspectionDetails.data", payload.data.updatedResult); // payload.data.updatedResult
                 let { cylinder, results } = payload.data.predictionDetails;
                 _.set(state, `predictedData.data.${cylinder}`, results);
-                _.set(state, `predictedData.data.${cylinder}.remarks`, "Your Remarks " + cylinder);
+                _.set(state, `predictedData.data.${cylinder}.remarks`, "");
             })
             .addCase(ACTION_TYPES.SHOW_PREDICTIONS_FAILURE, (state) => {
                 _.set(state, "predictedData.requestInProgress", false);

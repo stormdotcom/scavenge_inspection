@@ -55,8 +55,12 @@ const DocumentationPage = () => {
                                             <Typography sx={accordionTitleStyle} >{section.title}</Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
-                                            <Typography sx={contentStyle}>{section.content}</Typography>
                                             {section.image && <ImageViewDocs imageUrl={section.image} />}
+                                            {section.content.map(({ text, paragraphImage }, idx) => <Box key={idx}>
+                                                <Typography sx={contentStyle}>{text}</Typography>
+                                                {paragraphImage && <ImageViewDocs imageUrl={paragraphImage} />}
+                                            </Box>)}
+
                                         </AccordionDetails>
                                     </Accordion>
                                 ))}

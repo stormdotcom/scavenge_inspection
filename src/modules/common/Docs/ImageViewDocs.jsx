@@ -2,13 +2,10 @@ import { Box } from "@mui/material";
 import React from "react";
 import sampleDocsImage from "../../../assets/images/docs/sample_ug-image.png";
 const imageBoxStyle = {
+    background: "cover",
     minWidth: "190px",
     minHeight: "190px",
-    width: "1200px",
-    height: "700px", // Change to "auto" to prevent Y-axis cropping
-    maxWidth: "80%",
     maxHeight: "100%",
-    background: "var(--grayLight)", // Fix the background property
     borderRadius: "5px",
     cursor: "pointer",
     backgroundSize: "cover",
@@ -16,8 +13,7 @@ const imageBoxStyle = {
     margin: "5px",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    overflowX: "scroll" // Add horizontal scrolling
+    alignItems: "center"
 
 };
 
@@ -25,9 +21,8 @@ const ImageViewDocs = ({ imageUrl = sampleDocsImage }) => {
     return <Box sx={{
         display: "flex", justifyContent: "center", overflow: "auto"
     }}>
-        <Box
-            style={{ ...imageBoxStyle, backgroundImage: `url(${imageUrl})`, backgroundColor: "primary.light" }}
-        >
+        <Box sx={{ overflowX: "scroll" }}>
+            <img src={imageUrl} style={imageBoxStyle} />
         </Box>
     </Box>;
 };

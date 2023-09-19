@@ -9,7 +9,7 @@ import { useMemo } from "react";
 import { REACT_TABLE_COMMON_OPTIONS } from "../../../../common/constants";
 import { actions as sliceActions } from "../../slice";
 const ReportOverView = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const columnsCylinderReport = useMemo(
         () => predictedDataCol,
         []
@@ -22,9 +22,8 @@ const ReportOverView = () => {
             columnOrder: predictedDataColOrder
         }
     };
-    const handleRemarks = (e, key) => {
-        dispatch(sliceActions.setRemarks({ value: e.target.value, key }));
-    }
+    const handleRemarks = (e, key) => dispatch(sliceActions.setRemarks({ value: e.target.value, key }));
+
     const { data = {} } = useSelector(state => state[STATE_REDUCER_KEY].predictedData);
     // const { remarks = "" } = data.predictionDetails;
     return !_.isEmpty(data) ? <Box>
