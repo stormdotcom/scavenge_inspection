@@ -80,7 +80,7 @@ function SignIn(props) {
                         </Grid>
                     </Paper >
                     <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
-                        <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}> {" | "}</Typography>
+                        <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}> {"  "}</Typography>
                         <Box sx={{ textAlign: "center", mx: 0.3 }}>
                             <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}> {" "}
                                 <span onClick={() => navigate("../docs/home")} style={{ cursor: "pointer", textDecoration: "underline" }}>
