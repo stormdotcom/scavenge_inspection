@@ -90,7 +90,7 @@ const ReportDetails = (props) => {
                                         enableCustomTableFilter={false}
                                     />
                                 </Grid>
-                                <Typography sx={{ color: "#ffff", fontWeight: 600 }}>Remarks</Typography>
+                                <Typography sx={{ color: "#ffff", fontWeight: 600 }}>Remarks :</Typography>
                                 <Typography htmlFor="remarks-field" sx={{ color: "#ffff", fontWeight: 500 }}>{value?.remarks || "-"}</Typography>
                                 <Divider sx={{
                                     width: "100%",
