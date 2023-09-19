@@ -28,7 +28,6 @@ function SignIn(props) {
         return () => dispatch(sliceActions.clear());
     }, []);
     const handleClick = () => navigate(`../${homePath}`);
-    const handleTC = () => dispatch(commonSliceActions.toggleShowHideTC(true));
     return (
         <>
             <Box sx={{ width: "240px", position: "relative" }}>
@@ -81,11 +80,6 @@ function SignIn(props) {
                         </Grid>
                     </Paper >
                     <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
-                        <Box sx={{ textAlign: "center", mx: 0.3 }}>
-                            <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}>{" "}
-                                <span onClick={handleTC} style={{ cursor: "pointer", textDecoration: "underline" }}>
-                                    Read Terms and Conditions.</span> </Typography>
-                        </Box>
                         <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}> {" | "}</Typography>
                         <Box sx={{ textAlign: "center", mx: 0.3 }}>
                             <Typography sx={{ color: "white.main", fontSize: { xs: "9px", md: "10px", lg: "11px", xl: "12px" } }}> {" "}
