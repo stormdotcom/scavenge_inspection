@@ -43,9 +43,11 @@ const ReportOverView = () => {
                 <Typography htmlFor="remarks-field" sx={{ color: "#ffff" }}>Remarks</Typography>
                 <Input
                     sx={{
-                        backgroundColor: "#000000",
-                        color: "#ffffff"
+                        backgroundColor: "#212529",
+                        color: "#ffffff",
+                        lineHeight: "28px"
                     }}
+                    variant="filled"
                     value={value?.remarks}
                     onChange={(e) => handleRemarks(e, key)}
                     id="remarks-field"
