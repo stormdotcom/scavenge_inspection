@@ -3,11 +3,11 @@ import React from "react";
 import PredictionImage from "./PredictionImage";
 import { useDispatch, useSelector } from "react-redux";
 import { STATE_REDUCER_KEY, predictedDataCol, predictedDataColOrder } from "../../constants";
-import _ from "lodash";
 import CustomReactTable from "../../../../common/components/custom/CustomReactTable";
 import { useMemo } from "react";
 import { REACT_TABLE_COMMON_OPTIONS } from "../../../../common/constants";
 import { actions as sliceActions } from "../../slice";
+import _ from "lodash";
 const ReportOverView = () => {
     const dispatch = useDispatch();
     const columnsCylinderReport = useMemo(
@@ -18,6 +18,8 @@ const ReportOverView = () => {
         ...REACT_TABLE_COMMON_OPTIONS,
         enableRowActions: false,
         enableCustomPagination: false,
+        enableRowNumbers: true,
+        rowNumbersColumnTitle: "Ring Number",
         state: {
             columnOrder: predictedDataColOrder
         }
@@ -37,6 +39,7 @@ const ReportOverView = () => {
                     options={options}
                     enableRowVirtualization={false}
                     enableCustomTableFilter={false}
+                    enableRowNumbers={true}
                 />
             </Grid>
             <FormControl fullWidth sx={{ m: 1 }} variant="standard">
