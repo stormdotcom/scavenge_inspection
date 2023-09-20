@@ -4,6 +4,12 @@ export const STATE_REDUCER_KEY = "vessel";
 
 export const predictedDataCol = [
     {
+        id: "ringNo",
+        header: "Ring Number",
+        accessorKey: "ringNo",
+        size: 50
+    },
+    {
         id: "lubricationCondition",
         header: "Lubrication Condition",
         accessorKey: "lubricationCondition",
@@ -87,6 +93,7 @@ export const reportsColOrder = [
 ];
 
 export const predictedDataColOrder = [
+    "ringNo",
     "lubricationCondition",
     "surfaceCondition",
     "depositsCondition",
