@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-function AdminHome() {
+function CommonHome() {
 
     return (
         <div>
@@ -9,4 +9,4 @@ function AdminHome() {
     );
 }
 
-export default AdminHome;
+export default CommonHome;

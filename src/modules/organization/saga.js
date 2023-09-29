@@ -3,7 +3,7 @@ import { ACTION_TYPES, fetchVesselList, fetchVesselRequestList } from "./actions
 import { handleAPIRequest } from "../../utils/http";
 import {
     approveVesselApi, createVesselApi, fetchVesselListApi, fetchVesselRequestListApi, fetchManagerProfileApi,
-    fetchVesselDetailListsApi, fetchVesselByApi
+    fetchVesselDetailListsApi, fetchVesselByApi, updateManagerProfileApi
 } from "./api";
 import { successNotify } from "../../utils/notificationUtils";
 import { actions } from "./slice";
@@ -56,6 +56,15 @@ export function* fetchManagerProfile() {
     yield call(handleAPIRequest, fetchManagerProfileApi, { userType: USER_TYPE[1] });
 }
 
+export function* updateManagerProfile({ payload }) {
+    const newPayload = _.cloneDeep(payload);
+    _.unset(newPayload, "company_name");
+    yield fork(handleAPIRequest, updateManagerProfileApi, newPayload);
+    const responseAction = yield take([ACTION_TYPES.UPDATE_MANAGER_PROFILE_SUCCESS, ACTION_TYPES.UPDATE_MANAGER_PROFILE_FAILURE]);
+    if (responseAction.type === ACTION_TYPES.UPDATE_MANAGER_PROFILE_SUCCESS) {
+        yield put(successNotify({ title: "Success", message: "Profile updated" }));
+    }
+}
 export default function* moduleSaga() {
     yield all([
         takeLatest(ACTION_TYPES.FETCH_VESSEL_LIST, fetchVesselListSaga),
@@ -65,7 +74,8 @@ export default function* moduleSaga() {
         takeLatest(ACTION_TYPES.FETCH_VESSEL_DETAILS_LIST, fetchVesselDetailListsSaga),
         takeLatest(ACTION_TYPES.FILTER_VESSEL, filterVesselListSaga),
         takeLatest(ACTION_TYPES.FETCH_VESSEL_DETAILS_BY_ID, fetchVesselById),
-        takeLatest(ACTION_TYPES.FETCH_MANAGER_PROFILE, fetchManagerProfile)
+        takeLatest(ACTION_TYPES.FETCH_MANAGER_PROFILE, fetchManagerProfile),
+        takeLatest(ACTION_TYPES.UPDATE_MANAGER_PROFILE, updateManagerProfile)
     ]);
 }
-//FETCH_MANAGER_PROFILE
+

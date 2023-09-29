@@ -7,9 +7,8 @@ import { PrivateRoute } from "./common/protected-route/protectedRoute";
 import { routes as adminRoutes } from "../modules/admin/routes";
 import { routes as userManagement } from "../modules/user-management/routes";
 import { routes as orgRoutes } from "../modules/organization/routes";
-
+import { routes as commonRoute } from "./common/routes";
 import OrgHome from "./organization/OrgHome";
-
 
 const ReportTable = React.lazy(() => import("./vessel/components/Report/ReportList/ReportTable"));
 const ViewReport = React.lazy(() => import("./vessel/components/Report/ReportList/ViewReport"));
@@ -80,6 +79,11 @@ const routes =
         {
             title: "user_management",
             children: userManagement || []
+        },
+        {
+            path: "docs",
+            title: "documentation",
+            children: commonRoute || []
         }
 
     ];

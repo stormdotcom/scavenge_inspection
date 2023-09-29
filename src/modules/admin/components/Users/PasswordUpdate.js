@@ -20,7 +20,7 @@ const PasswordUpdate = (props) => {
     useEffect(() => {
         setFieldValue("id", id);
     }, []);
-    return <Paper sx={{ px: 3, pt: 4, width: "99%", pr: 3 }}>
+    return <Paper sx={{ px: 3, pt: 4, width: { sm: "80%", md: "99%" }, pr: 3 }}>
         <Typography sx={{ color: "secondary.main", fontSize: { xs: "11px", md: "28px" }, fontWeight: 600, pb: 1 }}> Update Password </Typography>
         <LoadingCustomOverlay active={loading} >
             <Form>

@@ -28,7 +28,7 @@ const HeaderMenu = ({ handleClick }) => {
             <Typography onClick={handleLogout} sx={{ color: "white.main", display: "inline", px: 2, cursor: "pointer" }}> Logout  </Typography>
         </Box>;
     } else {
-        return <Box sx={{ width: "100px", bgcolor: "green.main", display: "flex", justifyContent: "flex-end" }}>
+        return <Box sx={{ width: "100px", display: "flex", justifyContent: "flex-end" }}>
             <MenuIcon onClick={handleClick} fontSize="large" sx={{ color: "white.main", cursor: "pointer" }} />
         </Box>;
     }

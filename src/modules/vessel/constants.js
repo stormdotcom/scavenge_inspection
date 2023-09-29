@@ -4,6 +4,12 @@ export const STATE_REDUCER_KEY = "vessel";
 
 export const predictedDataCol = [
     {
+        id: "ringNo",
+        header: "Ring Number",
+        accessorKey: "ringNo",
+        size: 50
+    },
+    {
         id: "lubricationCondition",
         header: "Lubrication Condition",
         accessorKey: "lubricationCondition",
@@ -47,12 +53,6 @@ export const columnsReport = [{
     size: 150
 },
 {
-    id: "cylinder_numbers",
-    header: "Cylinder Number",
-    accessorKey: "cylinder_numbers",
-    size: 150
-},
-{
     id: "normal_service_load_in_percent_MCR",
     header: "Normal Service Load in % MCR",
     accessorKey: "normal_service_load_in_percent_MCR",
@@ -75,7 +75,6 @@ export const columnsReport = [{
 
 export const reportsColOrder = [
     "inspectionDate",
-    "cylinder_numbers",
     "cyl_oil_consump_Ltr_24hr",
     "cyl_oil_Type",
     "thumbnailUrl",
@@ -87,6 +86,7 @@ export const reportsColOrder = [
 ];
 
 export const predictedDataColOrder = [
+    "ringNo",
     "lubricationCondition",
     "surfaceCondition",
     "depositsCondition",

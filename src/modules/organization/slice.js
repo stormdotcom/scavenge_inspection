@@ -165,6 +165,18 @@ const slice = createSlice({
             })
             .addCase(ACTION_TYPES.FETCH_MANAGER_PROFILE_FAILURE, (state) => {
                 _.set(state, "profile.requestInProgress", false);
+            })
+            //
+            .addCase(ACTION_TYPES.UPDATE_MANAGER_PROFILE, (state) => {
+                _.set(state, "profile.requestInProgress", true);
+            })
+            .addCase(ACTION_TYPES.UPDATE_MANAGER_PROFILE_SUCCESS, (state, { payload }) => {
+                const { data } = payload;
+                _.set(state, "profile.requestInProgress", false);
+                _.set(state, "profile.data", data);
+            })
+            .addCase(ACTION_TYPES.UPDATE_MANAGER_PROFILE_FAILURE, (state) => {
+                _.set(state, "profile.requestInProgress", false);
             });
 
     }

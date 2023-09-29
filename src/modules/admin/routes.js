@@ -1,6 +1,7 @@
 import { lazy } from "react";
 
 import { RootBoundary } from "../../common/components";
+import { PrivateRoute } from "../common/protected-route/protectedRoute";
 const AdminDashboard = lazy(() => import("./components/AdminDashboard"));
 const ListUsers = lazy(() => import("./components/Users/ListUsers"));
 const UserDetails = lazy(() => import("./components/Users/UserDetails"));
@@ -15,42 +16,42 @@ const routes = [
             {
 
                 path: "dashboard",
-                element: <AdminDashboard />,
+                element: <PrivateRoute > <AdminDashboard /> </PrivateRoute>,
                 errorElement: <RootBoundary />
             },
             {
                 path: "users",
-                element: <ListUsers />,
+                element: <PrivateRoute > <ListUsers /> </PrivateRoute>,
                 errorElement: <RootBoundary />
             },
             {
                 path: "users/:id/edit",
-                element: <UserDetails />,
+                element: <PrivateRoute> <UserDetails /> </PrivateRoute>,
                 errorElement: <RootBoundary />
             },
             {
                 path: "vessels",
-                element: <ListVessel />,
+                element: <PrivateRoute ><ListVessel /> </PrivateRoute>,
                 errorElement: <RootBoundary />
             },
             {
                 path: "vessels/:id/view",
-                element: <VesselDetails />,
+                element: <PrivateRoute > <VesselDetails /></PrivateRoute>,
                 errorElement: <RootBoundary />
             },
             {
                 path: "organizations",
-                element: <OrgList />,
+                element: <PrivateRoute > <OrgList /> </PrivateRoute>,
                 errorElement: <RootBoundary />
             },
             {
                 path: "organizations/:id/edit",
-                element: <OrgDetails />,
+                element: <PrivateRoute >  <OrgDetails /> </PrivateRoute>,
                 errorElement: <RootBoundary />
             },
             {
                 path: "config",
-                element: <ConfigPage />,
+                element: <PrivateRoute ><ConfigPage /> </PrivateRoute>,
                 errorElement: <RootBoundary />
             }
 

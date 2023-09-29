@@ -78,7 +78,7 @@ const ReportDetails = (props) => {
                         <Grid sx={{ pt: 2 }}>
                             <Typography sx={{ color: "secondary.main", fontSize: "18px", mt: 3, fontWeight: 600, pb: 3 }}> Cylinder Predicted Report </Typography>
                             {_.map(cylindersReport, (value = {}, key) =>
-                            (<Grid container key={key} spacing={2} sx={{ bgcolor: "primary.200", display: "flex", justifyContent: "space-evenly", p: 1, borderRadius: "5px" }}>
+                            (<Grid container key={key} spacing={2} sx={{ bgcolor: "primary.200", textAlign: "start", display: "flex", justifyContent: "space-evenly", p: 1, borderRadius: "5px" }}>
                                 <PredictionImage image={value?.image} cylinder={key} />
                                 {/* Table  data[key]*/}
                                 <Grid item xs={12} sm={6} md={9} lg={9} xl={9}>
@@ -90,6 +90,8 @@ const ReportDetails = (props) => {
                                         enableCustomTableFilter={false}
                                     />
                                 </Grid>
+                                <Typography sx={{ color: "#ffff", fontWeight: 600 }}>Remarks :</Typography>
+                                <Typography htmlFor="remarks-field" sx={{ color: "#ffff", fontWeight: 500 }}>{value?.remarks || "-"}</Typography>
                                 <Divider sx={{
                                     width: "100%",
                                     bgcolor: "primary.dark"

@@ -1,6 +1,7 @@
 
 import { lazy } from "react";
 import { RootBoundary } from "../../../../common/components";
+import { PrivateRoute } from "../../../common/protected-route/protectedRoute";
 
 
 const Profile = lazy(() => import("./ManagerProfile"));
@@ -11,12 +12,12 @@ const routes = [
 
             {
                 path: "info",
-                element: <Profile />,
+                element: <PrivateRoute><Profile /> </PrivateRoute>,
                 errorElement: <RootBoundary />
             },
             {
                 path: "subscriptions",
-                element: <Subscriptions />,
+                element: <PrivateRoute><Subscriptions /> </PrivateRoute>,
                 errorElement: <RootBoundary />
             }
         ]

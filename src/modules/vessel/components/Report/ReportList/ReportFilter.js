@@ -21,9 +21,9 @@ function ReportFilter(props) {
 
     return (
         <Box sx={{ mt: 2, width: "100%", display: "flex", alignItems: "center", px: 2.5 }}>
-            <Paper sx={{ bgcolor: "primary.dark", boxShadow: 0, width: "100%", borderRadius: "25px", py: 3 }} >
+            <Paper sx={{ bgcolor: "primary.dark", boxShadow: 0, width: "100%", borderRadius: "25px", py: 3, px: { xs: 0.3, sm: 1, md: 3 } }} >
                 <Form>
-                    <Grid container sx={{ display: "flex", justifyContent: "space-around" }} >
+                    <Grid container columnSpacing={2} sx={{ display: "flex", justifyContent: "space-around" }} >
                         <Grid item sm={12} md={5} lg={6} xl={3} sx={{ my: 1 }}>
                             <FormController control="date3" name="startDate" label="Start Date" />
                         </Grid>
