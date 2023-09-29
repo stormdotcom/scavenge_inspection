@@ -1,4 +1,5 @@
 # Project Scavenge Inspection UI
+ Scavenge inspection is an AI based cylinder piston rings detection system. At its core, scavenge inspection harnesses the power of artificial intelligence to meticulously analyze and predict potential problems within the cylinders of ship engine. By combining advanced machine learning algorithms and data, this system enables fleet managers and engineers to stay ahead of the curve in maintenance and diagnostics
 
 ## Requirements
 
@@ -13,3 +14,4 @@
 - Components should be PascalCase.
 - Methods should be in camelCase and be named for their function.
 - Folder names should be in lower case / hyphen-case.
+- Date utility epoch to date object and vise-versa
