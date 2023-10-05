@@ -10,7 +10,7 @@ import _ from "lodash";
 import { getUserData } from "../common/selectors";
 import { formatProps } from "../../utils/sagaUtils";
 import { actions as sliceActions } from "./slice";
-import { formatPredictedData, formatUser } from "./constants";
+import { DEFECT_DETECTION, formatPredictedData, formatUser } from "./constants";
 
 export function* updateInspectionDetails({ payload }) {
     const newPayload = _.cloneDeep(payload);
@@ -103,7 +103,7 @@ export function* exportPdfSaga() {
     try {
         yield put({ type: ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_REQUEST });
         yield put(loaderNotify({ title: "Downloading", message: "Inspection Report.pdf", id: "Inspection_Report.pdf" }));
-        const res = yield call(fetch, "https://defectdetectionrings.azurewebsites.net/pdf", {
+        const res = yield call(fetch, DEFECT_DETECTION.EXPORT_PDF, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -148,7 +148,7 @@ export function* exportExcelSaga() {
     try {
         yield put({ type: ACTION_TYPES.EXPORT_DOCUMENT_EXCEL_REQUEST });
         yield put(loaderNotify({ title: "Downloading", message: "Inspection Report.xslx", id: "Inspection_Report.xslx" }));
-        const res = yield call(fetch, "https://defectdetectionrings.azurewebsites.net/excel", {
+        const res = yield call(fetch, DEFECT_DETECTION.EXPORT_EXCEL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

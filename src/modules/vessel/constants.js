@@ -214,3 +214,10 @@ export const testData = {
         image: ""
     }
 };
+
+
+export const DEFECT_DETECTION = {
+    PREDICT_IMAGE: "https://scavaiapp.azurewebsites.net/predict",
+    EXPORT_PDF: "https://scavaiapp.azurewebsites.net/pdf",
+    EXPORT_EXCEL: "https://scavaiapp.azurewebsites.net/excel"
+};
