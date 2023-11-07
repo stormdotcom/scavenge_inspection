@@ -8,10 +8,10 @@ function Input2(props) {
     const { label, name, icon, onClick, sx = {}, errorName = "", statusError = false, onChangeText, onChangeFromController, digitsOnly = false, isMandatory = false, upperCase = false, ...rest } = props;
     return (
         <Grid container sx={{ ...FORM_CONTROL_STYLE_ALT, ...sx }}>
-            <Grid item xs={12} sm={6} md={6}>
-                <InputLabel sx={{ fontWeight: 700 }} htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", fontSize: "14px" }}> *</span>}</InputLabel>
+            <Grid item xs={12} sm={6} md={6} sx={{ width: { xs: "140px", sm: "100%" } }}>
+                <InputLabel sx={{ fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }} htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", sm: "12px", md: "14px" } }}> *</span>}</InputLabel>
             </Grid>
-            <Grid item xs={12} sm={6} md={6} sx={{ xs: { width: "100%" } }}>
+            <Grid item xs={12} sm={6} md={6} sx={{ width: { xs: "140px", sm: "100%" } }}>
                 <Field name={name} sx={{ height: "20px" }}>
                     {({ form, field }) => {
                         const { handleChange } = form;
@@ -53,7 +53,7 @@ function Input2(props) {
                                     }}
                                 />
                                 <Box sx={{ display: "block", position: "relative" }}>
-                                    {statusError ? <Typography variant="p" sx={{ color: "error.main", lineHeight: 0 }}>{errorName}</Typography> :
+                                    {statusError ? <Typography variant="p" sx={{ color: "error.main", fontSize: { xs: "9px", sm: "10px", md: "11px", lg: "12px" }, lineHeight: 0 }}>{errorName}</Typography> :
                                         <ErrorMessage component={TextError} name={name} />}
                                 </Box>
 

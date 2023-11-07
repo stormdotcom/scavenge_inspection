@@ -5,11 +5,24 @@ import { ACTION_TYPES as COMMON } from "../common/actions";
 const initialState = {
     navigator: null,
     table: {},
-    homePath: "home",
+    homePath: "signin",
     user: {
-        designation: "sss"
+        subscription: {
+            plan: ""
+        },
+        fullName: "",
+        email: "",
+        password: "",
+        userType: "",
+        organizationBelongsTo: {
+            _id: "",
+            company_name: ""
+        },
+        designation: "",
+        __v: 0
     },
-    isLoggedIn: false
+    isLoggedIn: false,
+    tcOpen: false
 };
 
 
@@ -26,6 +39,13 @@ const slice = createSlice({
         },
         setLoggedIn: (state, action) => {
             state.isLoggedIn = action.payload;
+        },
+        clearLogout: (state) => {
+            state.isLoggedIn = initialState.isLoggedIn;
+            state.homePath = initialState.homePath;
+        },
+        toggleShowHideTC: (state, { payload }) => {
+            state.tcOpen = payload;
         }
     },
     extraReducers: (builder) => {
@@ -38,7 +58,6 @@ const slice = createSlice({
             })
             .addCase(COMMON.LOG_OUT, (state) => {
                 state.isLoggedIn = false;
-                state.user = initialState.user;
             });
 
     }

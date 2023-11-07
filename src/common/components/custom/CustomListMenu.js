@@ -22,14 +22,14 @@ export default function CustomListMenu({ customActions, type = "" }) {
             <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
                 {type === "download" ?
                     <>
-                          <Tooltip title="Download">
-                        <CloudDownload
-                        onClick={handleClick}
-                        size="small"
-                        aria-controls={open ? "account-menu" : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? "true" : undefined}
-                        sx={{ width: 22, height: 22 }} />
+                        <Tooltip title="Download">
+                            <CloudDownload
+                                onClick={handleClick}
+                                size="small"
+                                aria-controls={open ? "account-menu" : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open ? "true" : undefined}
+                                sx={{ width: 22, height: 22 }} />
                         </Tooltip>
                     </>
 
@@ -43,7 +43,7 @@ export default function CustomListMenu({ customActions, type = "" }) {
                                 aria-haspopup="true"
                                 aria-expanded={open ? "true" : undefined}
                             >
-                                <MoreVertIcon sx={{ width: 32, height: 32 }} />
+                                <MoreVertIcon sx={{ width: 32, height: 32, color: "#ffff" }} />
                             </IconButton>
                         </Tooltip></>}
             </Box>

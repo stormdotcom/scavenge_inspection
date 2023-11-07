@@ -6,10 +6,11 @@
                 "fontSize": "14px",
                 "borderRadius": "5px",
                 "height": "30px",
-                "width": "100%",
+                "width": "98%",
                 "fontWeight": 400,
                 "color": "#fff",
-                "backgroundColor": "#181b1e",
+                "backgroundColor": "#101010",
+                "border": "1px solid #4F4F4F",
                 "fieldset": {
                     "border": "1px solid #303134 !important"
                 },

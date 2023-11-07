@@ -1,9 +1,10 @@
-import CustomReactTable from "common/components/custom/CustomReactTable";
+
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { COMMON_TABLE_INITIAL_STATE, DEFAULT_TABLE_ID, STATE_REDUCER_KEY } from "../constants";
-import { actions as commonActions } from "modules/common/slice";
+import { actions as appActions } from "../../table/slice";
 import { ROWS_PER_PAGE } from "../../../common/constants";
+import CustomReactTable from "../../../common/components/custom/CustomReactTable";
 
 const callApi = (fetchData, pagination, filters, dispatch) => {
     let { payload = {} } = fetchData;
@@ -19,7 +20,7 @@ const CommonTable = (props) => {
     const { [tableId]: { requestInProgress = false, data = [], rowSelected = {}, filters = {}, pagination: { pageNo, totalRecords, pageSize, totalPages } = COMMON_TABLE_INITIAL_STATE.pagination } = {} } = useSelector(state => state[STATE_REDUCER_KEY].table);
 
     const handleChangePage = (e, page) => {
-        dispatch(commonActions.setPagination({ key: tableId, pageNo: page }));
+        dispatch(appActions.setPagination({ key: tableId, pageNo: page }));
         if (autoFetch) {
             fetchData && callApi(fetchData, { pageNo: page - 1, pageSize }, filters, dispatch);
         } else {
@@ -28,17 +29,17 @@ const CommonTable = (props) => {
     };
 
     const handleChangeRowsPerPage = (e) => {
-        dispatch(commonActions.setPagination({ key: tableId, pagination: { pageSize: e.target.value }, reset: true }));
+        dispatch(appActions.setPagination({ key: tableId, pagination: { pageSize: e.target.value }, reset: true }));
         fetchData && callApi(fetchData, { pageNo: 0, pageSize: e.target.value }, filters, dispatch);
     };
 
     useEffect(() => {
-        dispatch(commonActions.initializeTable({ key: tableId }));
+        dispatch(appActions.initializeTable({ key: tableId }));
         if (autoFetch) {
             fetchData && callApi(fetchData, { pageNo: 0, pageSize }, filters, dispatch);
         }
         if (clearAll) {
-            return () => dispatch(commonActions.clearAll({ key: tableId }));
+            return () => dispatch(appActions.clearAll({ key: tableId }));
         }
     }, []);
 

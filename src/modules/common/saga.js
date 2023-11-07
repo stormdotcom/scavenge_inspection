@@ -31,7 +31,8 @@ function* logoutUser({ payload: data = {} }) {
         yield put(successNotify({ title: "Success", message: "You have been successfully logged out!" }));
     }
     localStorage.removeItem(STORAGE_KEYS.ACCESS_TOKEN);
-    yield navigateToFn({ payload: "/" });
+    yield navigateToFn({ payload: "/signin" });
+    // clear all slice modules;
     // yield put(navigateTo("/"));
 }
 

@@ -7,10 +7,10 @@ import TextError from "./TextError";
 
 function Input(props) {
   const { toolTipTitle = "", label, name, icon, onClick, sx = {}, errorName = "", statusError = false, onChangeText, onChangeFromController, digitsOnly = false, isMandatory = false, upperCase = false, ...rest } = props;
-
+  //sx={{ fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }}
   return (
     <Grid sx={{ ...FORM_CONTROL_STYLE, ...sx }}>
-      <InputLabel htmlFor={name}>{label} {isMandatory && <span style={{ color: "red", fontSize: "14px" }}> *</span>}</InputLabel>
+      <InputLabel htmlFor={name} sx={{ fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }}>{label} {isMandatory && <span style={{ color: "red", fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", sm: "12px", md: "14px" } }}> *</span>}</InputLabel>
       <Field name={name} >
         {({ form, field }) => {
           const { handleChange } = form;
@@ -54,7 +54,7 @@ function Input(props) {
                   )
                 }}
               />
-              {statusError ? <Typography variant="p" sx={{ color: "red", mt: 1, lineHeight: 0 }}>{errorName}</Typography> :
+              {statusError ? <Typography variant="p" sx={{ color: "red", mt: 1, lineHeight: 0, fontWeight: { xs: 400, md: 600 }, fontSize: { xs: "9px", sm: "10px", md: "12px", lg: "14px" } }}>{errorName}</Typography> :
                 <ErrorMessage component={TextError} name={name} />}
             </>
           );

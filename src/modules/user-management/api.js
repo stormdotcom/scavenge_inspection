@@ -24,6 +24,28 @@ export const signUpApi = (data) => {
     };
 };
 
+export const signUpVOApi = (data) => {
+    return {
+        url: API_URL.AUTH.SIGN_UP_VO,
+        method: REQUEST_METHOD.POST,
+        payload: {
+            types: [ACTION_TYPES.SIGN_UP_VO_REQUEST, ACTION_TYPES.SIGN_UP_VO_SUCCESS, ACTION_TYPES.SIGN_UP_VO_FAILURE],
+            data: data
+        }
+    };
+};
+
+export const signUpVUApi = (data) => {
+    return {
+        url: API_URL.AUTH.SIGN_UP_VU,
+        method: REQUEST_METHOD.POST,
+        payload: {
+            types: [ACTION_TYPES.SIGN_UP_VU_REQUEST, ACTION_TYPES.SIGN_UP_VU_SUCCESS, ACTION_TYPES.SIGN_UP_VU_FAILURE],
+            data: data
+        }
+    };
+};
+
 export const fetchOrgAdminsSagaApi = (email = "") => {
     let data = { email };
     return {
@@ -56,4 +78,13 @@ export const fetchOrgListApi = () => {
     };
 };
 
-//fetchOrgListApi
+export const fetchOrgAdminDropdownApi = (data) => {
+    return {
+        url: API_URL.USER_MANAGEMENT.BY_ORG,
+        method: REQUEST_METHOD.POST,
+        payload: {
+            types: [ACTION_TYPES.FETCH_ADMIN_BY_ORG_REQUEST, ACTION_TYPES.FETCH_ADMIN_BY_ORG_SUCCESS, ACTION_TYPES.FETCH_ADMIN_BY_ORG_FAILURE],
+            data
+        }
+    };
+};

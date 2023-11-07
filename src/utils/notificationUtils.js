@@ -23,6 +23,6 @@ export const errorNotify = (props) => notify({ ...NOTIFICATION_PROPS, ...props, 
 export const loaderNotify = (props) => notify({ ...NOTIFICATION_PROPS, ...props, status: "loading" });
 
 export const confirmDialog = (payload = {}) => Swal.fire({
-    title: `${"are_you_sure"} ?`, showDenyButton: true, confirmButtonText: "ok", denyButtonText: "cancel", denyButtonColor: palette.palette.error.main,
+    title: "Are you sure?", showDenyButton: true, confirmButtonText: "ok", denyButtonText: "cancel", denyButtonColor: palette.palette.error.main,
     confirmButtonColor: palette.palette.purple.main, ...payload
 });

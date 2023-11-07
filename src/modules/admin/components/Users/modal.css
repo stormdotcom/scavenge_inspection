@@ -1,0 +1,16 @@
+/* sweetalert2-custom.css */
+.swal2-container {
+    background-color: black;
+}
+
+.swal2-button {
+    background-color: #ffee00;
+    /* Change the button background color */
+    color: #fff;
+    /* Change the button text color */
+}
+
+.swal2-button:hover {
+    background-color: #fcec10;
+    /* Change the button background color on hover */
+}

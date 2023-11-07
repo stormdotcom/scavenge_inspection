@@ -9,11 +9,15 @@ const initialState = {
     vesselDetails: {
         requestInProgress: false,
         data: {
-            vesselName: "",
+            vessel_name: "",
             imo_number: "",
             manufacturer: "",
             type_of_engine: "",
-            vessel_type: ""
+            vessel_type: "",
+            cylinder_numbers: 0,
+            phone: "",
+            email: "",
+            fleetManager: ""
         }
     }
 
@@ -42,9 +46,9 @@ const slice = createSlice({
             .addCase(ACTION_TYPES.UPDATE_VESSEL_REQUEST, (state) => {
                 _.set(state, "vesselDetails.requestInProgress", true);
             })
-            .addCase(ACTION_TYPES.UPDATE_VESSEL_SUCCESS, (state) => {
+            .addCase(ACTION_TYPES.UPDATE_VESSEL_SUCCESS, (state, { payload = {} }) => {
                 _.set(state, "vesselDetails.requestInProgress", false);
-                // _.set(state, "vesselDetails.data", payload.data);
+                _.set(state, "vesselDetails.data", payload.data);
             })
             .addCase(ACTION_TYPES.UPDATE_VESSEL_FAILURE, (state) => {
                 _.set(state, "vesselDetails.requestInProgress", false);

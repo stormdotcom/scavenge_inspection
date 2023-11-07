@@ -1,4 +1,4 @@
-import { FormControlLabel, Grid, InputLabel, Radio, Stack } from "@mui/material";
+import { Box, FormControlLabel, Grid, InputLabel, Radio } from "@mui/material";
 import { ErrorMessage, Field } from "formik";
 
 import TextError from "./TextError";
@@ -6,7 +6,7 @@ import TextError from "./TextError";
 const RadioButtons = (props) => {
   const { label, name, options = [], ...rest } = props;
   return (
-    <Grid sx={{ display: "flex", flexDirection: "row" }} >
+    <Grid sx={{ display: "flex", flexDirection: "row", justifyContent: "space-around", width: "100%" }} >
       {label && <InputLabel>{label}</InputLabel>}
       {options.map(option => {
         return (
@@ -14,17 +14,22 @@ const RadioButtons = (props) => {
             {({ field }) => {
 
               return <>
-                <Stack spacing={2} sx={{ m: 2 }}>
+                <Box sx={{ my: 0.8, display: "flex", justifyContent: "space-between", alignItems: "center", flexDirection: { xs: "column", md: "row" } }}>
                   <FormControlLabel
-                    control={<Radio />}
+                    control={<Radio sx={{
+                      color: "grey",
+                      "&.Mui-checked": {
+                        color: "#fff"
+                      }
+                    }} />}
                     id={option.id}
                     {...field}
                     {...rest}
                     value={option.id}
                     checked={((typeof (field.value) === "object") ? field?.value?.id : field?.value) === (option?.id || "").toString()}
                   />
-                  <InputLabel htmlFor={option.id}>{option.name}</InputLabel>
-                </Stack>
+                  <InputLabel sx={{ fontWeight: { xs: 400, md: 700 }, fontSize: { xs: "11px", md: "14px" } }} htmlFor={option.id}>{option.name}</InputLabel>
+                </Box>
               </>;
             }}
           </Field>

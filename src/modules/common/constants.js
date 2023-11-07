@@ -1,6 +1,6 @@
 export const STATE_REDUCER_KEY = "COMMON";
 
-export const COMMON_TABLE_PAGINATION = { pageNo: 0, totalRecords: 0, pageSize: 5, totalPages: 1 };
+export const COMMON_TABLE_PAGINATION = { pageIndex: 0, pageSize: 5, totalCount: 0 };
 
 export const COMMON_TABLE_INITIAL_STATE = {
     requestInProgress: false,
@@ -9,6 +9,7 @@ export const COMMON_TABLE_INITIAL_STATE = {
     filters: {}
 };
 
+export const DEFAULT_TABLE_ID = "DEFAULT_TABLE";
 
 export const EMAIL = (string) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(string);
 

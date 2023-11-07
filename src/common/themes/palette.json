@@ -3,10 +3,13 @@
       "primary": {
         "light": "#303134",
         "200": "#32393f",
+        "300": "#393b3e",
         "main": "#212529",
-        "600": "#181b1e"
+        "600": "#181b1e",
+        "dark": "#27272a"
       },
       "secondary": {
+        "extraLight": "#f5d47d",
         "light": "#f0c246",
         "main": "#e8af13",
         "dark": "#d6a112"
@@ -34,6 +37,13 @@
       },
       "boneWhite": {
         "main": "#F9F6EE"
+      },
+      "orange": {
+        "main": "#c87b34",
+        "default": "#EF8829"
+      },
+      "green": {
+        "main": "#2AC355"
       }
     }
   }

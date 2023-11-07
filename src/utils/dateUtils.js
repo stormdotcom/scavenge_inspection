@@ -50,7 +50,6 @@ export const fromDateObjectToMuiDate = (date) => {
 
     const momentDate = moment(date);
     const formattedDate = momentDate.format("YYYY-MM-DD");
-
     return formattedDate;
 };
 
@@ -59,3 +58,10 @@ export const fromMuiDateEpoch = (date = "") => {
     const momentDate = moment(date, MUI_DATE_FORMAT).unix();
     return momentDate;
 };
+
+export function fromDateObjectToEpoch(dateObj) {
+    const momentObj = moment(dateObj);
+    const epochTime = momentObj.unix();
+    return epochTime;
+}
+

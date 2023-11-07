@@ -32,14 +32,18 @@ const getRequestParams = ({ url, data, method }) => {
     let extraParams = {};
 
     const api = (method === REQUEST_METHOD.DELETE) ? deleteRequest : (method === REQUEST_METHOD.PUT) ? putRequest : (method === REQUEST_METHOD.PATCH) ? patchRequest : (method === REQUEST_METHOD.POST) ? postRequest : getRequest;
-    baseURL = process.env.REACT_APP_API_URL;
+    baseURL = process.env.NODE_ENV === "development" ? process.env.LOCAL_API_URL : process.env.DEV_API_URL;
+    if (process.env.NODE_ENV === "development") {
+        baseURL = process.env.REACT_APP_API_URL;
+    }
+    if (process.env.NODE_ENV === "production") {
+        baseURL = process.env.REACT_APP_DEV;
+
+    }
     if (bearerToken) {
         authHeaders = { Authorization: `Bearer ${bearerToken}` };
     }
-    // else {
-    //     window.location.hash = "/";
-    //     return;
-    // }
+
 
     if ((method === REQUEST_METHOD.PUT || method === REQUEST_METHOD.PATCH || method === REQUEST_METHOD.POST) && url !== API_URL.AUTH.SIGN_IN) {
         data = requestWrapper(data);
@@ -84,7 +88,8 @@ function* invokeApi(method, url, payload) {
                         yield delay(500);
                         yield put(logout());
                     } else {
-                        errorMessage = { title: `${errorTitle || statusText || netWorkMessage || "ERROR"}`, message: message || errorDescription };
+                        errorMessage = { title: `${errorTitle || statusText || netWorkMessage || "ERROR"}`, message: message };
+                        yield put(logout());
                     }
                 }
                 break;
@@ -100,6 +105,7 @@ function* invokeApi(method, url, payload) {
     } else {
         if (_.get(response, "result", "") === API_RESULT_CODE.FAILURE) {
             yield put(warningNotify({ id: "ERROR_PRIMARY", title: "Operation Failure", message: _.get(response, "errorDescription", "Operation Failure") }));
+            yield put(failureAction({}));
         }
         if (_.get(response, "result", "") !== API_RESULT_CODE.FAILURE) {
             yield put(successAction(response || {}));
